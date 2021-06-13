@@ -1,59 +1,26 @@
 #+TITLE: Metarepo Notes
 #+AUTHOR: David Conner
-#+DESCRIPTION:
+#+DESCRIPTION: Git submodules containing Google Repo manifests for a great good.
 #+PROPERTY:
 #+STARTUP: content
 #+OPTIONS: toc:nil
 
-
-
-- abo-abo/oremacs
-- geolessel/dotfiles
-- purcell/emacs.d
-- tuhdo/emacs-c-ide-demo
-- karthink/.emacs.d
-- hsinhaoyu/.emacs.d
-- blejdfist/dotfiles
-- dwt1/dotfiles/
-- HaoZeke/dotdoom
-- HaoZeke/Dotfiles
-- Brettm12345/doom-emacs-literate-config
-- xahlee/xahscripts
-- mwfogleman/.emacs.d
-- tammymakesthings/emacs_d
-- lccambiaghi/.doom.d
-- ubolonton/dotfiles
-- ubolonton/.emacs.d
-- aborn/dotfiles
-- hlissner/dotfiles
-- protesilaos/dotfiles.git
-- aborn/.spacemacs.d
-- zzamboni/dot-doom
-- magnars/.emacs.d
-- lccambiaghi/vanilla-emacs
-- sunnyhasija/Academic-Doom-Emacs-Config
-- xahlee/xah_emacs_init
-- daviwil/dotfiles
-- bbatsov/emacs.d
-- zamansky/dot-emacs
-- hlissner/doom-emacs-private
-- daedreth/UncleDavesEmacs
-- joseph8th/literatemacs
-- rasendubi/dotfiles
-- bbatsov/prelude
-- TimQuelch/emacs.d
-- frap/emacs-literate
-
-
-* Meta Repo
+* Ecto Repo
 
 This is a git repo full of submodules to Repo projects made of git repos. The
-capital R in Repo matters.
+capital R in Repo matters. Technically, this can be done with HTTPS and an XML manifest server ... but I'm special. I'll be using git submodules.
 
-using google's repo's tool
+I've created this organization to separate these "git playlist" manifest repos
+from my own Github. And I've created this project for me personally. Expect
+incomplete documentation and such. The power of google Repo could be in your
+hands. There is almost zero documentation avaiable for it on the web. It
+downloads a copy of its own python scripts. That's your best bet. That, or this
+repo.
+
+** Using Google's Repo's tool
 
 - [[https://www.instructables.com/Using-Googles-repo-command-in-your-own-projects/][how to set up in other new projects]]
-- sel4 systems: [[https://docs.sel4.systems/projects/buildsystem/repo-cheatsheet.html][Google Repo cheatsheet]]]
+- sel4 systems: [[https://docs.sel4.systems/projects/buildsystem/repo-cheatsheet.html][Google Repo cheatsheet]]
 
 *** TODO read in value for local repository from =dir-locals.el=
 
@@ -273,6 +240,16 @@ git init
 
 
 *** TODO standardize a format for listing repos to clone for a language like clojure/julia/etc or use the following (preferred at top)
+*** TODO emacs workflow: automation of structure for projects/org/code
++ outline basic structure for capture/refile
+  + manage org files, repo groups and/or metadata
+  + types of projects (reference groups, work, notes, etc)
++ automation for adding to gitwalk JSON groups (of repos for reference)
+  + when is it helpful to use these groups? when is it definitely overkill (i.e. much of the code i'm interested in should be easy to navigate to from a project... however, for now, i'm in unfamiliar territory with no clear way to expect which dependencies are going to exist in any project. i'm trying to avoid bad habits like googling code samples)
++ outline
+
+** Alternatives to Google Repo
+
 + [[https://github.com/pazdera/gitwalk][pazdera/gitwalk]] (popular, allows groups defined via JSON, best so far)
 + [[https://github.com/mixu/gr][mixu/gr]] (another promising bulk management tool)
   + similar to my old gitar scripts
@@ -283,10 +260,3 @@ git init
 + [[https://github.com/scivision/pygit-bulk][scivision/pygit-bulk]] and [[https://pypi.org/project/gitutils/][GitMC]]
 + [[https://gist.github.com/Lukas238/8d9abbeabfcd7225e3a254d40eb0c080][Bulk backup/clone of Git Repos From A List]]
 + [[https://github.com/taylorjayoung/RepoSweeper][RepoSweeper]] (for deleting/managing Github repos)
-*** TODO emacs workflow: automation of structure for projects/org/code
-+ outline basic structure for capture/refile
-  + manage org files, repo groups and/or metadata
-  + types of projects (reference groups, work, notes, etc)
-+ automation for adding to gitwalk JSON groups (of repos for reference)
-  + when is it helpful to use these groups? when is it definitely overkill (i.e. much of the code i'm interested in should be easy to navigate to from a project... however, for now, i'm in unfamiliar territory with no clear way to expect which dependencies are going to exist in any project. i'm trying to avoid bad habits like googling code samples)
-+ outline
