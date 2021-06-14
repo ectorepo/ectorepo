@@ -93,7 +93,7 @@ share the tools I use to learn more faster.
 I want to integrate some of my code analysis tools, literate programming style,
 to org documents at the root of the manifest repos. As in human language, with
 computering langauge I also have a hard time keeping track of and integrating
-the vocabularly of hundreds of API's that I would like to have /vorhanden/ --
+the vocabularly of hundreds of API's that I would like to have /zuhanden/ --
 lit. ready at hand. In my own uphill battles with neurology, I have found the
 following techniques invaluable:
 
