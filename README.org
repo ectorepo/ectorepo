@@ -1,11 +1,11 @@
-#+TITLE: Metarepo Notes
+#+TITLE: Ectorepo Notes
 #+AUTHOR: David Conner
 #+DESCRIPTION: Git submodules containing Google Repo manifests for a great good.
 #+PROPERTY:
 #+STARTUP: content
 #+OPTIONS: toc:nil
 
-* Ecto Repo
+* Ectorepo
 
 This is a git repo full of submodules to [[https://android.googlesource.com/tools/repo][Repo]] [[https://android.googlesource.com/platform/manifest/][projects]] made of git repos. The
 capital R in Repo matters. Technically, this can be done with HTTPS and an XML
@@ -33,7 +33,7 @@ Chromium OS that is used to automation/instrumentation/hooks builds and tests.
 These projects are massive and involve collaboration of thousands of developers.
 To make matters more complicated, both Android and Chromium OS need to support
 legacy hardware/software. So Repo allows developers to specify manifest branches
-that pin specific subproject branchs.
+that pin specific subproject branchs for various build scenarios.
 
 And the next thing you'll be learning in your Google onboarding is why C++
 compiler design could not be rectified for the scale of software Google was
@@ -41,14 +41,15 @@ building, necessitating =Go= and =bazel=. But the real question there is =Why=
 -- for which any sufficiently technical answer affirmatively deserves an
 "Achievment Unlocked" next to that "Arctic Code Repository" badge of yours.
 
-Bonus points if you manage to explain it using these [[https://www.youtube.com/watch?v=HeQX2HjkcNo][Peano Arithmatic]] cards.
+Bonus points if you manage to explain it using these [[https://www.youtube.com/watch?v=HeQX2HjkcNo][Peano Arithmatic cards]].
 
 * Table of Contents :TOC_2_gh:
-- [[#ecto-repo][Ecto Repo]]
+- [[#ectorepo][Ectorepo]]
   - [[#what-is-a-git-playlist-trebek][What is a Git Playlist, Trebek]]
   - [[#caveats][Caveats]]
 - [[#getting-started][Getting Started]]
   - [[#doing-your-first-repo-sync][Doing your first =repo sync=]]
+  - [[#its-time-to-put-this-shit-to-bed][It's Time To Put This Shit To Bed]]
   - [[#using-the-manifest-repositories-in-this-project][Using the manifest repositories in this project]]
   - [[#alternatives-to-google-repo][Alternatives to Google Repo]]
 
@@ -69,16 +70,76 @@ Bonus points if you manage to explain it using these [[https://www.youtube.com/w
 5. Update the XML =<defaults/>= and =<project/>= tags with the appropriate
    =revision= properties. Then cross your fingers and try =repo sync= once
    again... /just be glad you're not Google devops or a Google VP/.
-   + Too Long, Don't Care -- =git= should probably be patched to put an end to
-     this /ridiculous, etymologically inaccurate fiasco/ by making main an alias
-     to master...
-   + All for CRT mind-control word games to drive more division by triggering
-     thoughts in event-driven fashion at high-volumes. /All day,
-     every day -- for anyone who touches git./
-   + Somebody call Syd Barrett: they comin' for the Pink Floyd masters next.
-   + It is literally a CRISPR mind-control retrovirus firstmost. VP heads should
-     be rolling at quite a few silicon valley firms for proactively seeding
-     division with CRT's private little word games.
+
+** It's Time To Put This Shit To Bed
+
+**Too Long, Don't Care** -- =git= should probably be patched to put an end to
+this /ridiculous, etymologically inaccurate fiasco/ by making main an alias to
+master...
+
+It's all for CRT mind-control word games to drive more division by triggering
+thoughts in event-driven fashion at high-volumes. /All day, every day -- for
+anyone who touches git. /Somebody call Syd Barrett: they comin' for the Pink
+Floyd masters next. It is literally a CRISPR mind-control retrovirus firstmost.
+VP heads should be rolling at quite a few silicon valley firms for proactively
+seeding division with CRT's private little word games.
+
+There is a difference between nouns and adjectives which denote a capacity for
+agency and those which don't. In git, the adjective or adjectival noun master
+does /not/ denote something with agency. In git (and afaik in source control
+systems dating back to Sourcesafe) the word master is never seen opposite the
+designation slave ... and in contexts where that does happen, the conventions
+and norms should probably be changed. However, those are usually devices and
+systems with some capacity for agency.
+
+IMO, a resolution to the argument settled by etymology or subjective
+connotations is unsatisfactory. For the designations master/slave, they do not
+confer enough degrees of designation. The term root is satisfactory in its
+ability to designate consensus on the original master copy of something used for
+shared work -- like an original Hollywood Reel or a studio master produced by a
+mastering engineer. And yes the adjectival gerund "mastering" detracts a bit
+from my agent-noun argument.
+
+But, alas, unless we plan on burning copies of the Oxford Dictionaries, we are
+stuck with the English word [[https://en.wiktionary.org/wiki/master][master]], derived [[https://en.wiktionary.org/wiki/Appendix:Glossary#doublet][as a doublet]] from Italian [[https://en.wiktionary.org/wiki/maestro#Italian][maestro]]
+and ultimately Latin [[https://en.wiktionary.org/wiki/magister#Latin][magister]], which thereby confers its connotations of
+record-keeping (viz. magistrate). And, please, don't make me bust out my copy of
+Émile Benviniste's [[https://www.amazon.com/Dictionary-Indo-European-Concepts-Society-Benveniste/dp/0986132594/ref=sr_1_1?dchild=1&keywords=benveniste&qid=1623691293&sr=8-1][Dictionary of Indo-European Concepts]] of Society or explain
+how the wheel impact on the commerce of ideas implies that the
+Proto-Indoeuropean language is kinda bullshit. Learn your shit before you force
+all of software engineering to parameterize what could otherwise be a norm.
+
+Main is not the proper designation for a master branch. Think of the morpheme
+main as part of the term mainstream, for example. Is mainstream a master or
+/root/ copy of anything? No. In the context of "mainline", the morpheme main
+does confer the meaning of root. It's a mixed bag. IMO, the term root should be
+used in place of both master and main. However, if you've worked in devops, then
+you know that the term master or the concept of root aren't really satisfactory.
+
+I cannot stand the marxist dialectic: I look forward to a future wherein we can
+say definitively that racism is in our past. I do not want to live in a future
+where we have retroactively defined projects such as =git=, =linux=, =Facebook=,
+=Google=, =Ruby on Rails= et alias as part of a formerly racist culture simply
+because they used the term master, outside of its agent-noun sense. Linux?
+Racist?
+
+By the way, the response to police brutality and indeed Black Lives Matter
+itself was catalyzed by the democratization of /data science/. It was created in
+response to government records becoming publicly available and mineable
+datasets. It was always a pre-ordained development and one that was perhaps
+prophesied by Sun Ra, [[https://www.weirdstudies.com/60][an African American polymath]] and unsung hero who briefly
+lectured on fascinating topics at /BERKLEY/ in the early seventies. In his movie
+[[https://www.imdb.com/title/tt0072195/][Space Is the Place]], Sun Ra used the double image of a playing card and
+video-playing tablet device. Why? To show how violence could be videotaped and
+shared -- /apparently without revealing his hand/.
+
+Why do I care? Because norms are efficient and consensus on norms is expensive.
+And also because it is the height of fraudulence for software engineering
+institutions to pretend they did anything to advance African American issues by
+social-engineering the normative designation of master in source control. And
+none of this controversy translates well outside of America by the way. You are
+out of touch. And problaly white to think that you are a hero for mainstreaming
+the master/main controversy.
 
 ** Using the manifest repositories in this project
 
@@ -87,7 +148,6 @@ Bonus points if you manage to explain it using these [[https://www.youtube.com/w
   file locations of your choice and run =repo sync -m $XML_FILE=
 + Your 2nd option is to clone the manifests for groups of git repo's that you
   want
-
 
 ** Alternatives to [[https://gerrit.googlesource.com/git-repo/][Google Repo]]
 
