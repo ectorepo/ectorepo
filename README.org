@@ -7,7 +7,7 @@
 
 * Ecto Repo
 
-This is a git repo full of submodules to Repo projects made of git repos. The
+This is a git repo full of submodules to [[https://android.googlesource.com/tools/repo][Repo]] [[https://android.googlesource.com/platform/manifest/][projects]] made of git repos. The
 capital R in Repo matters. Technically, this can be done with HTTPS and an XML
 manifest server ... but I'm special. I'll be using git submodules.
 
@@ -22,12 +22,34 @@ repo.
 
 [[file:./img/sean-connery.jpg]]
 
+** Caveats
+
+Also, I've just started to use Google Repo, so I'm not exactly an expert.
+
+Further, I won't exactly be using it as designed. It's a bit heavy handed for
+what I want, but for git & VC automation I'd rather invest my time learning an
+over-engineered tool. Google repo is a devops tool developed for Android and
+Chromium OS that is used to automation/instrumentation/hooks builds and tests.
+These projects are massive and involve collaboration of thousands of developers.
+To make matters more complicated, both Android and Chromium OS need to support
+legacy hardware/software. So Repo allows developers to specify manifest branches
+that pin specific subproject branchs.
+
+And the next thing you'll be learning in your Google onboarding is why C++
+compiler design could not be rectified for the scale of software Google was
+building, necessitating =Go= and =bazel=. But the real question there is =Why=
+-- for which any sufficiently technical answer affirmatively deserves an
+"Achievment Unlocked" next to that "Arctic Code Repository" badge of yours.
+
+Bonus points if you manage to explain it using these [[https://www.youtube.com/watch?v=HeQX2HjkcNo][Peano Arithmatic]] cards.
+
 * Table of Contents :TOC_2_gh:
 - [[#ecto-repo][Ecto Repo]]
   - [[#what-is-a-git-playlist-trebek][What is a Git Playlist, Trebek]]
+  - [[#caveats][Caveats]]
 - [[#getting-started][Getting Started]]
   - [[#doing-your-first-repo-sync][Doing your first =repo sync=]]
-  - [[#cloning-the-repos-in-this-projects][Cloning the repo's in this projects.]]
+  - [[#using-the-manifest-repositories-in-this-project][Using the manifest repositories in this project]]
   - [[#alternatives-to-google-repo][Alternatives to Google Repo]]
 
 * Getting Started
@@ -50,17 +72,21 @@ repo.
    + Too Long, Don't Care -- =git= should probably be patched to put an end to
      this /ridiculous, etymologically inaccurate fiasco/ by making main an alias
      to master...
-   + all for CRT mind-control word games to drive more division by triggering
+   + All for CRT mind-control word games to drive more division by triggering
      thoughts in event-driven fashion at high-volumes. /All day,
      every day -- for anyone who touches git./
    + Somebody call Syd Barrett: they comin' for the Pink Floyd masters next.
-   + It is literally mind-control first. VP heads should be rolling at quite a
-     few silicon valley firms for proactively seeding division with CRT's
-     private little word games.
+   + It is literally a CRISPR mind-control retrovirus firstmost. VP heads should
+     be rolling at quite a few silicon valley firms for proactively seeding
+     division with CRT's private little word games.
 
-** Cloning the repo's in this projects.
+** Using the manifest repositories in this project
 
-
++ Your 1st option, if you want all the manifest repo's (and you probably
+  don't) -- clone this repo, then init/update the submodules. Then cd to the
+  file locations of your choice and run =repo sync -m $XML_FILE=
++ Your 2nd option is to clone the manifests for groups of git repo's that you
+  want
 
 
 ** Alternatives to [[https://gerrit.googlesource.com/git-repo/][Google Repo]]
