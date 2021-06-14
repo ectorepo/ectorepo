@@ -47,81 +47,20 @@ Bonus points if you manage to explain it using these [[https://www.youtube.com/w
 - [[#ectorepo][Ectorepo]]
   - [[#what-is-a-git-playlist-trebek][What is a Git Playlist, Trebek]]
   - [[#caveats][Caveats]]
-- [[#why-repo][Why Repo?]]
-  - [[#manage-hundreds-of-repos-for-reference][Manage Hundreds of Repos for Reference]]
-  - [[#build--infrastructure-automation][Build & Infrastructure Automation]]
-  - [[#worktree][Worktree]]
-  - [[#orgmode-and-org-roam][Orgmode and Org Roam]]
 - [[#getting-started][Getting Started]]
   - [[#doing-your-first-repo-sync][Doing your first =repo sync=]]
   - [[#using-the-manifest-repositories-in-this-project][Using the manifest repositories in this project]]
+- [[#why-repo][Why Repo?]]
+  - [[#keep-those-repos-current-with-minimal-effort][Keep Those Repos Current With Minimal Effort]]
+  - [[#build--infrastructure-automation][Build & Infrastructure Automation]]
+  - [[#git-worktrees-for-you-and-me][Git Worktrees For You And Me]]
+  - [[#manage-hundreds-of-repos-for-reference][Manage Hundreds of Repos for Reference]]
+  - [[#orgmode-and-org-roam][Orgmode and Org Roam]]
 - [[#other-resources][Other Resources]]
+  - [[#answers-to-common-google-repo-questions][Answers To Common Google Repo Questions]]
   - [[#a-brief-liest-of-alternatives-to-google-repo][A Brief Liest of Alternatives to Google Repo]]
 - [[#the-mastermain-debate][The Master/Main "Debate"]]
   - [[#its-time-to-put-this-shit-to-bed][It's Time To Put This Shit To Bed]]
-
-* Why Repo?
-
-/As with all time-tested things/, there are several reasons providing
-justification or motivation.
-
-#+begin_quote
-A corollary to the previous statement is that, without /sufficient socialized
-upkeep/ to maintain a large work, what could fall apart *almost certainly* does.
-It's one of the darker conclusions one might reach when reflecting on social
-cooperation while integrating both network theory and statistical models (where
-social models with interdependence are more effectively approximated with
-dependence than independence)
-#+end_quote
-
-In other words, as the Greeks and Buddhists recognized, chaos is the natural
-state of things. Any order that arises is transient, sometimes serendipitous and
-/special/. Great projects require socializing the upkeep for nurturing them as
-one might tend a garden. _When we can do this more efficiently, we can accomplish
-more collectively._ This is why, no matter how great or small, almost all
-programming languages or projects eventually die (unless..)
-
-This, in essence, is the mystery of the pyramids and, by extension, of the
-sphinx. But, alas, I digress...
-
-** Manage Hundreds of Repos for Reference
-
-Yep, find-grep works here. What is the substance of this =ectorepo=
-organization's repositories, anyways? I want to provide a place where I can
-share the tools I use to learn more faster.
-
-I want to integrate some of my code analysis tools, literate programming style,
-to org documents at the root of the manifest repos. As in human language, with
-computering langauge I also have a hard time keeping track of and integrating
-the vocabularly of hundreds of API's that I would like to have /zuhanden/ --
-lit. ready at hand. In my own uphill battles with neurology, I have found the
-following techniques invaluable:
-
-+ UML diagrams and graphviz diagrams
-+ Note-taking applications & frameworks
-+ Journaling my installiations
-+ Zettelkausten techniques and indexed notes
-
-I want to configure/script tools to use, like [[https://gitlab.com/mtekman/elisp-depmap.el][Elisp Depmap]] to generate diagrams
-inline with the scripts I use to generate them.
-
-** Build & Infrastructure Automation
-
-Repo offers [[https://android.googlesource.com/tools/repo/+/HEAD/docs/repo-hooks.md][hooks]] and, with some duct tape, integration into CI systems that run
-tests and containerized applications with
-
-** Worktree
-
-It looks like repo doesn't integrate well with git worktrees AFAIK, which is a
-real shame. Automation and worktrees are useful when co
-
-** Orgmode and Org Roam
-
-There are a few killer apps for emacs: magit, org, org-roam, org-noter and
-others. I want to use them, but like all great copy & paste programmers know,
-with crappy automation, you had one problem and now you have one hundred.
-
-
 
 * Getting Started
 
@@ -161,15 +100,236 @@ You have three options to start with:
    - You will likely have to iterate a few times to get Google repo to ingest
      your manifest as intended If you end up importing more
 
+* Why Repo?
+
+/As with all time-tested things/, there are several reasons providing
+justification or motivation.
+
+#+begin_quote
+A corollary to the previous statement is that, without /sufficient socialized
+upkeep/ to maintain a large work, what could fall apart *almost certainly* does.
+It's one of the darker conclusions one might reach when reflecting on social
+cooperation while integrating both network theory and statistical models (where
+social models with interdependence are more effectively approximated with
+dependence than independence)
+#+end_quote
+
+In other words, as the Greeks and Buddhists recognized, chaos is the natural
+state of things. Any order that arises is transient, sometimes serendipitous and
+/special/. Great projects require socializing the upkeep for nurturing them as
+one might tend a community garden. _When we can do this work more efficiently,
+we can accomplish more collectively._ This is why, no matter how great or small,
+almost all programming languages or projects eventually die (unless..)
+
+This, in essence, is the mystery of the pyramids and, by extension, of the
+sphinx. But, alas, I digress...
+
+** Keep Those Repos Current With Minimal Effort
+
+Simply define branches to fetch for each =<project/>= and then =repo sync=. This
+tool should be considered as essential as git itself, although it is a bit of an
+unnecessary abstraction early on.
+
+And you'd prefer to avoid the whole "death by 1,000 git pulls thing". That
+usually results in termination. Politics around code reviews, pull requests and
+such can be toxic, especially if some team members are well versed in declaring
+githooks to notify them about specific regions of code that have changed in the
+features you _planned_ on pushing quickly.
+
+Some software developers are ASSHOLES.
+
+** Build & Infrastructure Automation
+
+Repo offers [[https://android.googlesource.com/tools/repo/+/HEAD/docs/repo-hooks.md][hooks]] and (with some duct tape) integration into CI systems that run
+build tasks, tests and containerized applications.
+
+If you want to understand the kind of scale and complexity that gets me going,
+then i'm going to go ahead and linkdrop [[https://podcasts.apple.com/us/podcast/kubernetes-is-the-new-compute-w-rancher-labs-sheng-liang/id1140246356?i=1000465482034][this podcast]] here on the [[https://rancher.com/docs/][Rancher cloud
+product]]. Rancher is like a glorious [[https://github.com/vcr/vcr][VCR]] in the cloud. The kind of stuff they've
+done with Kubernetes is fascinating.
+
+Imagination is a superpower. Just saying.
+
+** Git Worktrees For You And Me
+
+It looks like repo doesn't integrate well with git worktrees AFAIK, which is a
+real shame. Automation and worktrees are useful when contributing to a C++
+project like Krita, which is over 1,000,000 lines of code.
+
+*** TODO There may be some integration with git worktree in the Repo CLI, but it may be blown away with =repo sync=
+
+** Manage Hundreds of Repos for Reference
+
+Yep, find-grep works here. What is the substance of this =ectorepo=
+organization's repositories, anyways? I want to provide a place where I can
+share the tools I use to learn more faster.
+
+I want to integrate some of my code analysis tools, literate programming style,
+to org documents at the root of the manifest repos. As in human language, with
+computering langauge I also have a hard time keeping track of and integrating
+the vocabularly of hundreds of API's that I would like to have /zuhanden/ --
+lit. ready at hand. In my own uphill battles with neurology, I have found the
+following techniques invaluable:
+
++ UML diagrams and graphviz diagrams
++ Note-taking applications & frameworks
++ Journaling my installiations
++ Zettelkausten techniques and indexed notes
+
+For each manifest repo in the =ectorepo= organization, there will be a
+=README.org=. In here I want to document configuration/script tools to use: e.g.
+[[https://gitlab.com/mtekman/elisp-depmap.el][Elisp Depmap]] to generate diagrams inline with the scripts I use to generate
+them. I don't want all the babel blocks, content or results to be visible; just
+some of it. There may be some langauge-specific analysis scripts I use -- e.g.
+doing a =find-grep= for references to =(setq $defgroup_name-.*)= in the [[https://github.com/ectorepo/x.files][x.files
+repo]], but probably more specific than that.
+
+For each project in a manifest, I want at least a headline in a =code.org= file,
+into which I can =org-capture= snippets of text to make notes. However, these notes are not to be public. For that, I will =org-refile= from the
+
+To make matters more complicated, I want the =code.org= files for each manifest
+repo to live in their own private repo, which requires something like GNU Stow.
+Complicated? Yes, but it checks all the boxes. Everything is modular and lives
+where it should. Further, this should support a workflow that is easy to reason
+about while using a set of =org-refile= URL's that are mnemonic and right at my
+fingertips.
+
+** Orgmode and Org Roam
+
+Applied metaphysics:
+- systems of categorization/naming of URL's
+- Avoiding broken links from the start
+- copy in snippet from Discord
+
+Ideally, if you're going to use =org-mode=, you want to have mentor or community
+of emacs users you can lean on for guidance. The closest I have to either are
+the now-burgeoning resources available on Github and Youtube. There's one
+problem specific to =org-mode= though: almost everything dealing with
+=org-agenda= is excluded from public repositories. So, one does not so easily
+find examples of these workflows in public repos.
+
+*** Applied Metaphysics and the "Hard" Problems of CS
+
+There are a few killer apps for emacs: =magit=, =org=, =org-roam=, =org-noter=
+and others. I want to use them, but -- like all great copy & paste programmers
+know -- with crappy automation, you had one problem and now you have one
+hundred.
+
+Think of =org-mode= like this -- the internet is the integrative right-half of
+your second brain and =org-mode= is the analytic left-half. Just like resources
+on the internet have locations, paths and names designated by URL's, the
+resources in your org need a similar system. A significant difference is that
+the headlines in your files are also part of your URL scheme.
+
+When this naming system is inefficient or needs structural changes, you may have
+quite a bit of work ahead of you. As in many cases with programming projects,
+sometimes it's better to just start over.
+
+Well that sucks... doesn't it?
+
+Lacking experience with =org-roam=, I don't actually know the degree to which
+breaking backlinks is going to be a problem -- i.e. I have _never_ had an emacs
+mentor -- but I do know that relinking and file-management on my local system is
+expensive. That is it is still a valid problem with =org-mode=. Just like the
+design of a web-app or a blog, you want as system that is:
+
++ easy to type
++ mnemonic (you can remember URL's when you're drunk)
++ sociable (thus easy to describe in conversation, ideally)
+
+And among other concerns, you need a naming convention that is fairly future
+proof -- you at least need a monadic behavior which allows you ... nevermind.
+You just need to have a plan for when you don't have a plan (that's a monad).
+
+Simple... well as long as you're categorizing simple things. Your task, should
+you choose to accept it is to categorize all things, even things you are
+learning or that you still need to learn to need. Remember, this naming
+convention is the kernel that generates the inertia your personal system must
+account for in the future.
+
+Naming is one of the hardest problems in CS, as they say tongue-in-cheek.
+
+*** A Generic Application of the Module Concept
+
+To further complicate org-mode, you must remember that you have many =*.org=
+files, but that they or their headlines can have specific purposes. e.g. emacs =org-mode= basically ships with two types of modules: =todo.org= and =notes.org=.
+
+#+begin_quote
+Literally everything else is up to you: this is a _personal_ information system.
+#+end_quote
+
+Org-mode users will want some of these files configured in =org-agenda= and
+others simply available to =org-refile= to file away captured snippets.
+
+I want to apply "modules" of org files to lists of directories. Since I want
+these to exist in several places at once while being able to quickly control
+what is public and what is git-ignored, then I may decide to use GNU Stow, hard
+links or some other linking tool.
+
+So there will be a =code.org= module of sorts, which I can "apply" to a
+directory. There might be other modules (like a todo.org or notes.org module),
+but there isn't necessarily any source code definition of an org file module,
+per se. It's more of an idea motivating how i'm configuring my own org.
+
 * Other Resources
 
-+ The DTD definition for Repo's Manifest XML
++ The [[https://android.googlesource.com/tools/repo/+/HEAD/docs/manifest-format.md][DTD definition]] for Repo's Manifest XML
 + [[https://github.com/canatella/repo-el][Repo.el]] for emacs, albeit a bit incomplete. There are newer branches from [[https://github.com/snogge/repo-el/][snogge/repo-el]], but they haven't been integrated into master or canatella's original project.
 + The main Android platform [[https://android.googlesource.com/platform/manifest/][manifest]]
 + The main ChromiumOS platform manifest
 + [[https://www.instructables.com/Using-Googles-repo-command-in-your-own-projects/][How to set up in other new projects]]
 + [[https://docs.sel4.systems/projects/buildsystem/repo-cheatsheet.html][Google Repo cheatsheet]] from sel4 systems
++ [[https://en.wikibooks.org/wiki/Git/Submodules_and_Superprojects][git superprojects]] documentation
++ Android: [[https://source.android.com/setup/develop/repo][Repo Command Reference]]
++ Android: [[https://source.android.com/setup/develop/repo][Source Control Tools]]
++ Android: [[https://source.android.com/setup/create/coding-tasks][Source Control Workflow]]
 
+
+** Answers To Common Google Repo Questions
+
+My exposure to the tool is limited, but these were some of the workflow and usage questions to which I could not quickly find definitive answers.
+
+*** Can many =*.xml= files share a repo when they do not produce a common manifest?
+
+Yes, but it complicates things when you want to clone a manifest repo without using =repo -m $XML_FILE=.
+
+If so, it's possible to create a repo with a bunch of these manifests and serve
+them into repos... but it's not practical without an XML server.
+
+*** Can I use symlinks?
+
+This would help you link manifests into a single git repository. However, you end up running into the same problems. Further, linking files within a manifest repo for the Repo tool makes things a bit dicey.
+
+So no. Just no. Technically, you can, but
+
+*** What is this local manifest thing?
+
+If like me you're searching for a way around the two problems above, then it's
+probably not what you're looking for. It's useful for extending from a manifest,
+but it's subclass where you want modularity or true multi-inheritence.
+
+*** So how do I get around having one =default.xml=?
+
+You don't. You either use git URLS, raw XML URL's or =file://= URLS. With the
+last of the above, repo may not work as designed: you are venturing into
+advanced use-case territory, so you should know what you're doing before you get
+there -- this is what took me so damn long. The XML server option is fairly
+advanced as well.
+
+*** Can I use one giant manifest with Repo groups?
+
+I didn't really think about this, but yes. However, keep in mind that doing a
+=repo sync= on the ChromiumOS manifest caused my =/home= partition to run out of
+disk.
+
+*** Common scripting languages download their package sources to disk. Why not just use that?
+
+For me, that works on a language-by-language basis, sometimes depending on the
+tooling that I have configured for the langauge, like =nvm= or =chruby=, =rbenv=
+and =ruby_build=.
+
+You really want to designate important libraries that you care about and give
+them a special place.
 
 ** A Brief Liest of Alternatives to [[https://gerrit.googlesource.com/git-repo/][Google Repo]]
 
@@ -191,7 +351,6 @@ quickly: just use the software built by Google.
 + [[0    Link: https://gerrit.googlesource.com/git-repo/][repo]] (google)
 + [[https://fabioz.github.io/mu-repo/][murepo]]
 + [[https://github.com/mateodelnorte/meta][meta]] (node cmd & makefile approach)
-
 
 * The Master/Main "Debate"
 
@@ -303,8 +462,8 @@ from a buffer to a shell script that runs something like:
 
 ***** Main Question (before doing this)
 
-+ can many =*.xml= files share a repo when they do not produce a common manifest?
-  - if so, it's possible to create a repo with a bunch of these manifests and serve them into repos...
++
+  -
     - which would need to be branches or workgroups.
     - so probably not, but the Chromium/Android projects are huge (each easily 15+ gb if not careful with =repo=)
 
@@ -330,11 +489,6 @@ from a buffer to a shell script that runs something like:
 + =default.xml= [[https://gerrit.googlesource.com/git-repo/+/HEAD/docs/manifest-format.md][manifest format]] documentation
   - see info on local manifests (these inherit many properties)
 + [[https://gerrit.googlesource.com/git-repo/+/HEAD/docs/repo-hooks.md][repo hooks]] documentation
-+ [[https://en.wikibooks.org/wiki/Git/Submodules_and_Superprojects][git superprojects]] documentation
-+ Android docs
-  - [[https://source.android.com/setup/develop/repo][Repo Command Reference]]
-  - [[https://source.android.com/setup/develop/repo][Source Control Tools]]
-  - [[https://source.android.com/setup/create/coding-tasks][Source Control Workflow]]
 
 ****** Emacs Integration: [[https://github.com/canatella/repo-el][repo-el]]
 
@@ -363,22 +517,6 @@ spread out into various =/data/dev= directories
 + Nvidia =/data/dev/nvidia=
 
 
-
-****** Meta/Loop installation
-
-******* Meta Plugins
-+ group
-+ docker
-+ git
-+ template
-
-****** Emacs integration
-
-******* Basic
-
-******* Advanced
-+ emacs package to provide ibuffer/dired/buffler-like interface to allow meta
-  repos/groups to be easily marked for meta/loop operations.
 
 ******* Questions:
 + autodiscovery?
@@ -424,31 +562,6 @@ These should include:
 
 These contain dotfiles/etc. For programming languages, symlinks can link back to ~/data/dev/_notes~ these docs to their
 
-******* TODO create initial symlinks for: julia, clojure, CAD
-******* TODO migrate /some/ existing notes to ~org~ using [[https://pandoc.org/installing.html][pandoc]]
-******* TODO address problem where whitelisting files in gitignore doesn't work
-
-****** Mu Repo
-
-Tool and approach to clone/sync repos in a language sub/folder. For now, i've
-settled on [[https://fabioz.github.io/mu-repo/][mu-repo]] and i'll potentially revert to mixu/gr or autogit. I would
-like this to be scriptable and regeneratable (with minimal effort)
-
-To install =mu-repo=:
-
-#+begin_src shell :tangle no
-sudo pacman -Syu python-pip
-pip install mu-repo
-#+end_src
-
-Basic =mu-repo= usage:
-
-#+begin_src shell :tangle no
-mu register --recursive # recursively register all repos
-mu register --current # register with depth 1
-
-#+end_src
-
 To create for new metaprojects, do the following, more or less. For mu-repo to
 reclone all the projects, you must configure some path-dependent rules so that
 the correct =mu-repo.remote-base-url= config key is available. To retrieve this
@@ -462,10 +575,6 @@ create a blank repo anyways for =mu-repo= to access its config keys... so it's
 best to alter the ~$METAPROJECT/.git/config~ ... which needs not be in git.
 Other features of mu-repo also benefit from an arbitrary blank-repo at the
 metaproject root. ~<le-sigh>~
-
-#+begin_src
-
-#+end_src
 
 #+begin_src shell :tangle no
 # USE RELATIVE PATHS
@@ -483,8 +592,6 @@ git init
 ******* TODO describe setting up groups :murepo:
 
 
-
-******* TODO standardize a format for listing repos to clone for a language like clojure/julia/etc or use the following (preferred at top)
 ******* TODO emacs workflow: automation of structure for projects/org/code
 + outline basic structure for capture/refile
   + manage org files, repo groups and/or metadata
