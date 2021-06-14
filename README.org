@@ -20,7 +20,7 @@ hands. There is almost zero documentation avaiable for it on the web. It
 downloads a copy of its own python scripts. That's your best bet. That, or this
 repo.
 
-[[file:img/sean-connery.jpg][Sean Connery]]
+[[file:./img/sean-connery.jpg]]
 
 * Table of Contents :TOC_2_gh:
 - [[#ecto-repo][Ecto Repo]]
@@ -49,8 +49,9 @@ repo.
    again... /just be glad you're not Google devops or a Google VP/.
    + Too Long, Don't Care -- =git= should probably be patched to put an end to
      this /ridiculous, etymologically inaccurate fiasco/ by making main an alias
-     to master... all for CRT mind-control word games to drive more division
-     by triggering thoughts in event-driven fashion at high-volumes. /All day,
+     to master...
+   + all for CRT mind-control word games to drive more division by triggering
+     thoughts in event-driven fashion at high-volumes. /All day,
      every day -- for anyone who touches git./
    + Somebody call Syd Barrett: they comin' for the Pink Floyd masters next.
    + It is literally mind-control first. VP heads should be rolling at quite a
