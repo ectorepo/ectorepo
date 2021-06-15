@@ -166,7 +166,7 @@ This is pretty straightforward, build one or more XML files from a list of text
 blocks, exported to files. I'll use this to generate some of the files in the
 =./examples= and =./templates= folders.
 
-#+begin_src xml :tangle ./templates/_remotes.xml
+#+begin_src nxml :tangle ./templates/_remotes.xml
 <manifest>
   <remote name="github"
           fetch="https://github.com" />
@@ -179,7 +179,7 @@ blocks, exported to files. I'll use this to generate some of the files in the
 
 Here I am tangling directly into a git submodule, which is certainly an option.
 
-#+begin_src xml :tangle ./basic-sec/defaults.xml
+#+begin_src nxml :tangle ./basic-sec/default.xml
 <manifest>
   <include name="_remotes" />
   <project path="securityonion"
@@ -188,8 +188,12 @@ Here I am tangling directly into a git submodule, which is certainly an option.
   <project path="BlackDragon"
            name="Cyber-Guy1/BlackDragon"
            remote="github" />
+  <project path="selinux-chef"
+           name="sous-chefs/selinux"
+           remote="github" />
 </manifest>
 #+end_src
+
 
 **** TODO get tangling working with =xml= or use text while specifying the mode
 
@@ -197,7 +201,6 @@ Here I am tangling directly into a git submodule, which is certainly an option.
 
 #+name: ectorepo-flat
 #+begin_src shell :tangle no
-# Or something like this
 find $__ECTOREPO_FROM -wholename "$__ECTOREPO_FROM*/.git/config" -type f -exec cat \{\} + | grep -e "url = " | cut -f2 -d '='
 #+end_src
 
@@ -295,7 +298,7 @@ project like Krita, which is over 1,000,000 lines of code.
 
 ** Manage Hundreds of Repos for Reference
 
-Yep, find-grep works here. What is the substance of this =ectorepo=
+Yep, =find-grep= works here. What is the substance of this =ectorepo=
 organization's repositories, anyways? I want to provide a place where I can
 share the tools I use to learn more faster.
 
