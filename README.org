@@ -24,16 +24,19 @@ repo.
 
 ** Caveats
 
-Also, I've just started to use Google Repo, so I'm not exactly an expert.
+#+begin_quote
+I've just started to use Google Repo, so I'm not exactly an expert.
+#+end_quote
 
-Further, I won't exactly be using it as designed. It's a bit heavy handed for
-what I want, but for git & VC automation I'd rather invest my time learning an
-over-engineered tool. Google repo is a devops tool developed for Android and
-Chromium OS that is used to automation/instrumentation/hooks builds and tests.
-These projects are massive and involve collaboration of thousands of developers.
-To make matters more complicated, both Android and Chromium OS need to support
-legacy hardware/software. So Repo allows developers to specify manifest branches
-that pin specific subproject branchs for various build scenarios.
+Further, I won't exactly be using Repo to solve the problems that it is designed
+to address. It's a bit heavy handed for what I want, but for git & VC automation
+I'd rather invest my time learning an over-engineered tool. Google repo is a
+devops tool developed for Android and Chromium OS that is used for
+automation/instrumentation/hooks of builds and tests. These projects are massive
+and involve collaboration of thousands of developers. To make matters more
+complicated, both Android and Chromium OS need to support legacy
+hardware/software. So Repo allows developers to specify manifest branches that
+pin specific subproject branchs for various build scenarios.
 
 And the next thing you'll be learning in your Google onboarding is why C++
 compiler design could not be rectified for the scale of software Google was
@@ -50,14 +53,16 @@ Bonus points if you manage to explain it using these [[https://www.youtube.com/w
 - [[#getting-started][Getting Started]]
   - [[#doing-your-first-repo-sync][Doing your first =repo sync=]]
   - [[#using-the-manifest-repositories-in-this-project][Using the manifest repositories in this project]]
+  - [[#youll-probably-want-to-use-ssh-agent-in-whichever-way-you-do][You'll probably want to use =ssh-agent= in whichever way you do.]]
 - [[#automation-and-tooling][Automation and Tooling]]
   - [[#planned-ectorepo-manifest-repositories][Planned =ectorepo= Manifest Repositories]]
-  - [[#assumed-shell-variables][Assumed Shell Variables]]
+  - [[#assumed-variables][Assumed Variables]]
   - [[#using-a-declarative-literate-programming-approach][Using A Declarative Literate Programming Approach]]
   - [[#creating-a-defaultxml-from-a-flat-directory-structure][Creating A =default.xml= From A Flat Directory Structure]]
   - [[#creating-a-defaultxml-from-a-nested-directory-structure][Creating A =default.xml= From A Nested Directory Structure]]
   - [[#using-org-element-to-generate-a-manifest-from-structure-under-a-headline][Using Org-Element To Generate A Manifest From Structure Under A Headline]]
-  - [[#extracting-lists-of-repos-from-git-forges-like-github-bitbucket-or-gitlab][Extracting Lists of Repos From Git Forges like Github, Bitbucket, or Gitlab]]
+  - [[#extracting-lists-of-repos-from-git-forges][Extracting Lists of Repos From Git Forges]]
+  - [[#generating-a-defaultxml-using-alternatives-to-repo][Generating A =default.xml= Using Alternatives to Repo]]
 - [[#why-repo][Why Repo?]]
   - [[#keep-those-repos-current-with-minimal-effort][Keep Those Repos Current With Minimal Effort]]
   - [[#build--infrastructure-automation][Build & Infrastructure Automation]]
@@ -111,6 +116,8 @@ You have three options to start with:
 
 **** TODO examples using =dir-locals.el= with Repo & org-mode
 
+** You'll probably want to use =ssh-agent= in whichever way you do.
+
 * Automation and Tooling
 
 These are mainly based on my interests right now. I have very little interest in
@@ -135,10 +142,23 @@ That's well off the path that I want to tread, though.
 + Nvidia/Kronos
 + Uber Engineering (vis.gl & etc)
 
-** Assumed Shell Variables
+** Assumed Variables
 
-+ DEV_HOME :: the directory inside which your Google Repo's exist.
-+ __ECTOREPO_FROM :: the directory from which you are extracting git repositories.
+You'll need to fill in these variables. The following =emacs-lisp= script will
+then ingest them to make them available for the durander of the emacs session.
+
+#+name: ectorepo-vars
+|---------------+-------+-------------------------------|
+| variable      | value | description                   |
+|---------------+-------+-------------------------------|
+| dev-home      |       | where your Google Repos live  |
+| ectorepo-from |       | where you are extracting from |
+|---------------+-------+-------------------------------|
+
+For now, when you tangle, the current values of these these variables will be
+used. This may cause some problems with workflow, so....
+
+**** TODO this [[https://www.reddit.com/r/emacs/comments/6mzgkg/how_can_orgbabel_be_configured_to_set_variables/][s/o link]] may be useful for variables, although I was going to use  [[https://sachachua.com/blog/2021/04/emacs-making-a-hydra-cheatsheet-for-lispy/][sacha's approach]].
 
 ** TODO Using A Declarative Literate Programming Approach
 
@@ -157,8 +177,25 @@ blocks, exported to files. I'll use this to generate some of the files in the
 </manifest>
 #+end_src
 
+Here I am tangling directly into a git submodule, which is certainly an option.
+
+#+begin_src xml :tangle ./basic-sec/defaults.xml
+<manifest>
+  <include name="_remotes" />
+  <project path="securityonion"
+           name="Security-Onion-Solutions/securityonion"
+           remote="github" />
+  <project path="BlackDragon"
+           name="Cyber-Guy1/BlackDragon"
+           remote="github" />
+</manifest>
+#+end_src
+
+**** TODO get tangling working with =xml= or use text while specifying the mode
+
 ** TODO Creating A =default.xml= From A Flat Directory Structure
 
+#+name: ectorepo-flat
 #+begin_src shell :tangle no
 # Or something like this
 find $__ECTOREPO_FROM -wholename "$__ECTOREPO_FROM*/.git/config" -type f -exec cat \{\} + | grep -e "url = " | cut -f2 -d '='
@@ -177,7 +214,7 @@ emacs-lisp objects (sorry about that non-emacs users LOL)
 
 *** TODO start from here:
 
-#+name: gitlist-flat
+#+name: gitlist-tree
 #+begin_src shell :tangle no :results value
 find $__ECTOREPO_FROM -type f -wholename "*.git/config" -exec cat \{\} + | grep "url = " | sed -e "s/.*url = //"
 
@@ -189,10 +226,14 @@ find $__ECTOREPO_FROM -type f -wholename "*.git/config" -exec cat \{\} + | grep 
 This should feel like how =treemacs= uses an org-mode buffer to edit its
 declared workspaces.
 
-** TODO Extracting Lists of Repos From Git Forges like Github, Bitbucket, or Gitlab
+** TODO Extracting Lists of Repos From Git Forges
+
+i.e. Git forges like Github, Bitbucket, or Gitlab.
 
 This should use =org-babel= with =restclient= blocks and maybe some JS for JSON
 processing.
+
+** TODO Generating A =default.xml= Using Alternatives to Repo
 
 * Why Repo?
 
@@ -202,9 +243,9 @@ justification or motivation.
 #+begin_quote
 A corollary to the previous statement is that, without /sufficient socialized
 upkeep/ to maintain a large work, what could fall apart *almost certainly* does.
-It's one of the darker conclusions one might reach when reflecting on social
-cooperation while integrating both network theory and statistical models (where
-social models with interdependence are more effectively approximated with
+It's one of the darker conclusions that some might reach when reflecting on
+social cooperation while integrating both network theory and statistical models
+(where social models with interdependence are more effectively approximated with
 dependence than independence)
 #+end_quote
 
@@ -224,7 +265,7 @@ Simply define branches to fetch for each =<project/>= and then =repo sync=. This
 tool should be considered as essential as git itself, although it is a bit of an
 unnecessary abstraction early on.
 
-And you'd prefer to avoid the whole "death by 1,000 git pulls thing". That
+And you'd prefer to avoid the whole =death by 1,000 git pulls= thing. That
 usually results in termination. Politics around code reviews, pull requests and
 such can be toxic, especially if some team members are well versed in declaring
 githooks to notify them about specific regions of code that have changed in the
