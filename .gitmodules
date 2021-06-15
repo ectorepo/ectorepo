@@ -1,3 +1,6 @@
 [submodule "x.files"]
 	path = x.files
 	url = git@github.com:ectorepo/x.files
+[submodule "basic-sec"]
+	url = git@github.com:ectorepo/basic-sec
+	path = basic-sec
