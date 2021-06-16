@@ -1,0 +1,24 @@
+#+title:     Ectorepo: KDE
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+
+A collection of KDE resources and repos exposed as a Repo manifest for all your
+grep-finding pleasure.
+
+* KDE Invent
+
+[[https://invent.kde.org/explore/groups?sort=name_asc][Invent.kde.org]] is the main forge for KDE. It's split into the following groups, which we can pull with their [[https://docs.gitlab.com/ee/api/][Gitlab API]], via org-babel and either restclient or graphql.
+
+Assuming that the presence of Gitlab [[https://invent.kde.org/help/api/graphql/index.md][GraphQL docs]] in [[https://invent.kde.org/help/#build-an-integration-with-gitlab][KDE's integration docs]]
+implies that feature is active, that would be far more convenient. Checking the
+Gitlab [[https://docs.gitlab.com/ee/api/graphql/index.html][GraphQL docs]] (including the [[https://docs.gitlab.com/ee/api/graphql/getting_started.html][Getting Started]] guide) gives us some more
+info.
+
+** Groups
+
+#+name: invent-groups-response
+#+begin_src graphql :results value
+
+#+end_src
+
+*** Accessibility
