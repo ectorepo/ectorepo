@@ -70,7 +70,6 @@ Bonus points if you manage to explain it using these [[https://www.youtube.com/w
   - [[#manage-hundreds-of-repos-for-reference][Manage Hundreds of Repos for Reference]]
   - [[#orgmode-and-org-roam][Orgmode and Org Roam]]
 - [[#other-repo-resources][Other Repo Resources]]
-  - [[#repo-concepts][Repo Concepts]]
   - [[#answers-to-common-google-repo-questions][Answers To Common Google Repo Questions]]
   - [[#a-brief-liest-of-alternatives-to-google-repo][A Brief Liest of Alternatives to Google Repo]]
 - [[#the-mastermain-debate][The Master/Main "Debate"]]
@@ -177,7 +176,7 @@ blocks, exported to files. I'll use this to generate some of the files in the
 </manifest>
 #+end_src
 
-Here I am tangling directly into a git submodule, which is certainly an option.
+Here I am tangling directly into a git submodule, which is certainly an option. Why these repos? See for yourself [[https://github.com/ectorepo/basic-sec][a brief explanation]].
 
 #+begin_src nxml :tangle ./basic-sec/default.xml
 <manifest>
@@ -193,7 +192,6 @@ Here I am tangling directly into a git submodule, which is certainly an option.
            remote="github" />
 </manifest>
 #+end_src
-
 
 **** TODO get tangling working with =xml= or use text while specifying the mode
 
@@ -283,10 +281,28 @@ build tasks, tests and containerized applications.
 
 If you want to understand the kind of scale and complexity that gets me going,
 then i'm going to go ahead and linkdrop [[https://podcasts.apple.com/us/podcast/kubernetes-is-the-new-compute-w-rancher-labs-sheng-liang/id1140246356?i=1000465482034][this podcast]] here on the [[https://rancher.com/docs/][Rancher cloud
-product]]. Rancher is like a glorious [[https://github.com/vcr/vcr][VCR]] in the cloud. The kind of stuff they've
-done with Kubernetes is fascinating.
+product]]. +Rancher+ Product X is like a glorious [[https://github.com/vcr/vcr][VCR]] in the cloud. The kind of
+stuff they've done with Kubernetes is fascinating.
 
 Imagination is a superpower. Just saying.
+
+**** TODO Dammit, find Product X. It is a cloud instrumentation/observability product that:
+
++ automatically ingests HTTP traffic between Docker/Kubernetes, then
+  parameterizes what it records.
++ allows developers and devops to virtualize /virtualized/ cloud environments
+  (this is hard to google) on their local machines.
+
+Ostensibly, this facilitates error tracing in development environments that are far closer to staging/production. So all the little things that can go wrong in the real-world production environment can be coaxed out in development.
+
+Product X is not:
++ Garden.io
++ Rancher
++ Opstrace (as far as I can tell)
++ Pixie
++ Spring Cloud
+
+The reason is because the product is like the apex of (software-defined networking) \otimes (instrumentation \oplus debugging) \otimes (docker/kubernetes/cloud), with a healthy dose of machine-learning on fairly terse/abstract Kube/Docker API requests.
 
 ** Git Worktrees For You And Me
 
@@ -422,8 +438,6 @@ per se. It's more of an idea motivating how i'm configuring my own org.
 + Android: [[https://source.android.com/setup/develop/repo][Source Control Tools]]
 + Android: [[https://source.android.com/setup/create/coding-tasks][Source Control Workflow]]
 + [[https://github.com/canatella/repo-el][Repo.el]] for emacs, albeit a bit incomplete. There are newer branches from [[https://github.com/snogge/repo-el/][snogge/repo-el]], but they haven't been integrated into master or canatella's original project.
-
-** Repo Concepts
 
 ** Answers To Common Google Repo Questions
 

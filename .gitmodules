@@ -4,3 +4,6 @@
 [submodule "basic-sec"]
 	url = git@github.com:ectorepo/basic-sec
 	path = basic-sec
+[submodule "cad"]
+	path = cad
+	url = git@github.com:ectorepo/cad
