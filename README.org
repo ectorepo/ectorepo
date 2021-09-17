@@ -5,6 +5,14 @@
 #+STARTUP: content
 #+OPTIONS: toc:nil
 
+*** IDEA Use [[https://github.com/magit/orgit][magit/orgit's orgit-rev]] for links to code in the repo
++ This allows you to make org links to files that get exported as HTTP URL's to the same file in their their remotes
++ =$ORG_ROAM/code= :: contains links named =fdsa.org= out to =$REPO/fdsa/README.org= or =$REPO/fdsa/code.org= files
++ =$REPO= :: contains the repo manifests & =code.org= files.
+  - directory should be a sibling to =../$ORG_ROAM=
++ =$ECTO= :: contains the synced repos
+  - directory should also be a sibling to =../$ORG_ROAM=
+
 * Ectorepo
 
 This is a git repo full of submodules to [[https://android.googlesource.com/tools/repo][Repo]] [[https://android.googlesource.com/platform/manifest/][projects]] made of git repos. The
