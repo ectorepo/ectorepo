@@ -9,9 +9,9 @@
 + This allows you to make org links to files that get exported as HTTP URL's to the same file in their their remotes
 + =$ORG_ROAM/code= :: contains links named =fdsa.org= out to =$REPO/fdsa/README.org= or =$REPO/fdsa/code.org= files
 + =$REPO= :: contains the repo manifests & =code.org= files.
-  - directory should be a sibling to =../$ORG_ROAM=
+  - directory should be a sibling to =$ORG_ROAM=
 + =$ECTO= :: contains the synced repos
-  - directory should also be a sibling to =../$ORG_ROAM=
+  - directory should also be a sibling to =$ORG_ROAM=
 
 * Ectorepo
 
