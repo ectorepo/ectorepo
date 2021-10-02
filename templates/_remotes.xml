@@ -6,4 +6,9 @@
           fetch="https://gitlab.com" />
   <remote name="bitbucket"
           fetch="https://bitbucket.org" />
+  <remote name="savannah"
+          fetch="https://git.savannah.gnu.org/git" />
+
+  <remote name="sourcehut_sircmpwn"
+          fetch="https://git.sr.ht/~sircmpwn" />
 </manifest>
