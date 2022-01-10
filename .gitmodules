@@ -22,3 +22,6 @@
 [submodule "guix"]
 	path = guix
 	url = git@github.com:ectorepo/guix
+[submodule "scheme"]
+	path = scheme
+	url = git@github.com:ectorepo/scheme
