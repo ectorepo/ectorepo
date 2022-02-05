@@ -1,0 +1,400 @@
+
+/data/dev/clojure/templates/cljs-react-vis/.git/config
+
++ url = https://github.com/mooreryan/cljs_reagent_react_vis_blog_materials
+
+/data/dev/clojure/tools/shadow-static/.git/config
+
++ url = https://github.com/yosevu/shadow-static
+
+/data/dev/clojure/tools/fulcro-developer-guide/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-developer-guide
+
+/data/dev/clojure/tools/babashka/.git/config
+
++ url = https://github.com/babashka/babashka
+
+/data/dev/clojure/tools/shadow-cljs/.git/config
+
++ url = https://github.com/thheller/shadow-cljs
+
+/data/dev/clojure/tools/clojure-deps-edn/.git/config
+
++ url = https://github.com/practicalli/clojure-deps-edn
+
+/data/dev/clojure/tools/wasm-pack-cljs/.git/config
+
++ url = https://github.com/thheller/wasm-pack-cljs
+
+/data/dev/clojure/tools/dot-clojure/.git/config
+
++ url = https://github.com/seancorfield/dot-clojure
+
+/data/dev/clojure/tools/zprint/.git/config
+
++ url = https://github.com/kkinnear/zprint
+
+/data/dev/clojure/tools/positano/.git/config
+
++ url = https://github.com/stathissideris/positano
+
+/data/dev/clojure/tools/clojure/.git/config
+
++ url = https://github.com/clojure/clojure
+
+/data/dev/clojure/tools/leiningen/.git/config
+
++ url = https://github.com/technomancy/leiningen
+
+/data/dev/clojure/tools/calva/.git/config
+
++ url = https://github.com/BetterThanTomorrow/calva
+
+/data/dev/clojure/tools/orchard/.git/config
+
++ url = https://github.com/clojure-emacs/orchard
+
+/data/dev/clojure/tools/shadow-cljs-developer-guide/.git/config
+
++ url = https://github.com/shadow-cljs/shadow-cljs.github.io
+
+/data/dev/clojure/native/sudoku-cljsrn/.git/config
+
++ url = https://github.com/lccambiaghi/sudoku-cljsrn
+
+/data/dev/clojure/native/shadow-reagent-expo/.git/config
+
++ url = https://github.com/thheller/reagent-expo
+
+/data/dev/clojure/native/shadow-fulcro-expo/.git/config
+
++ url = https://github.com/thheller/fulcro-expo
+
+/data/dev/clojure/fulcro/fulcro-rad-sql/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-rad-sql
+
+/data/dev/clojure/fulcro/fulcro-native-template/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-native-template
+
+/data/dev/clojure/fulcro/fulcro-inspect/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-inspect
+
+/data/dev/clojure/fulcro/fulcro-rad/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-rad
+
+/data/dev/clojure/fulcro/fulcro-native/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-native
+
+/data/dev/clojure/fulcro/grokking-fulcro/.git/config
+
++ url = https://github.com/fulcrologic/grokking-fulcro
+
+/data/dev/clojure/fulcro/fulcro-developer-guide/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-developer-guide
+
+/data/dev/clojure/fulcro/fulcro-websockets/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-websockets
+
+/data/dev/clojure/fulcro/fulcro-experimental-template/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-expermental-template
+
+/data/dev/clojure/fulcro/fulcro/.git/config
+
++ url = https://github.com/fulcrologic/fulcro
+
+/data/dev/clojure/fulcro/aws-logs/.git/config
+
++ url = https://github.com/fulcrologic/aws-logs
+
+/data/dev/clojure/fulcro/fulcro-template/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-template
+
+/data/dev/clojure/fulcro/fulcro-garden-css/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-garden-css
+
+/data/dev/clojure/fulcro/fulcro-rad-semantic-ui/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-rad-semantic-ui
+
+/data/dev/clojure/fulcro/fulcro-i18n/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-i18n
+
+/data/dev/clojure/fulcro/fulcro-rad-tutorial/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-rad-tutorial
+
+/data/dev/clojure/fulcro/fulcro-spec/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-spec
+
+/data/dev/clojure/fulcro/fulcro-rad-datomic/.git/config
+
++ url = https://github.com/fulcrologic/fulcro-rad-datomic
+
+/data/dev/clojure/reagent/reagent-frontend-template/.git/config
+
++ url = https://github.com/reagent-project/reagent-frontend-template
+
+/data/dev/clojure/reagent/reagent-utils/.git/config
+
++ url = https://github.com/reagent-project/reagent-utils
+
+/data/dev/clojure/reagent/reagent/.git/config
+
++ url = https://github.com/reagent-project/reagent
+
+/data/dev/clojure/reagent/reagent-cookbook/.git/config
+
++ url = https://github.com/reagent-project/reagent-cookbook
+
+/data/dev/clojure/reagent/reagent-forms/.git/config
+
++ url = https://github.com/reagent-project/reagent-forms
+
+/data/dev/clojure/reagent/reagent-template/.git/config
+
++ url = https://github.com/reagent-project/reagent-template
+
+/data/dev/clojure/3d/color/.git/config
+
++ url = https://github.com/thi-ng/color
+
+/data/dev/clojure/3d/morphogen/.git/config
+
++ url = https://github.com/thi-ng/morphogen
+
+/data/dev/clojure/3d/geom/.git/config
+
++ url = https://github.com/thi-ng/geom
+
+/data/dev/clojure/lib/data.csv/.git/config
+
++ url = https://github.com/clojure/data.csv
+
+/data/dev/clojure/lib/question-mark/.git/config
+
++ url = https://github.com/pbaille/question-mark
+
+/data/dev/clojure/lib/defold/.git/config
+
++ url = https://github.com/defold/defold
+
+/data/dev/clojure/learn/exercise-clojure/.git/config
+
++ url = https://github.com/exercism/clojure
+
+/data/dev/clojure/learn/dc-koans/.git/config
+
++ url = git@github.com:dcunited001/clojure-koans
+
+/data/dev/clojure/learn/dc-koans/.git/config
+
++ url = git@github.com:functional-koans/clojure-koans
+
+/data/dev/clojure/learn/clojure-koans/.git/config
+
++ url = https://github.com/functional-koans/clojure-koans
+
+/data/dev/clojure/cljfx/cljfx/.git/config
+
++ url = https://github.com/cljfx/cljfx
+
+/data/dev/clojure/dsci/tukey/.git/config
+
++ url = https://github.com/ptaoussanis/tukey
+
+/data/dev/clojure/dsci/bluegenes/.git/config
+
++ url = https://github.com/intermine/bluegenes
+
+/data/dev/clojure/dsci/wa-tor-population-sim/.git/config
+
++ url = https://github.com/saidone75/wa-tor
+
+/data/dev/clojure/dsci/baseball/.git/config
+
++ url = https://github.com/bfollek/baseball
+
+/data/dev/clojure/dsci/Prob-Stats/.git/config
+
++ url = https://github.com/E-A-Griffin/Prob-Stats
+
+/data/dev/clojure/dsci/uncomplicate/bayadera/.git/config
+
++ url = https://github.com/uncomplicate/bayadera
+
+/data/dev/clojure/dsci/uncomplicate/clojurecl/.git/config
+
++ url = https://github.com/uncomplicate/clojurecl
+
+/data/dev/clojure/dsci/uncomplicate/fluokitten/.git/config
+
++ url = https://github.com/uncomplicate/fluokitten
+
+/data/dev/clojure/dsci/uncomplicate/commons/.git/config
+
++ url = https://github.com/uncomplicate/commons
+
+/data/dev/clojure/dsci/uncomplicate/deep-diamond/.git/config
+
++ url = https://github.com/uncomplicate/deep-diamond
+
+/data/dev/clojure/dsci/uncomplicate/clojurecuda/.git/config
+
++ url = https://github.com/uncomplicate/clojurecuda
+
+/data/dev/clojure/dsci/uncomplicate/neanderthal/.git/config
+
++ url = https://github.com/uncomplicate/neanderthal
+
+/data/dev/clojure/dsci/uncomplicate/neanderthal-native/.git/config
+
++ url = https://github.com/uncomplicate/neanderthal-native
+
+/data/dev/clojure/finance/mort-calc/.git/config
+
++ url = https://github.com/rahulpilani/mort-calc
+
+/data/dev/clojure/finance/mortgage-reagent/.git/config
+
++ url = https://github.com/Romacoding/Mortgage-Calculator
+
+/data/dev/clojure/finance/clojure-backtesting/.git/config
+
++ url = https://github.com/clojure-finance/clojure-backtesting
+
+/data/dev/clojure/finance/mortgage-reagent2/.git/config
+
++ url = https://github.com/daveduthie/mortgage-calc
+
+/data/dev/clojure/finance/mortgage-calculator/.git/config
+
++ url = https://github.com/yangaxnkohla/mortgage-calculator
+
+/data/dev/clojure/web/luminus-guestbook/.git/config
+
++ url = https://github.com/luminus-framework/guestbook
+
+/data/dev/clojure/web/luminus-examples/.git/config
+
++ url = https://github.com/luminus-framework/examples
+
+/data/dev/clojure/web/confair/.git/config
+
++ url = https://github.com/magnars/confair
+
+/data/dev/clojure/web/examples/shadow-cljs-tailwindcss/.git/config
+
++ url = https://github.com/jacekschae/shadow-cljs-tailwindcss
+
+/data/dev/clojure/web/examples/fulcro-react-vis/.git/config
+
++ url = https://github.com/chrismurrph/fulcro-react-vis
+
+/data/dev/clojure/web/examples/conduit/.git/config
+
++ url = https://github.com/jacekschae/conduit
+
+/data/dev/clojure/web/examples/quickstart-browser/.git/config
+
++ url = https://github.com/shadow-cljs/quickstart-browser
+
+/data/dev/clojure/web/examples/shadow-cljs-devcards/.git/config
+
++ url = https://github.com/jacekschae/shadow-cljs-devcards
+
+/data/dev/clojure/web/examples/cljs-karaoke-client/.git/config
+
++ url = https://github.com/baskeboler/cljs-karaoke-client
+
+/data/dev/clojure/web/examples/shadow-re-frame-simple-example/.git/config
+
++ url = https://github.com/quangv/shadow-re-frame-simple-example
+
+/data/dev/clojure/web/examples/cryptotwittos/.git/config
+
++ url = https://github.com/teawaterwire/cryptotwittos
+
+/data/dev/clojure/web/examples/boodle/.git/config
+
++ url = https://github.com/manuel-uberti/boodle
+
+/data/dev/clojure/web/examples/shadow-electorn-starter/.git/config
+
++ url = https://github.com/ahonn/shadow-electorn-starter
+
+/data/dev/clojure/web/examples/re-frame/.git/config
+
++ url = https://github.com/Day8/re-frame
+
+/data/dev/clojure/web/examples/shadow-re-frame/.git/config
+
++ url = https://github.com/mhuebert/shadow-re-frame
+
+/data/dev/clojure/web/examples/shadow-cljs-kitchen-async-puppeteer/.git/config
+
++ url = https://github.com/iku000888/shadow-cljs-kitchen-async-puppeteer
+
+/data/dev/clojure/web/examples/re-frame-trace/.git/config
+
++ url = https://github.com/Day8/re-frame-trace
+
+/data/dev/clojure/web/examples/shadow-firebase/.git/config
+
++ url = https://github.com/jacekschae/shadow-firebase
+
+/data/dev/clojure/web/examples/shadow-reagent/.git/config
+
++ url = https://github.com/jacekschae/shadow-reagent
+
+/data/dev/clojure/web/examples/shadow-proto-starter/.git/config
+
++ url = https://github.com/loganpowell/shadow-proto-starter
+
+/data/dev/clojure/web/examples/ClojureRNProject/.git/config
+
++ url = https://github.com/flexsurfer/ClojureRNProject
+
+/data/dev/clojure/web/hiccup-samples/.git/config
+
++ url = https://github.com/yokolet/hiccup-samples
+
+/data/dev/clojure/web/luminus-template/.git/config
+
++ url = https://github.com/luminus-framework/luminus-template
+
+/data/dev/clojure/bio/clj-parse-fasta/.git/config
+
++ url = https://github.com/mooreryan/clj-parse-fasta
+
+/data/dev/clojure/bio/derep/.git/config
+
++ url = https://github.com/mooreryan/derep
+
+/data/dev/clojure/test/schema/.git/config
+
++ url = https://github.com/plumatic/schema
+
+/data/dev/clojure/test/malli/.git/config
+
++ url = https://github.com/metosin/malli
+
+/data/dev/clojure/projects/bioclj/.git/config
+
++ url = git@github.com:dcunited001/bioclj
+
+/data/dev/clojure/projects/iching-app/.git/config
+
++ url = git@github.com:dcunited001/iching-app.git

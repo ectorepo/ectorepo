@@ -13,6 +13,11 @@
 + =$ECTO= :: contains the synced repos
   - directory should also be a sibling to =$ORG_ROAM=
 
+*** TODO plan on exploring Linux gui's with ectorepo/sway, then gradually migrate to new repo XML
++ [ ] something like ectorepo/guiland
+*** TODO find out how to deal with sourcehut's URL stcture
++ the package [[https://github.com/rmuslimov/browse-at-remote][browse-at-remote]] should demonstrate how to handle the tilde
+
 * Ectorepo
 
 This is a git repo full of submodules to [[https://android.googlesource.com/tools/repo][Repo]] [[https://android.googlesource.com/platform/manifest/][projects]] made of git repos. The

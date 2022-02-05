@@ -1,0 +1,196 @@
+
+/data/dev/uber-engineering/react-digraph/.git/config
+
++ url = https://github.com/uber/react-digraph
+
+/data/dev/uber-engineering/graph.gl/.git/config
+
++ url = https://github.com/uber/graph.gl
+
+/data/dev/uber-engineering/uber-licence/.git/config
+
++ url = https://github.com/uber/uber-licence
+
+/data/dev/uber-engineering/uber-pay-reference-app/.git/config
+
++ url = https://github.com/uber/uber-pay-reference-app
+
+/data/dev/uber-engineering/sevnup/.git/config
+
++ url = https://github.com/uber/sevnup
+
+/data/dev/uber-engineering/standard/.git/config
+
++ url = https://github.com/uber/standard
+
+/data/dev/uber-engineering/react-vis/.git/config
+
++ url = https://github.com/uber/react-vis
+
+/data/dev/uber-engineering/react-view/.git/config
+
++ url = https://github.com/uber/react-view
+
+/data/dev/uber-engineering/prototool/.git/config
+
++ url = https://github.com/uber/prototool
+
+/data/dev/uber-engineering/baseweb/.git/config
+
++ url = https://github.com/uber/baseweb
+
+/data/dev/uber-engineering/isochronic-map-gpu/.git/config
+
++ url = https://github.com/Pessimistress/isochronic-map-gpu
+
+/data/dev/uber-engineering/vis.gl/.git/config
+
++ url = https://github.com/visgl/vis.gl/
+
+/data/dev/uber-engineering/geojson2h3/.git/config
+
++ url = https://github.com/uber/geojson2h3
+
+/data/dev/uber-engineering/minecraft-chunk-viewer/.git/config
+
++ url = https://github.com/Pessimistress/minecraft-chunk-viewer
+
+/data/dev/uber-engineering/h3/.git/config
+
++ url = https://github.com/uber/h3
+
+/data/dev/uber-engineering/typed-request-client/.git/config
+
++ url = https://github.com/uber/typed-request-client
+
+/data/dev/uber-engineering/react-vis-force/.git/config
+
++ url = https://github.com/uber/react-vis-force
+
+/data/dev/uber-engineering/grafana-dash-gen/.git/config
+
++ url = https://github.com/uber/grafana-dash-gen
+
+/data/dev/uber-engineering/tchannel-node/.git/config
+
++ url = https://github.com/uber/tchannel-node
+
+/data/dev/uber-engineering/SandDance/.git/config
+
++ url = https://github.com/Microsoft/SandDance
+
+/data/dev/uber-engineering/orbit/.git/config
+
++ url = https://github.com/uber/orbit
+
+/data/dev/uber-engineering/sentry-logger/.git/config
+
++ url = https://github.com/uber/sentry-logger
+
+/data/dev/uber-engineering/kafka-logger/.git/config
+
++ url = https://github.com/uber/kafka-logger
+
+/data/dev/uber-engineering/deck.gl/.git/config
+
++ url = https://github.com/visgl/deck.gl
+
+/data/dev/uber-engineering/bufrw/.git/config
+
++ url = https://github.com/uber/bufrw
+
+/data/dev/uber-engineering/json-schema-filter/.git/config
+
++ url = https://github.com/uber/json-schema-filter
+
+/data/dev/uber-engineering/logtron/.git/config
+
++ url = https://github.com/uber/logtron
+
+/data/dev/uber-engineering/xviz-data/.git/config
+
++ url = https://github.com/uber/xviz-data
+
+/data/dev/uber-engineering/causalml/.git/config
+
++ url = https://github.com/uber/causalml
+
+/data/dev/uber-engineering/flowmap.blue/.git/config
+
++ url = https://github.com/ilyabo/flowmap.blue
+
+/data/dev/uber-engineering/airlock/.git/config
+
++ url = https://github.com/uber/airlock
+
+/data/dev/uber-engineering/base-design-docs/.git/config
+
++ url = https://github.com/uber/base-design-docs
+
+/data/dev/uber-engineering/deck.gl-data/.git/config
+
++ url = https://github.com/visgl/deck.gl-data
+
+/data/dev/uber-engineering/eight-track/.git/config
+
++ url = https://github.com/uber/eight-track
+
+/data/dev/uber-engineering/h3-js/.git/config
+
++ url = https://github.com/uber/h3-js
+
+/data/dev/uber-engineering/nebula.gl/.git/config
+
++ url = https://github.com/uber/nebula.gl
+
+/data/dev/uber-engineering/react-global-hooks/.git/config
+
++ url = https://github.com/uber/react-global-hooks
+
+/data/dev/uber-engineering/manifold/.git/config
+
++ url = https://github.com/uber/manifold
+
+/data/dev/uber-engineering/xviz/.git/config
+
++ url = https://github.com/uber/xviz
+
+/data/dev/uber-engineering/loaders.gl/.git/config
+
++ url = https://github.com/visgl/loaders.gl
+
+/data/dev/uber-engineering/viv/.git/config
+
++ url = https://github.com/hms-dbmi/viv
+
+/data/dev/uber-engineering/busrouter-sg/.git/config
+
++ url = https://github.com/cheeaun/busrouter-sg
+
+/data/dev/uber-engineering/uncaught-exception/.git/config
+
++ url = https://github.com/uber/uncaught-exception
+
+/data/dev/uber-engineering/kraken/.git/config
+
++ url = https://github.com/uber/kraken
+
+/data/dev/uber-engineering/kepler.gl-tableau/.git/config
+
++ url = https://github.com/keplergl/kepler.gl-tableau
+
+/data/dev/uber-engineering/hubble.gl/.git/config
+
++ url = https://github.com/uber/hubble.gl
+
+/data/dev/uber-engineering/kepler.gl/.git/config
+
++ url = https://github.com/keplergl/kepler.gl
+
+/data/dev/uber-engineering/luma.gl/.git/config
+
++ url = https://github.com/visgl/luma.gl
+
+/data/dev/uber-engineering/react-map-gl/.git/config
+
++ url = https://github.com/visgl/react-map-gl

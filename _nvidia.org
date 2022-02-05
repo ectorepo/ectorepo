@@ -1,0 +1,457 @@
+/data/dev/nvidia/src-khronos/glTF-Validator/.git/config
+
++ url = https://github.com/KhronosGroup/glTF-Validator
+
+/data/dev/nvidia/src-khronos/Vulkan-Samples-Assets/.git/config
+
++ url = https://github.com/KhronosGroup/Vulkan-Samples-Assets
+
+/data/dev/nvidia/src-khronos/Vulkan-Samples/.git/config
+
++ url = https://github.com/KhronosGroup/Vulkan-Samples
+
+/data/dev/nvidia/src-khronos/glTF-Metadata-CLI/.git/config
+
++ url = https://github.com/KhronosGroup/glTF-Metadata-CLI
+
+/data/dev/nvidia/src-khronos/OpenCL-SDK/.git/config
+
++ url = https://github.com/KhronosGroup/OpenCL-SDK
+
+/data/dev/nvidia/src-khronos/SPIRV-Cross/.git/config
+
++ url = https://github.com/KhronosGroup/SPIRV-Cross
+
+/data/dev/nvidia/src-khronos/3D-Formats-Guidelines/.git/config
+
++ url = https://github.com/KhronosGroup/3D-Formats-Guidelines
+
+/data/dev/nvidia/src-khronos/SPIRV-Visualizer/.git/config
+
++ url = https://github.com/KhronosGroup/SPIRV-Visualizer
+
+/data/dev/nvidia/src-khronos/SPIRV-Guide/.git/config
+
++ url = https://github.com/KhronosGroup/SPIRV-Guide
+
+/data/dev/nvidia/src-khronos/glslang/.git/config
+
++ url = https://github.com/KhronosGroup/glslang
+
+/data/dev/nvidia/src-khronos/Vulkan-Guide/.git/config
+
++ url = https://github.com/KhronosGroup/Vulkan-Guide
+
+/data/dev/nvidia/src-khronos/OpenXR-Registry/.git/config
+
++ url = https://github.com/KhronosGroup/OpenXR-Registry
+
+/data/dev/nvidia/src-khronos/SPIRV-Headers/.git/config
+
++ url = https://github.com/KhronosGroup/SPIRV-Headers
+
+/data/dev/nvidia/src-khronos/SPIRV-Tools/.git/config
+
++ url = https://github.com/KhronosGroup/SPIRV-Tools
+
+/data/dev/nvidia/src-khronos/SPIRV-Registry/.git/config
+
++ url = https://github.com/KhronosGroup/SPIRV-Registry
+
+/data/dev/nvidia/src-khronos/Vulkan-Headers/.git/config
+
++ url = https://github.com/KhronosGroup/Vulkan-Headers
+
+/data/dev/nvidia/src-khronos/3DC-Asset-Creation-Registry/.git/config
+
++ url = https://github.com/KhronosGroup/3DC-Asset-Creation-Registry
+
+/data/dev/nvidia/src-khronos/glTF-Tutorials/.git/config
+
++ url = https://github.com/KhronosGroup/glTF-Tutorials
+
+/data/dev/nvidia/src-khronos/Vulkan-Hpp/.git/config
+
++ url = https://github.com/KhronosGroup/Vulkan-Hpp
+
+/data/dev/nvidia/src-khronos/OpenXR-SDK/.git/config
+
++ url = https://github.com/KhronosGroup/OpenXR-SDK
+
+/data/dev/nvidia/src-khronos/3DC-Asset-Creation/.git/config
+
++ url = https://github.com/KhronosGroup/3DC-Asset-Creation
+
+/data/dev/nvidia/src-khronos/glTF/.git/config
+
++ url = https://github.com/KhronosGroup/glTF
+
+/data/dev/nvidia/src-khronos/glTF-IBL-Sampler/.git/config
+
++ url = https://github.com/KhronosGroup/glTF-IBL-Sampler
+
+/data/dev/nvidia/src-khronos/OpenXR-CTS/.git/config
+
++ url = https://github.com/KhronosGroup/OpenXR-CTS
+
+/data/dev/nvidia/src-khronos/glTF-Blender-IO/.git/config
+
++ url = https://github.com/KhronosGroup/glTF-Blender-IO
+
+/data/dev/nvidia/src-khronos/glTF-Sample-Environments/.git/config
+
++ url = https://github.com/KhronosGroup/glTF-Sample-Environments
+
+/data/dev/nvidia/src-khronos/Basis-Universal-Transcoders/.git/config
+
++ url = https://github.com/KhronosGroup/Basis-Universal-Transcoders
+
+/data/dev/nvidia/src-khronos/glTF-Asset-Generator/.git/config
+
++ url = https://github.com/KhronosGroup/glTF-Asset-Generator
+
+/data/dev/nvidia/src-khronos/OpenXR-SDK-Source/.git/config
+
++ url = https://github.com/KhronosGroup/OpenXR-SDK-Source
+
+/data/dev/nvidia/src-khronos/OpenCL-Registry/.git/config
+
++ url = https://github.com/KhronosGroup/OpenCL-Registry
+
+/data/dev/nvidia/src-khronos/Vulkan-Docs/.git/config
+
++ url = https://github.com/KhronosGroup/Vulkan-Docs
+
+/data/dev/nvidia/src-khronos/Vulkan-Tools/.git/config
+
++ url = https://github.com/KhronosGroup/Vulkan-Tools
+
+/data/dev/nvidia/src-khronos/Vulkan-Loader/.git/config
+
++ url = https://github.com/KhronosGroup/Vulkan-Loader
+
+/data/dev/nvidia/src-khronos/LLVM-SPIRV-Backend/.git/config
+
++ url = https://github.com/KhronosGroup/LLVM-SPIRV-Backend
+
+/data/dev/nvidia/src-khronos/SPIRV-Reflect/.git/config
+
++ url = https://github.com/KhronosGroup/SPIRV-Reflect
+
+/data/dev/nvidia/src-khronos/SPIRV-LLVM-Translator/.git/config
+
++ url = https://github.com/KhronosGroup/SPIRV-LLVM-Translator
+
+/data/dev/nvidia/src-nvidia/k8s-device-plugin/.git/config
+
++ url = https://github.com/NVIDIA/k8s-device-plugin
+
+/data/dev/nvidia/src-nvidia/spark-xgboost-examples/.git/config
+
++ url = https://github.com/NVIDIA/spark-xgboost-examples
+
+/data/dev/nvidia/src-nvidia/clara-train-examples/.git/config
+
++ url = https://github.com/NVIDIA/clara-train-examples
+
+/data/dev/nvidia/src-nvidia/gdrcopy/.git/config
+
++ url = https://github.com/NVIDIA/gdrcopy
+
+/data/dev/nvidia/src-nvidia/Eigensolver_gpu/.git/config
+
++ url = https://github.com/NVIDIA/Eigensolver_gpu
+
+/data/dev/nvidia/src-nvidia/cutlass/.git/config
+
++ url = https://github.com/NVIDIA/cutlass
+
+/data/dev/nvidia/src-nvidia/nvidia-xconfig/.git/config
+
++ url = https://github.com/NVIDIA/nvidia-xconfig
+
+/data/dev/nvidia/src-nvidia/semantic-segmentation/.git/config
+
++ url = https://github.com/NVIDIA/semantic-segmentation
+
+/data/dev/nvidia/src-nvidia/gds-nvidia-fs/.git/config
+
++ url = https://github.com/NVIDIA/gds-nvidia-fs
+
+/data/dev/nvidia/src-nvidia/BROADCAST-AFX-SDK/.git/config
+
++ url = https://github.com/NVIDIA/BROADCAST-AFX-SDK
+
+/data/dev/nvidia/src-nvidia/ngc-container-environment-modules/.git/config
+
++ url = https://github.com/NVIDIA/ngc-container-environment-modules
+
+/data/dev/nvidia/src-nvidia/libcudacxx/.git/config
+
++ url = https://github.com/NVIDIA/libcudacxx
+
+/data/dev/nvidia/src-nvidia/ising-gpu/.git/config
+
++ url = https://github.com/NVIDIA/ising-gpu
+
+/data/dev/nvidia/src-nvidia/AMGX/.git/config
+
++ url = https://github.com/NVIDIA/AMGX
+
+/data/dev/nvidia/src-nvidia/energy-sdk/.git/config
+
++ url = https://github.com/NVIDIA/energy-sdk
+
+/data/dev/nvidia/src-nvidia/dgx-selinux/.git/config
+
++ url = https://github.com/NVIDIA/dgx-selinux
+
+/data/dev/nvidia/src-nvidia/BROADCAST-AR-SDK/.git/config
+
++ url = https://github.com/NVIDIA/BROADCAST-AR-SDK
+
+/data/dev/nvidia/src-nvidia/nvidia-docker/.git/config
+
++ url = https://github.com/NVIDIA/nvidia-docker
+
+/data/dev/nvidia/src-nvidia/VisRTX/.git/config
+
++ url = https://github.com/NVIDIA/VisRTX
+
+/data/dev/nvidia/src-nvidia/nvidia-modprobe/.git/config
+
++ url = https://github.com/NVIDIA/nvidia-modprobe
+
+/data/dev/nvidia/src-nvidia/mig-parted/.git/config
+
++ url = https://github.com/NVIDIA/mig-parted
+
+/data/dev/nvidia/src-nvidia/libglvnd/.git/config
+
++ url = https://github.com/NVIDIA/libglvnd
+
+/data/dev/nvidia/src-nvidia/nvidia-container-runtime/.git/config
+
++ url = https://github.com/NVIDIA/nvidia-container-runtime
+
+/data/dev/nvidia/src-nvidia/TRTorch/.git/config
+
++ url = https://github.com/NVIDIA/TRTorch
+
+/data/dev/nvidia/src-nvidia/Q2RTX/.git/config
+
++ url = https://github.com/NVIDIA/Q2RTX
+
+/data/dev/nvidia/src-nvidia/gbm-bench/.git/config
+
++ url = https://github.com/NVIDIA/gbm-bench
+
+/data/dev/nvidia/src-nvidia/GraphQSat/.git/config
+
++ url = https://github.com/NVIDIA/GraphQSat
+
+/data/dev/nvidia/src-nvidia/VideoProcessingFramework/.git/config
+
++ url = https://github.com/NVIDIA/VideoProcessingFramework
+
+/data/dev/nvidia/src-nvidia/framework-determinism/.git/config
+
++ url = https://github.com/NVIDIA/framework-determinism
+
+/data/dev/nvidia/src-nvidia/nvidia-installer/.git/config
+
++ url = https://github.com/NVIDIA/nvidia-installer
+
+/data/dev/nvidia/src-nvidia/nccl/.git/config
+
++ url = https://github.com/NVIDIA/nccl
+
+/data/dev/nvidia/src-nvidia/nvidia-persistenced/.git/config
+
++ url = https://github.com/NVIDIA/nvidia-persistenced
+
+/data/dev/nvidia/src-nvidia/gpu-operator/.git/config
+
++ url = https://github.com/NVIDIA/gpu-operator
+
+/data/dev/nvidia/src-nvidia/gpu-rest-engine/.git/config
+
++ url = https://github.com/NVIDIA/gpu-rest-engine
+
+/data/dev/nvidia/src-nvidia/nvidia-settings/.git/config
+
++ url = https://github.com/NVIDIA/nvidia-settings
+
+/data/dev/nvidia/src-nvidia/cub/.git/config
+
++ url = https://github.com/NVIDIA/cub
+
+/data/dev/nvidia/src-nvidia/kubevirt-gpu-device-plugin/.git/config
+
++ url = https://github.com/NVIDIA/kubevirt-gpu-device-plugin
+
+/data/dev/nvidia/src-nvidia/cheminformatics/.git/config
+
++ url = https://github.com/NVIDIA/cheminformatics
+
+/data/dev/nvidia/src-nvidia/DALI_extra/.git/config
+
++ url = https://github.com/NVIDIA/DALI_extra
+
+/data/dev/nvidia/src-nvidia/grcuda/.git/config
+
++ url = https://github.com/NVIDIA/grcuda
+
+/data/dev/nvidia/src-nvidia/Dataset_Synthesizer/.git/config
+
++ url = https://github.com/NVIDIA/Dataset_Synthesizer
+
+/data/dev/nvidia/src-nvidia/cuda-profiler/.git/config
+
++ url = https://github.com/NVIDIA/cuda-profiler
+
+/data/dev/nvidia/src-nvidia/egl-wayland/.git/config
+
++ url = https://github.com/NVIDIA/egl-wayland
+
+/data/dev/nvidia/src-nvidia/open-gpu-doc/.git/config
+
++ url = https://github.com/NVIDIA/open-gpu-doc
+
+/data/dev/nvidia/src-nvidia/kmeans/.git/config
+
++ url = https://github.com/NVIDIA/kmeans
+
+/data/dev/nvidia/src-nvidia/NVIDIAOpticalFlowSDK/.git/config
+
++ url = https://github.com/NVIDIA/NVIDIAOpticalFlowSDK
+
+/data/dev/nvidia/src-nvidia/nvaitc-toolkit/.git/config
+
++ url = https://github.com/NVIDIA/nvaitc-toolkit
+
+/data/dev/nvidia/src-nvidia/thrust/.git/config
+
++ url = https://github.com/NVIDIA/thrust
+
+/data/dev/nvidia/src-nvidia/gpu-monitoring-tools/.git/config
+
++ url = https://github.com/NVIDIA/gpu-monitoring-tools
+
+/data/dev/nvidia/src-nvidia/BROADCAST-VFX-SDK/.git/config
+
++ url = https://github.com/NVIDIA/BROADCAST-VFX-SDK
+
+/data/dev/nvidia/src-nvidia/vdisc/.git/config
+
++ url = https://github.com/NVIDIA/vdisc
+
+/data/dev/nvidia/src-nvidia/nvcomp/.git/config
+
++ url = https://github.com/NVIDIA/nvcomp
+
+/data/dev/nvidia/src-nvidia/MinkowskiEngine/.git/config
+
++ url = https://github.com/NVIDIA/MinkowskiEngine
+
+/data/dev/nvidia/src-nvidia/go-nvml/.git/config
+
++ url = https://github.com/NVIDIA/go-nvml
+
+/data/dev/nvidia/src-nvidia/sampleQAT/.git/config
+
++ url = https://github.com/NVIDIA/sampleQAT
+
+/data/dev/nvidia/src-nvidia/data-science-stack/.git/config
+
++ url = https://github.com/NVIDIA/data-science-stack
+
+/data/dev/nvidia/src-nvidia/multi-gpu-programming-models/.git/config
+
++ url = https://github.com/NVIDIA/multi-gpu-programming-models
+
+/data/dev/nvidia/src-nvidia/jitify/.git/config
+
++ url = https://github.com/NVIDIA/jitify
+
+/data/dev/nvidia/src-nvidia/NVTX/.git/config
+
++ url = https://github.com/NVIDIA/NVTX
+
+/data/dev/nvidia/src-nvidia/libnvidia-container/.git/config
+
++ url = https://github.com/NVIDIA/libnvidia-container
+
+/data/dev/nvidia/src-nvidia/MDL-SDK/.git/config
+
++ url = https://github.com/NVIDIA/MDL-SDK
+
+/data/dev/nvidia/src-nvidia/DALI/.git/config
+
++ url = https://github.com/NVIDIA/DALI
+
+/data/dev/nvidia/src-nvidia/nvidia-container-toolkit/.git/config
+
++ url = https://github.com/NVIDIA/nvidia-container-toolkit
+
+/data/dev/nvidia/src-nvidia/gvdb-voxels/.git/config
+
++ url = https://github.com/NVIDIA/gvdb-voxels
+
+/data/dev/nvidia/.git/config; remote-base-url = https://github.com/nvidia
+
+/data/dev/nvidia/abs/nvidia-418xx/nvidia-418xx/.git/config
+
++ url = https://aur.archlinux.org/nvidia-390xx.git
+
+/data/dev/nvidia/abs/nvidia-418xx/lib32-nvidia-418xx-utils/.git/config
+
++ url = https://aur.archlinux.org/lib32-nvidia-390xx-utils.git
+
+/data/dev/nvidia/abs/nvidia-418xx/nvidia-418xx-settings/.git/config
+
++ url = https://aur.archlinux.org/nvidia-390xx-settings.git
+
+/data/dev/nvidia/abs/nvidia-418xx/nvidia-418xx-utils/.git/config
+
++ url = https://aur.archlinux.org/nvidia-390xx-utils.git
+
+/data/dev/nvidia/abs/nvidia-390xx/nvidia-390xx-utils/.git/config
+
++ url = https://aur.archlinux.org/nvidia-390xx-utils.git
+
+/data/dev/nvidia/abs/nvidia-390xx/lib32-nvidia-390xx-utils/.git/config
+
++ url = https://aur.archlinux.org/lib32-nvidia-390xx-utils.git
+
+/data/dev/nvidia/abs/nvidia-390xx/nvidia-390xx/.git/config
+
++ url = https://aur.archlinux.org/nvidia-390xx.git
+
+/data/dev/nvidia/abs/nvidia-390xx/nvidia-390xx-settings/.git/config
+
++ url = https://aur.archlinux.org/nvidia-390xx-settings.git
+
+/data/dev/nvidia/abs/gstreamer-nvidia/.git/config
+
++ url = https://aur.archlinux.org/gstreamer-nvidia.git
+
+/data/dev/nvidia/abs/gstreamer-nvidia/src/gst-plugins-bad/.git/config
+
++ url = /data/dev/abs/gstreamer-nvidia/gst-plugins-bad
+
+/data/dev/nvidia/abs/nvidia-390xx.old/.git/config
+
++ url = https://aur.archlinux.org/nvidia-390xx.git
+
+/data/dev/nvidia/abs/nvidia-440xx-utils/.git/config
+
++ url = https://aur.archlinux.org/nvidia-440xx-utils
+
+/data/dev/nvidia/abs/nvidia-sdk/.git/config
+
++ url = https://aur.archlinux.org/nvidia-sdk
+
+/data/dev/nvidia/abs/nvidia-410xx-utils/.git/config
+
++ url = https://aur.archlinux.org/nvidia-410xx-utils

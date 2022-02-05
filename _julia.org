@@ -1,0 +1,320 @@
+
+/data/dev/julia/_nb/.git/config
+
++ url = git@github.com:dcunited001/nyanbook-jl.git
+
+/data/dev/julia/math/algebraicjulia/AlgebraicPetri.jl/.git/config
+
++ url = https://github.com/AlgebraicJulia/AlgebraicPetri.jl
+
+/data/dev/julia/math/algebraicjulia/Catlab.jl/.git/config
+
++ url = https://github.com/AlgebraicJulia/Catlab.jl
+
+/data/dev/julia/math/algebraicjulia/AlgebraicRelations.jl/.git/config
+
++ url = https://github.com/AlgebraicJulia/AlgebraicRelations.jl
+
+/data/dev/julia/math/flux/IRTools.jl/.git/config
+
++ url = git@github.com:FluxML/IRTools.jl
+
+/data/dev/julia/math/flux/Functors.jl/.git/config
+
++ url = git@github.com:FluxML/Functors.jl
+
+/data/dev/julia/math/flux/MacroTools.jl/.git/config
+
++ url = git@github.com:FluxML/MacroTools.jl
+
+/data/dev/julia/math/flux/Flux.jl/.git/config
+
++ url = git@github.com:FluxML/Flux.jl
+
+/data/dev/julia/math/flux/ZygoteRules.jl/.git/config
+
++ url = git@github.com:FluxML/ZygoteRules.jl
+
+/data/dev/julia/math/flux/Flux3D.jl/.git/config
+
++ url = git@github.com:FluxML/Flux3D.jl
+
+/data/dev/julia/math/flux/Zygote.jl/.git/config
+
++ url = git@github.com:FluxML/Zygote.jl
+
+/data/dev/julia/meta/Sherlock.jl/.git/config
+
++ url = https://github.com/caseykneale/Sherlock.jl
+
+/data/dev/julia/meta/Metatheory.jl/.git/config
+
++ url = https://github.com/JuliaSymbolics/Metatheory.jl
+
+/data/dev/julia/electronics/ACME.jl/.git/config
+
++ url = https://github.com/HSU-ANT/ACME.jl
+
+/data/dev/julia/juliacon/lightgraphs_workshop/.git/config
+
++ url = git@github.com:matbesancon/lightgraphs_workshop
+
+/data/dev/julia/mitmath-computational-thinking/.git/config
+
++ url = git@github.com:dcunited001/18S191
+
+/data/dev/julia/mitmath-computational-thinking/.git/config
+
++ url = git@github.com:dcunited001/ComputationalThinking
+
+/data/dev/julia/mitmath-computational-thinking/.git/config
+
++ url = git@github.com:mitmath/18S191
+
+/data/dev/julia/src/ImageFiltering.jl/.git/config
+
++ url = git@github.com:JuliaImages/ImageFiltering.jl
+
+/data/dev/julia/src/ImageCore.jl/.git/config
+
++ url = git@github.com:JuliaImages/ImageCore.jl
+
+/data/dev/julia/src/Images.jl/.git/config
+
++ url = git@github.com:JuliaImages/Images.jl
+
+/data/dev/julia/src/Catlab.jl/.git/config
+
++ url = git@github.com:AlgebraicJulia/Catlab.jl
+
+/data/dev/julia/ComputationalThinking/.git/config
+
++ url = git@github.com:dcunited001/ComputationalThinking
+
+/data/dev/julia/ComputationalThinking/.git/config
+
++ url = git@github.com:mathijsvdv/ComputationalThinking
+
+/data/dev/julia/finance/paulsoderlind/FinancialEconometrics/.git/config
+
++ url = https://github.com/PaulSoderlind/FinancialEconometrics
+
+/data/dev/julia/finance/paulsoderlind/EmpiricalFinancePhD/.git/config
+
++ url = https://github.com/PaulSoderlind/EmpiricalFinancePhD
+
+/data/dev/julia/finance/paulsoderlind/JuliaTutorial/.git/config
+
++ url = https://github.com/PaulSoderlind/JuliaTutorial
+
+/data/dev/julia/finance/paulsoderlind/PaulSoderlindCode/.git/config
+
++ url = https://github.com/PaulSoderlind/PaulSoderlindCode
+
+/data/dev/julia/finance/paulsoderlind/FinancialTheoryMSc/.git/config
+
++ url = https://github.com/PaulSoderlind/FinancialTheoryMSc
+
+/data/dev/julia/finance/felipenoris/InterestRates.jl/.git/config
+
++ url = https://github.com/felipenoris/InterestRates.jl
+
+/data/dev/julia/finance/felipenoris/BS.jl/.git/config
+
++ url = https://github.com/felipenoris/BS.jl
+
+/data/dev/julia/finance/felipenoris/OptimizingIR.jl/.git/config
+
++ url = https://github.com/felipenoris/OptimizingIR.jl
+
+/data/dev/julia/finance/felipenoris/Vol.jl/.git/config
+
++ url = https://github.com/felipenoris/Vol.jl
+
+/data/dev/julia/finance/felipenoris/PiSMC.jl/.git/config
+
++ url = https://github.com/felipenoris/PiSMC.jl
+
+/data/dev/julia/finance/felipenoris/ForwardDiff.jl/.git/config
+
++ url = https://github.com/felipenoris/ForwardDiff.jl
+
+/data/dev/julia/finance/felipenoris/math-server-docker/.git/config
+
++ url = https://github.com/felipenoris/math-server-docker
+
+/data/dev/julia/finance/quantecon/ContinuousDPs.jl/.git/config
+
++ url = https://github.com/QuantEcon/ContinuousDPs.jl
+
+/data/dev/julia/finance/quantecon/Games.jl/.git/config
+
++ url = https://github.com/QuantEcon/Games.jl
+
+/data/dev/julia/finance/quantecon/QuantEcon.jl/.git/config
+
++ url = https://github.com/QuantEcon/QuantEcon.jl
+
+/data/dev/julia/finance/quantecon/SimpleDifferentialOperators.jl/.git/config
+
++ url = https://github.com/QuantEcon/SimpleDifferentialOperators.jl
+
+/data/dev/julia/finance/quantecon/BasisMatrices.jl/.git/config
+
++ url = https://github.com/QuantEcon/BasisMatrices.jl
+
+/data/dev/julia/finance/quantecon/Expectations.jl/.git/config
+
++ url = https://github.com/QuantEcon/Expectations.jl
+
+/data/dev/julia/finance/quantecon/InstantiateFromURL.jl/.git/config
+
++ url = https://github.com/QuantEcon/InstantiateFromURL.jl
+
+/data/dev/julia/finance/quantecon/quantecon-notebooks-julia/.git/config
+
++ url = https://github.com/QuantEcon/quantecon-notebooks-julia
+
+/data/dev/julia/finance/quantecon/game-theory-notebooks/.git/config
+
++ url = https://github.com/QuantEcon/game-theory-notebooks
+
+/data/dev/julia/finance/Miletus.jl/.git/config
+
++ url = https://github.com/JuliaComputing/Miletus.jl
+
+/data/dev/julia/finance/juliafinance/JuliaFinance/.git/config
+
++ url = https://github.com/JuliaFinance/JuliaFinance
+
+/data/dev/julia/finance/juliafinance/Currencies.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Currencies.jl
+
+/data/dev/julia/finance/juliafinance/Positions.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Positions.jl
+
+/data/dev/julia/finance/juliafinance/FinancialInstruments.jl/.git/config
+
++ url = https://github.com/JuliaFinance/FinancialInstruments.jl
+
+/data/dev/julia/finance/juliafinance/MarketObservables.jl/.git/config
+
++ url = https://github.com/JuliaFinance/MarketObservables.jl
+
+/data/dev/julia/finance/juliafinance/BusinessDays.jl/.git/config
+
++ url = https://github.com/JuliaFinance/BusinessDays.jl
+
+/data/dev/julia/finance/juliafinance/Assets.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Assets.jl
+
+/data/dev/julia/finance/juliafinance/Instruments.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Instruments.jl
+
+/data/dev/julia/finance/juliafinance/Countries.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Countries.jl
+
+/data/dev/julia/finance/juliafinance/DayCounts.jl/.git/config
+
++ url = https://github.com/JuliaFinance/DayCounts.jl
+
+/data/dev/julia/finance/juliafinance/Ledgers.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Ledgers.jl
+
+/data/dev/julia/finance/juliafinance/Nasdaq.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Nasdaq.jl
+
+/data/dev/julia/finance/juliafinance/Rates.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Rates.jl
+
+/data/dev/julia/finance/juliafinance/Markets.jl/.git/config
+
++ url = https://github.com/JuliaFinance/Markets.jl
+
+/data/dev/julia/finance/dysonance/Miletus.jl/.git/config
+
++ url = https://github.com/JuliaComputing/Miletus.jl
+
+/data/dev/julia/finance/dysonance/Indicators.jl/.git/config
+
++ url = https://github.com/dysonance/Indicators.jl
+
+/data/dev/julia/finance/dysonance/Strategems.jl/.git/config
+
++ url = https://github.com/dysonance/Strategems.jl
+
+/data/dev/julia/finance/dysonance/Fantasy/.git/config
+
++ url = https://github.com/dysonance/Fantasy
+
+/data/dev/julia/finance/fipelle/TSAnalysis.jl/.git/config
+
++ url = git@github.com:fipelle/TSAnalysis.jl
+
+/data/dev/julia/finance/fipelle/replication-hasenzagl-et-al-2020/.git/config
+
++ url = git@github.com:fipelle/replication-hasenzagl-et-al-2020
+
+/data/dev/julia/finance/fipelle/ElasticNetVar.jl/.git/config
+
++ url = git@github.com:fipelle/ElasticNetVar.jl
+
+/data/dev/julia/finance/misc/Quandl.jl/.git/config
+
++ url = https://github.com/milktrader/Quandl.jl
+
+/data/dev/julia/finance/misc/DynAssMgmt.jl/.git/config
+
++ url = https://github.com/JuliaFinMetrix/DynAssMgmt.jl
+
+/data/dev/julia/finance/misc/Ito.jl/.git/config
+
++ url = https://github.com/aviks/Ito.jl
+
+/data/dev/julia/finance/misc/EconDatasets.jl/.git/config
+
++ url = https://github.com/JuliaFinMetrix/EconDatasets.jl
+
+/data/dev/julia/finance/misc/Bloomie.jl/.git/config
+
++ url = https://github.com/ungil/Bloomie.jl
+
+/data/dev/julia/finance/misc/AQFED.jl/.git/config
+
++ url = https://github.com/jherekhealy/AQFED.jl
+
+/data/dev/julia/finance/misc/Markowitz.jl/.git/config
+
++ url = https://github.com/ungil/Markowitz.jl
+
+/data/dev/julia/finance/misc/ARCHModels.jl/.git/config
+
++ url = https://github.com/s-broda/ARCHModels.jl
+
+/data/dev/julia/finance/misc/graph-theory/.git/config
+
++ url = https://github.com/je-suis-tm/graph-theory
+
+/data/dev/julia/finance/misc/DailyTreasuryYieldCurve.jl/.git/config
+
++ url = https://github.com/tbeason/DailyTreasuryYieldCurve.jl
+
+/data/dev/julia/finance/misc/CharFuncPricing.jl/.git/config
+
++ url = https://github.com/jherekhealy/CharFuncPricing.jl
+
+/data/dev/julia/_notebooks/.git/config
+
++ url = git@github.com:dcunited001/julia-notebooks
+
+/data/dev/julia/_notebooks/.git/config
+
++ url = https://github.com/kicad-spice-library/KiCad-Spice-Library
