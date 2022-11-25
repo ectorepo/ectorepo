@@ -9,6 +9,27 @@
   <remote name="savannah"
           fetch="https://git.savannah.gnu.org/git" />
 
+  <remote name="freedesktop"
+          fetch="https://gitlab.freedesktop.org" />
+  <remote name="freebsd"
+          fetch="https://git.freebsd.org" />
+  <remote name="blender"
+          fetch="https://git.blender.org" />
+
+  <remote name="guix_bioinformatics"
+          fetch="https://git.genenetwork.org" />
+
+  <remote name="phundrak"
+          fetch="https://labs.phundrak.com" />
+  <remote name="dthompson"
+          fetch="https://git.dthompson.us" />
+  <remote name="sourceware"
+          fetch="https://sourceware.org/git" />
+
   <remote name="sourcehut_sircmpwn"
           fetch="https://git.sr.ht/~sircmpwn" />
+  <remote name="sourcehut_whereiseveryone"
+          fetch="https://git.sr.ht/~whereiseveryone" />
+  <remote name="sourcehut_abcdw"
+          fetch="https://git.sr.ht/~abcdw" />
 </manifest>
