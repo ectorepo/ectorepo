@@ -25,3 +25,6 @@
 [submodule "scheme"]
 	path = scheme
 	url = git@github.com:ectorepo/scheme
+[submodule "blender"]
+	path = blender
+	url = git@github.com:ectorepo/blender

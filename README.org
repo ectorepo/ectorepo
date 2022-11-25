@@ -1,3 +1,6 @@
+:PROPERTIES:
+:ID:       4554d87c-498f-4acd-b7ef-500714e6b7b7
+:END:
 #+TITLE: Ectorepo Notes
 #+AUTHOR: David Conner
 #+DESCRIPTION: Git submodules containing Google Repo manifests for a great good.
@@ -133,7 +136,8 @@ You have three options to start with:
 * Automation and Tooling
 
 These are mainly based on my interests right now. I have very little interest in
-making ectorepo a collaborative effort for managing =manifest.xml= files, as that is mostly a personal thing for your own personal information system.
+making ectorepo a collaborative effort for managing =manifest.xml= files, as
+that is mostly a personal thing for your own personal information system.
 
 However, collaborating on tooling does interest me, particularly using
 literate-programming approaches. Think =org-noter= but for programming projects
@@ -443,7 +447,8 @@ per se. It's more of an idea motivating how i'm configuring my own org.
 
 + The [[https://android.googlesource.com/tools/repo/+/HEAD/docs/manifest-format.md][DTD definition]] for Repo's Manifest XML
 + The main Android platform [[https://android.googlesource.com/platform/manifest/][manifest]]
-+ The main ChromiumOS platform [[https://chromium.googlesource.com/chromiumos/manifest/][manifest]]
++ The main ChromiumOS platform [[https://chromium.googlesource.com/chromiumos/manifest/][manifest]]. Includes details on groups & multiple
+  manifests.
 + [[https://www.instructables.com/Using-Googles-repo-command-in-your-own-projects/][How to set up in other new projects]]
 + [[https://docs.sel4.systems/projects/buildsystem/repo-cheatsheet.html][Google Repo cheatsheet]] from sel4 systems
 + [[https://en.wikibooks.org/wiki/Git/Submodules_and_Superprojects][git superprojects]] documentation
@@ -482,6 +487,21 @@ last of the above, repo may not work as designed: you are venturing into
 advanced use-case territory, so you should know what you're doing before you get
 there -- this is what took me so damn long. The XML server option is fairly
 advanced as well.
+
+**** ... well technically, this =--standalone-manifest= may help.
+
+#+begin_example bash
+repo init -u $url -m --standalone-manifest
+#+end_example
+
++ It works, but according to =./repo/project.py= changes to the manifest will
+  only be sync'd when fully specifying the =repo sync -u $url -m $file
+  --standalone-manifest=.
++ The bad news: it will run =.rmtree(...)= on =gitdir= and =worktree=, which
+  blows away the git index/cache and most other things you might care about if
+  you didn't push your code to remote.
+  - all in all, it works as long as you know that.
+  - here's an [[file:/data/ecto/guix/.repo/repo/project.py::which necessitates starting fresh.][orgit link]] (local fs) to the commit: [[orgit-rev:/data/ecto/guix/.repo/repo/::9b03f15e8e870866b26699f696af1884100f51b5][/data/ecto/guix/.repo/repo/ (magit-rev 9b03f15)]]
 
 *** Can I use one giant manifest with Repo groups?
 
