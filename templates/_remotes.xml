@@ -5,7 +5,7 @@
   <remote name="bitbucket" fetch="https://bitbucket.org" />
   <remote name="savannah" fetch="https://git.savannah.gnu.org/git" />
 
-  <remote name="kernel" fetch="https://git.kernel.org/pub/scm">
+  <remote name="kernel" fetch="https://git.kernel.org/pub/scm" />
   <remote name="freebsd" fetch="https://git.freebsd.org" />
 
   <remote name="freedesktop" fetch="https://gitlab.freedesktop.org" />
