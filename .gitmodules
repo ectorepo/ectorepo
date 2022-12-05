@@ -28,3 +28,6 @@
 [submodule "blender"]
 	path = blender
 	url = git@github.com:ectorepo/blender
+[submodule "FreeCAD"]
+	path = FreeCAD
+	url = git@github.com:ectorepo/FreeCAD
