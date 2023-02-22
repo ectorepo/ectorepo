@@ -456,6 +456,7 @@ per se. It's more of an idea motivating how i'm configuring my own org.
 + Android: [[https://source.android.com/setup/develop/repo][Source Control Tools]]
 + Android: [[https://source.android.com/setup/create/coding-tasks][Source Control Workflow]]
 + [[https://github.com/canatella/repo-el][Repo.el]] for emacs, albeit a bit incomplete. There are newer branches from [[https://github.com/snogge/repo-el/][snogge/repo-el]], but they haven't been integrated into master or canatella's original project.
++ [[https://medium.com/qe-unit/how-google-does-monorepo-revisited-8c793be20344][How Google Does Monorepo (revisited)]]
 
 ** Answers To Common Google Repo Questions
 
