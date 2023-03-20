@@ -31,3 +31,6 @@
 [submodule "FreeCAD"]
 	path = FreeCAD
 	url = git@github.com:ectorepo/FreeCAD
+[submodule "emacs"]
+	path = emacs
+	url = git@github.com:ectorepo/emacs

@@ -1,0 +1,105 @@
+#+TITLE:     Ectorepo: support
+#+AUTHOR:    David Conner
+#+EMAIL:     noreply@te.xel.io
+#+DESCRIPTION: notes
+#+PROPERTY: header-args :mkdirp yes
+#+PROPERTY: header-args:sh     :tangle-mode (identity #o555) :mkdirp yes
+#+PROPERTY: header-args:conf   :tangle-mode (identity #o444) :mkdirp yes
+#+property: header-args:scheme :tangle-mode (identity #o644) :mkdirp yes
+
+#+begin_src emacs-lisp :eval no :exports none :results none
+;; Eval with C-x C-e to disable eval confirmation in this buffer
+;; ... or set :eval yes
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Repo Tools
+
+** Manifest
+
+Guix environment in =manifest.scm= must be loaded by =buffer-env.el= for tangling to work.
+
+#+begin_src scheme :tangle manifest.scm :eval no
+(use-modules (gnu packages android))
+
+(concatenate-manifests (list
+                        (specifications->manifest
+                         '("python"
+                           "git-repo"))))
+
+;; TODO: supply a (manifest-entry ...) that:
+;;
+;; - updates (search-paths ...) by using a gexp to prepend
+;; $GUIX_ENVIRONMENT/share/git-repo value to PYTHONPATH
+#+end_src
+
+See =options->transformations= for info about [[https://guix.gnu.org/manual/en/html_node/Defining-Package-Variants.html][package variants]].
+
+#+begin_example scheme
+(package
+  (name "hello-simd")
+  ;; ...
+
+  ;; This package may benefit from SIMD extensions so
+  ;; mark it as "tunable".
+  (properties '((tunable? . #t))))
+#+end_example
+
++ =(tunable ...)=
++ =(with-source "/file/or/url.tar.gz")=
++ or =(with-input...)=
++ or =(with-graft...)=
+
+The last of these enables hacking on source checkouts. To use it with
+=git-repo=, create a new package that inherits from the intended package and
+replace the =(source...)= declaration with a reference to the project's path in
+the sync'd repo superproject. There may be a be a better way to do this: =guix
+build --help-transform=.
+
+** Environment
+
+#+name: guix-environment
+#+begin_src emacs-lisp :eval yes :results value :exports both
+(getenv "GUIX_ENVIRONMENT")
+#+end_src
+
+#+RESULTS: guix-environment
+: /gnu/store/2kga880kvqrmndrxs99i0w5rj7hl0b0c-profile
+
+#+name: repo-lib
+#+begin_src emacs-lisp :eval yes  :results value :exports both
+(file-name-as-directory
+ (expand-file-name "share/git-repo"
+                   (getenv "GUIX_ENVIRONMENT")))
+#+end_src
+
+#+RESULTS: repo-lib
+: /gnu/store/2kga880kvqrmndrxs99i0w5rj7hl0b0c-profile/share/git-repo/
+
+#+begin_src shell :eval yes :var repo_lib=repo-lib
+echo $repo_lib
+#+end_src
+
+#+RESULTS:
+: /gnu/store/2kga880kvqrmndrxs99i0w5rj7hl0b0c-profile/share/git-repo/
+
+#+begin_example org
+#+begin_src shell :tangle util/test_env.sh :var repo_lib=repo-lib :results output :exports both
+$repo_lib
+#+end_src
+#+end_example
+
+** Python Scripts
+
+#+begin_src python :results value :exports none
+import sys
+import os
+# return __file__
+# return sys.path
+return sys.path
+#+end_src
+
+#+RESULTS:
+|   | /usr/lib/python310.zip | /usr/lib/python3.10 | /usr/lib/python3.10/lib-dynload | /home/dc/.local/lib/python3.10/site-packages | /data/lang/bpy/src/blender-notebook | /usr/lib/python3.10/site-packages |
+
+* Git
