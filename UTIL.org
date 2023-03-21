@@ -70,77 +70,26 @@ build --help-transform=.
 
 ** Environment
 
-#+name: guix-environment
-#+begin_src emacs-lisp :eval yes :results value :exports both
-(getenv "GUIX_ENVIRONMENT")
-#+end_src
+When running the scripts, prefix them with =guix shell -m manifest.scm -- python
+$script=. This is the most consistent way to do this in emacs.
 
-#+RESULTS: guix-environment
-: /gnu/store/jgjvk91gfl2b92dafm6ww7bs8vk3y2y1-profile
+The =buffer-env= package will load the correct environment when commands via
+=[C-u] M-!=, but trying to get this to work with =org-babel= requires too much
+init.el-specific configuration or unsatisfactory boilerplate. This is mainly an
+org-babel problem.
 
-#+name: repo-lib
-#+begin_src emacs-lisp :eval yes  :results value :exports both
-(file-name-as-directory
- (expand-file-name "share/git-repo"
-                   (getenv "GUIX_ENVIRONMENT")))
-#+end_src
-
-#+RESULTS: repo-lib
-: /gnu/store/jgjvk91gfl2b92dafm6ww7bs8vk3y2y1-profile/share/git-repo/
-
-#+begin_src shell :eval yes :var repo_lib=repo-lib
-echo $repo_lib
-echo $PATH
-#+end_src
-
-#+RESULTS:
-| /gnu/store/jgjvk91gfl2b92dafm6ww7bs8vk3y2y1-profile/share/git-repo/                                                |
-| /gnu/store/n4llg8g2kfv1f6zyk9anm02wjh648rvi-profile/bin:/gnu/store/n4llg8g2kfv1f6zyk9anm02wjh648rvi-profile/sbin:/flatpak/matlab/R2022a/bin:/home/dc/.config/guix/current/bin:/home/dc/.guix-extra-profiles/academic/academic/bin:/home/dc/.guix-extra-profiles/arch-pwsafe/arch-pwsafe/bin:/home/dc/.local/bin:/home/dc/.bin:/home/dc/.guix-profile/bin:/home/dc/.config/guix/current/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/opt/rocm-5.4.3/bin:/opt/rocm-5.4.3/hip/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/gnu/store/0c1yfbxyv877mlgychfgvmk5ha2jqh52-gzip-1.10/bin:/gnu/store/8fpk2cja3f07xls48jfnpgrzrljpqivr-coreutils-8.32/bin |
-
-#+begin_example org
-#+begin_src shell :tangle util/test_env.sh :var repo_lib=repo-lib :results output :exports both
-$repo_lib
-#+end_src
-#+end_example
-
-
-#+begin_example org
-#+begin_src shell :tangle .env
-export PYTHONPATH=$GUIX_ENVIRONMENT/share/git-repo/${PYTHONPATH:+:}$PYTHONPATH
-#+end_src
-#+end_example
-
-#+RESULTS:
+For example, the org-babel header =:python (expand-file-name "bin/python3"
+(getenv "GUIX_ENVIRONMENT"))= will give the =GUIX_ENVIRONMENT= used to start
+emacs. Other ways to addess include =.env= scripts, which aren't necessarily
+portable.
 
 ** Python Scripts
 
-#+begin_src shell :results output
-python -c "import sys; print(sys.path)"
-echo $GUIX_ENVIRONMENT
-#+end_src
-
-#+RESULTS:
-: ['', '/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload', '/home/dc/.local/lib/python3.10/site-packages', '/data/lang/bpy/src/blender-notebook', '/usr/lib/python3.10/site-packages']
-: /gnu/store/n4llg8g2kfv1f6zyk9anm02wjh648rvi-profile
-
-+ =:python (expand-file-name "bin/python3" (getenv "GUIX_ENVIRONMENT"))=
-  - this gives the GUIX_ENVIRONMENT used to start emacs
-
-#+begin_src python :results value :exports none :python python3
+#+begin_src python :eval no :tangle util/test_manifest.py
 import sys
 import os
-# return __file__
 
-# sys.path is incorrect
-# return sys.path
-
-# path is correct
-# return os.environ
-
-# return sys.path
-
-# manifest_xml won't import
-# import manifest_xml
+import manifest_xml
 
 #+end_src
 
