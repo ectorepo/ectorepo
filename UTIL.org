@@ -28,16 +28,22 @@ Guix environment in =manifest.scm= must be loaded by =buffer-env.el= for tanglin
        (manifest-entry
          (name "git-repo")
          (item git-repo)
-         (version "42")
+         (version "2.4.1") ;most recent version
          (search-paths (list (search-path-specification
                               (variable "PYTHONPATH")
+                              (files '("share/git-repo")))
+                             (search-path-specification
+                              (variable "GUIX_PYTHONPATH")
                               (files '("share/git-repo"))))))))
 
-(concatenate-manifests (list
-                        (packages->manifest (list python))
-                        (manifest
-                         (list git-repo-with-path)))))
+ (concatenate-manifests (list
+                         (manifest
+                          (list git-repo-with-path))
+                          (packages->manifest
+                           (list python)))))
 #+end_src
+
+*** Package Transformations
 
 See =options->transformations= for info about [[https://guix.gnu.org/manual/en/html_node/Defining-Package-Variants.html][package variants]].
 
@@ -70,7 +76,7 @@ build --help-transform=.
 #+end_src
 
 #+RESULTS: guix-environment
-: /gnu/store/dlynwj20wz1w2yahf3hczl0bxwpv8v5y-profile
+: /gnu/store/jgjvk91gfl2b92dafm6ww7bs8vk3y2y1-profile
 
 #+name: repo-lib
 #+begin_src emacs-lisp :eval yes  :results value :exports both
@@ -80,7 +86,7 @@ build --help-transform=.
 #+end_src
 
 #+RESULTS: repo-lib
-: /gnu/store/dlynwj20wz1w2yahf3hczl0bxwpv8v5y-profile/share/git-repo/
+: /gnu/store/jgjvk91gfl2b92dafm6ww7bs8vk3y2y1-profile/share/git-repo/
 
 #+begin_src shell :eval yes :var repo_lib=repo-lib
 echo $repo_lib
@@ -88,7 +94,7 @@ echo $PATH
 #+end_src
 
 #+RESULTS:
-| /gnu/store/dlynwj20wz1w2yahf3hczl0bxwpv8v5y-profile/share/git-repo/                      |
+| /gnu/store/jgjvk91gfl2b92dafm6ww7bs8vk3y2y1-profile/share/git-repo/                                                |
 | /gnu/store/n4llg8g2kfv1f6zyk9anm02wjh648rvi-profile/bin:/gnu/store/n4llg8g2kfv1f6zyk9anm02wjh648rvi-profile/sbin:/flatpak/matlab/R2022a/bin:/home/dc/.config/guix/current/bin:/home/dc/.guix-extra-profiles/academic/academic/bin:/home/dc/.guix-extra-profiles/arch-pwsafe/arch-pwsafe/bin:/home/dc/.local/bin:/home/dc/.bin:/home/dc/.guix-profile/bin:/home/dc/.config/guix/current/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/opt/rocm-5.4.3/bin:/opt/rocm-5.4.3/hip/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/gnu/store/0c1yfbxyv877mlgychfgvmk5ha2jqh52-gzip-1.10/bin:/gnu/store/8fpk2cja3f07xls48jfnpgrzrljpqivr-coreutils-8.32/bin |
 
 #+begin_example org
@@ -108,6 +114,18 @@ export PYTHONPATH=$GUIX_ENVIRONMENT/share/git-repo/${PYTHONPATH:+:}$PYTHONPATH
 
 ** Python Scripts
 
+#+begin_src shell :results output
+python -c "import sys; print(sys.path)"
+echo $GUIX_ENVIRONMENT
+#+end_src
+
+#+RESULTS:
+: ['', '/usr/lib/python310.zip', '/usr/lib/python3.10', '/usr/lib/python3.10/lib-dynload', '/home/dc/.local/lib/python3.10/site-packages', '/data/lang/bpy/src/blender-notebook', '/usr/lib/python3.10/site-packages']
+: /gnu/store/n4llg8g2kfv1f6zyk9anm02wjh648rvi-profile
+
++ =:python (expand-file-name "bin/python3" (getenv "GUIX_ENVIRONMENT"))=
+  - this gives the GUIX_ENVIRONMENT used to start emacs
+
 #+begin_src python :results value :exports none :python python3
 import sys
 import os
@@ -117,13 +135,13 @@ import os
 # return sys.path
 
 # path is correct
-# return os.environ["PATH"]
+# return os.environ
+
+# return sys.path
 
 # manifest_xml won't import
-import manifest_xml
+# import manifest_xml
 
 #+end_src
-
-#+RESULTS:
 
 * Git
