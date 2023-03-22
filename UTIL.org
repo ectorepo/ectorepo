@@ -4,6 +4,7 @@
 #+DESCRIPTION: notes
 #+PROPERTY: header-args :mkdirp yes
 #+PROPERTY: header-args:sh     :tangle-mode (identity #o555) :mkdirp yes
+#+PROPERTY: header-args:python :tangle-mode (identity #o644) :mkdirp yes
 #+PROPERTY: header-args:conf   :tangle-mode (identity #o444) :mkdirp yes
 #+property: header-args:scheme :tangle-mode (identity #o644) :mkdirp yes
 
@@ -91,12 +92,70 @@ hacking on the python scripts using commands like:
 + C-c C-p :: run-python
 + C-c C-c :: python-shell-send-buffer
 
-#+begin_src python :eval no :tangle util/test_manifest.py
+Repo's =XmlManifest= class requires a =repodir= and =manifest_file= path. for
+these scripts below, I assume that the script is running from =$_REPO= and that
+the manifests are sync'd into =$_ECTO/$project=.
+
+*** Merge Manifests
+
+#+begin_src shell
+guix shell -m manifest.scm -- python util/merge_manifests.py
+#+end_src
+
+#+RESULTS:
+
+#+begin_src python :tangle util/merge_manifests.py  :tangle-mode (identity #o744) :mkdirp yes
 import sys
 import os
+import glob
+from os.path import join
 
-import manifest_xml
+#import manifest_xml
+from manifest_xml import *
+#from manifest_xml import GitcManifest
+#from manifest_xml import XmlManifest, GitcManifest, GitcClient
+#from manifest_xml import GitcManifest, RepoClient
 
+ecto_dir = os.environ["_ECTO"]
+repo_dir = os.environ["_REPO"]
+template = join(repo_dir, "_remotes.xml")
+
+remotes_xml_files = glob.glob("*/_remotes.xml")
+repo_names = list(map(lambda p: p.split("/")[0], remotes_xml_files))
+ecto_paths = list(map(lambda n: "/".join([ecto_dir,n]), repo_names))
+
+#ecto_manifests = list(map(lambda i: GitcManifest(ecto_paths[i], remotes_xml_files[i]),
+#                          range(len(remotes_xml_files))))
+ecto_manifests = list(map(lambda i: RepoClient(ecto_paths[i], remotes_xml_files[i]),
+                          range(len(remotes_xml_files))))
+
+#print(ecto_manifests[0].remotes)
+#repo_remote_xml = GitcManifest(".", "_remotes.xml")
+#print(repo_remote_xml.remotes)
+print(template)
 #+end_src
+
+#+RESULTS:
+
+#+begin_example python
+
+# def output_manifest(file):
+
+# assume that the immediate subdirectories of dir may contain _remotes.xml
+# collect these files into a list
+
+# def consolidate_remotes(dir):
+# os.walk
+
+print(os.path)
+print(__file__)
+
+def main(orig_args):
+    print("orig_args:",orig_args)
+
+if __name__ == '__main__':
+  main(sys.argv[1:])
+
+#+end_example
 
 * Git
