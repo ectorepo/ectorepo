@@ -3,8 +3,8 @@ import os
 import glob
 from os.path import join
 
-#import manifest_xml
-from manifest_xml import *
+import manifest_xml
+#from manifest_xml import *
 #from manifest_xml import GitcManifest
 #from manifest_xml import XmlManifest, GitcManifest, GitcClient
 #from manifest_xml import GitcManifest, RepoClient
