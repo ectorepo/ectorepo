@@ -37,3 +37,6 @@
 [submodule "opencascade"]
 	path = opencascade
 	url = git@github.com:ectorepo/opencascade
+[submodule "canvas-lms"]
+	path = canvas-lms
+	url = git@github.com:ectorepo/canvas-lms
