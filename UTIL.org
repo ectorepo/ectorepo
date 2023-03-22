@@ -85,6 +85,12 @@ portable.
 
 ** Python Scripts
 
+When provided the above manifest, a vanilla =buffer-env= configuration, permits
+hacking on the python scripts using commands like:
+
++ C-c C-p :: run-python
++ C-c C-c :: python-shell-send-buffer
+
 #+begin_src python :eval no :tangle util/test_manifest.py
 import sys
 import os
