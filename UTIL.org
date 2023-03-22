@@ -84,6 +84,67 @@ For example, the org-babel header =:python (expand-file-name "bin/python3"
 emacs. Other ways to addess include =.env= scripts, which aren't necessarily
 portable.
 
+** Shell Scripts
+
+*** Merge =_remotes.xml= Manifests
+
+
+I'm not sure how to merge patches while dropping file source info. This just
+finds and reports all lines not in the top-level manifest.
+
+#+begin_src shell :results output
+allremotes=_remotes.xml
+subremotes=(*/_remotes.xml)
+
+mergedir=$(mktemp -d)
+
+echo $mergedir
+
+for remote in "${subremotes[@]}";do
+    remotename=$(dirname $remote)
+    #echo "diff $allremotes $remote > remote.diff"
+    diff $allremotes $remote > $mergedir/$remotename.xml
+done
+
+cat $mergedir/* | grep -e "^>\s*<remote" | sort | uniq | cut -b2-
+#+end_src
+
+#+RESULTS:
+#+begin_example
+/tmp/tmp.6eUYYdLkTz
+   <remote name="framagit" fetch="https://framagit.org"/>
+   <remote name="github" fetch="https://github.com"/>
+   <remote name="srht_abcdw" fetch="https://git.sr.ht/~abcdw"/>
+   <remote name="srht_akagi" fetch="https://git.sr.ht/~akagi"/>
+   <remote name="srht_krevedkokun" fetch="https://git.sr.ht/~krevedkokun"/>
+   <remote name="srht_michal_atlas" fetch="https://git.sr.ht/~michal_atlas"/>
+   <remote name="srht_plattfot" fetch="https://git.sr.ht/~plattfot"/>
+   <remote name="srht_sircmpwn" fetch="https://git.sr.ht/~sircmpwn"/>
+   <remote name="srht_whereiseveryone" fetch="https://git.sr.ht/~whereiseveryone"/>
+#+end_example
+
+*** Commit Missing Remotes
+
+After copying updated =_remotes.xml=
+
+#+begin_src shell :results output
+
+remotefile=_remotes.xml
+subremotes=(*/_remotes.xml)
+currentdir=$(pwd)
+
+for remote in "${subremotes[@]}"; do
+subdir=$(dirname $remote)
+cd $subdir
+git add $remotefile
+# script will quit on first error
+# git commit -m "update $remotefile"
+cd $currentdir
+done
+#+end_src
+
+#+RESULTS:
+
 ** Python Scripts
 
 When provided the above manifest, a vanilla =buffer-env= configuration, permits
