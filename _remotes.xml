@@ -12,6 +12,7 @@
   <remote name="guix_bioinformatics" fetch="https://git.genenetwork.org"/>
   <remote name="kernel" fetch="https://git.kernel.org/pub/scm"/>
   <remote name="phundrak" fetch="https://labs.phundrak.com"/>
+  <remote name="opencascade" fetch="https://git.dev.opencascade.org/repos"/>
   <remote name="savannah" fetch="https://git.savannah.gnu.org/git"/>
   <remote name="sourceware" fetch="https://sourceware.org/git"/>
   <remote name="srht_abcdw" fetch="https://git.sr.ht/~abcdw"/>
