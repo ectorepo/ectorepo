@@ -34,3 +34,6 @@
 [submodule "emacs"]
 	path = emacs
 	url = git@github.com:ectorepo/emacs
+[submodule "opencascade"]
+	path = opencascade
+	url = git@github.com:ectorepo/opencascade
