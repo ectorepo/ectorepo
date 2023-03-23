@@ -4,15 +4,9 @@
 [submodule "basic-sec"]
 	url = git@github.com:ectorepo/basic-sec
 	path = basic-sec
-[submodule "cad"]
-	path = cad
-	url = git@github.com:ectorepo/cad
 [submodule "kde"]
 	path = kde
 	url = git@github.com:ectorepo/kde
-[submodule "elisp"]
-	path = elisp
-	url = git@github.com:ectorepo/elisp
 [submodule "sway"]
 	path = sway
 	url = git@github.com:ectorepo/sway
