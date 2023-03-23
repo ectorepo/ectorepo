@@ -86,8 +86,32 @@ portable.
 
 ** Shell Scripts
 
-*** Merge =_remotes.xml= Manifests
+*** Maintain Manifests
 
+Now that deltas are minimal (and XML's are guaranteed to be sorted/uniq), things
+like this work.
+
+**** Map =git stash/pull/pop= across submodules
+
+#+begin_src shell
+git submodule foreach "git stash && git pull origin master && git stash pop"
+#+end_src
+
+**** Check for changes
+
+#+begin_src shell
+git submodule foreach "git status -s"
+#+end_src
+
+**** Fan-out Copies of =_remotes.xml=
+
+#+begin_src shell
+git submodule foreach "cp ../_remotes.xml _remotes.xml"
+#+end_src
+
+**** And so forth
+
+*** Old Merge =_remotes.xml= Manifests
 
 I'm not sure how to merge patches while dropping file source info. This just
 finds and reports all lines not in the top-level manifest.
