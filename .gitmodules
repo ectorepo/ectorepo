@@ -34,3 +34,6 @@
 [submodule "canvas-lms"]
 	path = canvas-lms
 	url = git@github.com:ectorepo/canvas-lms
+[submodule "guixrus"]
+	path = guixrus
+	url = git@github.com:ectorepo/guixrus
