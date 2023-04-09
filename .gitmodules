@@ -37,3 +37,6 @@
 [submodule "guixrus"]
 	path = guixrus
 	url = git@github.com:ectorepo/guixrus
+[submodule "river"]
+	path = river
+	url = git@github.com:ectorepo/river
