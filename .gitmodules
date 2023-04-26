@@ -40,3 +40,6 @@
 [submodule "river"]
 	path = river
 	url = git@github.com:ectorepo/river
+[submodule "ROCmSoftwarePlatform"]
+	path = ROCmSoftwarePlatform
+	url = git@github.com:ectorepo/ROCmSoftwarePlatform.git
