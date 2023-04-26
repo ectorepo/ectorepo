@@ -43,3 +43,6 @@
 [submodule "ROCmSoftwarePlatform"]
 	path = ROCmSoftwarePlatform
 	url = git@github.com:ectorepo/ROCmSoftwarePlatform.git
+[submodule "tensorflow"]
+	path = tensorflow
+	url = git@github.com:ectorepo/tensorflow.git
