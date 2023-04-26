@@ -243,4 +243,123 @@ if __name__ == '__main__':
 
 #+end_example
 
+* Repo Checkout Tools
+
+** Fix misbehaving checkouts
+
+Running =repo sync= and cloning too many bundles at once ends up not updating
+the =pwd= with checkouts, which makes running manual =repo sync $project= a bit
+difficult.
+
+#+name: superproject
+#+begin_src emacs-lisp :results replace value
+"tensorflow"
+#+end_src
+
+#+name: superinclude
+#+begin_src emacs-lisp :results replace value
+"tensorflow_core.xml"
+#+end_src
+
+#+name: projects
+#+header:  :var superproject=superproject superinclude=superinclude
+#+begin_src sh :results replace output
+grep -e '<project' $_REPO/$superproject/$superinclude | sed -E 's/^.*path="(.*)" ref=".*$/\1/'
+#+end_src
+
+#+RESULTS: projects
+#+begin_example
+.allstar
+adanet
+addons
+agents
+benchmarks
+build
+cloud
+codelabs
+community
+compression
+custom-op
+data-validation
+datasets
+decision-forests
+deepmath
+docs
+docs-l10n
+dtensor-gcp-examples
+ecosystem
+embedding-projector-standalone
+estimator
+examples
+fairness-indicators
+federated
+fold
+gan
+gnn
+graphics
+haskell
+hub
+io
+java
+java-models
+java-ndarray
+kfac
+lattice
+lingvo
+lucid
+mesh
+metadata
+mlir-hlo
+model-analysis
+model-card-toolkit
+model-optimization
+model-remediation
+models
+networking
+neural-structured-learning
+nmt
+oss-fuzz
+playground
+privacy
+probability
+profiler
+profiler-ui
+quantum
+ranking
+recommenders
+recommenders-addons
+runtime
+rust
+serving
+sig-tfjs
+similarity
+swift-apis
+tcav
+tensor2tensor
+tensorboard
+tensorflow
+tensorrt
+text
+tf-build-actions
+tfhub.dev
+tfjs
+tfjs-examples
+tfjs-models
+tfjs-website
+tfjs-wechat
+tflite-micro
+tflite-micro-arduino-examples
+tflite-support
+tfx
+tfx-addons
+tfx-bsl
+toolchains
+tpu
+transform
+#+end_example
+
+#+begin_src
+
+#+end_src
+
 * Git
