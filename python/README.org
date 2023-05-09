@@ -1,0 +1,31 @@
+#+TITLE:     Ectorepo: Python
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+Basic python libraries.
+
+#+begin_src sh
+repo init -u https://github.com/ectorepo/ectorepo/blob/master/python/default.xml --standalone-manifest
+#+end_src
+
+Or
+
+#+begin_src sh
+repo init -u git@github.com:ectorepo/ectorepo -m python/default.xml
+#+end_src
+
+* Pythons
+
+Python itself
+
+* Data Science
+
+** NumPy
+
+
+** SciPy
+
+* Plotting
+
+** PyVista

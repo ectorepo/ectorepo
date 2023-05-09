@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- numpy -->
+  <project name="numpy/numpy" path="numpy" revision="refs/heads/main" remotes="github"/>
+  <project name="numpy/numpy-tutorials" path="numpy-tutorials" revision="refs/heads/main" remotes="github"/>
+  <!-- numpy libs -->
+  <project name="orbingol/NURBS-Python" path="NURBS-Python" revision="refs/heads/5.x" remotes="github"/>
+  <!-- scipy -->
+  <project name="scipy/scipy" path="scipy" revision="refs/heads/main" remotes="github"/>
+  <!-- scikit-learn -->
+  <project name="scikit-learn/scikit-learn" path="scikit-learn" revision="refs/heads/main" remotes="github"/>
+  <!-- matplotlib -->
+  <project name="matplotlib/matplotlib" path="matplotlib" revision="refs/heads/main" remotes="github"/>
+  <project name="matplotlib/mplfinance" path="mplfinance" revision="refs/heads/master" remotes="github"/>
+  <project name="mwaskom/seaborn" path="seaborn" revision="refs/heads/master" remotes="github"/>
+  <!-- pyvista -->
+  <project name="pyvista/pyvista" path="pyvista/pyvista" revision="refs/heads/main" remote="github"/>
+  <project name="pyvista/pyiges" path="pyvista/pyiges" revision="refs/heads/main" remote="github"/>
+  <project name="pyvista/pyvistaqt" path="pyvista/pyvistaqt" revision="refs/heads/main" remote="github"/>
+  <!-- codegen & insights -->
+  <project name="lucsorel/py2puml" path="py2uml" revision="refs/heads/main" remote="github"/>
+</manifest>
