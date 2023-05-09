@@ -6,12 +6,6 @@
 Basic python libraries.
 
 #+begin_src sh
-repo init -u https://github.com/ectorepo/ectorepo/blob/master/python/default.xml --standalone-manifest
-#+end_src
-
-Or
-
-#+begin_src sh
 repo init -u git@github.com:ectorepo/ectorepo -m python/default.xml
 #+end_src
 
@@ -19,13 +13,34 @@ repo init -u git@github.com:ectorepo/ectorepo -m python/default.xml
 
 Python itself
 
+** Py2puml
+
+For docs, but this needs modules in scope so you have to install it inside your
+=venv=. It seems to not work very well for scipy.
+
 * Data Science
 
 ** NumPy
 
-
 ** SciPy
+
+This produces only 3 lines of PlantUML & I gotta run.
+
+#+begin_src sh
+py2puml scipy/scipy/signal scipy.signal.wavelets
+#+end_src
+
+* Math
+
+** Geomdl
+
+NURBS-python
 
 * Plotting
 
+
 ** PyVista
+
+** Matplotlib
+
+** Seaborn
