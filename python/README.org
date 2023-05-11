@@ -44,3 +44,14 @@ NURBS-python
 ** Matplotlib
 
 ** Seaborn
+
+* Dependencies
+
+This needs to be run from the repository itself.  in the poetry environment
+AFAIK, but you might get lucky.
+
+#+begin_src sh
+pydeps py2puml --show-dot --max-bacon 2 --pylib -x os re types _* enum | dot -Tpng > /data/repo/python/py2puml/img/py2puml.pydeps.png
+#+end_src
+
+[[file:py2puml/img/py2puml.pydeps.png]]
