@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <project name="atlas-engineer/nyxt" path="nyxt" revision="refs/heads/master" remotes="github"/>
+  <project name="aartaka/nyxt-config" path="eg/aartaka" revision="refs/heads/master" remotes="github"/>
+</manifest>

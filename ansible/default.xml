@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- Docs for Standard Ansible Galaxy Collections Be Here -->
+  <project name="ansible/ansible" path="ansible" revision="refs/heads/devel" remotes="github"/>
+  <project name="ansible/ansible-navigator" path="ansible-navigator" revision="refs/heads/main" remotes="github"/>
+  <project name="ansible/ansible-rulebook" path="ansible-rulebook" revision="refs/heads/main" remotes="github"/>
+  <project name="ansible/workshops" path="eg/workshops" revision="refs/heads/devel" remotes="github"/>
+  <project name="ansible/test-playbooks" path="eg/test-playbooks" revision="refs/heads/main" remotes="github"/>
+  <project name="ansible/devtools" path="devtools" revision="refs/heads/main" remotes="github"/>
+  <project name="techno-tim/k3s-ansible" path="eg/k3s-ansible" revision="refs/heads/master" remotes="github"/>
+  <project name="geerlingguy/ansible-for-devops" path="eg/ansible-for-devops" revision="refs/heads/master" remotes="github"/>
+  <project name="geerlingguy/ansible-role-repo-epel" path="roles/ansible-role-repo-epel" revision="refs/heads/master" remotes="github"/>
+  <project name="geerlingguy/ansible-role-gitlab" path="roles/ansible-role-gitlab" revision="refs/heads/master" remotes="github"/>
+  <project name="geerlingguy/ansible-role-ssh-chroot-jail" path="roles/ansible-role-ssh-chroot-jail" revision="refs/heads/master" remotes="github"/>
+  <!-- TODO: collections-->
+  <project name="MichaelCade/90DaysOfDevOps" path="90days" revision="refs/heads/main" remotes="github"/>
+</manifest>

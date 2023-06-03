@@ -1,0 +1,6 @@
+#+TITLE:     Ectorepo: Ansible
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+The docs are now greppable. I wish I had realized this sooner.
