@@ -1,0 +1,140 @@
+#+TITLE:     GraphQL LSP
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+* Dockerfile
+
+I'm not really sure where to put this, but i need it available in quite a few
+places. Defining these in org-mode probably don't work too good very often, but
+this is simple and has minimal interdependencies ... so it does.
+
+** Alpine
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+FROM node:18-alpine
+LABEL maintainer=dconner.pro@gmail.com
+#+end_src
+
+*** Bash
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+RUN apk update --no-cache &&\
+    apk update --no-cache upgrade &&\
+    apk add --no-cache bash
+#+end_src
+
+*** Node
+
+These versions aren't actually pinned by node:18-alpine
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+ENV NODE_VERSION=18.16.0
+ENV YARN_VERSION=1.22.19
+ENV NPM_VERSION=9.5.1
+#+end_src
+
+** GraphQL LSP
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+WORKDIR /opt/graphql-lsp
+#+end_src
+
+Install dependencies as project
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+RUN npm install --save graphql-language-service-cli
+#+end_src
+
+*** Dependencies
+
+The dependencies from =npm install= with no pins are something like this:
+
+peer deps
+
+| graphql (peer) | ^15.5.0 | ^16.0.0" |
+
+
+graphql-language-service-server
+
+| @babel/parser               | ^7.21.2 |
+| @babel/types                | ^7.21.2 |
+| @graphql-tools/load         |  ^7.5.3 |
+| @vue/compiler-sfc           | ^3.2.41 |
+| dotenv                      |   8.2.0 |
+| fast-glob                   |  ^3.2.7 |
+| glob                        |  ^7.2.0 |
+| graphql-config              |   4.3.0 |
+| graphql-language-service    |  ^5.1.6 |
+| mkdirp                      |  ^1.0.4 |
+| node-abort-controller       |  ^3.0.1 |
+| nullthrows                  |  ^1.0.0 |
+| vscode-jsonrpc              |  ^8.0.1 |
+| vscode-languageserver       |  ^8.0.1 |
+| vscode-languageserver-types | ^3.17.2 |
+| vscode-uri                  |  ^3.0.2 |
+
+graphql-language-service
+
+| "vscode-languageserver-types | ^3.17.1 |          |
+| "nullthrows                  |  ^1.0.0 |          |
+
+graphql-language-service-cli
+
+| graphql-language-service        |   ^5.1.6 |          |
+| graphql-language-service-server | ^2.11.1" |          |
+
+** Application
+
+*** Usage
+
+A single homelab server can simply store updated schema versions and have its
+podman service configured with multiple containers -- to be stopped/started as
+needed. This really needs to be local. In fact, running on a docker/podman may
+be preferable, but then it's not configurable across the entire network and the
+clients need images, config and a bit of scripting to map the config to a
+running LSP server. On the network, it's just a DNS name.
+
+Then in VSCode, lsp-mode or eglot, just direct the client to the running LSP
+server over the network.
+
+Other options considered:
+
++ a =guix shell -c= container
++ a =guix home container= profile
++ something analogous in Nix
+
+*** Interface
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+EXPOSE 8080
+#+end_src
+
+*** Config
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+ENV REACT_APP_DISABLE_LIVE_RELOAD=true
+#+end_src
+
+*** Volumes
+
+Graphql schemas should go in subdirectories in the volume.
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+VOLUME /opt/schema
+#+end_src
+
+*** Runtime
+
+For now, no entrypoint, this may change later, but I may use the full =graphiql=
+
+#+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+CMD ["/bin/sh" "-c"]
+#+end_src
+
+graphql-lsp (graphql-language-server-cli)
+
++ [-c | --configDir] :: {configDir}
++ [-t | --text] :: {textBuffer}
++ [-f | --file] :: {filePath}
++ [-s | --schema] :: {schemaPath}

@@ -1,0 +1,22 @@
+FROM node:18-alpine
+LABEL maintainer=dconner.pro@gmail.com
+
+RUN apk update --no-cache &&\
+    apk update --no-cache upgrade &&\
+    apk add --no-cache bash
+
+ENV NODE_VERSION=18.16.0
+ENV YARN_VERSION=1.22.19
+ENV NPM_VERSION=9.5.1
+
+WORKDIR /opt/graphql-lsp
+
+RUN npm install --save graphql-language-service-cli
+
+EXPOSE 8080
+
+ENV REACT_APP_DISABLE_LIVE_RELOAD=true
+
+VOLUME /opt/schema
+
+CMD ["/bin/sh" "-c"]
