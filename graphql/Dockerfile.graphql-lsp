@@ -9,14 +9,18 @@ ENV NODE_VERSION=18.16.0
 ENV YARN_VERSION=1.22.19
 ENV NPM_VERSION=9.5.1
 
-WORKDIR /opt/graphql-lsp
+# WORKDIR /opt/graphql-lsp
 
-RUN npm install --save graphql-language-service-cli
+RUN npm install -g graphql-language-service-cli
 
 EXPOSE 8080
 
 ENV REACT_APP_DISABLE_LIVE_RELOAD=true
 
 VOLUME /opt/schema
+WORKDIR /opt/schema
 
-CMD ["/bin/sh" "-c"]
+CMD ["/bin/bash"]
+
+# /bin/sh doesn't have ${FDSA-fdsa} ...
+# ENTRYPOINT /bin/bash -c graphql-lsp server --schemaPath="${GQL_SCHEMA-github/schema.sdl}" --configDir="${GQL_CONFIG-github}"

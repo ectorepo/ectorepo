@@ -1,0 +1,4 @@
+#+TITLE:     Ectorepo: GraphQL
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
