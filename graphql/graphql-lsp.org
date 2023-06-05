@@ -10,18 +10,19 @@ only using the image for LSP.
 * Usage
 
 #+begin_src shell :tangle gqllsp.sh :tangle-mode (identity #o555) :mkdirp yes
-lvol=$(pwd)/schema/github
-cvol=/opt/schema
+lvol=$(pwd)/gql/schema/
+cvol=/opt/gql/schema
 gql_config=.
 gql_schema=./schema.sdl
 gql_image=dc/graphql-lsp
 gql_cntr=dc-graphql-lsp
-docker run -it --mount type=bind,src=$lvol,dst=$cvol --name $gql_cntr $gql_image
+docker run -it --rm --mount type=bind,src=$lvol,dst=$cvol --name $gql_cntr $gql_image
 #+end_src
 
 #+begin_src shell
 # docker run -itv $lvol:$cvol --name $gql_cntr $gql_image
-# graphql-lsp server --schema=$gql_schema --configDir $gql_config
+graphql-lsp server --schemaPath=schema.sdl --configDir=.
+
 #+end_src
 
 A single homelab server can simply store updated schema versions and have its
@@ -42,7 +43,7 @@ Other options considered:
 
 ** Volumes
 
-The =/opt/schema= volume should contain some project config files as well as any
+The =/opt/gql/schema= volume should contain some project config files as well as any
 necessary graphql schemas, configs and supporting extensions. This can be in the
 volume root or in subdirectories. The docker image will need to specify these
 when it runs.
@@ -60,7 +61,7 @@ for examples of interacting with Github from =graphql.el=.
 
 Copy to =./schema/github/graphql.config.yml=
 
-#+begin_src yaml :tangle schema/graphql.config.yml.eg
+#+begin_src yaml :tangle gql/schema/graphql.config.yml.eg
 schema: ${gql_schema:./default-schema.json}
 #+end_src
 
@@ -73,6 +74,7 @@ this is simple and has minimal interdependencies ... so it does.
 ** Alpine
 
 #+begin_src dockerfile :tangle Dockerfile.graphql-lsp
+#FROM node:18-bullseye
 FROM node:18-alpine
 LABEL maintainer=dconner.pro@gmail.com
 #+end_src
@@ -81,7 +83,7 @@ LABEL maintainer=dconner.pro@gmail.com
 
 #+begin_src dockerfile :tangle Dockerfile.graphql-lsp
 RUN apk update --no-cache &&\
-    apk update --no-cache upgrade &&\
+    apk upgrade --no-cache &&\
     apk add --no-cache bash
 #+end_src
 
@@ -98,14 +100,16 @@ ENV NPM_VERSION=9.5.1
 ** GraphQL LSP
 
 #+begin_src dockerfile :tangle Dockerfile.graphql-lsp
-# WORKDIR /opt/graphql-lsp
+WORKDIR /opt/gql
 #+end_src
 
 Install dependencies as project
 
 #+begin_src dockerfile :tangle Dockerfile.graphql-lsp
-RUN npm install -g graphql-language-service-cli
+RUN npm install graphql-language-service-cli vscode-languageserver
 #+end_src
+
+... does this project really require running as a node app?
 
 *** Dependencies
 
@@ -163,8 +167,7 @@ ENV REACT_APP_DISABLE_LIVE_RELOAD=true
 Graphql schemas should go in subdirectories in the volume.
 
 #+begin_src dockerfile :tangle Dockerfile.graphql-lsp
-VOLUME /opt/schema
-WORKDIR /opt/schema
+VOLUME /opt/gql/schema
 #+end_src
 
 *** Runtime

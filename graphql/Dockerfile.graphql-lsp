@@ -1,24 +1,24 @@
+#FROM node:18-bullseye
 FROM node:18-alpine
 LABEL maintainer=dconner.pro@gmail.com
 
 RUN apk update --no-cache &&\
-    apk update --no-cache upgrade &&\
+    apk upgrade --no-cache &&\
     apk add --no-cache bash
 
 ENV NODE_VERSION=18.16.0
 ENV YARN_VERSION=1.22.19
 ENV NPM_VERSION=9.5.1
 
-# WORKDIR /opt/graphql-lsp
+WORKDIR /opt/gql
 
-RUN npm install -g graphql-language-service-cli
+RUN npm install --save-dev vscode-languageserver
 
 EXPOSE 8080
 
 ENV REACT_APP_DISABLE_LIVE_RELOAD=true
 
-VOLUME /opt/schema
-WORKDIR /opt/schema
+VOLUME /opt/gql/schema
 
 CMD ["/bin/bash"]
 
