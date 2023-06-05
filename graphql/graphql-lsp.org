@@ -106,7 +106,7 @@ WORKDIR /opt/gql
 Install dependencies as project
 
 #+begin_src dockerfile :tangle Dockerfile.graphql-lsp
-RUN npm install graphql-language-service-cli vscode-languageserver
+RUN npm install --save-dev graphql-language-service-cli vscode-languageserver
 #+end_src
 
 ... does this project really require running as a node app?
