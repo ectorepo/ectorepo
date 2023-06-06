@@ -4,7 +4,7 @@ LABEL maintainer=dconner.pro@gmail.com
 
 RUN apk update --no-cache &&\
     apk upgrade --no-cache &&\
-    apk add --no-cache bash
+    apk add --no-cache bash yarn
 
 ENV NODE_VERSION=18.16.0
 ENV YARN_VERSION=1.22.19
@@ -12,7 +12,8 @@ ENV NPM_VERSION=9.5.1
 
 WORKDIR /opt/gql
 
-RUN npm install --save-dev vscode-languageserver
+# RUN npm install -g graphql-language-service-cli vscode-languageserver
+RUN yarn global add graphql-language-service-cli
 
 EXPOSE 8080
 

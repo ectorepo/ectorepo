@@ -3,15 +3,24 @@
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
 
-Don't accidentally create an image that contains your secrets. this image
-doesn't contain any.  I plan on downloading the schema in some other manner and
-only using the image for LSP.
+Note: I couldn't get this to work. the graphql-lsp command fails silently and
+its strace indicates it's looking for =vscode-langserver= content within
+
+#+begin_src shell :eval no
+statx(AT_FDCWD, "/home/notme/.npm-global/lib/node_modules/graphql-language-service-cli/node_modules/vscode-languageserver/lib/common/node_modules", AT_STATX_SYNC_AS_STAT, STATX_ALL, 0x7ffd6216c230) = -1 ENOENT (No such file or directory)
+statx(AT_FDCWD, "/home/notme/.npm-global/lib/node_modules/graphql-language-service-cli/node_modules/vscode-languageserver/lib/node_modules", AT_STATX_SYNC_AS_STAT, STATX_ALL, 0x7ffd6216c230) = -1 ENOENT (No such file or directory)
+statx(AT_FDCWD, "/home/notme/.npm-global/lib/node_modules/graphql-language-service-cli/node_modules/vscode-languageserver/node_modules", AT_STATX_SYNC_AS_STAT, STATX_ALL, 0x7ffd6216c230) = -1 ENOENT (No such file or directory)
+statx(AT_FDCWD, "/home/notme/.npm-global/lib/node_modules/graphql-language-service-cli/node_modules/vscode-languageserver/lib/common/server", AT_STATX_SYNC_AS_STAT, STATX_ALL, 0x7ffd6216c230) = -1 ENOENT (No such file or directory)
+#+end_src
+
 
 * Usage
 
 #+begin_src shell :tangle gqllsp.sh :tangle-mode (identity #o555) :mkdirp yes
 lvol=$(pwd)/gql/schema/
+#lvol=$(pwd)/gql/
 cvol=/opt/gql/schema
+#cvol=/opt/gql
 gql_config=.
 gql_schema=./schema.sdl
 gql_image=dc/graphql-lsp
@@ -21,6 +30,7 @@ docker run -it --rm --mount type=bind,src=$lvol,dst=$cvol --name $gql_cntr $gql_
 
 #+begin_src shell
 # docker run -itv $lvol:$cvol --name $gql_cntr $gql_image
+# graphql-lsp server --schemaPath=$gql_schema --configDir=$gql_config
 graphql-lsp server --schemaPath=schema.sdl --configDir=.
 
 #+end_src
@@ -65,6 +75,12 @@ Copy to =./schema/github/graphql.config.yml=
 schema: ${gql_schema:./default-schema.json}
 #+end_src
 
+**  Note
+
+If you extend from this image, don't accidentally create an image that contains
+your secrets. this image doesn't contain any.  I plan on downloading the schema
+in some other manner and only using the image for LSP.
+
 * Dockerfile
 
 I'm not really sure where to put this, but i need it available in quite a few
@@ -84,7 +100,7 @@ LABEL maintainer=dconner.pro@gmail.com
 #+begin_src dockerfile :tangle Dockerfile.graphql-lsp
 RUN apk update --no-cache &&\
     apk upgrade --no-cache &&\
-    apk add --no-cache bash
+    apk add --no-cache bash yarn
 #+end_src
 
 *** Node
@@ -106,7 +122,8 @@ WORKDIR /opt/gql
 Install dependencies as project
 
 #+begin_src dockerfile :tangle Dockerfile.graphql-lsp
-RUN npm install --save-dev graphql-language-service-cli vscode-languageserver
+# RUN npm install -g graphql-language-service-cli vscode-languageserver
+RUN yarn global add graphql-language-service-cli
 #+end_src
 
 ... does this project really require running as a node app?
