@@ -10,7 +10,7 @@ the [[https://github.com/ectorepo/ectorepo][ectorepo/ectorepo]] Repo ... repo.
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
-  <include name="ansible_collections.xml"/>
+  <include name="ac_core.xml"/>
 </manifest>
 #+end_src
 
