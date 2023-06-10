@@ -83,3 +83,32 @@ sublime2yas --major-mode yaml-mode -o out -d AdvancedAnsibleSnippets
 #+end_src
 
 Then, to test in emacs, open some generated files and run =yas-tryout-snippet=
+
+**** By Group
+
+Collections in build
+
+#+begin_src shell
+ans_snips=$_ECTO/ansible/snippets/AdvancedAnsibleSnippetsGenerator
+ans_build=$ans_snips/build/sublime
+snip_collections=()
+snip_collections+=$(ls $ans_build | sed -E 's/([0-9a-zA-Z_]+)\.([0-9a-zA-Z_]+)\..*\.sublime-snippet/\1.\2/' | sort | uniq)
+echo $snip_collections
+#+end_src
+
+#+RESULTS:
+: amazon.aws ansible.builtin ansible.netcommon ansible.posix ansible.utils ansible.windows arista.eos awx.awx azure.azcollection become.sublime-snippet block.sublime-snippet check_point.mgmt chocolatey.chocolatey cisco.aci cisco.asa cisco.dnac cisco.intersight cisco.ios cisco.iosxr cisco.ise cisco.meraki cisco.mso cisco.nso cisco.nxos cisco.ucs cloud.common cloudscale_ch.cloud community.aws community.ciscosmb community.crypto community.digitalocean community.dns community.docker community.fortios community.general community.google community.grafana community.hashi_vault community.hrobot community.libvirt community.mongodb community.mysql community.network community.okd community.postgresql community.proxysql community.rabbitmq community.routeros community.sap community.sap_libs community.skydive community.sops community.vmware community.windows community.zabbix containers.podman cyberark.pas dellemc.enterprise_sonic dellemc.openmanage dellemc.os10 dellemc.os6 dellemc.os9 dellemc.powerflex dellemc.unity f5networks.f5_modules fortinet.fortimanager fortinet.fortios frr.frr gluster.gluster google.cloud grafana.grafana hetzner.hcloud hpe.nimble ibm.qradar ibm.spectrum_virtualize infinidat.infinibox infoblox.nios_modules inspur.ispim inspur.sm inventory.sublime-snippet junipernetworks.junos kubernetes.core loop_control.sublime-snippet loop.sublime-snippet lowlydba.sqlserver mellanox.onyx microsoft.ad netapp.aws netapp.azure netapp.cloudmanager netapp.elementsw netapp_eseries.santricity netapp.ontap netapp.storagegrid netapp.um_info netbox.netbox ngine_io.cloudstack ngine_io.exoscale ngine_io.vultr openstack.cloud openvswitch.openvswitch ovirt.ovirt pfsensible.core playbook.sublime-snippet purestorage.flasharray purestorage.flashblade purestorage.fusion sensu.sensu_go splunk.es theforeman.foreman t_systems_mms.icinga_director vmware.vmware_rest vultr.cloud vyos.vyos wti.remote
+
+Transform with collection name as =-G $collection_name=
+
+#+begin_src shell
+ans_snips=$_ECTO/ansible/snippets/AdvancedAnsibleSnippetsGenerator
+ans_build=$ans_snips/build/sublime
+ans_coll=containers.podman
+my_snips=yaml-mode
+sublime2yas --major-mode yaml-mode -o $my_snips -d $ans_build -g "$ans_coll*.sublime-snippet" -G $ans_coll
+#+end_src
+
+Now the yasnippet menu is built so you can click around and explore.
+
+[[file:img/imported-snippets.jpeg]]
