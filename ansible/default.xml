@@ -11,6 +11,7 @@
   <project name="ansible/devtools" path="devtools" revision="refs/heads/main" remotes="github"/>
   <project name="pfsensible/core" path="roles/pfsensible" revision="refs/heads/master" remotes="github"/>
   <project name="techno-tim/k3s-ansible" path="eg/k3s-ansible" revision="refs/heads/master" remotes="github"/>
+  <project name="ThePrimeagen/ansible" path="eg/ThePrimagen" revision="refs/heads/master" remote="github"/>
   <project name="geerlingguy/ansible-for-devops" path="eg/ansible-for-devops" revision="refs/heads/master" remotes="github"/>
   <project name="geerlingguy/ansible-role-repo-epel" path="roles/ansible-role-repo-epel" revision="refs/heads/master" remotes="github"/>
   <project name="geerlingguy/ansible-role-gitlab" path="roles/ansible-role-gitlab" revision="refs/heads/master" remotes="github"/>
