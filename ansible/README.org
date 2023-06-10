@@ -5,5 +5,81 @@
 
 The docs are now greppable. I wish I had realized this sooner.
 
+* Snippets
+
+** Automated Snippet Generation
+
 The repo [[github:memoryleak/AdvancedAnsibleSnippets][memoryleak/AdvancedAnsibleSnippets]] has 7000 ansible snippets and
 [[emacsfodder/sublime2yas][emacsfodder/sublime2yas]] wasn't written in python, so it still ... seems to run.
+
+I've only tested a few though. After glancing at the snippet formats for
+Sublime, yasnippet, atom and VS Code, they all seem to be based on the same
+string substitution format, but have different metadata. There's really no
+reason we can't have nice things ... like standardized snippet libraries. One
+day, perhaps treesitter would be better for snippets (or at least snippet
+extraction)
+
+There's really not much of a point to importing them all at once.
+
+*** Advanced Ansible Snippets Generator
+
+The repo [[github:memoryleak/AdvancedAnsibleSnippetsGenerator][memoryleak/AdvancedAnsibleSnippetsGenerator]] appears to have faculties
+for generating snippets from other collections, using some of Ansible's module &
+plugin reflection. Installing the deps with =poetry install= and running =make=
+then =make build= does generate everything.
+
+The generator constructs Ansible's module path using =module_loader= and
+includes collections installed via =ansible-galaxy install -r requirements.txt=.
+For each path in =module_path=, it accumulates the plugins with metadata of type
+=DocCLI(['ansible snippet generator'])=. Then it attempts to convert them.
+
+It's essentially the same metadata used used for =ansible-doc -s
+pfsensible.core.pfsense_aggregate=.
+
+#+begin_src yaml
+- name: Manage multiple pfSense firewall aliases, rules, and rule separators, plus interfaces and VLANs
+  pfsense_aggregate:
+      aggregated_aliases:    # Dict of aliases to apply on the target
+      aggregated_interfaces:   # Dict of interfaces to apply on the target
+      aggregated_nat_outbounds:   # Dict of nat_outbound rules to apply on the target
+      aggregated_nat_port_forwards:   # Dict of nat_port_forward rules to apply
+                             # on the target
+      aggregated_rule_separators:   # Dict of rule separators to apply on the target
+      aggregated_rules:      # Dict of rules to apply on the target
+      aggregated_vlans:      # Dict of VLANs to apply on the target
+      interface_filter:      # only apply rules and rules separators on those
+                             # interfaces (separated by space)
+      order_rules:           # rules will be generated following the playbook
+                             # order
+      purge_aliases:         # delete all the aliases that are not defined into
+                             # aggregated_aliases
+      purge_interfaces:      # delete all the interfaces that are not defined
+                             # into aggregated_int erfaces
+      purge_nat_outbounds:   # delete all the nat_outbound rules that are not
+                             # defined into aggregated_nat_outbounds
+      purge_nat_port_forwards:   # delete all the nat_port_forward rules that
+                             # are not defined into aggregated_nat_port_forwards
+      purge_rule_separators:   # delete all the rule separators that are not
+                               # defined into aggregated_rule_separators
+      purge_rules:           # delete all the rules that are not defined into
+      purge_vlans:           # delete all the VLANs that are not defined into
+                             # aggregated_vlans
+#+end_src
+
+I kept wondering where Ansible's =rails generate= functions were. Jesus fucking
+christ how do people write this shit?
+
+*** sublime2yas
+
+The =-g= parameter lets you specify a glob like =grafana*.sublime-snippet=.
+
+With the right Bash capture group, you can use the =-G= option to associate
+snippets to yas groups, so they don't overload the emacs menu autogeneration.
+
+#+begin_src shell
+gem install sublime2yas
+mkdir out
+sublime2yas --major-mode yaml-mode -o out -d AdvancedAnsibleSnippets
+#+end_src
+
+Then, to test in emacs, open some generated files and run =yas-tryout-snippet=
