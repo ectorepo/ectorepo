@@ -19,4 +19,5 @@
   <project name="MichaelCade/90DaysOfDevOps" path="90days" revision="refs/heads/main" remotes="github"/>
   <project name="ChristianLempa/boilerplates" path="eg/boilerplates" revision="refs/heads/main" remotes="github"/>
   <project name="memoryleak/AdvancedAnsibleSnippets" path="snippets/AdvancedAnsibleSnippets" revision="refs/heads/master" remotes="github"/>
+  <project name="memoryleak/AdvancedAnsibleSnippetsGenerator" path="snippets/AdvancedAnsibleSnippetsGenerator" revision="refs/heads/master" remotes="github"/>
 </manifest>

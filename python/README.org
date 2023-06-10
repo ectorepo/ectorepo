@@ -47,6 +47,13 @@ NURBS-python
 
 * Dependencies
 
+** Py2puml
+
+
+
+** Pydeps
+
+
 This needs to be run from the repository itself.  in the poetry environment
 AFAIK, but you might get lucky.
 
