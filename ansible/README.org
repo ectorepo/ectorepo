@@ -4,3 +4,6 @@
 #+DESCRIPTION: notes
 
 The docs are now greppable. I wish I had realized this sooner.
+
+The repo [[github:memoryleak/AdvancedAnsibleSnippets][memoryleak/AdvancedAnsibleSnippets]] has 7000 ansible snippets and
+[[emacsfodder/sublime2yas][emacsfodder/sublime2yas]] wasn't written in python, so it still ... seems to run.
