@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- core -->
+  <project name="hashicorp/terraform" path="terraform" revision="refs/heads/main" remotes="github" groups="core,terraform"/>
+  <project name="hashicorp/nomad" path="nomad" revision="refs/heads/main" remotes="github" groups="core,nomad"/>
+  <project name="hashicorp/vault" path="vault" revision="refs/heads/main" remotes="github" groups="core,vault"/>
+  <project name="hashicorp/vagrant" path="vagrant" revision="refs/heads/main" remotes="github" groups="core,vagrant"/>
+  <project name="hashicorp/packer" path="packer" revision="refs/heads/main" remotes="github" groups="core,packer"/>
+  <project name="hashicorp/consul" path="consul" revision="refs/heads/main" remotes="github" groups="core,consul"/>
+  <project name="hashicorp/waypoint" path="waypoint" revision="refs/heads/main" remotes="github" groups="core,waypoint"/>
+  <project name="hashicorp/hcl" path="hcl" revision="refs/heads/main" remotes="github" groups="core,hcl"/>
+  <!-- svc: service mgmt -->
+  <project name="hashicorp/raft" path="svc/raft" revision="refs/heads/main" remotes="github" groups="core,svc"/>
+  <project name="hashicorp/serf" path="svc/serf" revision="refs/heads/main" remotes="github" groups="svc"/>
+  <!-- implementation of a gossip protocol -->
+  <project name="hashicorp/memberlist" path="svc/memberlist" revision="refs/heads/main" remotes="github" groups="svc"/>
+  <!-- misc -->
+  <project name="hashicorp/go-metrics" path="go-metrics" revision="refs/heads/main" remotes="github" groups="benchmarks"/>
+  <!-- templating -->
+  <project name="hashicorp/jase" path="templating/jase" revision="refs/heads/main" remotes="github" groups="templating"/>
+  <project name="hashicorp/levant" path="templating/levant" revision="refs/heads/main" remotes="github" groups="templating"/>
+  <!-- ungrouped -->
+  <project name="hashicorp/boundary" path="boundary" revision="refs/heads/main" remotes="github"/>
+  <project name="hashicorp/design-system" path="design-system" revision="refs/heads/main" remotes="github"/>
+  <project name="hashicorp/damon" path="damon" revision="refs/heads/main" remotes="github"/>
+  <project name="hashicorp/docker-vault" path="docker-vault" revision="refs/heads/main" remotes="github"/>
+</manifest>

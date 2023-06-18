@@ -9,6 +9,7 @@ The docs are now greppable. I wish I had realized this sooner.
 
 ** Automated Snippet Generation
 
+
 The repo [[github:memoryleak/AdvancedAnsibleSnippets][memoryleak/AdvancedAnsibleSnippets]] has 7000 ansible snippets and
 [[emacsfodder/sublime2yas][emacsfodder/sublime2yas]] wasn't written in python, so it still ... seems to run.
 
@@ -112,3 +113,8 @@ sublime2yas --major-mode yaml-mode -o $my_snips -d $ans_build -g "$ans_coll*.sub
 Now the yasnippet menu is built so you can click around and explore.
 
 [[file:img/imported-snippets.jpeg]]
+
+** Terraform
+
+And for Terraform, there's [[https://github.com/staticaland/terraform-generate-snippets][staticaland/terraform-generate-snippets]], which
+autogenerates snippets from =terraform providers schema -json=

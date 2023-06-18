@@ -1,0 +1,21 @@
+#+TITLE:     Ectorepo: Hashicorp Core
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+The docs are now greppable. I wish I had realized this sooner.
+
+* Terraform
+
+For Terraform, there's [[https://github.com/staticaland/terraform-generate-snippets][staticaland/terraform-generate-snippets]], which
+autogenerates snippets from =terraform providers schema -json=
+
+* Vault
+
+* Packer
+
+* Nomad
+
+* Consul
+
+* Vagrant
