@@ -20,6 +20,7 @@
   <project name="MichaelCade/90DaysOfDevOps" path="90days" revision="refs/heads/main" remotes="github"/>
   <project name="ChristianLempa/boilerplates" path="eg/boilerplates" revision="refs/heads/main" remotes="github"/>
   <project name="antonputra/tutorials" path="eg/antonputra" revision="refs/heads/main" remotes="github"/>
+  <project name="byrn-baker/Ansible-Workshop" path="eg/Ansible-Workshop" revision="refs/heads/main" remotes="github"/>
   <project name="network-evolution/Ansible-Playbooks" path="eg/network-evolution" revision="refs/heads/master" remotes="github"/>
   <project name="network-evolution/Python_for_Network_Engineers" path="eg/py4network" revision="refs/heads/main" remotes="github"/>
   <project name="memoryleak/AdvancedAnsibleSnippets" path="snippets/AdvancedAnsibleSnippets" revision="refs/heads/master" remotes="github"/>
