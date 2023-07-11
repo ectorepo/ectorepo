@@ -85,11 +85,82 @@ Filter the results, generate XML
   (string-join "\n"))
 #+end_src
 
+** Generate XML
+
 Generate =ac_core.xml=
 
 #+begin_src xml :tangle ac_core.xml :noweb yes
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<ac-core()>>
+</manifest>
+#+end_src
+
+* Linux System Roles
+
+Unfortunately, the =graphql-query= macro is a bit nasty, so it's hard to
+refactor. The easiest way to deal with this is to refactor into my
+dotfiles. However, once the XML is set, it's pretty sufficient for getting
+updates and only needs quick updates. I don't want to make these small projects
+dependent on some external lib. When I need it, I need it.
+
+This repo has quite a few examples of role implementations, lots of testing and
+plenty of jinja which has been tripping me up. One of the repos goes so far as
+to check =subgid= and =subuid= for rootless containers. It also facilitates
+configurations of per-container-app users/groups along with the files they
+manage, which I need to see.
+
+Get the core repositories. These should go into =/data/ecto/ansible-collections/lsr=.
+
+#+name: lsr-repos
+#+begin_src emacs-lisp :var nrepos=100 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "linux-system-roles"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+Filter the results, generate XML
+
+#+name: lsr-core
+#+begin_src emacs-lisp :var gqldata=lsr-repos :results value html
+(thread-first
+  (thread-last
+    (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+    (mapcar (lambda (el) (a-get* el 'node)))
+    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+    (mapcar (lambda (el)
+              (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
+                     (path (a-get* el 'name))
+                     (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                  (a-get* el 'defaultBranchRef 'name)))
+                     (name (string-join (list (a-get* el 'owner 'login)
+                                              (a-get* el 'name)) "/")))
+                (concat "<project"
+                        " name=\"" name
+                        "\" path=\"lsr/" path
+                        "\" revision=\"" ref "\" remote=\"github\"/>")))))
+  (cl-sort 'string-lessp :key 'downcase)
+  (string-join "\n"))
+#+end_src
+
+** Generate XML
+
+Generate =lsr_core.xml=
+
+#+begin_src xml :tangle lsr_core.xml :noweb yes
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <<lsr-core()>>
 </manifest>
 #+end_src

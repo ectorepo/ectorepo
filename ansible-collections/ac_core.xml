@@ -12,6 +12,7 @@
   <project name="ansible-collections/ansible.windows" path="ansible.windows" revision="refs/heads/main" remote="github"/>
   <project name="ansible-collections/ansible.yang" path="ansible.yang" revision="refs/heads/main" remote="github"/>
   <project name="ansible-collections/arista.eos" path="arista.eos" revision="refs/heads/main" remote="github"/>
+  <project name="ansible-collections/automation-application" path="automation-application" revision="refs/heads/main" remote="github"/>
   <project name="ansible-collections/azure" path="azure" revision="refs/heads/dev" remote="github"/>
   <project name="ansible-collections/cisco.asa" path="cisco.asa" revision="refs/heads/main" remote="github"/>
   <project name="ansible-collections/cisco.ios" path="cisco.ios" revision="refs/heads/main" remote="github"/>
@@ -68,6 +69,7 @@
   <project name="ansible-collections/google.cloud" path="google.cloud" revision="refs/heads/master" remote="github"/>
   <project name="ansible-collections/hetzner.hcloud" path="hetzner.hcloud" revision="refs/heads/main" remote="github"/>
   <project name="ansible-collections/ibm.cloud" path="ibm.cloud" revision="refs/heads/main" remote="github"/>
+  <project name="ansible-collections/ibm.qradar" path="ibm.qradar" revision="refs/heads/main" remote="github"/>
   <project name="ansible-collections/ibm.spectrum_virtualize" path="ibm.spectrum_virtualize" revision="refs/heads/develop" remote="github"/>
   <project name="ansible-collections/ibm.storage_virtualize" path="ibm.storage_virtualize" revision="refs/heads/develop" remote="github"/>
   <project name="ansible-collections/ibm_zos_cics" path="ibm_zos_cics" revision="refs/heads/main" remote="github"/>
