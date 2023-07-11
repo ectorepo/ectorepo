@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="linux-system-roles/.github" path="lsr/.github" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/ad_integration" path="lsr/ad_integration" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/auto-maintenance" path="lsr/auto-maintenance" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/bootloader" path="lsr/bootloader" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/certificate" path="lsr/certificate" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/ci-testing" path="lsr/ci-testing" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/cockpit" path="lsr/cockpit" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/crypto_policies" path="lsr/crypto_policies" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/ee_linux_automation" path="lsr/ee_linux_automation" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/ee_linux_system_roles" path="lsr/ee_linux_system_roles" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/experimental-azure-firstboot" path="lsr/experimental-azure-firstboot" revision="refs/heads/master" remote="github"/>
+  <project name="linux-system-roles/firewall" path="lsr/firewall" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/ha_cluster" path="lsr/ha_cluster" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/image_builder" path="lsr/image_builder" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/journald" path="lsr/journald" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/kdump" path="lsr/kdump" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/kernel_settings" path="lsr/kernel_settings" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/keylime_server" path="lsr/keylime_server" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/linux-system-roles.github.io" path="lsr/linux-system-roles.github.io" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/logging" path="lsr/logging" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/lsr-gh-action-py26" path="lsr/lsr-gh-action-py26" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/meta_test" path="lsr/meta_test" revision="refs/heads/master" remote="github"/>
+  <project name="linux-system-roles/metrics" path="lsr/metrics" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/mssql" path="lsr/mssql" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/nbde_client" path="lsr/nbde_client" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/nbde_server" path="lsr/nbde_server" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/network" path="lsr/network" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/pam_pwd" path="lsr/pam_pwd" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/podman" path="lsr/podman" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/postfix" path="lsr/postfix" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/postgresql" path="lsr/postgresql" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/rhc" path="lsr/rhc" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/selinux" path="lsr/selinux" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/ssh" path="lsr/ssh" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/storage" path="lsr/storage" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/systemd" path="lsr/systemd" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/template" path="lsr/template" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/test-harness" path="lsr/test-harness" revision="refs/heads/master" remote="github"/>
+  <project name="linux-system-roles/timesync" path="lsr/timesync" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/tlog" path="lsr/tlog" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/tox-lsr" path="lsr/tox-lsr" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/tuned" path="lsr/tuned" revision="refs/heads/main" remote="github"/>
+  <project name="linux-system-roles/vpn" path="lsr/vpn" revision="refs/heads/main" remote="github"/>
+</manifest>
