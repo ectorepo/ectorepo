@@ -23,6 +23,7 @@
   <project name="byrn-baker/Ansible-Workshop" path="eg/Ansible-Workshop" revision="refs/heads/main" remotes="github"/>
   <project name="network-evolution/Ansible-Playbooks" path="eg/network-evolution" revision="refs/heads/master" remotes="github"/>
   <project name="network-evolution/Python_for_Network_Engineers" path="eg/py4network" revision="refs/heads/main" remotes="github"/>
+  <project name="RedHatDemos/SecurityDemos" path="eg/SecurityDemos" revision="refs/heads/master" remotes="github"/>
   <project name="memoryleak/AdvancedAnsibleSnippets" path="snippets/AdvancedAnsibleSnippets" revision="refs/heads/master" remotes="github"/>
   <project name="memoryleak/AdvancedAnsibleSnippetsGenerator" path="snippets/AdvancedAnsibleSnippetsGenerator" revision="refs/heads/master" remotes="github"/>
 </manifest>
