@@ -21,7 +21,7 @@
   <project name="GoogleCloudPlatform/terraform-google-secure-cicd" path="gcp/terraform-google-secure-cicd" revision="refs/heads/main" remotes="github"/>
   <project name="GoogleCloudPlatform/terraform-google-secured-data-warehouse" path="gcp/terraform-google-secured-data-warehouse" revision="refs/heads/main" remotes="github"/>
   <project name="GoogleCloudPlatform/terraform-google-three-tier-web-app" path="gcp/terraform-google-three-tier-web-app" revision="refs/heads/main" remotes="github"/>
-  <project name="terraform-google-modules/cloud-foundation-fabric" path="gcp/cloud-foundation-fabric" revision="refs/heads/main" remotes="github"/>
+  <!-- <project name="terraform-google-modules/cloud-foundation-fabric" path="gcp/cloud-foundation-fabric" revision="refs/heads/main" remotes="github"/> -->
   <project name="terraform-google-modules/terraform-example-foundation" path="gcp/terraform-example-foundation" revision="refs/heads/main" remotes="github"/>
   <project name="terraform-google-modules/terraform-google-address" path="gcp/terraform-google-address" revision="refs/heads/main" remotes="github"/>
   <project name="terraform-google-modules/terraform-google-bastion-host" path="gcp/terraform-google-bastion-host" revision="refs/heads/main" remotes="github"/>
