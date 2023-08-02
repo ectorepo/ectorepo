@@ -1,16 +1,13 @@
 [tool.poetry]
-name = "repo-hashicorp"
-version = "0.1.0"
-description = ""
+name = "gitrepo"
+version = "0.0.1"
+description = "An environment for random automation on git repos"
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
-packages = [{include = "repo_hashicorp"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-Scrapy = "^2.9.0"
-gql = {extras = ["all"], version = "^3.4.1"}
-yq = "^3.2.2"
+scrapy = "^2.9.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.7.0"

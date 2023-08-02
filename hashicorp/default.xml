@@ -2,6 +2,7 @@
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="gcp_blueprints.xml"/>
   <!-- core -->
   <project name="hashicorp/terraform" path="terraform" revision="refs/heads/main" remotes="github" groups="core,terraform"/>
   <project name="hashicorp/nomad" path="nomad" revision="refs/heads/main" remotes="github" groups="core,nomad"/>

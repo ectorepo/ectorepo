@@ -30,19 +30,30 @@ class GcpTfBlueprintsSpider(scrapy.Spider):
             repo_revision = "refs/heads/main"
             repo_remotes = "github"
             #repo_url = urllib.parse(row)
-            print(row)
+            # print(row)
 
             #repo_url = re.match('github.com/(.*)$', row).group(1)
             #org_name = repo_url.split('/')[1]
             #proj_name = repo_url.split('/')[2]
             #proj_name = row.re(f'https:///.*$')
 
-            org_name = "GoogleCloudPlatform"
-            proj_name = "fdsa"
+            if row is None:
+                pass
+            else:
+                rel_url = row.split('github.com/')[1]
+                url_split = rel_url.split('/', 2)
+                org_name = url_split[0]
+                proj_name = url_split[1]
+                yield {
+                    "project": {
+                        "name": f'{org_name}/{proj_name}',
+                        "path": f'gcp/{proj_name}',
+                        "revision": "refs/heads/main",
+                        "remotes": "github"
+                    }
+                }
 
-            yield {
-                "name": f'{org_name}/{proj_name}',
-                "path": f'gcp/{proj_name}',
-                "revision": "refs/heads/main",
-                "remotes": "github"
-            }
+            # yield row
+
+            # org_name = "GoogleCloudPlatform"
+            # proj_name = "fdsa"

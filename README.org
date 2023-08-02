@@ -31,7 +31,7 @@ manifest server ... but I'm special. I'll be using git submodules.
 
 I've created this organization to separate these "git playlist" manifest repos
 from my own Github. And I've created this project for me personally. Expect
-incomplete documentation and such. The power of google Repo could be in your
+77incomplete documentation and such. The power of google Repo could be in your
 hands. There is almost zero documentation avaiable for it on the web. It
 downloads a copy of its own python scripts. That's your best bet. That, or this
 repo.
@@ -62,34 +62,7 @@ building, necessitating =Go= and =bazel=. But the real question there is =Why=
 
 Bonus points if you manage to explain it using these [[https://www.youtube.com/watch?v=HeQX2HjkcNo][Peano Arithmatic cards]].
 
-* Table of Contents :TOC_2_gh:
-- [[#ectorepo][Ectorepo]]
-  - [[#what-is-a-git-playlist-trebek][What is a Git Playlist, Trebek]]
-  - [[#caveats][Caveats]]
-- [[#getting-started][Getting Started]]
-  - [[#doing-your-first-repo-sync][Doing your first =repo sync=]]
-  - [[#using-the-manifest-repositories-in-this-project][Using the manifest repositories in this project]]
-  - [[#youll-probably-want-to-use-ssh-agent-in-whichever-way-you-do][You'll probably want to use =ssh-agent= in whichever way you do.]]
-- [[#automation-and-tooling][Automation and Tooling]]
-  - [[#planned-ectorepo-manifest-repositories][Planned =ectorepo= Manifest Repositories]]
-  - [[#assumed-variables][Assumed Variables]]
-  - [[#using-a-declarative-literate-programming-approach][Using A Declarative Literate Programming Approach]]
-  - [[#creating-a-defaultxml-from-a-flat-directory-structure][Creating A =default.xml= From A Flat Directory Structure]]
-  - [[#creating-a-defaultxml-from-a-nested-directory-structure][Creating A =default.xml= From A Nested Directory Structure]]
-  - [[#using-org-element-to-generate-a-manifest-from-structure-under-a-headline][Using Org-Element To Generate A Manifest From Structure Under A Headline]]
-  - [[#extracting-lists-of-repos-from-git-forges][Extracting Lists of Repos From Git Forges]]
-  - [[#generating-a-defaultxml-using-alternatives-to-repo][Generating A =default.xml= Using Alternatives to Repo]]
-- [[#why-repo][Why Repo?]]
-  - [[#keep-those-repos-current-with-minimal-effort][Keep Those Repos Current With Minimal Effort]]
-  - [[#build--infrastructure-automation][Build & Infrastructure Automation]]
-  - [[#git-worktrees-for-you-and-me][Git Worktrees For You And Me]]
-  - [[#manage-hundreds-of-repos-for-reference][Manage Hundreds of Repos for Reference]]
-  - [[#orgmode-and-org-roam][Orgmode and Org Roam]]
-- [[#other-repo-resources][Other Repo Resources]]
-  - [[#answers-to-common-google-repo-questions][Answers To Common Google Repo Questions]]
-  - [[#a-brief-liest-of-alternatives-to-google-repo][A Brief Liest of Alternatives to Google Repo]]
-- [[#the-mastermain-debate][The Master/Main "Debate"]]
-  - [[#its-time-to-put-this-shit-to-bed][It's Time To Put This Shit To Bed]]
+#* Table of Contents :TOC_2_gh:
 
 * Getting Started
 
@@ -216,7 +189,7 @@ use_guix_manifest manifest.scm
 
 If this isn't practical, a Dockerfile should be used.
 
-If for some reason, a =poetry= environment is needed, then this should
+If for some reason a =poetry= environment is needed, then this should
 suffice. The virtualenv should be created in =.venv= because I don't want
 disk/inode usage to be difficult to clean up.
 
@@ -234,11 +207,22 @@ layout poetry
 in-project = true
 #+end_example
 
-
 *** ectorepo/ectorepo
 
 Any new automation scripting/tooling that makes it into the root of this repo is
 intended to be shared across subdirectories and submodules.
+
+This would use pyenv:
+
+#+begin_src text :tangle .python-version
+3.10.11
+#+end_src
+
+And an arbitrary virtualenv:
+
+#+begin_src text :tangle .python-virtualenv.eg
+gitrepo
+#+end_src
 
 *** org-babel based automations
 
@@ -253,16 +237,13 @@ bundle up into a single submodule and deploy.
 
 *** submodule-based automations
 
-Any /automations/ that are in their own submodule (outside of one used for a
-git-repo) are intended to be deployed somewhere and thus have their deployment
-versions pinned to some git tracking mechanism.
+Any /automations/ that are in their own submodule (outside of modules used for a
+repo's default.xml) are intended to be deployed somewhere and thus have their
+deployment versions pinned to some git tracking mechanism.
 
 + There should be a minimal number of these submodules and their connections to
   objects/references in other directories should be minimal as to reduce
   cognitive load when considering interdependencies.
-
-
-
 
 ** Old Automation
 These are mainly based on my interests right now. I have very little interest in

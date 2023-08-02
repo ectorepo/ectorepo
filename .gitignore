@@ -1,3 +1,6 @@
 graphql/node_modules/
 *.sqlite
 *.strace
+.envrc
+
+__pycache__

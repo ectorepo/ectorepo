@@ -46,10 +46,28 @@ use_guix_manifest manifest.scm
 
 ** GCP
 
-There is a scrapy project to create XML from [[https://cloud.google.com/docs/terraform/blueprints/terraform-blueprints][GCP Terraform Blueprints]]. Perhaps
-[[https://www.crummy.com/software/BeautifulSoup/bs4/doc/][beautifulsoup]] is more appropriate for this.
+There is a scrapy project in =./scraping= to create XML from [[https://cloud.google.com/docs/terraform/blueprints/terraform-blueprints][GCP Terraform
+Blueprints]]. Perhaps [[https://www.crummy.com/software/BeautifulSoup/bs4/doc/][beautifulsoup]] was more appropriate for this. It's not
+quite complete and requires some manual work. See below under "Misc."
 
 *** Blueprints
+
+From the =hashicorp/scraping= directory.
+
+#+begin_src sh
+# this skips a few with http:/// and etc.
+scrapy runspider scraping/spiders/gcp_tf_blueprints.py -O output/repos.json
+yq -y '. | sort_by(.project.name)' "output/repos.json" > output/repos.yml
+#+end_src
+
+I'm not too sure the =xq= command is suited to setting attributes on a tag,
+instead of writing them to the nodes' children. So for now, this requires
+manually transforming the output with regexp.
+
+Since the GraphQL pipeline is not working either (it req. ~70 Github API
+requests per try, naively, and these are limited). So to validate, commit the
+=gcp_blueprints.xml= changes, which are sorted ... and see which repo's don't
+clone.
 
 **** Misc
 
