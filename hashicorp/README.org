@@ -5,17 +5,68 @@
 
 The docs are now greppable. I wish I had realized this sooner.
 
-* Terraform
+* Hashicorp
+** Terraform
 
 For Terraform, there's [[https://github.com/staticaland/terraform-generate-snippets][staticaland/terraform-generate-snippets]], which
 autogenerates snippets from =terraform providers schema -json=
 
-* Vault
+** Vault
 
-* Packer
+** Packer
 
-* Nomad
+** Nomad
 
-* Consul
+** Consul
 
-* Vagrant
+** Vagrant
+
+* Automation
+
+*.envrc.eg*
+
+#+begin_src sh :tangle .envrc.eg
+use_guix_manifest manifest.scm
+#+end_src
+
+*manifest.scm*
+
+#+begin_src scheme :tangle manifest.scm
+(use-modules (gnu packages python-xyz))
+
+;; (concatenate-manifests ... )
+;; package->development-manifest only returns the `guix shell -D` dependencies
+;; just add python-lsp-server for now
+
+(specifications->manifest
+ '("python"
+   "python-scrapy"
+   "python-lsp-server"))
+#+end_src
+
+** GCP
+
+There is a scrapy project to create XML from [[https://cloud.google.com/docs/terraform/blueprints/terraform-blueprints][GCP Terraform Blueprints]]. Perhaps
+[[https://www.crummy.com/software/BeautifulSoup/bs4/doc/][beautifulsoup]] is more appropriate for this.
+
+*** Blueprints
+
+**** Misc
+
+Getting =defaultBranchRef= from a list of repositories req. calling this query
+later in a Scrapy [[https://docs.scrapy.org/en/latest/topics/item-pipeline.html][RepositoryPipeline]] (see [[https://gql.readthedocs.io/en/latest/async/async_usage.html#async-usage][gql example for async usage]])
+
+#+begin_example graphql
+query {
+  repository(owner:"octocat", name:"Hello-World") {
+    title
+    url
+    owner{login}
+    name
+    defaultBranchRef{prefix name}
+    url
+    updatedAt
+    isArchived
+  }
+ }
+#+end_example

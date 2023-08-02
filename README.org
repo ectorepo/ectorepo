@@ -93,6 +93,8 @@ Bonus points if you manage to explain it using these [[https://www.youtube.com/w
 
 * Getting Started
 
+You'll probably want to use =ssh-agent= in whichever way you do that.
+
 ** Doing your first =repo sync=
 
 1. Install Google Repo with something like =sudo pacman -Syu repo=
@@ -131,10 +133,138 @@ You have three options to start with:
 
 **** TODO examples using =dir-locals.el= with Repo & org-mode
 
-** You'll probably want to use =ssh-agent= in whichever way you do.
+** Running =repo sync= on Guix System
+
+The guix git-repo package currently has some issues with =python3=. This should
+fix running =repo= in =/data/ecto=, the common directory where repos are synced.
+It should only needed on Guix System as a temporary fix. I would perhaps
+contribute a patch, but I'm too busy at the moment. I'm not sure if it's a
+simple fix.
+
+#+begin_src sh :tangle .envrc.ecto.eg
+# -*- mode: sh -*-
+use_guix_profile $GUIX_EXTRA/pythondev/pythondev
+PATH_add /data/ecto/git-repo
+layout python3
+#+end_src
 
 * Automation and Tooling
 
+Please excuse the messiness. The code here is not intended to be redistributed
+and everything would be clean if it was. I'm experimenting with a lot of things
+and I don't see a lot of people using =git-repo= online.
+
+I have a lot of fleeting ideas that are based on the circumstances which don't
+extend out to cover a lot of cases. I just need to get the list of repositories
+into sorted/uniqued XML to make it easier to maintain for me personally.
+
+I like the idea of things "bubbling up" in priority. For example:
+
++ Once you do something 3 times, then you automate.
++ Your TODO's enter this file and then are refiled closer to more permanent
+  files/headlines.
++ It starts in github.com/ectorepo/ectorepo as a directory with an intended
+  potential migration path to submodule, which is a bit easier to change out as
+  a branch or to socialize for collaboration (which will basically never happen)
++ In this case: give some scripts an isolated environment, then later figure out
+  how to make that environment robust to multiple platforms or to sharing across
+  multiple projects.
+
+This avoids forcing me to think too much about configuration management,
+esp. for multiple environments, before I experience the first-order and
+second-order complications of some process.
+
++ I would like to ideate the later intended migration paths, but only surface
+  level details. So if classes/scripts need to be shared, they're trivial to
+  integrate, but I only want to spend like 5 minutes thinking about this.
++ The other type of details to consider (but not immediately address) are
+  deployment considerations -- i.e. how should the projects be structured so the
+  code/config can be automated? How/where would this be deployed as an
+  automation to produce updates to XML and commits to git -- I haven't been
+  around for git hooks and git automation which were fairly rare and now seem
+  common.
+
+As uncommon as a project like ectorepo is, having local copies of code fitting
+some ontological structure -- or at least some unchanging structure that is easy
+for me to remember -- it has been infinitely valuable. The internet seems to
+answer _deductive_ questions: isolate parts becoming more specific; whereas I
+have questions requiring _inductive_ or [[https://en.wikipedia.org/wiki/Abductive_reasoning][abductive]] logic: combine parts and
+generalize interfaces & abstractions, becoming more comprehensive.
+
+With a large body of source you can search with regular expressions or with more
+comprehensive data analysis, then questions like the following are fairly easy
+to answer:
+
++ how do I get Jinja templates to do that?
++ WHY is this ansible role used?
++ how to you /integrate/ this? how to you glue these two ansible roles together?
++ how many different ways is this language keyword used? not the basics, but the
+  one-off estoteric usages or magical one-liner usages.
++ what naming /patterns/ would you employ for ansible role/default variables?
+
+** New Automation
+
+For python automation scripts, Guix manifests should be used wherever
+possible. This is because it's trivial to move between multiple systems where
+Guix is installed.
+
+*dir/.envrc.eg*
+
+#+begin_example
+use_guix_manifest manifest.scm
+#+end_example
+
+If this isn't practical, a Dockerfile should be used.
+
+If for some reason, a =poetry= environment is needed, then this should
+suffice. The virtualenv should be created in =.venv= because I don't want
+disk/inode usage to be difficult to clean up.
+
+*dir/.envrc.eg*
+
+#+begin_example sh
+layout poetry
+#+end_example
+
+*dir/poetry.toml*
+
+#+begin_example conf-toml
+[virtualenvs]
+#create = false
+in-project = true
+#+end_example
+
+
+*** ectorepo/ectorepo
+
+Any new automation scripting/tooling that makes it into the root of this repo is
+intended to be shared across subdirectories and submodules.
+
+*** org-babel based automations
+
+These work well when the work and are a bit frustrating when they don't. They
+are great for exploration.
+
+The reason I didn't share some of the graphql logic between repos (like the TF,
+ROCM and Ansible Collections repos) is because I don't want to find out that
+changing one breaks others. I just want to get the examples and move on, knowing
+that I can use git/repo to update what I have later. These would be useful to
+bundle up into a single submodule and deploy.
+
+*** submodule-based automations
+
+Any /automations/ that are in their own submodule (outside of one used for a
+git-repo) are intended to be deployed somewhere and thus have their deployment
+versions pinned to some git tracking mechanism.
+
++ There should be a minimal number of these submodules and their connections to
+  objects/references in other directories should be minimal as to reduce
+  cognitive load when considering interdependencies.
+
+
+
+
+** Old Automation
 These are mainly based on my interests right now. I have very little interest in
 making ectorepo a collaborative effort for managing =manifest.xml= files, as
 that is mostly a personal thing for your own personal information system.
@@ -145,7 +275,7 @@ instead of PDF's. Dealing with links that don't break when using version control
 is a bit of a headache, although I guess links with SHA's aren't that bad.
 That's well off the path that I want to tread, though.
 
-** Planned =ectorepo= Manifest Repositories
+*** Planned =ectorepo= Manifest Repositories
 
 + [[https://github.com/ectorepo/x.files][Dotfiles]]
 + Emacs
@@ -158,7 +288,7 @@ That's well off the path that I want to tread, though.
 + Nvidia/Kronos
 + Uber Engineering (vis.gl & etc)
 
-** Assumed Variables
+*** Assumed Variables
 
 You'll need to fill in these variables. The following =emacs-lisp= script will
 then ingest them to make them available for the durander of the emacs session.
@@ -174,9 +304,9 @@ then ingest them to make them available for the durander of the emacs session.
 For now, when you tangle, the current values of these these variables will be
 used. This may cause some problems with workflow, so....
 
-**** TODO this [[https://www.reddit.com/r/emacs/comments/6mzgkg/how_can_orgbabel_be_configured_to_set_variables/][s/o link]] may be useful for variables, although I was going to use  [[https://sachachua.com/blog/2021/04/emacs-making-a-hydra-cheatsheet-for-lispy/][sacha's approach]].
+***** TODO this [[https://www.reddit.com/r/emacs/comments/6mzgkg/how_can_orgbabel_be_configured_to_set_variables/][s/o link]] may be useful for variables, although I was going to use  [[https://sachachua.com/blog/2021/04/emacs-making-a-hydra-cheatsheet-for-lispy/][sacha's approach]].
 
-** TODO Using A Declarative Literate Programming Approach
+*** TODO Using A Declarative Literate Programming Approach
 
 This is pretty straightforward, build one or more XML files from a list of text
 blocks, exported to files. I'll use this to generate some of the files in the
@@ -210,9 +340,9 @@ Here I am tangling directly into a git submodule, which is certainly an option. 
 </manifest>
 #+end_src
 
-**** TODO get tangling working with =xml= or use text while specifying the mode
+***** TODO get tangling working with =xml= or use text while specifying the mode
 
-** TODO Creating A =default.xml= From A Flat Directory Structure
+*** TODO Creating A =default.xml= From A Flat Directory Structure
 
 #+name: ectorepo-flat
 #+begin_src shell :tangle no
@@ -223,14 +353,14 @@ Use it as input for a buffer or variable. If you created a variable for babel,
 use it as input for another babel block or use =M-!= to feed the selected lines
 from a buffer to a shell script that runs something like:
 
-** TODO Creating A =default.xml= From A Nested Directory Structure
+*** TODO Creating A =default.xml= From A Nested Directory Structure
 
 When dealing with a nested directory structure, one must account for how the paths and groupnames will be reintegrated with the paths of =.git/config=. Some further filtering is necessary to eliminate git submodules.
 
 When using literate programming, one should probably transform the list into
 emacs-lisp objects (sorry about that non-emacs users LOL)
 
-*** TODO start from here:
+**** TODO start from here:
 
 #+name: gitlist-tree
 #+begin_src shell :tangle no :results value
@@ -238,20 +368,20 @@ find $__ECTOREPO_FROM -type f -wholename "*.git/config" -exec cat \{\} + | grep 
 
 #+end_src
 
-** TODO Using Org-Element To Generate A Manifest From Structure Under A Headline
+*** TODO Using Org-Element To Generate A Manifest From Structure Under A Headline
 
 [[https://orgmode.org/worg/dev/org-element-api.html][Org-Element]] allows you to programmatically work with the structure of org-files.
 This should feel like how =treemacs= uses an org-mode buffer to edit its
 declared workspaces.
 
-** TODO Extracting Lists of Repos From Git Forges
+*** TODO Extracting Lists of Repos From Git Forges
 
 i.e. Git forges like Github, Bitbucket, or Gitlab.
 
 This should use =org-babel= with =restclient= blocks and maybe some JS for JSON
 processing.
 
-** TODO Generating A =default.xml= Using Alternatives to Repo
+*** TODO Generating A =default.xml= Using Alternatives to Repo
 
 * Why Repo?
 

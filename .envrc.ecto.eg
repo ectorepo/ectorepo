@@ -1,0 +1,7 @@
+# -*- mode: sh -*-
+# the guix git-repo package currently has some issues with python3
+# this should fix running repo in /data/ecto (the common directory where repos are sync)
+# it's only needed on guix-system as a temporary fix
+use_guix_profile $GUIX_EXTRA/pythondev/pythondev
+PATH_add /data/ecto/git-repo
+layout python3
