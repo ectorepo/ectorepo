@@ -21,6 +21,39 @@ autogenerates snippets from =terraform providers schema -json=
 
 ** Vagrant
 
+
+* GCP
+
+** GoogleCloudPlatform/cloud-foundation-fabric
+
+This repository has a ton of good resources, esp. for networking.
+
++ Run a find in =cloud-foundation-fabric= on =*.png= for the network
+  architectures.
++ It makes "extensive use of [[Resource Factories: A descriptive approach to Terraform][resource factories]]" which also (for me) documents
+  how to use YAML for configuration in a TF project LOL
++ It demonstrates [[https://cloud.google.com/firewall/docs/firewall-policies][Hierarchical Firewall Policies]] which I believe translates "big
+  spend" ... though if you only have [[https://cloud.google.com/firewall/pricing][a few VM's to cover]], it doesn't look
+  bad.
+
+#+begin_quote
+I'm not sure what Azure Firewall I turned on, but that was like $15/day for two
+rules and a LB with an external IP... I've been wondering how anyone can afford
+cloud ever since. It wasn't the Web Application Firewall.
+#+end_quote
+
+*** FAST
+
+**** Uses cidrsubnet to programmatically create VPC's, VPN's and Firewalls
+
+See [[https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/tree/master/fast/stages/2-networking-b-vpn][GoogleCloudPlatform/cloud-foundation-fabric (stage 2b VPN)]] which sets up a
+hybrid topology using HA VPN with monitoring.
+
++ this example also sets up firewall rules using a network resource factory. see
+  [[https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/blob/master/fast/stages/2-networking-d-separate-envs/data/dns-policy-rules.yaml][data/dns-policy-rules.yaml]], [[https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/blob/master/fast/stages/2-networking-d-separate-envs/data/cidrs.yaml][cidrs.yaml]] and [[https://github.com/GoogleCloudPlatform/cloud-foundation-fabric/blob/master/fast/stages/2-networking-d-separate-envs/data/hierarchical-policy-rules.yaml][hierarchical-policy-rules.yaml]] for
+  configuration. these files are reused through several of the stages, with some
+  changes.
+
 * Automation
 
 *.envrc.eg*
