@@ -14,11 +14,11 @@
   <project name="hashicorp/hcl" path="hcl" revision="refs/heads/main" remotes="github" groups="core,hcl"/>
   <!-- svc: service mgmt -->
   <project name="hashicorp/raft" path="svc/raft" revision="refs/heads/main" remotes="github" groups="core,svc"/>
-  <project name="hashicorp/serf" path="svc/serf" revision="refs/heads/main" remotes="github" groups="svc"/>
+  <project name="hashicorp/serf" path="svc/serf" revision="refs/heads/master" remotes="github" groups="svc"/>
   <!-- implementation of a gossip protocol -->
   <project name="hashicorp/memberlist" path="svc/memberlist" revision="refs/heads/main" remotes="github" groups="svc"/>
   <!-- misc -->
-  <project name="hashicorp/go-metrics" path="go-metrics" revision="refs/heads/main" remotes="github" groups="benchmarks"/>
+  <project name="hashicorp/go-metrics" path="go-metrics" revision="refs/heads/master" remotes="github" groups="benchmarks"/>
   <!-- templating -->
   <project name="hashicorp/jase" path="templating/jase" revision="refs/heads/main" remotes="github" groups="templating"/>
   <project name="hashicorp/levant" path="templating/levant" revision="refs/heads/main" remotes="github" groups="templating"/>
