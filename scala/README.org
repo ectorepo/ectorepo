@@ -1,0 +1,131 @@
+#+TITLE:     Ectorepo: Scala
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+The docs are now greppable. I wish I had realized this sooner.
+
+* GraphQL
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+nrepos
+
+#+name: nrepos
+#+begin_src emacs-lisp
+50
+#+end_src
+
+#+RESULTS: nrepos
+: 50
+
+* Scala
+
+** Templates
+
+* SBT
+
+Core goes in =./sbt= and plugins go in =./sbt-plugins=
+
+** Plugins
+
+Herein, all the repos on the =sbt= org are considered plugins except the
+following:
+
+#+NAME: sbtcore
+| sbt               |
+| io                |
+| sbinary           |
+| sbtn-dist         |
+| zinc              |
+| contraband        |
+| librarymanagement |
+| docker-sbt        |
+| launcher          |
+| ipcsocket         |
+| ivy               |
+| winget-pkgs       |
+| sbt-validator     |
+| scalajson         |
+| junit-interface   |
+
+#+NAME: sbtmisc
+| website        |
+| sbt.github.com |
+| sbt-ghpages    |
+| scan-test      |
+| scala-seed.g8  |
+
+Get the non-core SBT repositories. These should go into =/data/ecto/scala/sbt-modules=.
+
+#+name: sbt-repos
+#+begin_src emacs-lisp :var nrepos=50 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "sbt"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+Filter the results, generate XML.
+
+#+name: sbt-libs
+#+begin_src emacs-lisp :var gqldata=sbt-repos sbtcore=sbtcore sbtmisc=sbtmisc :results value html
+(setq -gql-data gqldata)
+
+(let* ((sbtcore (flatten-list sbtcore))
+       (sbtmisc (flatten-list sbtmisc)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+      ;; filter repos in sbtmisc list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) sbtmisc))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+                       (sbt-core? (member raw-name sbtcore))
+                       ;; switch name on sbt-core membership
+                       (subdir (cond (sbt-core? "sbt")
+                                     (t "sbt-modules")))
+                       (path (string-join (list subdir raw-name) "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+*** Generate SBT XML
+
+#+begin_src xml :tangle sbt_libs.xml :noweb yes
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <<sbt-libs()>>
+</manifest>
+#+end_src

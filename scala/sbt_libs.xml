@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="sbt/docker-sbt" path="sbt/docker-sbt" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/io" path="sbt/io" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/ipcsocket" path="sbt/ipcsocket" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/ivy" path="sbt/ivy" revision="refs/heads/2.3.x-sbt" remote="github"/>
+  <project name="sbt/junit-interface" path="sbt/junit-interface" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/launcher" path="sbt/launcher" revision="refs/heads/1.x" remote="github"/>
+  <project name="sbt/librarymanagement" path="sbt/librarymanagement" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/sbt" path="sbt/sbt" revision="refs/heads/1.9.x" remote="github"/>
+  <project name="sbt/sbt-assembly" path="sbt-modules/sbt-assembly" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/sbt-autoplugin.g8" path="sbt-modules/sbt-autoplugin.g8" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-avro" path="sbt-modules/sbt-avro" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-boilerplate" path="sbt-modules/sbt-boilerplate" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-buildinfo" path="sbt-modules/sbt-buildinfo" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/sbt-ci-release" path="sbt-modules/sbt-ci-release" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-dynver" path="sbt-modules/sbt-dynver" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-eclipse" path="sbt-modules/sbt-eclipse" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-fresh" path="sbt-modules/sbt-fresh" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-git" path="sbt-modules/sbt-git" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-github-actions" path="sbt-modules/sbt-github-actions" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-header" path="sbt-modules/sbt-header" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-jacoco" path="sbt-modules/sbt-jacoco" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-javaagent" path="sbt-modules/sbt-javaagent" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-jmh" path="sbt-modules/sbt-jmh" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-jshint" path="sbt-modules/sbt-jshint" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-license-report" path="sbt-modules/sbt-license-report" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-maven-plugin" path="sbt-modules/sbt-maven-plugin" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-multi-jvm" path="sbt-modules/sbt-multi-jvm" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-native-packager" path="sbt-modules/sbt-native-packager" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-nocomma" path="sbt-modules/sbt-nocomma" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-onejar" path="sbt-modules/sbt-onejar" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-pgp" path="sbt-modules/sbt-pgp" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/sbt-proguard" path="sbt-modules/sbt-proguard" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-projectmatrix" path="sbt-modules/sbt-projectmatrix" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/sbt-protobuf" path="sbt-modules/sbt-protobuf" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-release" path="sbt-modules/sbt-release" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-scalariform" path="sbt-modules/sbt-scalariform" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-site" path="sbt-modules/sbt-site" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-sriracha" path="sbt-modules/sbt-sriracha" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-start-script" path="sbt-modules/sbt-start-script" revision="refs/heads/master" remote="github"/>
+  <project name="sbt/sbt-unidoc" path="sbt-modules/sbt-unidoc" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/sbt-web" path="sbt-modules/sbt-web" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbt-web-build-base" path="sbt-modules/sbt-web-build-base" revision="refs/heads/main" remote="github"/>
+  <project name="sbt/sbtn-dist" path="sbt/sbtn-dist" revision="refs/heads/develop" remote="github"/>
+  <project name="sbt/zinc" path="sbt/zinc" revision="refs/heads/develop" remote="github"/>
+</manifest>

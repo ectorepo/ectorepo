@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- lang + compat -->
+  <project name="lampepfl/dotty" path="lang/dotty" revision="refs/heads/main"/>
+  <project name="scala/scala" path="lang/scala" revision="refs/heads/2.13.x"/>
+  <project name="scala/scala-collection-compat" path="lang/scala-collection-compat" revision="refs/heads/main"/>
+  <project name="scala/scala-collection-laws" path="lang/scala-collection-laws" revision="refs/heads/main"/>
+  <!-- std lib -->
+  <!-- <project name="scala/" path="std/"/> -->
+  <!-- lib -->
+  <!-- sbt -->
+  <!-- sbt modules -->
+  <project name="scala/sbt-scala-module" path="sbt-modules/sbt-scala-module" revision="refs/heads/main"/>
+  <!-- project -->
+  <!-- examples -->
+  <project name="rockthejvm/scala-3-beginners" path="eg/scala-3-beginners" revision="refs/heads/master"/>
+  <!-- g8 templates -->
+  <project name="scala/scala3.g8" path="templates/scala3.g8" revision="refs/heads/main"/>
+  <project name="scala/scala-seed.g8" path="templates/scala-seed.g8" revision="refs/heads/main"/>
+  <project name="scala/scalatest-example.g8" path="templates/scalatest-example.g8" revision="refs/heads/main"/>
+  <project name="scala/scala3-tasty-inspector.g8" path="templates/scala3-tasty-inspector.g8" revision="refs/heads/main"/>
+</manifest>
