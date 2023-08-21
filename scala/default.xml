@@ -19,7 +19,7 @@
   <project name="rockthejvm/scala-3-beginners" path="eg/scala-3-beginners" revision="refs/heads/master"/>
   <!-- g8 templates -->
   <project name="scala/scala3.g8" path="templates/scala3.g8" revision="refs/heads/main"/>
-  <project name="scala/scala-seed.g8" path="templates/scala-seed.g8" revision="refs/heads/main"/>
+  <project name="scala/scala-seed.g8" path="templates/scala-seed.g8" revision="refs/heads/2.13.x"/>
   <project name="scala/scalatest-example.g8" path="templates/scalatest-example.g8" revision="refs/heads/main"/>
   <project name="scala/scala3-tasty-inspector.g8" path="templates/scala3-tasty-inspector.g8" revision="refs/heads/main"/>
 </manifest>
