@@ -11,20 +11,37 @@
 * Resources
 
 + The [[https://android.googlesource.com/tools/repo/+/HEAD/docs/manifest-format.md][DTD definition]] for Repo's Manifest XML
-+ The main Android platform [[https://android.googlesource.com/platform/manifest/][manifest]]
 + The main ChromiumOS platform [[https://chromium.googlesource.com/chromiumos/manifest/][manifest]] examples of groups & multiple manifests.
 + [[https://chromium.googlesource.com/chromiumos/docs/+/HEAD/work_on_branch.md][ChromiumOS Guide to Working on Branches]]
 + Gerrit [[https://gerrit-review.googlesource.com/Documentation/index.html][Docs]]
-+ [[https://www.instructables.com/Using-Googles-repo-command-in-your-own-projects/][How to set up in other new projects]]
-+ [[https://docs.sel4.systems/projects/buildsystem/repo-cheatsheet.html][Google Repo cheatsheet]] from sel4 systems
-+ [[https://en.wikibooks.org/wiki/Git/Submodules_and_Superprojects][git superprojects]] documentation
-+ Android: [[https://source.android.com/setup/develop/repo][Repo Command Reference]]
-+ Android: [[https://source.android.com/setup/develop/repo][Source Control Tools]]
-+ Android: [[https://source.android.com/setup/create/coding-tasks][Source Control Workflow]]
+
+** Android
+
++ The main Android platform [[https://android.googlesource.com/platform/manifest/][manifest]]
++ [[https://source.android.com/setup/develop/repo][Repo Command Reference]]
++ [[https://source.android.com/setup/develop/repo][Source Control Tools]]
++ [[https://source.android.com/setup/create/coding-tasks][Source Control Workflow]]
+
+** AMD ROCm
+
++ AMD ROCm [[https://github.com/RadeonOpenCompute/ROCm/blob/develop/default.xml][manifest]] which I found in my repo checkouts.
++ An [[https://github.com/RadeonOpenCompute/ROCm/tree/develop/tools/autotag][autotag script]] compiles changelog, submits PR's and runs release
+  validation. It uses ElementTree to iterate over the =default.xml=,
+  constructing a list of git repos and branches.
++ [[https://github.com/RadeonOpenCompute/hcc/blob/df05d4fda454411e5ccb394796bfa3dbc5136918/SYNC_UPSTREAM.md?plain=1#L297][RadeonOpenCompute]] notes on contribution, branching and pull requests
+
+** Emacs
+
 + [[https://github.com/canatella/repo-el][Repo.el]] for emacs, albeit a bit incomplete. There are newer branches from
   [[https://github.com/snogge/repo-el/][snogge/repo-el]], but they haven't been integrated into master or canatella's
   original project.
+
+** Misc
+
++ [[https://www.instructables.com/Using-Googles-repo-command-in-your-own-projects/][How to set up in other new projects]]
++ [[https://docs.sel4.systems/projects/buildsystem/repo-cheatsheet.html][Google Repo cheatsheet]] from sel4 systems
 + [[https://medium.com/qe-unit/how-google-does-monorepo-revisited-8c793be20344][How Google Does Monorepo (revisited)]]
++ [[https://en.wikibooks.org/wiki/Git/Submodules_and_Superprojects][git superprojects]] documentation
 
 * Overview
 
