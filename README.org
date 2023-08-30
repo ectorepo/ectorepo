@@ -1,21 +1,362 @@
 :PROPERTIES:
 :ID:       4554d87c-498f-4acd-b7ef-500714e6b7b7
 :END:
-#+TITLE: Ectorepo Notes
+#+TITLE: Ectorepo
 #+AUTHOR: David Conner
 #+DESCRIPTION: Git submodules containing Google Repo manifests for a great good.
 #+PROPERTY:
 #+STARTUP: content
 #+OPTIONS: toc:nil
 
+* Resources
 
-* Ectorepo
++ The [[https://android.googlesource.com/tools/repo/+/HEAD/docs/manifest-format.md][DTD definition]] for Repo's Manifest XML
++ The main Android platform [[https://android.googlesource.com/platform/manifest/][manifest]]
++ The main ChromiumOS platform [[https://chromium.googlesource.com/chromiumos/manifest/][manifest]] examples of groups & multiple manifests.
++ [[https://chromium.googlesource.com/chromiumos/docs/+/HEAD/work_on_branch.md][ChromiumOS Guide to Working on Branches]]
++ Gerrit [[https://gerrit-review.googlesource.com/Documentation/index.html][Docs]]
++ [[https://www.instructables.com/Using-Googles-repo-command-in-your-own-projects/][How to set up in other new projects]]
++ [[https://docs.sel4.systems/projects/buildsystem/repo-cheatsheet.html][Google Repo cheatsheet]] from sel4 systems
++ [[https://en.wikibooks.org/wiki/Git/Submodules_and_Superprojects][git superprojects]] documentation
++ Android: [[https://source.android.com/setup/develop/repo][Repo Command Reference]]
++ Android: [[https://source.android.com/setup/develop/repo][Source Control Tools]]
++ Android: [[https://source.android.com/setup/create/coding-tasks][Source Control Workflow]]
++ [[https://github.com/canatella/repo-el][Repo.el]] for emacs, albeit a bit incomplete. There are newer branches from
+  [[https://github.com/snogge/repo-el/][snogge/repo-el]], but they haven't been integrated into master or canatella's
+  original project.
++ [[https://medium.com/qe-unit/how-google-does-monorepo-revisited-8c793be20344][How Google Does Monorepo (revisited)]]
 
-This is a git repo full of submodules to [[https://android.googlesource.com/tools/repo][Repo]] [[https://android.googlesource.com/platform/manifest/][projects]] made of git repos.
+* Overview
 
+This particular project is a git repo full of submodules to [[https://android.googlesource.com/tools/repo][Repo]] [[https://android.googlesource.com/platform/manifest/][projects]] made
+of git repos.
 
+** Use Cases
 
+The =git-repo= tool helps manage builds, automation and distribution of code for
+projects that have many dependencies. I hope to begin use it for that.
 
+*** Code Reference
+
+For now, specifying these XML's helps me manage +1000 projects that I may
+repeated refer to in the future. From here, I not only have up to date copies of
+the code to reference, but it automatically provides /a consistent set of simple
+paths/ across all my systems. This is critical to actually being able to find a
+project.
+
+**** Learning A New Language
+
+When I learn a language, a framework or a cloud provider's products, I find a
+clever way to convert the most essential repositories for reference into an XML
+specification:
+
++ ./hashicorp/gcp :: scraped from the GCP Blueprint projects
++ ./scala :: fetched by Github GraphQL query
+
+*** Build Automation
+
+Repo offers [[https://android.googlesource.com/tools/repo/+/HEAD/docs/repo-hooks.md][hooks]] and integration into CI systems that run
+build tasks, tests and containerized applications.
+
+***** TODO describe automating a build of Guix channel checkouts
+
+This is actually why I'm updating the readme...
+
+With repo, I can get upstream changes fairly easily and build the =*.go= files
+for channels I refer to in my packages/systems.
+
+However, I'm unsure how the rebase/sync will work. When changes don't prompt
+ambiguitity with merge/rebase, then it doesn't require user intervention. using
+=repo branch= and running =sync= on the checkout from the XML master branch is
+one way to handle it, then i should be able to =repo rebase= or something across
+the checkouts for each project.
+
+My editors and guile REPL's will simply refer to whatever project links are
+exposed under =/data/ecto/guix/guix= and =/data/ecto/guix/guix/channels=, so
+they will need to be rebuild on =repo branch= changes. I'm not sure that I'll
+make too many changes here. I want to, but I won't get paid to :( so it may be
+some time before I can contribute to non/guix.
+
+*** Managing Many Repositories
+
+Sure, there are other ways to clone/manage many git repos:
+
++ *Github stars/lists:* there are some projects loosely scattered across Github
+  that provide Editor/CLI tooling to fetch many projects at once. Can you use
+  this with many git forges? Nope.
++ *Automation*: you could use bash functions with maybe =jq=, but how robust is
+  that to wierd issues?
++ *Magit/Forge:* in Emacs, =forge.el= can import repositories from the file
+  system or by fetching them from remote. Only one client at a time can connect
+  to your sqlite database, thus syncing either the database or project paths for
+  Forge across multiple systems is brittle.
+
+**** Typical problems for these approaches:
+
++ You need to configure each tool for each system (for each editor environment)
++ In some cases, esp if these tools involve API access, you need to distribute
+  secrets across many clients. =git-repo= just clones like any git client.
++ In git-repo, repositories/projects are simply data in transit and simply
+  =.git= repositories on your filesystem.
++ Particularly for the =git-repo= alternatives (see list down below) they have
+  some arbitrary format/dependencies or run arbitrary shell scripts. They are
+  meant for a specific workflow or type of application. Upgrading the
+  packages/dependencies these tools use is potentially huge problem. This is why
+  =git-repo= still uses fairly old school package/code loading for python: look
+  at the source in =.repo=.
++ There are many features or edge cases: how a tool handles it is unclear until
+  you have spent sufficient time with the docs, source or workflows to discover
+  it. This is complicated if the projects have been abandoned.
 
 
 *** Submodules
+
+* Using Repo
+
+The details in this section are mainly geared towards using =git-repo= as an
+individual developer for learning, build automation and managing source.
+
+Using the tool as part of a team is I think completely different. To understand
+look at some of the resources linked above and maybe walk through [[https://gerrit-review.googlesource.com/admin/repos/git-repo,general][setting up a
+Gerrit account]]. The forge has a very fast UI ... but it doesn't really render
+the inline patches in the UI on all servers. Gerrit expects the structure of the
+Git index to be a bit different and thus operates differently than a typical Git
+forge. The [[https://gerrit-review.googlesource.com/Documentation/index.html][Gerrit docs]] explain a little bit about how Repo interfaces with
+objects in the Git index.
+
+** Useful Hacks
+
+I'll add more of these as I think of them.
+
+*** Search for images
+
+Many repositories include diagrams, so search for extensions like =png= or =svg=
+or =dot=.
+
+*** There's Probably A Github Issue For That
+
+You could find your answer in a github issue, sure, but if it's a well-run
+project, your answer could be found in the tests. You can even find answers to
+questions you didn't know to ask. The test cases are better organized.
+
+This is not always true and whether an issue resulted in a test case depends on
+a few things including how popular the project is. However, if it's an "esoteric
+language" or something then it benefits more from test coverage and is less
+likely to have "issue coverage".
+
+** Automation
+
+*** Github and Gitlab API
+
+A GraphQL query returning repositories will typically give return the default
+branch ref. This is a godsend.
+
+*** Merging changes from upstream
+
+TODO
+
+** Workflow
+
+*** Sharing Manifests and Branching
+
+It's important to decide whether a manifest is something that needs to be shared
+with others. Just like git has its quirks and situations to avoid, there are
+similar issues you want to avoid with =repo= commands, some of which may cause
+other coders to lose work, esp if they don't know the tool well.
+
+Changing paths is one such problem.
+
+*** Consistent paths
+
+To really benefit from using =git-repo= for reference, you need to plan out a
+system of consistent paths because otherwise finding repositories becomes
+unmanageable.
+
+*** Integrating Forge/Repo
+
+For many remote types including Github, Gitlab and a few others, Forge will pull
+down metadata on all of its repositories. However, /you really don't want
+everything/. Regardless of what =ectorepo= would seem to indicate on my own
+tendancies, I don't actually want to pull down more than I think will be useful.
+
+Also, while forge can handle multiple remotes for a single project as well as
+topics, issues and pull requests on mutliple forges/remotes, if you clone with
+Forge first, you will have to clean up the sqlite database. More automation is
+more problems sometimes. The answer to this is to collect a list of paths,
+whether from XML or however, that correspond to your =git-repo= checkout and
+then iterate across them to pass them to Forge.
+
+Potential issues:
+
++ *Changing paths in a Manifest XML:* and updating forge will probably result in
+  two rows for each project. This would be confusing. So instead, once you =repo
+  sync=, then you would collect a list of rows from Forge for all subdirectories
+  under the repo checkout. Run =forge-remove-repository= for any paths that no
+  longer exist, then run =forge-add-repository= for any new path.
+
+**** TODO describe syncing your Forge.el sqlite database with a repo's projects.
+
+
+* Getting Started
+
+You'll probably want to use =ssh-agent= in whichever way you do that.
+
+** Doing your first =repo sync=
+
+1. Install Google Repo with something like =sudo pacman -Syu repo=
+2. Get a manifest.xml via:
+   + Specifying a manifest repo with a =default.xml=.
+   + Cloning a repo with a manifest XML definition.
+   + Building a manifest XML according to Google's Manifest DTD.
+3. Do a =repo init= via:
+   + Manifest Git or XML URL: =repo init -u $URL=
+   + File: =repo init -m $XML_FILE=
+4. Do a =repo sync= and, even if your XML is all good, you'll probably run into
+   branch naming issues... /this is why we can't have nice things/. Using data
+   from a GraphQL API allows you get get the data all at once.
+5. Update the XML =<defaults/>= and =<project/>= tags with the appropriate
+   =revision= properties. Then cross your fingers and try =repo sync= once
+   again.
+
+** Using the manifest repositories in this project
+
+You have three options to start with:
+
+1. If you want all the manifest repo's (and you probably don't) -- clone this
+   repo, then init/update the submodules. Then cd to the file locations of your
+   choice and run =repo sync -m $XML_FILE=
+2. Clone the manifests for groups of git repo's that you want using =repo sync
+   -u $URL=. This is what I would recommend, initially, as large repos like
+   Android or ChromiumOS can require 10+ gigabytes if you don't use additional
+   =repo sync= options.
+3. Use the org-babel blocks below to cobble together a manifest using an
+   existing set of git repositories. You can use =repo sync= with the =-m
+   $XML_FILE= option when building the manifest or =-u $URL= option if you'd
+   prefer to push it to a git remote.
+   + These won't account for git submodules and other edge cases.
+   + I developed these examples for my purposes on my systems.
+   + You will likely have to iterate a few times to get Google repo to ingest
+     your manifest as intended If you end up importing more
+
+**** TODO examples using =dir-locals.el= with Repo & org-mode
+
+**** TODO advise against using git submodules
+
+At least not until a manifest is sufficiently solidified.
+
+** Running =repo sync= on Guix System
+
+The guix git-repo package currently has some issues with =python3=. This should
+fix running =repo= in =/data/ecto=, the common directory where repos are synced.
+It should only needed on Guix System as a temporary fix. I would perhaps
+contribute a patch, but I'm too busy at the moment. I'm not sure if it's a
+simple fix.
+
+#+begin_src sh :tangle .envrc.ecto.eg
+# -*- mode: sh -*-
+use_guix_profile $GUIX_EXTRA/pythondev/pythondev
+PATH_add /data/ecto/git-repo
+layout python3
+#+end_src
+
+* Automation
+
+**** TODO maybe import notes on automation from emacs/python/etc
+
+* Other Repo Resources
+
+** A Brief List of Alternatives to [[https://gerrit.googlesource.com/git-repo/][Google Repo]]
+
+GLHF. You'll probably arrive at the same conclusion as I, but hopefully more
+quickly: just use the software built by Google.
+
++ [[https://github.com/pazdera/gitwalk][pazdera/gitwalk]] (popular, allows groups defined via JSON, best so far besides repo)
++ [[https://github.com/mixu/gr][mixu/gr]] (another promising bulk management tool)
+  + similar to my old ad hoc gitar scripts
+  + auto-discover local git repos, attach tags and manage as lists
++ [[https://github.com/asottile/all-repos][asottile/all-repos]] (interesting)
++ [[https://github.com/naddeoa/git-bulk][naddeoa/git-bulk]] (also probably helpful)
++ [[https://github.com/fabiospampinato/autogit][fabiospampinato/autogit]] (most popular, but aimed towards personal/org repo management)
++ [[https://github.com/scivision/pygit-bulk][scivision/pygit-bulk]] and [[https://pypi.org/project/gitutils/][GitMC]]
++ [[https://gist.github.com/Lukas238/8d9abbeabfcd7225e3a254d40eb0c080][Bulk backup/clone of Git Repos From A List]]
++ [[https://github.com/taylorjayoung/RepoSweeper][RepoSweeper]] (for deleting/managing Github repos)
++ [[https://github.com/genius-systems/gameta][Gameta]] (python)
++ [[https://github.com/blejdfist/git-metarepo][git-metarepo]]
++ [[0    Link: https://gerrit.googlesource.com/git-repo/][repo]] (google)
++ [[https://fabioz.github.io/mu-repo/][murepo]]
++ [[https://github.com/mateodelnorte/meta][meta]] (node cmd & makefile approach)
+
+** Answers To Common Google Repo Questions
+
+My exposure to the tool is limited, but these were some of the workflow and
+usage questions which I personally encountered early on. You should maybe prefer
+resources like the [[https://chromium.googlesource.com/chromiumos/docs/+/HEAD/work_on_branch.md][ChromiumOS Guide to Working on Branches]].
+
+#+begin_quote
+Also, I've noticed some changes to =git-repo= recently, so the status on some of
+these possiblities or edge cases may be dated.
+#+end_quote
+
+*** Can many =*.xml= files share a repo when they do not produce a common manifest?
+
+Yes, but it complicates things when you want to clone a manifest repo without using =repo -m $XML_FILE=.
+
+If so, it's possible to create a repo with a bunch of these manifests and serve
+them into repos... but it's not practical without an XML server.
+
+*** Can I use symlinks?
+
+This would help you link manifests into a single git repository. However, you
+end up running into the same problems. Further, linking files within a manifest
+repo for the Repo tool makes things a bit dicey.
+
+So no. Just no. Technically, you can, but ... good luck. RTFM or cry.
+
+*** What is this local manifest thing?
+
+If like me you're searching for a way around the two problems above, then it's
+probably not what you're looking for. It's useful for extending from a manifest,
+but it's subclass where you want modularity or true multi-inheritence.
+
+*** So how do I get around having one =default.xml=?
+
+You don't. You either use git URLS, raw XML URL's or =file://= URLS. With the
+last of the above, repo may not work as designed: you are venturing into
+advanced use-case territory, so you should know what you're doing before you get
+there -- this is what took me so damn long. The XML server option is fairly
+advanced as well.
+
+**** ... well technically, this =--standalone-manifest= may help.
+
+#+begin_example bash
+repo init -u $url -m --standalone-manifest
+#+end_example
+
++ It works, but according to =./repo/project.py= changes to the manifest will
+  only be sync'd when fully specifying the =repo sync -u $url -m $file
+  --standalone-manifest=.
++ The bad news: it will run =.rmtree(...)= on =gitdir= and =worktree=, which
+  blows away the git index/cache and most other things you might care about if
+  you didn't push your code to remote.
+  - all in all, it works as long as you know that.
+  - here's an [[file:/data/ecto/guix/.repo/repo/project.py::which necessitates starting fresh.][orgit link]] (local fs) to the commit: [[orgit-rev:/data/ecto/guix/.repo/repo/::9b03f15e8e870866b26699f696af1884100f51b5][/data/ecto/guix/.repo/repo/ (magit-rev 9b03f15)]]
+
+*** Can I use one giant manifest with Repo groups?
+
+I didn't really think about this, but yes. However, keep in mind that doing a
+=repo sync= on the ChromiumOS manifest caused my =/home= partition to run out of
+disk.
+
+*** Common scripting languages download their package sources to disk. Why not just use that?
+
+For me, that works on a language-by-language basis, sometimes depending on the
+tooling that I have configured for the language, like =nvm= or =chruby=, =rbenv=
+and =ruby_build=.
+
+You really want to designate important libraries that you care about and give
+them a special place.
+
+*** Can I branch and manage my manifest.xml's in different branches?
+
+Don't LOL
+
