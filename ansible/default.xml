@@ -9,6 +9,7 @@
   <project name="ansible/workshops" path="eg/workshops" revision="refs/heads/devel" remotes="github"/>
   <project name="ansible/test-playbooks" path="eg/test-playbooks" revision="refs/heads/main" remotes="github"/>
   <project name="ansible/devtools" path="devtools" revision="refs/heads/main" remotes="github"/>
+  <project name="ansible/ansible-language-server" path="ansible-language-server" revision="refs/heads/main" remotes="github"/>
   <project name="pfsensible/core" path="roles/pfsensible" revision="refs/heads/master" remotes="github"/>
   <project name="techno-tim/k3s-ansible" path="eg/k3s-ansible" revision="refs/heads/master" remotes="github"/>
   <project name="ThePrimeagen/ansible" path="eg/ThePrimagen" revision="refs/heads/master" remote="github"/>
