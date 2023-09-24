@@ -17,6 +17,7 @@
   <remote name="sourceware" fetch="https://sourceware.org/git"/>
   <remote name="srht_abcdw" fetch="https://git.sr.ht/~abcdw"/>
   <remote name="srht_akagi" fetch="https://git.sr.ht/~akagi"/>
+  <remote name="srht_jplatte" fetch="https://git.sr.ht/~jplatte"/>
   <remote name="srht_krevedkokun" fetch="https://git.sr.ht/~krevedkokun"/>
   <remote name="srht_michal_atlas" fetch="https://git.sr.ht/~michal_atlas"/>
   <remote name="srht_oriansj" fetch="https://git.sr.ht/~oriansj"/>

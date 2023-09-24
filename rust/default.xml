@@ -93,6 +93,7 @@
   <project path="cargo/rustc-demangle" name="rust-lang/rustc-demangle" revision="refs/heads/main"/>
   <project path="cargo/thorin" name="rust-lang/thorin" revision="refs/heads/main"/>
   <project path="cargo/rust-semverver" name="rust-lang/rust-semverver"/>
+  <project path="cargo/cargo-depgraph" name="cargo-depgraph" remote="srht_jplatte" revision="refs/heads/main"/>
   <!-- environment/tooling -->
   <project path="env/rustup" name="rust-lang/rustup"/>
   <project path="env/rustfmt" name="rust-lang/rustfmt"/>
