@@ -80,7 +80,7 @@
   <project path="edit/rust-mode" name="rust-lang/rust-mode"/>
   <project path="edit/atom-ide-rust" name="rust-lang/atom-ide-rust"/>
   <project path="edit/rls" name="rust-lang/rls"/>
-  <project path="edit/rust-vscode" name="rust-lang/rust-vscode"/>
+  <project path="edit/vscode-rust" name="rust-lang/vscode-rust"/>
   <!-- packaging -->
   <project path="cargo/cargo" name="rust-lang/cargo"/>
   <project path="cargo/crates.io" name="rust-lang/crates.io" revision="refs/heads/main"/>
