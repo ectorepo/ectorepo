@@ -83,7 +83,7 @@
   <project path="edit/rust-vscode" name="rust-lang/rust-vscode"/>
   <!-- packaging -->
   <project path="cargo/cargo" name="rust-lang/cargo"/>
-  <project path="cargo/cargo.io" name="rust-lang/cargo.io" revision="refs/heads/main"/>
+  <project path="cargo/crates.io" name="rust-lang/crates.io" revision="refs/heads/main"/>
   <project path="cargo/pkg-config-rs" name="rust-lang/pkg-config-rs"/>
   <project path="cargo/cmake-rs" name="rust-lang/cmake-rs"/>
   <project path="cargo/crates-build-env" name="rust-lang/crates-build-env"/>
