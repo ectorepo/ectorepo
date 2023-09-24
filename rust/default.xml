@@ -19,7 +19,7 @@
   <!-- examples -->
   <project path="eg/rust-repos" name="rust-lang/rust-repos"/>
   <project path="eg/rustlings" name="rust-lang/rustlings" revision="refs/heads/main"/>
-  <project path="eg/rust-playground" name="rust-lang/rust-playground"/>
+  <project path="eg/rust-playground" name="rust-lang/rust-playground" revision="refs/heads/main"/>
   <project path="eg/rust-by-example" name="rust-lang/rust-by-example"/>
   <!-- libs -->
   <project path="lib/hashbrown" name="rust-lang/hashbrown"/>
@@ -30,15 +30,15 @@
   <project path="lib/futures-rs" name="rust-lang/futures-rs"/>
   <project path="lib/getopts" name="rust-lang/getopts"/>
   <project path="lib/regex" name="rust-lang/regex"/>
-  <project path="lib/rustc-rayon" name="rust-lang/rustc-rayon" revision="refs/heads/rustc-rayon"/>
+  <project path="lib/rustc-rayon" name="rust-lang/rustc-rayon" revision="refs/heads/rustc"/>
   <project path="lib/libm" name="rust-lang/libm"/>
   <project path="lib/rustc-hash" name="rust-lang/rustc-hash"/>
   <project path="lib/packed_simd" name="rust-lang/packed_simd"/>
-  <project path="lib/rustc_apfloat" name="rust-lang/rustc_apfloat" revision="refs/heads/rustc-rayon"/>
+  <project path="lib/rustc_apfloat" name="rust-lang/rustc_apfloat" revision="refs/heads/main"/>
   <project path="lib/annotate-snippets-rs" name="rust-lang/annotate-snippets-rs"/>
   <project path="lib/glob" name="rust-lang/glob"/>
   <!-- apps -->
-  <project path="app/ferris-says" name="rust-lang/ferris-says" revision="refs/heads/rustc-rayon"/>
+  <project path="app/ferris-says" name="rust-lang/ferris-says" revision="refs/heads/main"/>
   <!-- instr/benchmarking/perf -->
   <project path="instr/rustc-perf" name="rust-lang/rustc-perf"/>
   <project path="instr/backtrace-rs" name="rust-lang/backtrace-rs"/>
@@ -50,7 +50,7 @@
   <project path="infra/git2-rs" name="rust-lang/git2-rs"/>
   <project path="infra/cargo-bisect-rustc" name="rust-lang/cargo-bisect-rustc"/>
   <project path="infra/homu" name="rust-lang/homu"/>
-  <project path="infra/bors" name="rust-lang/bors"/>
+  <project path="infra/bors" name="rust-lang/bors" revision="refs/heads/main"/>
   <project path="infra/pin-utils" name="rust-lang/pin-utils"/>
   <project path="infra/rfcbot-rs" name="rust-lang/rfcbot-rs"/>
   <project path="infra/gha-self-hosted" name="rust-lang/gha-self-hosted"/>
@@ -91,7 +91,7 @@
   <project path="cargo/cfg-if" name="rust-lang/cfg-if" revision="refs/heads/main"/>
   <project path="cargo/rustc-demangle" name="rust-lang/rustc-demangle" revision="refs/heads/main"/>
   <project path="cargo/thorin" name="rust-lang/thorin" revision="refs/heads/main"/>
-  <project path="cargo/rust-semverver" name="rust-lang/rust-semverver" revision="refs/heads/main"/>
+  <project path="cargo/rust-semverver" name="rust-lang/rust-semverver"/>
   <!-- environment/tooling -->
   <project path="env/rustup" name="rust-lang/rustup"/>
   <project path="env/rustfmt" name="rust-lang/rustfmt"/>
