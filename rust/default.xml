@@ -39,6 +39,7 @@
   <project path="lib/glob" name="rust-lang/glob"/>
   <!-- apps -->
   <project path="app/ferris-says" name="rust-lang/ferris-says" revision="refs/heads/main"/>
+  <project path="app/eww" name="elkowar/eww"/>
   <!-- instr/benchmarking/perf -->
   <project path="instr/rustc-perf" name="rust-lang/rustc-perf"/>
   <project path="instr/backtrace-rs" name="rust-lang/backtrace-rs"/>
