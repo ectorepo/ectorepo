@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- lang + compat -->
+  <project path="rust/rust" name="rust-lang/rust"/>
+  <project path="rust/libc" name="rust-lang/libc" revision="refs/heads/main"/>
+  <project path="rust/cc-rs" name="rust-lang/cc-rs" revision="refs/heads/main"/>
+  <project path="rust/miri" name="rust-lang/miri"/>
+  <project path="rust/rustc_codegen_gcc" name="rust-lang/rustc_codegen_gcc"/>
+  <project path="rust/portable-simd" name="rust-lang/portable-simd"/>
+  <project path="rust/stdarch" name="rust-lang/stdarch"/>
+  <project path="rust/rust-bindgen" name="rust-lang/rust-bindgen" revision="refs/heads/main"/>
+  <project path="rust/chalk" name="rust-lang/chalk"/>
+  <project path="rust/polonius" name="rust-lang/polonius"/>
+  <project path="rust/ena" name="rust-lang/ena"/>
+  <!-- test -->
+  <project path="test/miri-test-libstd" name="rust-lang/miri-test-libstd"/>
+  <!-- examples -->
+  <project path="eg/rust-repos" name="rust-lang/rust-repos"/>
+  <project path="eg/rustlings" name="rust-lang/rustlings" revision="refs/heads/main"/>
+  <project path="eg/rust-playground" name="rust-lang/rust-playground"/>
+  <project path="eg/rust-by-example" name="rust-lang/rust-by-example"/>
+  <!-- libs -->
+  <project path="lib/hashbrown" name="rust-lang/hashbrown"/>
+  <project path="lib/stacker" name="rust-lang/stacker"/>
+  <project path="lib/log" name="rust-lang/log"/>
+  <project path="lib/flate2-rs" name="rust-lang/flate2-rs" revision="refs/heads/main"/>
+  <project path="lib/libz-sys" name="rust-lang/libz-sys" revision="refs/heads/main"/>
+  <project path="lib/futures-rs" name="rust-lang/futures-rs"/>
+  <project path="lib/getopts" name="rust-lang/getopts"/>
+  <project path="lib/regex" name="rust-lang/regex"/>
+  <project path="lib/rustc-rayon" name="rust-lang/rustc-rayon" revision="refs/heads/rustc-rayon"/>
+  <project path="lib/libm" name="rust-lang/libm"/>
+  <project path="lib/rustc-hash" name="rust-lang/rustc-hash"/>
+  <project path="lib/packed_simd" name="rust-lang/packed_simd"/>
+  <project path="lib/rustc_apfloat" name="rust-lang/rustc_apfloat" revision="refs/heads/rustc-rayon"/>
+  <project path="lib/annotate-snippets-rs" name="rust-lang/annotate-snippets-rs"/>
+  <project path="lib/glob" name="rust-lang/glob"/>
+  <!-- apps -->
+  <project path="app/ferris-says" name="rust-lang/ferris-says" revision="refs/heads/rustc-rayon"/>
+  <!-- instr/benchmarking/perf -->
+  <project path="instr/rustc-perf" name="rust-lang/rustc-perf"/>
+  <project path="instr/backtrace-rs" name="rust-lang/backtrace-rs"/>
+  <project path="instr/measureme" name="rust-lang/measureme"/>
+  <!-- networking -->
+  <project path="net/socket2" name="rust-lang/socket2"/>
+  <!-- infrastructure/automation -->
+  <project path="infra/crater" name="rust-lang/crater"/>
+  <project path="infra/git2-rs" name="rust-lang/git2-rs"/>
+  <project path="infra/cargo-bisect-rustc" name="rust-lang/cargo-bisect-rustc"/>
+  <project path="infra/homu" name="rust-lang/homu"/>
+  <project path="infra/bors" name="rust-lang/bors"/>
+  <project path="infra/pin-utils" name="rust-lang/pin-utils"/>
+  <project path="infra/rfcbot-rs" name="rust-lang/rfcbot-rs"/>
+  <project path="infra/gha-self-hosted" name="rust-lang/gha-self-hosted"/>
+  <project path="infra/rust-log-analyzer" name="rust-lang/rust-log-analyzer"/>
+  <project path="infra/sync-team" name="rust-lang/sync-team"/>
+  <project path="infra/jobserver-rs" name="rust-lang/jobserver-rs" revision="refs/heads/main"/>
+  <project path="infra/rustwide" name="rust-lang/rustwide"/>
+  <project path="infra/promote-release" name="rust-lang/promote-release"/>
+  <project path="infra/highfive" name="rust-lang/highfive"/>
+  <project path="infra/discord-mods-bot" name="rust-lang/discord-mods-bot"/>
+  <!-- docs -->
+  <project path="doc/nomicon" name="rust-lang/nomicon"/>
+  <project path="doc/docs.rs" name="rust-lang/docs.rs"/>
+  <project path="doc/rustc-dev-guide" name="rust-lang/rustc-dev-guide"/>
+  <project path="doc/rust-forge" name="rust-lang/rust-forge"/>
+  <project path="doc/book" name="rust-lang/book" revision="refs/heads/main"/>
+  <project path="doc/a-mir-formality" name="rust-lang/a-mir-formality" revision="refs/heads/main"/>
+  <project path="doc/reference" name="rust-lang/reference"/>
+  <project path="doc/async-book" name="rust-lang/async-book"/>
+  <project path="doc/unsafe-code-guidelines" name="rust-lang/unsafe-code-guidelines"/>
+  <project path="doc/project-stable-mir" name="rust-lang/project-stable-mir" revision="refs/heads/main"/>
+  <project path="doc/api-guidelines" name="rust-lang/api-guidelines"/>
+  <project path="doc/std-dev-guide" name="rust-lang/std-dev-guide"/>
+  <!-- editor tooling -->
+  <project path="edit/rust-lang" name="rust-lang/rust-analyzer"/>
+  <project path="edit/rust.vim" name="rust-lang/rust.vim"/>
+  <project path="edit/rust-mode" name="rust-lang/rust-mode"/>
+  <project path="edit/atom-ide-rust" name="rust-lang/atom-ide-rust"/>
+  <project path="edit/rls" name="rust-lang/rls"/>
+  <project path="edit/rust-vscode" name="rust-lang/rust-vscode"/>
+  <!-- packaging -->
+  <project path="cargo/cargo" name="rust-lang/cargo"/>
+  <project path="cargo/cargo.io" name="rust-lang/cargo.io" revision="refs/heads/main"/>
+  <project path="cargo/pkg-config-rs" name="rust-lang/pkg-config-rs"/>
+  <project path="cargo/cmake-rs" name="rust-lang/cmake-rs"/>
+  <project path="cargo/crates-build-env" name="rust-lang/crates-build-env"/>
+  <project path="cargo/compiler-builtins" name="rust-lang/compiler-builtins"/>
+  <project path="cargo/cfg-if" name="rust-lang/cfg-if" revision="refs/heads/main"/>
+  <project path="cargo/rustc-demangle" name="rust-lang/rustc-demangle" revision="refs/heads/main"/>
+  <project path="cargo/thorin" name="rust-lang/thorin" revision="refs/heads/main"/>
+  <project path="cargo/rust-semverver" name="rust-lang/rust-semverver" revision="refs/heads/main"/>
+  <!-- environment/tooling -->
+  <project path="env/rustup" name="rust-lang/rustup"/>
+  <project path="env/rustfmt" name="rust-lang/rustfmt"/>
+  <project path="env/docker-rust" name="rust-lang/docker-rust"/>
+</manifest>
