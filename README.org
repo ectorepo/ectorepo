@@ -166,7 +166,10 @@ likely to have "issue coverage".
 *** Github and Gitlab API
 
 A GraphQL query returning repositories will typically give return the default
-branch ref. This is a godsend.
+branch ref.
+
+There is also the [[https://api.github.com/users/nmap/repos][api.github.com/users/$user/repos]] endpoint which returns JSON
+and includes the =default_branch= ref.
 
 *** Merging changes from upstream
 

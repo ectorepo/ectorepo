@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- * opnsense -->
+  <project name="opnsense/core" path="opnsense/core" groups="opnsense"/>
+  <project name="opnsense/lang" path="opnsense/lang" groups="opnsense"/>
+  <project name="opnsense/tools" path="opnsense/tools" groups="opnsense"/>
+  <project name="opnsense/plugins" path="opnsense/plugins" groups="opnsense"/>
+  <project name="opnsense/docs" path="opnsense/docs" groups="opnsense"/>
+  <project name="opnsense/update" path="opnsense/update" groups="opnsense"/>
+  <project name="opnsense/changelog" path="opnsense/changelog" groups="opnsense"/>
+  <project name="opnsense/rules" path="opnsense/rules" groups="opnsense"/>
+  <project name="opnsense/dhcp6c" path="opnsense/dhcp6c" groups="opnsense"/>
+  <project name="opnsense/pam_opnsense" path="opnsense/pam_opnsense" groups="opnsense"/>
+  <project name="opnsense/installer" path="opnsense/installer" groups="opnsense"/>
+  <project name="opnsense/ui_devtools" path="opnsense/ui_devtools" groups="opnsense"/>
+  <!-- ** opnsense: BSD Build (+250,000 commits) -->
+  <!-- <project name="opnsense/src" path="opnsense/src" groups="opnsense" revision="refs/heads/stable/23.7" /> -->
+  <!-- ** opnsense: BSD Ports (25,000 commits) -->
+  <project name="opnsense/ports" path="opnsense/ports" groups="opnsense"/>
+  <!-- * pfsense -->
+  <project name="pfsense/pfsense" path="pfsense/pfsense" groups="pfsense"/>
+  <project name="pfsense/simplepie" path="pfsense/simplepie" groups="pfsense"/>
+  <project name="pfsense/wiregaurd-tools" path="pfsense/wiregaurd-tools" groups="pfsense"/>
+  <!-- ** pfsense: BSD (these are very large, millions of commits) -->
+  <!-- <project name="pfsense/" path="pfsense/FreeBSD-Ports" groups="pfsense" /> -->
+  <!-- <project name="pfsense/" path="pfsense/FreeBSD-src" groups="pfsense" revision="refs/heads/devel-main" /> -->
+  <!-- * ansible -->
+  <!-- ** ansible: pfsensible -->
+  <project name="pfsensible/core" path="ansible/pfsensible/core" revision="refs/heads/master" groups="pfsense,ansible"/>
+  <project name="pfsensible/suricata" path="ansible/pfsensible/suricata" revision="refs/heads/main" groups="pfsense,ansible"/>
+  <project name="pfsensible/zabbix" path="ansible/pfsensible/zabbix" revision="refs/heads/main" groups="pfsense,ansible"/>
+  <!-- ** ansible: opnsense -->
+  <project name="ansibleguy/collection_opnsense" path="ansible/opnsense/core" revision="refs/heads/latest" groups="opnsense,ansible"/>
+  <project name="ansibleguy/opnsense-control-center" path="ansible/opnsense/control-center" revision="refs/heads/dev" groups="opnsense,ansible"/>
+</manifest>
