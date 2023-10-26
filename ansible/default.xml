@@ -4,42 +4,43 @@
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <!-- * Ansible -->
   <!-- Docs for Standard Ansible Galaxy Collections Be Here -->
-  <project name="ansible/ansible" path="ansible" revision="refs/heads/devel" remotes="github"/>
-  <project name="ansible/ansible-navigator" path="ansible-navigator" revision="refs/heads/main" remotes="github"/>
-  <project name="ansible/ansible-rulebook" path="ansible-rulebook" revision="refs/heads/main" remotes="github"/>
-  <project name="ansible/test-playbooks" path="eg/test-playbooks" revision="refs/heads/main" remotes="github"/>
+  <project name="ansible/ansible" path="ansible" revision="refs/heads/devel"/>
+  <project name="ansible/ansible-navigator" path="ansible-navigator" revision="refs/heads/main"/>
+  <project name="ansible/ansible-rulebook" path="ansible-rulebook" revision="refs/heads/main"/>
+  <project name="ansible/test-playbooks" path="eg/test-playbooks" revision="refs/heads/main"/>
   <!-- ** Tooling -->
-  <project name="ansible/devtools" path="devtools" revision="refs/heads/main" remotes="github"/>
-  <project name="ansible/ansible-language-server" path="ansible-language-server" revision="refs/heads/main" remotes="github"/>
-  <project name="ansible-semaphore/semaphore" path="semaphore" revision="refs/heads/develop" remotes="github"/>
+  <project name="ansible/devtools" path="devtools" revision="refs/heads/main"/>
+  <project name="ansible/ansible-language-server" path="ansible-language-server" revision="refs/heads/main"/>
+  <project name="ansible-semaphore/semaphore" path="semaphore" revision="refs/heads/develop"/>
   <!-- * Examples -->
-  <project name="techno-tim/k3s-ansible" path="eg/k3s-ansible" revision="refs/heads/master" remotes="github"/>
-  <project name="ThePrimeagen/ansible" path="eg/ThePrimagen" revision="refs/heads/master" remote="github"/>
-  <project name="geerlingguy/ansible-for-devops" path="eg/ansible-for-devops" revision="refs/heads/master" remotes="github"/>
-  <project name="MichaelCade/90DaysOfDevOps" path="90days" revision="refs/heads/main" remotes="github"/>
-  <project name="ChristianLempa/boilerplates" path="eg/boilerplates" revision="refs/heads/main" remotes="github"/>
-  <project name="antonputra/tutorials" path="eg/antonputra" revision="refs/heads/main" remotes="github"/>
-  <project name="byrn-baker/Ansible-Workshop" path="eg/Ansible-Workshop" revision="refs/heads/main" remotes="github"/>
-  <project name="network-evolution/Ansible-Playbooks" path="eg/network-evolution" revision="refs/heads/master" remotes="github"/>
-  <project name="network-evolution/Python_for_Network_Engineers" path="eg/py4network" revision="refs/heads/main" remotes="github"/>
+  <project name="techno-tim/k3s-ansible" path="eg/k3s-ansible"/>
+  <project name="ThePrimeagen/ansible" path="eg/ThePrimagen">
+  <project name="geerlingguy/ansible-for-devops" path="eg/ansible-for-devops"/>
+  <project name="MichaelCade/90DaysOfDevOps" path="90days" revision="refs/heads/main"/>
+  <project name="ChristianLempa/boilerplates" path="eg/boilerplates" revision="refs/heads/main"/>
+  <project name="antonputra/tutorials" path="eg/antonputra" revision="refs/heads/main"/>
+  <project name="byrn-baker/Ansible-Workshop" path="eg/Ansible-Workshop" revision="refs/heads/main"/>
+  <project name="network-evolution/Ansible-Playbooks" path="eg/network-evolution"/>
+  <project name="network-evolution/Python_for_Network_Engineers" path="eg/py4network" revision="refs/heads/main"/>
   <!-- ** Red Hat -->
-  <project name="ansible/workshops" path="eg/workshops" revision="refs/heads/devel" remotes="github"/>
-  <project name="RedHatDemos/SecurityDemos" path="eg/SecurityDemos" revision="refs/heads/master" remotes="github"/>
+  <project name="ansible/workshops" path="eg/workshops" revision="refs/heads/devel"/>
+  <project name="RedHatDemos/SecurityDemos" path="eg/SecurityDemos"/>
   <!-- * Roles -->
+  <project name="redhat-cop/infra.osbuild" path="roles/infra.osbuild" revision="refs/heads/main"/>
   <!-- ** csmart -->
-  <project name="csmart/virt-infra-swift" path="roles/virt-infra-swift" revision="refs/heads/main" remotes="github"/>
-  <project name="csmart/ansible-role-swift" path="roles/ansible-role-swift" revision="refs/heads/main" remotes="github"/>
-  <project name="csmart/virt-infra-ansible" path="roles/virt-infra-ansible" remotes="github"/>
-  <project name="csmart/ansible-role-virt-infra" path="roles/ansible-role-virt-infra" revision="refs/heads/main" remotes="github"/>
-  <project name="csmart/infra.osbuild" path="roles/infra.osbuild" revision="refs/heads/main" remotes="github"/>
+  <project name="csmart/virt-infra-swift" path="roles/virt-infra-swift"/>
+  <project name="csmart/ansible-role-swift" path="roles/ansible-role-swift"/>
+  <project name="csmart/virt-infra-ansible" path="roles/virt-infra-ansible"/>
+  <project name="csmart/ansible-role-virt-infra" path="roles/ansible-role-virt-infra"/>
   <!-- ** geerlingguy -->
-  <project name="geerlingguy/ansible-role-repo-epel" path="roles/ansible-role-repo-epel" revision="refs/heads/master" remotes="github"/>
-  <project name="geerlingguy/ansible-role-gitlab" path="roles/ansible-role-gitlab" revision="refs/heads/master" remotes="github"/>
-  <project name="geerlingguy/ansible-role-ssh-chroot-jail" path="roles/ansible-role-ssh-chroot-jail" revision="refs/heads/master" remotes="github"/>
-  <project name="buluma/ansible-collection-roles" path="roles/buluma" revision="refs/heads/main" remotes="github"/>
+  <project name="geerlingguy/ansible-role-repo-epel" path="roles/ansible-role-repo-epel"/>
+  <project name="geerlingguy/ansible-role-gitlab" path="roles/ansible-role-gitlab"/>
+  <project name="geerlingguy/ansible-role-ssh-chroot-jail" path="roles/ansible-role-ssh-chroot-jail"/>
+  <!-- ** buluma -->
+  <project name="buluma/ansible-collection-roles" path="roles/buluma" revision="refs/heads/main"/>
   <!-- ** centos-opstools -->
   <project name="centos-opstools/opstools-ansible" path="roles/opstools-ansible"/>
   <!-- * Snippets -->
-  <project name="memoryleak/AdvancedAnsibleSnippets" path="snippets/AdvancedAnsibleSnippets" revision="refs/heads/master" remotes="github"/>
-  <project name="memoryleak/AdvancedAnsibleSnippetsGenerator" path="snippets/AdvancedAnsibleSnippetsGenerator" revision="refs/heads/master" remotes="github"/>
+  <project name="memoryleak/AdvancedAnsibleSnippets" path="snippets/AdvancedAnsibleSnippets"/>
+  <project name="memoryleak/AdvancedAnsibleSnippetsGenerator" path="snippets/AdvancedAnsibleSnippetsGenerator"/>
 </manifest>
