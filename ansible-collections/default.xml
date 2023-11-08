@@ -3,6 +3,8 @@
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <project name="debops/debops" path="debops/debops"/>
+  <project name="debops/examples" path="debops/examples"/>
+
   <include name="ansible-collections/ac_core.xml"/>
   <include name="ansible-collections/lsr_core.xml"/>
 </manifest>
