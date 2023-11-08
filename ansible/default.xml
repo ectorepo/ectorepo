@@ -15,7 +15,7 @@
   <project name="ansible-semaphore/semaphore" path="semaphore" revision="refs/heads/develop"/>
   <!-- * Examples -->
   <project name="techno-tim/k3s-ansible" path="eg/k3s-ansible"/>
-  <project name="ThePrimeagen/ansible" path="eg/ThePrimagen">
+  <project name="ThePrimeagen/ansible" path="eg/ThePrimagen"/>
   <project name="geerlingguy/ansible-for-devops" path="eg/ansible-for-devops"/>
   <project name="MichaelCade/90DaysOfDevOps" path="90days" revision="refs/heads/main"/>
   <project name="ChristianLempa/boilerplates" path="eg/boilerplates" revision="refs/heads/main"/>
