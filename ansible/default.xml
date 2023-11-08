@@ -9,7 +9,7 @@
   <project name="ansible/ansible-rulebook" path="ansible-rulebook" revision="refs/heads/main"/>
   <project name="ansible/test-playbooks" path="eg/test-playbooks" revision="refs/heads/main"/>
   <!-- ** Tooling -->
-  <project name="fanf2/regpg" path="regpg" revision="refs/heads/main"/>
+  <project name="fanf2/regpg" path="regpg" revision="refs/heads/master"/>
   <project name="ansible/devtools" path="devtools" revision="refs/heads/main"/>
   <project name="ansible/ansible-language-server" path="ansible-language-server" revision="refs/heads/main"/>
   <project name="ansible-semaphore/semaphore" path="semaphore" revision="refs/heads/develop"/>
