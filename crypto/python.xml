@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="OwnCA/ownca" path="python/ownca" revision="refs/heads/master" remote="github"/>
+  <project name="pyca/cryptography" path="python/cryptography" revision="refs/heads/main" remote="github"/>
+</manifest>

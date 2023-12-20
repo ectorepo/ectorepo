@@ -3,4 +3,6 @@
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="crypto/smallstep.xml"/>
+  <include name="crypto/python.xml"/>
+  <include name="crypto/go.xml"/>
 </manifest>
