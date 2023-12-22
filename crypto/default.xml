@@ -5,4 +5,5 @@
   <include name="crypto/smallstep.xml"/>
   <include name="crypto/python.xml"/>
   <include name="crypto/go.xml"/>
+  <include name="crypto/gnupg.xml"/>
 </manifest>

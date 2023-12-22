@@ -8,6 +8,7 @@
   <remote name="freedesktop" fetch="https://gitlab.freedesktop.org"/>
   <remote name="github" fetch="https://github.com"/>
   <remote name="gitlab" fetch="https://gitlab.com"/>
+  <remote name="gnupg" fetch="https://dev.gnupg.org/source"/>
   <remote name="googlesource" fetch="https://gerrit.googlesource.com"/>
   <remote name="guix_bioinformatics" fetch="https://git.genenetwork.org"/>
   <remote name="invent" fetch="https://invent.kde.org"/>
