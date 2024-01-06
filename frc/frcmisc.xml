@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <!-- robotpy -->
+  <project name="robotpy/pynetworktables" path="robotpy/pynetworktables" revision="refs/heads/main" remote="github" />
+</manifest>
