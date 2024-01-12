@@ -55,6 +55,10 @@ Generate =wpilibsuite.xml=
 <manifest>
   <!-- robotpy -->
   <project name="robotpy/pynetworktables" path="robotpy/pynetworktables" revision="refs/heads/main" remote="github" />
+  <!-- third party dashboards -->
+  <project name="binex-dsk/QFRCDashboard" path="dash/QFRCDashboard" revision="refs/heads/master" remote="github"/>
+  <project name="Gold872/elastic-dashboard" path="dash/elastic-dashboard" revision="refs/heads/main" remote="github"/>
+  <project name="frc-web-components/frc-web-components" path="dash/frc-web-components" revision="refs/heads/master" remote="github"/>
 </manifest>
 #+end_src
 
