@@ -14,6 +14,7 @@ repository.
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="frc/wpilibsuite.xml"/>
+  <include name="frc/robotpy.xml"/>
   <include name="frc/frcmisc.xml"/>
 </manifest>
 #+end_src
