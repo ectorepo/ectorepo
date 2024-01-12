@@ -53,8 +53,10 @@ Generate =wpilibsuite.xml=
 #+begin_src xml :tangle frcmisc.xml :noweb yes
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <!-- robotpy -->
-  <project name="robotpy/pynetworktables" path="robotpy/pynetworktables" revision="refs/heads/main" remote="github" />
+  <!-- texts -->
+  <project name="krishauser/RoboticSystemsBook" path="text/RoboticSystemsBook" revision="refs/heads/master" remote="github"/>
+  <project name="krishauser/Klampt" path="text/Klampt" revision="refs/heads/master" remote="github"/>
+  <project name="krishauser/Klampt-jupyter-extension" path="text/Klampt-jupyter-extension" revision="refs/heads/master" remote="github"/>
   <!-- third party dashboards -->
   <project name="binex-dsk/QFRCDashboard" path="dash/QFRCDashboard" revision="refs/heads/master" remote="github"/>
   <project name="Gold872/elastic-dashboard" path="dash/elastic-dashboard" revision="refs/heads/main" remote="github"/>
@@ -109,13 +111,68 @@ Filter the results, generate XML
   (string-join "\n"))
 #+end_src
 
-** Generate XML
-
 Generate =wpilibsuite.xml=
 
 #+begin_src xml :tangle wpilibsuite.xml :noweb yes
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<wpilibsuite()>>
+</manifest>
+#+end_src
+
+* Robotpy
+
+
+Get about 60 of the =robotpy= repositories. These should go into
+=/data/ecto/frc/robotpy=.
+
+#+name: robotpy-repos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "robotpy"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+Filter the results, generate XML
+
+#+name: robotpy
+#+begin_src emacs-lisp :var gqldata=robotpy-repos :results value html
+(thread-first
+  (thread-last
+    (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+    (mapcar (lambda (el) (a-get* el 'node)))
+    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+    (mapcar (lambda (el)
+              (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
+                     (path (a-get* el 'name))
+                     (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                  (a-get* el 'defaultBranchRef 'name)))
+                     (name (string-join (list (a-get* el 'owner 'login)
+                                              (a-get* el 'name)) "/")))
+                (concat "<project"
+                        " name=\"" name
+                        "\" path=\"robotpy/" path
+                        "\" revision=\"" ref "\" remote=\"github\"/>")))))
+  (cl-sort 'string-lessp :key 'downcase)
+  (string-join "\n"))
+#+end_src
+
+Generate =robotpy.xml=
+
+#+begin_src xml :tangle robotpy.xml :noweb yes
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <<robotpy()>>
 </manifest>
 #+end_src
