@@ -31,7 +31,7 @@
   <project name="wpilibsuite/robotbuilder-2" path="wpilibsuite/robotbuilder-2" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/shuffleboard" path="wpilibsuite/shuffleboard" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/SmartDashboard" path="wpilibsuite/SmartDashboard" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/sphinxext-delta" path="sphinxext-delta" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/sphinxext-delta" path="wpilibsuite/sphinxext-delta" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-opengraph" path="wpilibsuite/sphinxext-opengraph" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-photofinish" path="wpilibsuite/sphinxext-photofinish" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-presentations" path="wpilibsuite/sphinxext-presentations" revision="refs/heads/main" remote="github"/>
