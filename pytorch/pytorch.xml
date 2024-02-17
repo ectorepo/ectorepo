@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="pytorch/audio" path="core/audio" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/benchmark" path="core/benchmark" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/botorch" path="core/botorch" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/builder" path="core/builder" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/captum" path="core/captum" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/cppdocs" path="core/cppdocs" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/cpuinfo" path="core/cpuinfo" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/csprng" path="core/csprng" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/data" path="core/data" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/examples" path="core/examples" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/executorch" path="core/executorch" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/FBGEMM" path="core/FBGEMM" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/functorch" path="core/functorch" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/glow" path="core/glow" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/hub" path="core/hub" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/hydra-torch" path="core/hydra-torch" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/ignite" path="core/ignite" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/kineto" path="core/kineto" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/multipy" path="core/multipy" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/opacus" path="core/opacus" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/ort" path="core/ort" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/PiPPy" path="core/PiPPy" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/pytorch" path="core/pytorch" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/pytorch-integration-testing" path="core/pytorch-integration-testing" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/pytorch_sphinx_theme" path="core/pytorch_sphinx_theme" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/rfcs" path="core/rfcs" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/rl" path="core/rl" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/serve" path="core/serve" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/tensordict" path="core/tensordict" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/TensorRT" path="core/TensorRT" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/test-infra" path="core/test-infra" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/text" path="core/text" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/tnt" path="core/tnt" revision="refs/heads/master" remote="github"/>
+  <project name="pytorch/torcharrow" path="core/torcharrow" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/torchdistx" path="core/torchdistx" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/torchdynamo" path="core/torchdynamo" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/torcheval" path="core/torcheval" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/torchrec" path="core/torchrec" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/torchsnapshot" path="core/torchsnapshot" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/torchx" path="core/torchx" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/vision" path="core/vision" revision="refs/heads/main" remote="github"/>
+  <project name="pytorch/xla" path="core/xla" revision="refs/heads/master" remote="github"/>
+</manifest>

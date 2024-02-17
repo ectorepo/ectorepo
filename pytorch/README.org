@@ -1,0 +1,230 @@
+#+title:     Ectorepo: Pytorch
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+
+A list of PyTorch repositories. To learn how to use this Repo repo, see the
+the [[https://github.com/ectorepo/ectorepo][ectorepo/ectorepo]] Repo ... repo.
+
+#+begin_src xml :tangle default.xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="pytorch.xml"/>
+
+  <project name="patrick-kidger/signatory" path="path/signatory" revision="refs/heads/master" />
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* GraphQL Params
+
+#+name: nrepos
+#+begin_src emacs-lisp :results replace value
+"100"
+#+end_src
+
+#+RESULTS: nrepos
+| 100 |
+
+#+name: gitorg
+#+begin_src emacs-lisp :results replace value
+"pytorch"
+#+end_src
+
+#+RESULTS: gitorg
+| pytorch |
+
+#+name: updatedAfter
+#+header: :var date=(format-time-string "%Y-%m-%d" (seconds-to-time 0) t)
+#+begin_src emacs-lisp :results replace value
+date
+#+end_src
+
+#+RESULTS: updatedAfter
+: 1970-01-01
+
+* PyTorch
+
+** Core
+
+Get the core repositories. These should go into =/data/ecto/pytorch/core=.
+
+#+name: torch-repos
+#+headers: :var nrepos=100
+#+begin_src emacs-lisp :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "<<gitorg()>>"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+*** Ignore
+
+These are too large: more than 20 GB  combined. For the remainder, none is larger
+than 2.2 GB.
+
+#+NAME: torch-ignore
+| pytorch.github.io |
+| tutorials         |
+
+*** Filter
+
+Filter the results, generate XML
+
+#+name: gitreposet
+#+headers: :var gqldata=torch-repos subdir="core" ignore-repos=torch-ignore updatedAtFilter=2018
+#+begin_src emacs-lisp :results value html
+;; no time rn (encode-time '(0 0 0 2018 1 1 nil -1 nil))
+
+;; (pp (nth 1 (cadddr gqldata))) ;; a noob popped the cadadadadr stack
+;; (let* ((firstrec (nth 0 (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)))
+;;       (d (a-get* firstrec 'updatedAt))
+;;       (dd (decode-time))))
+
+(let* ((ignore-repos (flatten-list ignore-repos)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+      ;; remove archived repos
+      (seq-filter (lambda (el)
+                    (not (a-get* el 'isArchived))))
+      ;; remove outdated repos
+      (seq-filter (lambda (el)
+                    (> (string-to-number (substring (a-get* el 'updatedAt) 0 4)) updatedAtFilter)))
+      ;; remove ignore-repos
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) ignore-repos))))
+      (mapcar (lambda (el)
+                (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
+                       (path (a-get* el 'name))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" (concat subdir "/" path)
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+Generate =pytorch.xml=
+
+#+begin_src xml :tangle pytorch.xml :noweb yes
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <<gitreposet(gqldata=torch-repos,subdir="core")>>
+</manifest>
+#+end_src
+
+* Misc
+
+Saving the good ones for later...
+
+** Original Query
+
+IDK? This was one of the first ones I did.
+
+#+name: gitrepos-query
+#+begin_example graphql
+query ($org:String!,$nrepos:Int!,$updatedAfter:Date!) {
+  search
+
+  organization(login:$org){
+    repositories(
+      first:$nrepos,
+      orderBy: {field:UPDATED_AT,direction:DESC},
+      where: { updatedAt: {_gte: $updatedAfter }}){ #"1970-01-01"} }){
+      edges{
+        node{
+          owner{login}
+          name
+          defaultBranchRef{prefix name}
+          url
+          updatedAt
+          isArchived}
+      }
+    }
+  }
+}
+#+end_example
+
+*** Original Query, the original
+
+Bro, I heard you like quotes, so I got you special quotes for your qraphql, so
+you can jq your results and then curl with that.
+
+#+begin_quote
+query ($org:String!,$nrepos:Int!,$pushed:Date!) {
+  search(
+    type:REPOSITORY,
+    query: """
+      org:
+    """
+  )
+
+  organization(login:$org){
+    repositories(
+      first:$nrepos,
+      orderBy: {field:UPDATED_AT,direction:DESC},
+      where: { updatedAt: {_gte: $pushed }}){   #"1970-01-01"} }){
+      edges{
+        node{
+          owner{login}
+          name
+          defaultBranchRef{prefix name}
+          url
+          updatedAt
+          isArchived}
+      }
+    }
+  }
+}
+
+#+end_quote
+
+** Using search & pagination cursor
+
+Doesn't well work with noweb or other features
+
+#+name: gitrepos-cursor
+#+begin_src emacs-lisp :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query
+  ((search
+    :arguments ((first . 100)
+                (type . REPOSITORY)
+                (query . "org:pytorch"))
+    repositoryCount
+    (pageInfo hasNextPage endCursor startCursor)
+    repos: (edges
+            repo: (node ... on (Repository
+                                url name id (owner login)
+                                (defaultBranchRef prefix name)
+                                updatedAt
+                                isArchived)))))))
+#+end_src
+
