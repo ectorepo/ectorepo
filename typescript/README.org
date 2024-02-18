@@ -1,0 +1,556 @@
+#+title:     Ectorepo: Typescript
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+
+A list of Typescript repositories. To learn how to use this Repo repo, see the
+the [[https://github.com/ectorepo/ectorepo][ectorepo/ectorepo]] Repo ... repo.
+
+#+begin_src xml :tangle default.xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="astro.xml"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* GraphQL Params
+
+#+name: nrepos
+#+begin_src emacs-lisp :results replace value
+"100"
+#+end_src
+
+#+RESULTS: nrepos
+| 100 |
+
+#+RESULTS: gitorg
+: withastro
+
+#+name: updatedAfter
+#+header: :var date=(format-time-string "%Y-%m-%d" (seconds-to-time 0) t)
+#+begin_src emacs-lisp :results replace value
+date
+#+end_src
+
+#+RESULTS: updatedAfter
+: 1970-01-01
+
+* Repos
+
+I can't quite get this to work
+
+#+name: dataGithubOrg
+#+begin_src emacs-lisp :var dataOrg="MaybeType" :results value silent
+dataOrg
+#+end_src
+
+** Astro
+  :PROPERTIES:
+  :header-args+: :var dataOrg="withastro"
+  :END:
+
+Get the core repositories. These should go into =/data/ecto/typescript/astro=.
+
+#+name: astro-repos
+#+begin_src emacs-lisp :results replace vector value :var nrepos=100 :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "<<dataGithubOrg(dataOrg="withastro")>>"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+RESULTS: astro-repos
+| data | (organization (repositories (edges ((node (owner (login . withastro)) (name . astro) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/astro) (updatedAt . 2024-02-18T21:30:58Z) (isArchived))) ((node (owner (login . withastro)) (name . docs) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/docs) (updatedAt . 2024-02-18T21:13:30Z) (isArchived))) ((node (owner (login . withastro)) (name . starlight) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/starlight) (updatedAt . 2024-02-18T18:03:02Z) (isArchived))) ((node (owner (login . withastro)) (name . prettier-plugin-astro) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/prettier-plugin-astro) (updatedAt . 2024-02-18T13:05:50Z) (isArchived))) ((node (owner (login . withastro)) (name . astro.build) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/astro.build) (updatedAt . 2024-02-17T05:09:11Z) (isArchived))) ((node (owner (login . withastro)) (name . contribute.docs.astro.build) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/contribute.docs.astro.build) (updatedAt . 2024-02-17T02:45:27Z) (isArchived))) ((node (owner (login . withastro)) (name . action-studio) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/action-studio) (updatedAt . 2024-02-16T21:03:23Z) (isArchived))) ((node (owner (login . withastro)) (name . github-pages) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/github-pages) (updatedAt . 2024-02-16T18:00:57Z) (isArchived))) ((node (owner (login . withastro)) (name . astro-ecosystem-ci) (defaultBranchRef (prefix . refs/heads/) (name . astro)) (url . https://github.com/withastro/astro-ecosystem-ci) (updatedAt . 2024-02-16T16:14:06Z) (isArchived))) ((node (owner (login . withastro)) (name . blog-tutorial-demo) (defaultBranchRef (prefix . refs/heads/) (name . complete)) (url . https://github.com/withastro/blog-tutorial-demo) (updatedAt . 2024-02-13T23:15:12Z) (isArchived))) ((node (owner (login . withastro)) (name . roadmap) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/roadmap) (updatedAt . 2024-02-13T12:23:56Z) (isArchived))) ((node (owner (login . withastro)) (name . adapters) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/adapters) (updatedAt . 2024-02-10T05:43:12Z) (isArchived))) ((node (owner (login . withastro)) (name . compiler) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/compiler) (updatedAt . 2024-02-10T05:10:25Z) (isArchived))) ((node (owner (login . withastro)) (name . houston-discord) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/houston-discord) (updatedAt . 2024-02-06T20:23:15Z) (isArchived))) ((node (owner (login . withastro)) (name . houston-vscode) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/houston-vscode) (updatedAt . 2024-02-04T06:19:45Z) (isArchived))) ((node (owner (login . withastro)) (name . action) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/action) (updatedAt . 2024-02-03T13:20:39Z) (isArchived))) ((node (owner (login . withastro)) (name . language-tools) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/language-tools) (updatedAt . 2024-02-02T10:32:31Z) (isArchived))) ((node (owner (login . withastro)) (name . houston.astro.build) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/houston.astro.build) (updatedAt . 2024-01-30T05:25:46Z) (isArchived))) ((node (owner (login . withastro)) (name . .github) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/.github) (updatedAt . 2024-01-27T04:15:42Z) (isArchived))) ((node (owner (login . withastro)) (name . astro.new) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/astro.new) (updatedAt . 2024-01-26T04:53:25Z) (isArchived))) ((node (owner (login . withastro)) (name . cli-kit) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/cli-kit) (updatedAt . 2024-01-22T03:58:01Z) (isArchived))) ((node (owner (login . withastro)) (name . site-kit) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/site-kit) (updatedAt . 2024-01-22T03:57:44Z) (isArchived))) ((node (owner (login . withastro)) (name . astro-repl) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/astro-repl) (updatedAt . 2024-01-16T01:06:33Z) (isArchived))) ((node (owner (login . withastro)) (name . automation) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/automation) (updatedAt . 2023-11-21T13:39:06Z) (isArchived))) ((node (owner (login . withastro)) (name . view-transitions-demo) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/view-transitions-demo) (updatedAt . 2023-10-12T13:34:17Z) (isArchived))) ((node (owner (login . withastro)) (name . wormhole) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/wormhole) (updatedAt . 2023-10-09T04:28:31Z) (isArchived))) ((node (owner (login . withastro)) (name . netlify-adapter) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/netlify-adapter) (updatedAt . 2023-09-27T19:02:47Z) (isArchived . t))) ((node (owner (login . withastro)) (name . astro-playground) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/astro-playground) (updatedAt . 2023-09-03T17:14:24Z) (isArchived))) ((node (owner (login . withastro)) (name . vite) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/vite) (updatedAt . 2023-09-03T17:13:26Z) (isArchived))) ((node (owner (login . withastro)) (name . vite-ecosystem-ci) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/vite-ecosystem-ci) (updatedAt . 2023-09-03T17:13:12Z) (isArchived))) ((node (owner (login . withastro)) (name . withastro.github.io) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/withastro.github.io) (updatedAt . 2023-08-04T02:35:34Z) (isArchived))) ((node (owner (login . withastro)) (name . discord-auto-threader) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/discord-auto-threader) (updatedAt . 2023-02-10T11:59:37Z) (isArchived))) ((node (owner (login . withastro)) (name . micromark-extension-mdx-jsx) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/withastro/micromark-extension-mdx-jsx) (updatedAt . 2022-06-10T11:54:25Z) (isArchived))) ((node (owner (login . withastro)) (name . codesandbox-client) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/withastro/codesandbox-client) (updatedAt . 2022-03-10T15:59:38Z) (isArchived)))))) |
+
+*** Ignore
+
+These are too large: more than 20 GB  combined. For the remainder, none is larger
+than 2.2 GB.
+
+#+NAME: ignoreProjects
+| .github               |
+| tutorials             |
+| action                |
+| roadmap               |
+| vite                  |
+| codesandbox-client    |
+| vite-ecosystem-ci     |
+
+*** Filter
+
+Filter the results, generate XML
+
+#+name: gitreposet
+#+headers: :var gqldata=astro-repos subdir="core" ignore-repos=ignoreProjects updatedAtFilter=2018
+#+begin_src emacs-lisp :results value html
+;; no time rn (encode-time '(0 0 0 2018 1 1 nil -1 nil))
+
+;; (pp (nth 1 (cadddr gqldata))) ;; a noob popped the cadadadadr stack
+;; (let* ((firstrec (nth 0 (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)))
+;;       (d (a-get* firstrec 'updatedAt))
+;;       (dd (decode-time))))
+
+(let* ((ignore-repos (flatten-list ignore-repos)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+      ;; remove archived repos
+      (seq-filter (lambda (el)
+                    (not (a-get* el 'isArchived))))
+      ;; remove outdated repos
+      (seq-filter (lambda (el)
+                    (> (string-to-number (substring (a-get* el 'updatedAt) 0 4)) updatedAtFilter)))
+      ;; remove ignore-repos
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) ignore-repos))))
+      (mapcar (lambda (el)
+                (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
+                       (path (a-get* el 'name))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" (concat subdir "/" path)
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+Generate =astro.xml.xml=
+
+#+begin_src xml :tangle astro.xml :noweb yes
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <<gitreposet(gqldata=astro-repos,subdir="astro")>>
+</manifest>
+#+end_src
+
+** Zod
+
+** VSCode
+
+*** Zod Snippets
+
+Via restclient.el, which can pipes data to jq, via:
+
+#+begin_example emacs-lisp
+(format "%s %s--args %s" org-babel-restclient--jq-path       ; jq
+     (if (assq :jq-args params) (format "%s " jq-args) "")   ; 'jq-args --args
+                 (shell-quote-argument (cdr jq-header)))     ; jq-header
+#+end_example
+
+**** Test
+
+#+name: zodSnips
+#+begin_example  json
+{
+  "Zod date max": {
+    "prefix": ["zod_date_max", "date max"],
+    "scope": "javascript,typescript",
+    "body": "z.date().max(new Date())"
+  },
+  "Zod string optional": {
+    "prefix": ["zod_string_optional", "string optional"],
+    "scope": "javascript,typescript",
+    "body": "z.optional(z.string())"
+  },
+  "Zod schema partial": {
+    "prefix": ["zod_schema_partial", "schema partial"],
+    "scope": "javascript,typescript",
+    "body": "const $1 = ${2:schema}.partial();"
+  }
+}
+#+end_example
+
+# +headers: vars: tsxData=zodSnips
+
+# -*- mode: snippet -*-
+# name: 
+# key: 
+# uuid: 
+# group: 
+# --
+
+#+name: convertCodeSnippets
+#+begin_src jq :stdin zodSnips
+. | to_entries
+  | map({ group: "zod",
+          name: (.key),
+          prefix: .value.prefix[0],
+          abbrev: (.value.prefix[0] | split("_") | map(.[0:2]) | .[1:2] | join("")) # as $abbrev)
+        })
+  | map(. + ({key: (.abbrev | @text "<Zo\(.)") }))
+  | map(. + {snippet: @text "# -*- mode:snippet -*-\nname: \(.name)\nkey:\(.key)\ngroup: \(.group)"})
+
+#
+# key: (.value.prefix | @text "<ZO\(.[0] | sub(\"\"; \"\") )"),
+#
+# [.[0], .[1].data] as [$stat, $m] |
+#  reduce ($stat | to_entries)[] as $s
+# #  ({}; . += $m[$s[0]])
+#   ({}; . += {($s.key): ($s.value + $m[$s.key])}) |
+#   to_entries | map(.value)
+#+end_src
+
+#+RESULTS: convertCodeSnippets
+#+begin_example
+[
+  {
+    "group": "zod",
+    "name": "Zod date max",
+    "prefix": "zod_date_max",
+    "abbrev": "da",
+    "key": "<Zoda",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod date max\nkey:<Zoda\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string optional",
+    "prefix": "zod_string_optional",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string optional\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod schema partial",
+    "prefix": "zod_schema_partial",
+    "abbrev": "sc",
+    "key": "<Zosc",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod schema partial\nkey:<Zosc\ngroup: zod"
+  }
+]
+#+end_example
+
+**** Extract
+
+So here goes:
+
+#+name: zodSnipsWeb
+#+begin_src restclient :noheaders :jq-args "." :results value none
+GET https://raw.githubusercontent.com/ManuelGil/vscode-zod-snippets/main/snippets/snippets.code-snippets
+#+end_src
+
+#+name: zodSnipsBabel
+#+call: convertCodeSnippets() :stdin zodSnipsWeb :results output silent
+
+#+RESULTS:
+#+begin_example
+[
+  {
+    "group": "zod",
+    "name": "Zod array nonempty",
+    "prefix": "zod_array_nonempty",
+    "abbrev": "ar",
+    "key": "<Zoar",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod array nonempty\nkey:<Zoar\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod bigint positive",
+    "prefix": "zod_bigint_positive",
+    "abbrev": "bi",
+    "key": "<Zobi",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod bigint positive\nkey:<Zobi\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod date max",
+    "prefix": "zod_date_max",
+    "abbrev": "da",
+    "key": "<Zoda",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod date max\nkey:<Zoda\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod deepPartial",
+    "prefix": "zod_deep_partial",
+    "abbrev": "de",
+    "key": "<Zode",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod deepPartial\nkey:<Zode\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod enum",
+    "prefix": "zod_enum",
+    "abbrev": "en",
+    "key": "<Zoen",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod enum\nkey:<Zoen\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod schema keyof",
+    "prefix": "zod_schema_keyof",
+    "abbrev": "sc",
+    "key": "<Zosc",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod schema keyof\nkey:<Zosc\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string nullable",
+    "prefix": "zod_string_nullable",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string nullable\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod number int positive",
+    "prefix": "zod_number_int_positive",
+    "abbrev": "nu",
+    "key": "<Zonu",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod number int positive\nkey:<Zonu\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string optional",
+    "prefix": "zod_string_optional",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string optional\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod schema partial",
+    "prefix": "zod_schema_partial",
+    "abbrev": "sc",
+    "key": "<Zosc",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod schema partial\nkey:<Zosc\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod schema passthrough",
+    "prefix": "zod_schema_passthrough",
+    "abbrev": "sc",
+    "key": "<Zosc",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod schema passthrough\nkey:<Zosc\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod schema strip",
+    "prefix": "zod_schema_strip",
+    "abbrev": "sc",
+    "key": "<Zosc",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod schema strip\nkey:<Zosc\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod schema strict",
+    "prefix": "zod_schema_strict",
+    "abbrev": "sc",
+    "key": "<Zosc",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod schema strict\nkey:<Zosc\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod promise",
+    "prefix": "zod_promise",
+    "abbrev": "pr",
+    "key": "<Zopr",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod promise\nkey:<Zopr\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod function parameters",
+    "prefix": "zod_function_parameters",
+    "abbrev": "fu",
+    "key": "<Zofu",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod function parameters\nkey:<Zofu\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod function returnType",
+    "prefix": "zod_function_returnType",
+    "abbrev": "fu",
+    "key": "<Zofu",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod function returnType\nkey:<Zofu\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string max",
+    "prefix": "zod_string_max",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string max\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string min",
+    "prefix": "zod_string_min",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string min\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string length",
+    "prefix": "zod_string_length",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string length\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string email",
+    "prefix": "zod_string_email",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string email\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string url",
+    "prefix": "zod_string_url",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string url\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string emoji",
+    "prefix": "zod_string_emoji",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string emoji\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string uuid",
+    "prefix": "zod_string_uuid",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string uuid\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string cuid",
+    "prefix": "zod_string_cuid",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string cuid\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string cuid2",
+    "prefix": "zod_string_cuid2",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string cuid2\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string ulid",
+    "prefix": "zod_string_ulid",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string ulid\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string regex",
+    "prefix": "zod_string_regex",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string regex\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string includes",
+    "prefix": "zod_string_includes",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string includes\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string startsWith",
+    "prefix": "zod_string_startsWith",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string startsWith\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string endsWith",
+    "prefix": "zod_string_endsWith",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string endsWith\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string datetime",
+    "prefix": "zod_string_datetime",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string datetime\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string ip",
+    "prefix": "zod_string_ip",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string ip\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string trim",
+    "prefix": "zod_string_trim",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string trim\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string toLowerCase",
+    "prefix": "zod_string_toLowerCase",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string toLowerCase\nkey:<Zost\ngroup: zod"
+  },
+  {
+    "group": "zod",
+    "name": "Zod string toUpperCase",
+    "prefix": "zod_string_toUpperCase",
+    "abbrev": "st",
+    "key": "<Zost",
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string toUpperCase\nkey:<Zost\ngroup: zod"
+  }
+]
+#+end_example
+
+And here we have our snippets
+
+#+name: asdf
+#+begin_src jq :stdin zodSnipsBabel :results output verbatime file :file /tmp/vscodeSnippets.sh
+.[] | @text "printf '\(.snippet)' > ~/.emacs.g/etc/yasnippet/snippets/typescript-mode/\(.prefix).snippet"
+#+end_src
+
+#+RESULTS: asdf
+[[file:/tmp/vscodeSnippets.sh]]

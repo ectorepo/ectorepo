@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="withastro/action-studio" path="astro/action-studio" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/adapters" path="astro/adapters" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/astro" path="astro/astro" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/astro-ecosystem-ci" path="astro/astro-ecosystem-ci" revision="refs/heads/astro" remote="github"/>
+  <project name="withastro/astro-playground" path="astro/astro-playground" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/astro-repl" path="astro/astro-repl" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/astro.build" path="astro/astro.build" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/astro.new" path="astro/astro.new" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/automation" path="astro/automation" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/blog-tutorial-demo" path="astro/blog-tutorial-demo" revision="refs/heads/complete" remote="github"/>
+  <project name="withastro/cli-kit" path="astro/cli-kit" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/compiler" path="astro/compiler" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/contribute.docs.astro.build" path="astro/contribute.docs.astro.build" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/discord-auto-threader" path="astro/discord-auto-threader" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/docs" path="astro/docs" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/github-pages" path="astro/github-pages" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/houston-discord" path="astro/houston-discord" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/houston-vscode" path="astro/houston-vscode" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/houston.astro.build" path="astro/houston.astro.build" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/language-tools" path="astro/language-tools" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/micromark-extension-mdx-jsx" path="astro/micromark-extension-mdx-jsx" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/prettier-plugin-astro" path="astro/prettier-plugin-astro" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/site-kit" path="astro/site-kit" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/starlight" path="astro/starlight" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/view-transitions-demo" path="astro/view-transitions-demo" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/withastro.github.io" path="astro/withastro.github.io" revision="refs/heads/main" remote="github"/>
+  <project name="withastro/wormhole" path="astro/wormhole" revision="refs/heads/main" remote="github"/>
+</manifest>
