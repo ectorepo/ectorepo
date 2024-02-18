@@ -2,7 +2,7 @@
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
-  <include name="astro.xml"/>
+  <include name="typescript/astro.xml"/>
   <!-- typedoc -->
   <project name="kamiazya/typedoc-plugin-mermaid" path="typedoc/typedoc-plugin-mermaid" remote="github" revision="main"/>
   <project name="Gerrit0/typedoc-plugin-zod" path="typedoc/typedoc-plugin-zod" remote="github" revision="main"/>
