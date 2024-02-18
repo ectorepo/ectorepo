@@ -3,4 +3,13 @@
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="astro.xml"/>
+  <!-- typedoc -->
+  <project name="kamiazya/typedoc-plugin-mermaid" path="typedoc/typedoc-plugin-mermaid" remote="github" revision="main"/>
+  <project name="Gerrit0/typedoc-plugin-zod" path="typedoc/typedoc-plugin-zod" remote="github" revision="main"/>
+  <project name="krisztianb/typedoc-umlclass" path="typedoc/typedoc-umlclass" remote="github" revision="master"/>
+  <!-- zod -->
+  <project name="colinhacks/zod" path="zod/zod" remote="github" revision="master"/>
+  <project name="colinhacks/zod-deno" path="zod/zod-deno" remote="github" revision="main"/>
+  <project name="samchungy/zod-openapi" path="zod/zod-openapi" remote="github" revision="master"/>
+  <project name="asteasolutions/zod-to-openapi" path="zod/zod-to-openapi" remote="github" revision="master"/>
 </manifest>
