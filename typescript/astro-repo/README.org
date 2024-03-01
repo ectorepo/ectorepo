@@ -415,30 +415,100 @@ cat ../astro-themes.xml |\
     done;
 #+end_src
 
-#+RESULTS:
-| master  | https://api.github.com/repos/BryceRussell/astro-minecraft-theme                            |
-| master  | https://api.github.com/repos/DBozhinovski/astro-massively                                  |
-| master  | https://api.github.com/repos/DBozhinovski/astro-theme-ltree                                |
-| master  | https://api.github.com/repos/Ladvace/astro-bento-portfolio                                 |
-| master  | https://api.github.com/repos/Numonu/Luxury-Architect                                       |
-| master  | https://api.github.com/repos/PriscaTonia/interior-design-website                           |
-| master  | https://api.github.com/repos/ThatGuySam/nice-tat                                           |
-| master  | https://api.github.com/repos/USKhokhar/astro-vitae                                         |
-| master  | https://api.github.com/repos/aryanjha256/verve                                             |
-| master  | https://api.github.com/repos/fahad0samara/Astro.js-Chef-Project                            |
-| master  | https://api.github.com/repos/iamnyasha/minimma                                             |
-| master  | https://api.github.com/repos/iozcelik/SarissaBlogAstroStarter                              |
-| master  | https://api.github.com/repos/jordienr/astro-design-system                                  |
-| master  | https://api.github.com/repos/mesinkasir/astro-website-template-themes-source-code-download |
-| master  | https://api.github.com/repos/mesinkasir/cute-blog                                          |
-| master  | https://api.github.com/repos/michael-andreuzza/quickstore                                  |
-| master  | https://api.github.com/repos/mickasmt/astro-nomy                                           |
-| master  | https://api.github.com/repos/npmrun/art-theme                                              |
-| master  | https://api.github.com/repos/palmiak/pacamara-astro                                        |
-| master  | https://api.github.com/repos/robertguss/Astro-Theme-Creek                                  |
-| master  | https://api.github.com/repos/saadeghi/daisy-blog                                           |
-| master  | https://api.github.com/repos/shaunchander/astro-pwa-starter                                |
-| master  | https://api.github.com/repos/unfolding-io/StarFunnel                                       |
-| master  | https://api.github.com/repos/uzzii-21/astro-portfolio                                      |
-| master  | https://api.github.com/repos/vratskyi/vratskyi.github.io                                   |
-| develop | https://api.github.com/repos/paabloLC/astro-neumorphism                                    |
+Future in: patch apply to sorted input
+
+#+begin_src sh :results output verbatim :wrap example diff
+diff ../astro-themes.xml ../astro-themes-auto2.xml
+#+end_src
+
+#+begin_example diff
+13,14c13,14
+<   <project name="aryanjha256/verve" path="aryanjha256/verve" groups="blog,minimal,tailwind,typescript" revision="refs/heads/master"/>
+<   <project name="BryceRussell/astro-minecraft-theme" path="BryceRussell/astro-minecraft-theme" groups="other,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="aryanjha256/verve" path="aryanjha256/verve" groups="blog,minimal,tailwind,typescript"/>
+>   <project name="BryceRussell/astro-minecraft-theme" path="BryceRussell/astro-minecraft-theme" groups="other,tailwind"/>
+29,30c29,30
+<   <project name="DBozhinovski/astro-massively" path="DBozhinovski/astro-massively" groups="other,sass,mdx" revision="refs/heads/master"/>
+<   <project name="DBozhinovski/astro-theme-ltree" path="DBozhinovski/astro-theme-ltree" groups="portfolio,tailwind,typescript" revision="refs/heads/master"/>
+---
+>   <project name="DBozhinovski/astro-massively" path="DBozhinovski/astro-massively" groups="other,sass,mdx"/>
+>   <project name="DBozhinovski/astro-theme-ltree" path="DBozhinovski/astro-theme-ltree" groups="portfolio,tailwind,typescript"/>
+38c38
+<   <project name="fahad0samara/Astro.js-Chef-Project" path="fahad0samara/Astro.js-Chef-Project" groups="other,tailwind,typescript" revision="refs/heads/master"/>
+---
+>   <project name="fahad0samara/Astro.js-Chef-Project" path="fahad0samara/Astro.js-Chef-Project" groups="other,tailwind,typescript"/>
+47c47
+<   <project name="iamnyasha/minimma" path="iamnyasha/minimma" groups="portfolio,minimal,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="iamnyasha/minimma" path="iamnyasha/minimma" groups="portfolio,minimal,tailwind"/>
+49c49
+<   <project name="iozcelik/SarissaBlogAstroStarter" path="iozcelik/SarissaBlogAstroStarter" groups="blog,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="iozcelik/SarissaBlogAstroStarter" path="iozcelik/SarissaBlogAstroStarter" groups="blog,tailwind"/>
+57c57
+<   <project name="jordienr/astro-design-system" path="jordienr/astro-design-system" groups="docs,vue,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="jordienr/astro-design-system" path="jordienr/astro-design-system" groups="docs,vue,tailwind"/>
+63c63
+<   <project name="Ladvace/astro-bento-portfolio" path="Ladvace/astro-bento-portfolio" groups="portfolio,solidjs,unocss,typescript" revision="refs/heads/master"/>
+---
+>   <project name="Ladvace/astro-bento-portfolio" path="Ladvace/astro-bento-portfolio" groups="portfolio,solidjs,unocss,typescript"/>
+71,72c71,72
+<   <project name="mesinkasir/astro-website-template-themes-source-code-download" path="mesinkasir/astro-website-template-themes-source-code-download" groups="blog" revision="refs/heads/master"/>
+<   <project name="mesinkasir/cute-blog" path="mesinkasir/cute-blog" groups="blog,preact" revision="refs/heads/master"/>
+---
+>   <project name="mesinkasir/astro-website-template-themes-source-code-download" path="mesinkasir/astro-website-template-themes-source-code-download" groups="blog"/>
+>   <project name="mesinkasir/cute-blog" path="mesinkasir/cute-blog" groups="blog,preact"/>
+78c78
+<   <project name="michael-andreuzza/quickstore" path="michael-andreuzza/quickstore" groups="ecommerce,tailwind,alpinejs" revision="refs/heads/master"/>
+---
+>   <project name="michael-andreuzza/quickstore" path="michael-andreuzza/quickstore" groups="ecommerce,tailwind,alpinejs"/>
+80c80
+<   <project name="mickasmt/astro-nomy" path="mickasmt/astro-nomy" groups="blog,docs,other,alpinejs,mdx,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="mickasmt/astro-nomy" path="mickasmt/astro-nomy" groups="blog,docs,other,alpinejs,mdx,tailwind"/>
+86,87c86,87
+<   <project name="npmrun/art-theme" path="npmrun/art-theme" groups="blog,vue,tailwind,sass,mdx" revision="refs/heads/master"/>
+<   <project name="Numonu/Luxury-Architect" path="Numonu/Luxury-Architect" groups="landing-page,tailwind,typescript" revision="refs/heads/master"/>
+---
+>   <project name="npmrun/art-theme" path="npmrun/art-theme" groups="blog,vue,tailwind,sass,mdx"/>
+>   <project name="Numonu/Luxury-Architect" path="Numonu/Luxury-Architect" groups="landing-page,tailwind,typescript"/>
+93,94c93,94
+<   <project name="paabloLC/astro-neumorphism" path="paabloLC/astro-neumorphism" groups="other,preact,tailwind" revision="refs/heads/develop"/>
+<   <project name="palmiak/pacamara-astro" path="palmiak/pacamara-astro" groups="blog,tailwind,mdx" revision="refs/heads/master"/>
+---
+>   <project name="paabloLC/astro-neumorphism" path="paabloLC/astro-neumorphism" groups="other,preact,tailwind"/>
+>   <project name="palmiak/pacamara-astro" path="palmiak/pacamara-astro" groups="blog,tailwind,mdx"/>
+96,97c96,97
+<   <project name="PriscaTonia/interior-design-website" path="PriscaTonia/interior-design-website" groups="landing-page,react,tailwind,typescript" revision="refs/heads/master"/>
+<   <project name="robertguss/Astro-Theme-Creek" path="robertguss/Astro-Theme-Creek" groups="featured,blog,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="PriscaTonia/interior-design-website" path="PriscaTonia/interior-design-website" groups="landing-page,react,tailwind,typescript"/>
+>   <project name="robertguss/Astro-Theme-Creek" path="robertguss/Astro-Theme-Creek" groups="featured,blog,tailwind"/>
+99c99
+<   <project name="saadeghi/daisy-blog" path="saadeghi/daisy-blog" groups="blog,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="saadeghi/daisy-blog" path="saadeghi/daisy-blog" groups="blog,tailwind"/>
+102c102
+<   <project name="shaunchander/astro-pwa-starter" path="shaunchander/astro-pwa-starter" groups="minimal,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="shaunchander/astro-pwa-starter" path="shaunchander/astro-pwa-starter" groups="minimal,tailwind"/>
+108c108
+<   <project name="ThatGuySam/nice-tat" path="ThatGuySam/nice-tat" groups="minimal,tailwind,typescript" revision="refs/heads/master"/>
+---
+>   <project name="ThatGuySam/nice-tat" path="ThatGuySam/nice-tat" groups="minimal,tailwind,typescript"/>
+119,121c119,121
+<   <project name="unfolding-io/StarFunnel" path="unfolding-io/StarFunnel" groups="landing-page" revision="refs/heads/master"/>
+<   <project name="USKhokhar/astro-vitae" path="USKhokhar/astro-vitae" groups="portfolio,alpinejs,tailwind" revision="refs/heads/master"/>
+<   <project name="uzzii-21/astro-portfolio" path="uzzii-21/astro-portfolio" groups="portfolio,tailwind" revision="refs/heads/master"/>
+---
+>   <project name="unfolding-io/StarFunnel" path="unfolding-io/StarFunnel" groups="landing-page"/>
+>   <project name="USKhokhar/astro-vitae" path="USKhokhar/astro-vitae" groups="portfolio,alpinejs,tailwind"/>
+>   <project name="uzzii-21/astro-portfolio" path="uzzii-21/astro-portfolio" groups="portfolio,tailwind"/>
+123c123
+<   <project name="vratskyi/vratskyi.github.io" path="vratskyi/vratskyi.github.io" groups="blog,portfolio,tailwind,postcss" revision="refs/heads/master"/>
+---
+>   <project name="vratskyi/vratskyi.github.io" path="vratskyi/vratskyi.github.io" groups="blog,portfolio,tailwind,postcss"/>
+#+end_example
+
