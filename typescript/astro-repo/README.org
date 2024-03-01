@@ -1,3 +1,98 @@
+* Astro Themes
+
+To clone the repos in =astro-themes.xml=, enter an empty directory and run
+
+#+begin_src sh
+repo init -u https://github.com/ectorepo/ectorepo.git -m typescript/astro-themes.xml
+repo sync
+#+end_src
+
+** Groups
+
+You can operate on groups:
+
++ repo sync -g $group :: avoid downloading all groups . Some have large assets.
++ repo list -g $group :: umm list them
+
+*** Project Structure
+
+You can compare directory structures of projects with related file structures:
+
+#+begin_src sh
+repo forall -g svelte -c tree -L 3 -d -I "node_modules" -I "dist" .
+#+end_src
+
+**** Dependencies
+
+Here are all uniq dependencies for projects in the =svelte= group.
+
+#+begin_src sh
+repo forall -g svelte -c \
+     yq -y '.dependencies | keys' package.json |\
+    yq -y '. | sort | unique'
+#+end_src
+
+This is handy because =yq= may handle these as separate document
+streams... nevermind, it just works for this query. However, to separate the
+documents, simply pass =--explicit-start= to =yq=.
+
+#+begin_src sh :dir (identity ectoroot) :results output verbatim
+repo forall --quiet -g svelte -c \
+     yq --explicit-start -y '.dependencies | keys' package.json  |\
+    yq -y '.' 2>/dev/null
+#+end_src
+
+#+RESULTS:
+:
+: ... A new version of repo (2.42) is available.
+: ... New version is available at: /data/ecto/astro-themes/.repo/repo/repo
+: ... The launcher is run from: /usr/bin/repo
+: !!! The launcher is not writable.  Please talk to your sysadmin or distro
+: !!! to get an update installed.
+:
+: [ Babel evaluation exited with code 0 ]
+
+*** Categories and Tools
+
+When generating the XML, I merged the categories and tools in =astro.build=, so
+these groups are available for repo commands.
+
+#+begin_src sh :results output :wrap example yaml
+xq -y '
+   .manifest.project
+   | map(."@groups")
+   | unique
+   | map(split(","))
+   | reduce .[] as $item ([]; . + $item)
+   | sort
+   | unique' ../astro-themes.xml
+#+end_src
+
+#+RESULTS:
+#+begin_example yaml
+- alpinejs
+- blog
+- docs
+- ecommerce
+- featured
+- landing-page
+- lit
+- mdx
+- minimal
+- other
+- portfolio
+- postcss
+- preact
+- react
+- sass
+- solidjs
+- svelte
+- tailwind
+- typescript
+- unocss
+- vue
+#+end_example
+
 
 * Astro Repo
 
@@ -19,7 +114,7 @@ Based on the =astro-rss= and =astro-sitemap= packages. They have similar
 dependencies and build requirements.
 
 #+begin_src sh :dir (identity astroroot) :results verbatim
-tree packages/astro-rss  
+tree packages/astro-rss
 #+end_src
 
 #+RESULTS:
@@ -89,7 +184,7 @@ packages/integrations/sitemap
 ** Awk script
 
 This just removes the HTML and first =---= from each file, accepting =cat *.md=
-as input. There is a 
+as input. There is a
 
 #+begin_src awk :tangle concat-yaml.awk
 BEGIN { count=0 }
@@ -511,4 +606,3 @@ diff ../astro-themes.xml ../astro-themes-auto2.xml
 ---
 >   <project name="vratskyi/vratskyi.github.io" path="vratskyi/vratskyi.github.io" groups="blog,portfolio,tailwind,postcss"/>
 #+end_example
-

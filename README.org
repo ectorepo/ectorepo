@@ -70,6 +70,28 @@ specification:
 + ./hashicorp/gcp :: scraped from the GCP Blueprint projects
 + ./scala :: fetched by Github GraphQL query
 
+**** Exploring Project Structure
+
+You can compare directory structures of projects with related file structures:
+
+#+begin_src sh
+# via typescript/astro-themes.xml
+repo forall -g svelte -c tree -L 3 -d -I "node_modules" -I "dist" .
+#+end_src
+
+**** Analyzing Dependencies
+
+Here are all uniq dependencies for projects in the =svelte= group for
+=typescript/astro-themes.xml=
+
+#+begin_src sh
+# via typescript/astro-themes.xml
+repo forall -g svelte -c \
+     yq -y '.dependencies | keys' package.json |\
+    yq -y '. | sort | unique'
+#+end_src
+
+
 *** Build Automation
 
 Repo offers [[https://android.googlesource.com/tools/repo/+/HEAD/docs/repo-hooks.md][hooks]] and integration into CI systems that run
@@ -160,6 +182,7 @@ This is not always true and whether an issue resulted in a test case depends on
 a few things including how popular the project is. However, if it's an "esoteric
 language" or something then it benefits more from test coverage and is less
 likely to have "issue coverage".
+
 
 ** Automation
 
@@ -283,6 +306,55 @@ layout python3
 
 **** TODO maybe import notes on automation from emacs/python/etc
 
+** Analyze XML
+
+To merge all the =groups= from XML:
+
+#+begin_src sh :results output :wrap example yaml
+xq -y '
+   .manifest.project
+   | map(."@groups")
+   | unique
+   | map(split(","))
+   | reduce .[] as $item ([]; . + $item)
+   | sort
+   | unique' ../astro-themes.xml
+#+end_src
+
+
+* Subcommands
+
+** Forall
+
+*** Internals
+
+The results from =repo forall= will "Fan In" their to merge their output to a
+single output stream -- i.e. you can pipe the result to less, unlike with =find
+-exec=. This is actually what they mean when they say "python has batteries
+included" if you've read the manual (which is about as far as I got).
+Specifying [[https://docs.python.org/3/library/subprocess.html#subprocess.PIPE][subprocess.PIPE]] seems to make a bit easier. This is what
+=.repo/repo/subcmds/forall.py= is doing. Maybe it's this easy in other langs
+IDK. I never had mentors for very long. Managing process input/output is fairly
+simple with Guile scheme's =ports= interface, i think?
+
+Unfortunately, the =--quiet= option doesn't quite work and the warning goes to
+neither =stdout= nor =stderr=. Or perhaps the =--quiet= option redirects only
+output from =dev/std*= after passing control to spawned processes. The python
+scripts must manage created pipes (or ... whatever).
+
+#+begin_quote
+The -p option causes '%prog' to bind pipes to the command's stdin,
+stdout and stderr streams, and pipe all output into a continuous
+stream that is displayed in a single pager session.  Project headings
+are inserted before the output of each command is displayed.  If the
+command produces no output in a project, no heading is displayed.
+#+end_quote
+
+The output seems to be pageable regardless. I do see that =-p= injects the
+project name, but I didn't look at the code closely enough to figure out the
+difference. it seems to just =print= it idk.
+
+
 * Other Repo Resources
 
 ** A Brief List of Alternatives to [[https://gerrit.googlesource.com/git-repo/][Google Repo]]
@@ -379,4 +451,3 @@ them a special place.
 *** Can I branch and manage my manifest.xml's in different branches?
 
 Don't LOL
-
