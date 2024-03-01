@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/main"/>
+  <include name="_remotes.xml"/>
   <project name="0xShapeShifter/essentialist" path="0xShapeShifter/essentialist" groups="portfolio,minimal,tailwind"/>
   <project name="0xShapeShifter/solo" path="0xShapeShifter/solo" groups="portfolio,tailwind"/>
+  <project name="abdllahdev/nimbus-narratives" path="algorizr/nimbus-narratives" groups="blog,preact,tailwind,typescript,mdx"/>
   <project name="AgnosticUI/AstroAgnosticUIStarter" path="AgnosticUI/AstroAgnosticUIStarter" groups="minimal,react,svelte,vue"/>
   <project name="alexanderhodes/astro-minimal-blog" path="alexanderhodes/astro-minimal-blog" groups="blog,minimal,tailwind,mdx"/>
   <project name="alexanderhodes/astro-minimal-cv" path="alexanderhodes/astro-minimal-cv" groups="minimal,tailwind"/>
-  <project name="algorizr/nimbus-narratives" path="algorizr/nimbus-narratives" groups="blog,preact,tailwind,typescript,mdx"/>
-  <project name="anthonylan/astrobrew" path="anthonylan/astrobrew" groups="landing-page"/>
   <project name="AREA44/astro-multiverse" path="AREA44/astro-multiverse" groups="other"/>
   <project name="AREA44/astro-shadcn-ui-template" path="AREA44/astro-shadcn-ui-template" groups="minimal,react,tailwind,typescript"/>
-  <project name="aryanjha256/verve" path="aryanjha256/verve" groups="blog,minimal,tailwind,typescript"/>
-  <project name="BryceRussell/astro-minecraft-theme" path="BryceRussell/astro-minecraft-theme" groups="other,tailwind"/>
+  <project name="aryanjha256/verve" path="aryanjha256/verve" groups="blog,minimal,tailwind,typescript" revision="refs/heads/master"/>
+  <project name="BryceRussell/astro-minecraft-theme" path="BryceRussell/astro-minecraft-theme" groups="other,tailwind" revision="refs/heads/master"/>
+  <project name="bywhitepine/astro-minimal-starter" path="jaydanurwin/astro-minimal-starter" groups="minimal"/>
+  <project name="bywhitepine/cannonball" path="littlesticks/cannonball" groups="landing-page"/>
+  <project name="bywhitepine/odyssey-theme" path="littlesticks/odyssey-theme" groups="featured,landing-page"/>
+  <project name="bywhitepine/simple-blog-astro" path="littlesticks/simple-blog-astro" groups="blog,lit,mdx"/>
   <project name="candidosales/landing-page-book-astro-svelte-tailwind" path="candidosales/landing-page-book-astro-svelte-tailwind" groups="other,svelte,tailwind"/>
   <project name="chrismwilliams/astro-theme-cactus" path="chrismwilliams/astro-theme-cactus" groups="blog,mdx,tailwind"/>
   <project name="christian-luntok/astro-lane" path="christian-luntok/astro-lane" groups="blog,react,mdx,tailwind,typescript"/>
@@ -23,8 +26,8 @@
   <project name="creativetimofficial/astro-launch-ui" path="creativetimofficial/astro-launch-ui" groups="landing-page,other,react,tailwind,typescript"/>
   <project name="cssninjaStudio/dokto" path="cssninjaStudio/dokto" groups="landing-page,alpinejs,tailwind"/>
   <project name="danielcgilibert/blog-template" path="danielcgilibert/blog-template" groups="blog,tailwind,typescript,mdx"/>
-  <project name="DBozhinovski/astro-massively" path="DBozhinovski/astro-massively" groups="other,sass,mdx"/>
-  <project name="DBozhinovski/astro-theme-ltree" path="DBozhinovski/astro-theme-ltree" groups="portfolio,tailwind,typescript"/>
+  <project name="DBozhinovski/astro-massively" path="DBozhinovski/astro-massively" groups="other,sass,mdx" revision="refs/heads/master"/>
+  <project name="DBozhinovski/astro-theme-ltree" path="DBozhinovski/astro-theme-ltree" groups="portfolio,tailwind,typescript" revision="refs/heads/master"/>
   <project name="dofbi/astro-cv-theme" path="dofbi/astro-cv-theme" groups="other"/>
   <project name="dofbi/astro-simple-blog-theme" path="dofbi/astro-simple-blog-theme" groups="blog"/>
   <project name="doinel1a/astro-vanilla-ts" path="doinel1a/astro-vanilla-ts" groups="minimal,tailwind,typescript"/>
@@ -32,15 +35,7 @@
   <project name="EddyVinck/astro-engineering-blog" path="EddyVinck/astro-engineering-blog" groups="blog,solidjs,mdx,tailwind,typescript"/>
   <project name="eliancodes/brutal" path="eliancodes/brutal" groups="blog,portfolio,minimal,typescript"/>
   <project name="EmaSuriano/astro-resume" path="EmaSuriano/astro-resume" groups="other,tailwind"/>
-  <project name="examples/basics" path="examples/basics" groups="official,docs,mdx,typescript"/>
-  <project name="examples/basics" path="examples/basics" groups="official,minimal"/>
-  <project name="examples/blog" path="examples/blog" groups="official,blog,mdx"/>
-  <project name="examples/portfolio" path="examples/portfolio" groups="official,portfolio"/>
-  <project name="examples/starlog" path="examples/starlog" groups="official,docs,sass"/>
-  <project name="fahad0samara/Astro.js-Chef-Project" path="fahad0samara/Astro.js-Chef-Project" groups="other,tailwind,typescript"/>
-  <project name="flexdinesh/blogster" path="flexdinesh/blogster" groups="blog"/>
-  <project name="flexdinesh/blogster" path="flexdinesh/blogster" groups="blog,tailwind"/>
-  <project name="flexdinesh/blogster" path="flexdinesh/blogster" groups="blog,tailwind"/>
+  <project name="fahad0samara/Astro.js-Chef-Project" path="fahad0samara/Astro.js-Chef-Project" groups="other,tailwind,typescript" revision="refs/heads/master"/>
   <project name="flexdinesh/blogster" path="flexdinesh/blogster" groups="featured,blog,tailwind,typescript"/>
   <project name="fogbender/b2b-saaskit" path="fogbender/b2b-saaskit" groups="landing-page,react,tailwind,typescript"/>
   <project name="fracalo/astro-supabase-ss" path="fracalo/astro-supabase-ss" groups="other,typescript"/>
@@ -49,27 +44,23 @@
   <project name="gndx/ev0-astro-theme" path="gndx/ev0-astro-theme" groups="blog,tailwind,typescript,mdx"/>
   <project name="gxanshu/astro-decap-cms-starter" path="gxanshu/astro-decap-cms-starter" groups="portfolio,blog,tailwind,typescript"/>
   <project name="hellotham/hello-astro" path="hellotham/hello-astro" groups="blog,landing-page,tailwind,mdx"/>
-  <project name="iamnyasha/minimma" path="iamnyasha/minimma" groups="portfolio,minimal,tailwind"/>
+  <project name="iamnyasha/minimma" path="iamnyasha/minimma" groups="portfolio,minimal,tailwind" revision="refs/heads/master"/>
   <project name="importantimport/gumori" path="importantimport/gumori" groups="blog,minimal"/>
   <project name="iozcelik/SarissaBlogAstroStarter" path="iozcelik/SarissaBlogAstroStarter" groups="blog,tailwind"/>
   <project name="isooosi/VisVrs" path="isooosi/VisVrs" groups="blog,tailwind,typescript"/>
   <project name="ixartz/Astro-boilerplate" path="ixartz/Astro-boilerplate" groups="portfolio,blog,react,tailwind"/>
-  <project name="Jamship-io/zerk" path="Jamship-io/zerk" groups="portfolio,tailwind"/>
-  <project name="jaydanurwin/astro-minimal-starter" path="jaydanurwin/astro-minimal-starter" groups="minimal"/>
   <project name="jaytyrrell13/astro-template-slate" path="jaytyrrell13/astro-template-slate" groups="blog,minimal,tailwind,typescript"/>
   <project name="JedediahXu/Jed-blog" path="JedediahXu/Jed-blog" groups="blog,typescript,vue,tailwind"/>
   <project name="JEverhart383/astro-wordpress-starter" path="JEverhart383/astro-wordpress-starter" groups="blog"/>
   <project name="joackob/nipon-astro-theme" path="joackob/nipon-astro-theme" groups="blog,tailwind,typescript"/>
-  <project name="Johnkat-Mj/agencex-astro" path="Johnkat-Mj/agencex-astro" groups="landing-page,tailwind"/>
+  <project name="Johnkat-Mj/agency-landing-page-astrojs" path="Johnkat-Mj/agencex-astro" groups="landing-page,tailwind"/>
   <project name="jordienr/astro-design-system" path="jordienr/astro-design-system" groups="docs,vue,tailwind"/>
   <project name="Jungley8/astro-landing-page" path="Jungley8/astro-landing-page" groups="landing-page,react,tailwind,typescript"/>
   <project name="JustGoodUI/dante-astro-theme" path="JustGoodUI/dante-astro-theme" groups="blog,minimal,portfolio,tailwind"/>
   <project name="JustGoodUI/ovidius-astro-theme" path="JustGoodUI/ovidius-astro-theme" groups="landing-page,blog,tailwind,mdx"/>
   <project name="kireerik/refo" path="kireerik/refo" groups="portfolio,other,solidjs"/>
-  <project name="Ladvace/astro-bento-portfolio" path="Ladvace/astro-bento-portfolio" groups="portfolio,solidjs,unocss,typescript"/>
-  <project name="littlesticks/cannonball" path="littlesticks/cannonball" groups="landing-page"/>
-  <project name="littlesticks/odyssey-theme" path="littlesticks/odyssey-theme" groups="featured,landing-page"/>
-  <project name="littlesticks/simple-blog-astro" path="littlesticks/simple-blog-astro" groups="blog,lit,mdx"/>
+  <project name="LaB-CH3/astrobrew" path="anthonylan/astrobrew" groups="landing-page"/>
+  <project name="Ladvace/astro-bento-portfolio" path="Ladvace/astro-bento-portfolio" groups="portfolio,solidjs,unocss,typescript" revision="refs/heads/master"/>
   <project name="m6v3l9/astro-theme-stone" path="m6v3l9/astro-theme-stone" groups="landing-page"/>
   <project name="MaeWolff/astro-portfolio-template" path="MaeWolff/astro-portfolio-template" groups="portfolio,blog,tailwind,typescript"/>
   <project name="manuelernestog/astrofy" path="manuelernestog/astrofy" groups="portfolio,tailwind,mdx"/>
@@ -77,44 +68,44 @@
   <project name="markteekman/accessible-astro-dashboard" path="markteekman/accessible-astro-dashboard" groups="other,sass"/>
   <project name="markteekman/accessible-astro-starter" path="markteekman/accessible-astro-starter" groups="featured,blog,tailwind,sass,mdx"/>
   <project name="matt765/Tailcast" path="matt765/Tailcast" groups="landing-page,react,tailwind"/>
-  <project name="mesinkasir/astro-website-template-themes-source-code-download" path="mesinkasir/astro-website-template-themes-source-code-download" groups="blog"/>
-  <project name="mesinkasir/cute-blog" path="mesinkasir/cute-blog" groups="blog,preact"/>
+  <project name="mesinkasir/astro-website-template-themes-source-code-download" path="mesinkasir/astro-website-template-themes-source-code-download" groups="blog" revision="refs/heads/master"/>
+  <project name="mesinkasir/cute-blog" path="mesinkasir/cute-blog" groups="blog,preact" revision="refs/heads/master"/>
   <project name="mesinkasir/stardoc" path="mesinkasir/stardoc" groups="docs,mdx"/>
   <project name="mhyfritz/astro-landing-page" path="mhyfritz/astro-landing-page" groups="featured,landing-page,tailwind"/>
   <project name="michael-andreuzza/astromax" path="michael-andreuzza/astromax" groups="portfolio,solidjs,tailwind,typescript"/>
   <project name="michael-andreuzza/astrosaas" path="michael-andreuzza/astrosaas" groups="landing-page,tailwind,alpinejs"/>
   <project name="michael-andreuzza/microblog" path="michael-andreuzza/microblog" groups="blog,alpinejs,mdx,tailwind"/>
-  <project name="michael-andreuzza/quickstore" path="michael-andreuzza/quickstore" groups="ecommerce,tailwind,alpinejs"/>
+  <project name="michael-andreuzza/quickstore" path="michael-andreuzza/quickstore" groups="ecommerce,tailwind,alpinejs" revision="refs/heads/master"/>
   <project name="michael-andreuzza/swissfolio" path="michael-andreuzza/swissfolio" groups="portfolio,tailwind,alpinejs"/>
-  <project name="mickasmt/astro-nomy" path="mickasmt/astro-nomy" groups="blog,docs,other,alpinejs,mdx,tailwind"/>
+  <project name="mickasmt/astro-nomy" path="mickasmt/astro-nomy" groups="blog,docs,other,alpinejs,mdx,tailwind" revision="refs/heads/master"/>
   <project name="MicroWebStacks/astro-big-doc" path="MicroWebStacks/astro-big-doc" groups="docs"/>
   <project name="MINOTAURO18/JamyPage" path="MINOTAURO18/JamyPage" groups="ecommerce,tailwind"/>
   <project name="MoofyWoofy/Bob-blog" path="MoofyWoofy/Bob-blog" groups="blog,tailwind"/>
   <project name="netaisllc/astro-strata" path="netaisllc/astro-strata" groups="portfolio,tailwind,mdx"/>
   <project name="netlesh/astro-business-template" path="netlesh/astro-business-template" groups="landing-page,tailwind"/>
-  <project name="npmrun/art-theme" path="npmrun/art-theme" groups="blog,vue,tailwind,sass,mdx"/>
+  <project name="npmrun/art-theme" path="npmrun/art-theme" groups="blog,vue,tailwind,sass,mdx" revision="refs/heads/master"/>
   <project name="Numonu/Luxury-Architect" path="Numonu/Luxury-Architect" groups="landing-page,tailwind,typescript"/>
   <project name="onadrog/cmd_theme" path="onadrog/cmd_theme" groups="blog,sass,typescript"/>
   <project name="one-aalam/astro-ink" path="one-aalam/astro-ink" groups="featured,blog,svelte,tailwind,mdx"/>
   <project name="onwidget/astrowind" path="onwidget/astrowind" groups="featured,landing-page,tailwind,mdx"/>
   <project name="OnWritingCode/simple-blog-template" path="OnWritingCode/simple-blog-template" groups="minimal,sass"/>
   <project name="openstatusHQ/astro-status-page" path="openstatusHQ/astro-status-page" groups="other,react,tailwind,typescript"/>
-  <project name="paabloLC/astro-neumorphismt" path="paabloLC/astro-neumorphismt" groups="other,preact,tailwind"/>
-  <project name="palmiak/pacamara-astro" path="palmiak/pacamara-astro" groups="blog,tailwind,mdx"/>
+  <project name="paabloLC/astro-neumorphism" path="paabloLC/astro-neumorphism" groups="other,preact,tailwind" revision="refs/heads/develop"/>
+  <project name="palmiak/pacamara-astro" path="palmiak/pacamara-astro" groups="blog,tailwind,mdx" revision="refs/heads/master"/>
   <project name="Porter-smith/astro-firebase-svelte-tailwind-starter" path="Porter-smith/astro-firebase-svelte-tailwind-starter" groups="minimal,svelte,tailwind,typescript"/>
   <project name="PriscaTonia/interior-design-website" path="PriscaTonia/interior-design-website" groups="landing-page,react,tailwind,typescript"/>
-  <project name="robertguss/Astro-Theme-Creek" path="robertguss/Astro-Theme-Creek" groups="featured,blog,tailwind"/>
+  <project name="robertguss/Astro-Theme-Creek" path="robertguss/Astro-Theme-Creek" groups="featured,blog,tailwind" revision="refs/heads/master"/>
   <project name="rodneylab/astro-blog-markdown" path="rodneylab/astro-blog-markdown" groups="blog,svelte,postcss"/>
-  <project name="saadeghi/daisy-blog" path="saadeghi/daisy-blog" groups="blog,tailwind"/>
+  <project name="saadeghi/daisy-blog" path="saadeghi/daisy-blog" groups="blog,tailwind" revision="refs/heads/master"/>
   <project name="sarasate/gate" path="sarasate/gate" groups="docs,tailwind,mdx,typescript"/>
   <project name="satnaing/astro-paper" path="satnaing/astro-paper" groups="featured,blog,tailwind,react,typescript"/>
-  <project name="shaunchander/astro-pwa-starter" path="shaunchander/astro-pwa-starter" groups="minimal,tailwind"/>
+  <project name="shaunchander/astro-pwa-starter" path="shaunchander/astro-pwa-starter" groups="minimal,tailwind" revision="refs/heads/master"/>
   <project name="slamethendry/tinyrocket" path="slamethendry/tinyrocket" groups="blog,preact,tailwind,mdx"/>
   <project name="stevefrenzel/astro-naut" path="stevefrenzel/astro-naut" groups="landing-page,portfolio,typescript"/>
   <project name="surjithctly/astroship" path="surjithctly/astroship" groups="landing-page,tailwind"/>
   <project name="TailGrids/play-astro" path="TailGrids/play-astro" groups="landing-page,alpinejs,tailwind,mdx"/>
   <project name="Tailus-UI/astro-theme" path="Tailus-UI/astro-theme" groups="landing-page,tailwind"/>
-  <project name="ThatGuySam/nice-tat" path="ThatGuySam/nice-tat" groups="minimal,tailwind,typescript"/>
+  <project name="ThatGuySam/nice-tat" path="ThatGuySam/nice-tat" groups="minimal,tailwind,typescript" revision="refs/heads/master"/>
   <project name="themefisher/bigspring-light-astro" path="themefisher/bigspring-light-astro" groups="landing-page,react,tailwind,mdx,typescript"/>
   <project name="themefisher/bookworm-light-astro" path="themefisher/bookworm-light-astro" groups="blog,react,tailwind,mdx,typescript"/>
   <project name="themefisher/pinwheel-astro" path="themefisher/pinwheel-astro" groups="featured,landing-page,react,tailwind"/>
@@ -125,11 +116,11 @@
   <project name="TomEverson/galaxy" path="TomEverson/galaxy" groups="landing-page,preact,tailwind,typescript"/>
   <project name="ttomczak3/Milky-Way" path="ttomczak3/Milky-Way" groups="portfolio"/>
   <project name="unfolding-io/nebulix" path="unfolding-io/nebulix" groups="blog,ecommerce,portfolio"/>
-  <project name="unfolding-io/StarFunnel" path="unfolding-io/StarFunnel" groups="landing-page"/>
-  <project name="USKhokhar/astro-vitae" path="USKhokhar/astro-vitae" groups="portfolio,alpinejs,tailwind"/>
-  <project name="uzzii-21/astro-portfolio" path="uzzii-21/astro-portfolio" groups="portfolio,tailwind"/>
+  <project name="unfolding-io/StarFunnel" path="unfolding-io/StarFunnel" groups="landing-page" revision="refs/heads/master"/>
+  <project name="USKhokhar/astro-vitae" path="USKhokhar/astro-vitae" groups="portfolio,alpinejs,tailwind" revision="refs/heads/master"/>
+  <project name="uzzii-21/astro-portfolio" path="uzzii-21/astro-portfolio" groups="portfolio,tailwind" revision="refs/heads/master"/>
   <project name="veranikabarel/astro-portfolio" path="veranikabarel/astro-portfolio" groups="portfolio,tailwind,typescript"/>
-  <project name="vratskyi/vratskyi.github.io" path="vratskyi/vratskyi.github.io" groups="blog,portfolio,tailwind,postcss"/>
+  <project name="vratskyi/vratskyi.github.io" path="vratskyi/vratskyi.github.io" groups="blog,portfolio,tailwind,postcss" revision="refs/heads/master"/>
   <project name="wanoo21/tailwind-astro-starting-blog" path="wanoo21/tailwind-astro-starting-blog" groups="blog,tailwind,typescript,mdx"/>
   <project name="web3templates/stablo-astro" path="web3templates/stablo-astro" groups="blog"/>
   <project name="williamhzo/astro-cube" path="williamhzo/astro-cube" groups="minimal"/>

@@ -329,3 +329,116 @@ Now I just need to:
 + check tidy formatting
 + manually figure out which of these are master and which are main.
 + later probably exclude some projects
+
+** Repository Status
+
+*** Redirects
+
+About a dozen repositories are redirecting
+
+#+begin_src sh :results output table
+cat ../astro-themes.xml |\
+    xq -y '.manifest.project | map(."@name") | map(@text "https://github.com/\(.)")' |\
+    sed -e 's/^- //g' |\
+    xargs -n1 curl --silent --output /dev/null --write-out "%{http_code} %{url.path}\n"
+#+end_src
+
+#+begin_src sh :results output :wrap example diff
+diff ../astro-themes.xml ../astro-themes-auto.xml
+#+end_src
+
+#+begin_example diff
+10,11c10,11
+<   <project name="algorizr/nimbus-narratives" path="algorizr/nimbus-narratives" groups="blog,preact,tailwind,typescript,mdx"/>
+<   <project name="anthonylan/astrobrew" path="anthonylan/astrobrew" groups="landing-page"/>
+---
+>   <project name="abdllahdev/nimbus-narratives" path="algorizr/nimbus-narratives" groups="blog,preact,tailwind,typescript,mdx"/>
+>   <project name="LaB-CH3/astrobrew" path="anthonylan/astrobrew" groups="landing-page"/>
+35,39d34
+<   <project name="examples/basics" path="examples/basics" groups="official,docs,mdx,typescript"/>
+<   <project name="examples/basics" path="examples/basics" groups="official,minimal"/>
+<   <project name="examples/blog" path="examples/blog" groups="official,blog,mdx"/>
+<   <project name="examples/portfolio" path="examples/portfolio" groups="official,portfolio"/>
+<   <project name="examples/starlog" path="examples/starlog" groups="official,docs,sass"/>
+41,43d35
+<   <project name="flexdinesh/blogster" path="flexdinesh/blogster" groups="blog"/>
+<   <project name="flexdinesh/blogster" path="flexdinesh/blogster" groups="blog,tailwind"/>
+<   <project name="flexdinesh/blogster" path="flexdinesh/blogster" groups="blog,tailwind"/>
+57,58c49
+<   <project name="Jamship-io/zerk" path="Jamship-io/zerk" groups="portfolio,tailwind"/>
+<   <project name="jaydanurwin/astro-minimal-starter" path="jaydanurwin/astro-minimal-starter" groups="minimal"/>
+---
+>   <project name="bywhitepine/astro-minimal-starter" path="jaydanurwin/astro-minimal-starter" groups="minimal"/>
+63c54
+<   <project name="Johnkat-Mj/agencex-astro" path="Johnkat-Mj/agencex-astro" groups="landing-page,tailwind"/>
+---
+>   <project name="Johnkat-Mj/agency-landing-page-astrojs" path="Johnkat-Mj/agencex-astro" groups="landing-page,tailwind"/>
+70,72c61,63
+<   <project name="littlesticks/cannonball" path="littlesticks/cannonball" groups="landing-page"/>
+<   <project name="littlesticks/odyssey-theme" path="littlesticks/odyssey-theme" groups="featured,landing-page"/>
+<   <project name="littlesticks/simple-blog-astro" path="littlesticks/simple-blog-astro" groups="blog,lit,mdx"/>
+---
+>   <project name="bywhitepine/cannonball" path="littlesticks/cannonball" groups="landing-page"/>
+>   <project name="bywhitepine/odyssey-theme" path="littlesticks/odyssey-theme" groups="featured,landing-page"/>
+>   <project name="bywhitepine/simple-blog-astro" path="littlesticks/simple-blog-astro" groups="blog,lit,mdx"/>
+102c93
+<   <project name="paabloLC/astro-neumorphismt" path="paabloLC/astro-neumorphismt" groups="other,preact,tailwind"/>
+---
+>   <project name="paabloLC/astro-neumorphism" path="paabloLC/astro-neumorphism" groups="other,preact,tailwind"/>
+#+end_example
+
+*** Master/Main
+
+#+begin_src emacs-lisp
+(setq-local ghub-noscopes "foobar.gpg")
+#+end_src
+
+Have i mentioned how messed up this master/main shit is? It's almost as bad as
+posting the script below online. =ob-restclient= doesn't work for this ... not
+in any simple way AFAIK. It's all good really until you have to trap out a bash
+script. Then I would've been a /little/ pissed off ...
+
+#+begin_src sh :var tokenfile=(identity ghub-noscopes) :results output table :cache yes
+muhfoobar="$(gpg -d $tokenfile 2>/dev/null)"
+cat ../astro-themes.xml |\
+    xq -y '.manifest.project | map(."@name") | map(@text "https://api.github.com/repos/\(.)")' |\
+    sed -e 's/^- //g' |\
+    while read line; do
+        # --write-out "%{json}"
+        curl --silent --output /dev/stdout  \
+            -L -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            -H "Authorization: Bearer $muhfoobar" \
+            $line |\
+            jq "@text \"\(.default_branch) $line\"" |\
+            tr -d '"'
+    done;
+#+end_src
+
+#+RESULTS:
+| master  | https://api.github.com/repos/BryceRussell/astro-minecraft-theme                            |
+| master  | https://api.github.com/repos/DBozhinovski/astro-massively                                  |
+| master  | https://api.github.com/repos/DBozhinovski/astro-theme-ltree                                |
+| master  | https://api.github.com/repos/Ladvace/astro-bento-portfolio                                 |
+| master  | https://api.github.com/repos/Numonu/Luxury-Architect                                       |
+| master  | https://api.github.com/repos/PriscaTonia/interior-design-website                           |
+| master  | https://api.github.com/repos/ThatGuySam/nice-tat                                           |
+| master  | https://api.github.com/repos/USKhokhar/astro-vitae                                         |
+| master  | https://api.github.com/repos/aryanjha256/verve                                             |
+| master  | https://api.github.com/repos/fahad0samara/Astro.js-Chef-Project                            |
+| master  | https://api.github.com/repos/iamnyasha/minimma                                             |
+| master  | https://api.github.com/repos/iozcelik/SarissaBlogAstroStarter                              |
+| master  | https://api.github.com/repos/jordienr/astro-design-system                                  |
+| master  | https://api.github.com/repos/mesinkasir/astro-website-template-themes-source-code-download |
+| master  | https://api.github.com/repos/mesinkasir/cute-blog                                          |
+| master  | https://api.github.com/repos/michael-andreuzza/quickstore                                  |
+| master  | https://api.github.com/repos/mickasmt/astro-nomy                                           |
+| master  | https://api.github.com/repos/npmrun/art-theme                                              |
+| master  | https://api.github.com/repos/palmiak/pacamara-astro                                        |
+| master  | https://api.github.com/repos/robertguss/Astro-Theme-Creek                                  |
+| master  | https://api.github.com/repos/saadeghi/daisy-blog                                           |
+| master  | https://api.github.com/repos/shaunchander/astro-pwa-starter                                |
+| master  | https://api.github.com/repos/unfolding-io/StarFunnel                                       |
+| master  | https://api.github.com/repos/uzzii-21/astro-portfolio                                      |
+| master  | https://api.github.com/repos/vratskyi/vratskyi.github.io                                   |
+| develop | https://api.github.com/repos/paabloLC/astro-neumorphism                                    |
