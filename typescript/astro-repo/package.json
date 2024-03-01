@@ -1,0 +1,34 @@
+{
+  "name": "astro-repo",
+  "description": "Generate a Repo XML from a list of repositories",
+  "version": "0.0.1",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "author": "dcunited001",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ectorepo/ectorepo.git",
+    "directory": "typescript/astro-repo"
+  },
+  "bugs": "https://github.com/ectorepo/ectorepo/issues",
+  "homepage": "https://dev.null",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "astro build \"src/**/*.ts\" && tsc"
+  },
+  "devDependencies": {
+    "@types/xml2js": "^0.4.14",
+    "astro": "4.4.6"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^4.2.7",
+    "kleur": "^4.1.5"
+  }
+}
