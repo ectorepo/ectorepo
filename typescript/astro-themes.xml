@@ -46,7 +46,7 @@
   <project name="hellotham/hello-astro" path="hellotham/hello-astro" groups="blog,landing-page,tailwind,mdx"/>
   <project name="iamnyasha/minimma" path="iamnyasha/minimma" groups="portfolio,minimal,tailwind" revision="refs/heads/master"/>
   <project name="importantimport/gumori" path="importantimport/gumori" groups="blog,minimal"/>
-  <project name="iozcelik/SarissaBlogAstroStarter" path="iozcelik/SarissaBlogAstroStarter" groups="blog,tailwind"/>
+  <project name="iozcelik/SarissaBlogAstroStarter" path="iozcelik/SarissaBlogAstroStarter" groups="blog,tailwind" revision="refs/heads/master"/>
   <project name="isooosi/VisVrs" path="isooosi/VisVrs" groups="blog,tailwind,typescript"/>
   <project name="ixartz/Astro-boilerplate" path="ixartz/Astro-boilerplate" groups="portfolio,blog,react,tailwind"/>
   <project name="jaytyrrell13/astro-template-slate" path="jaytyrrell13/astro-template-slate" groups="blog,minimal,tailwind,typescript"/>
@@ -54,7 +54,7 @@
   <project name="JEverhart383/astro-wordpress-starter" path="JEverhart383/astro-wordpress-starter" groups="blog"/>
   <project name="joackob/nipon-astro-theme" path="joackob/nipon-astro-theme" groups="blog,tailwind,typescript"/>
   <project name="Johnkat-Mj/agency-landing-page-astrojs" path="Johnkat-Mj/agencex-astro" groups="landing-page,tailwind"/>
-  <project name="jordienr/astro-design-system" path="jordienr/astro-design-system" groups="docs,vue,tailwind"/>
+  <project name="jordienr/astro-design-system" path="jordienr/astro-design-system" groups="docs,vue,tailwind" revision="refs/heads/master"/>
   <project name="Jungley8/astro-landing-page" path="Jungley8/astro-landing-page" groups="landing-page,react,tailwind,typescript"/>
   <project name="JustGoodUI/dante-astro-theme" path="JustGoodUI/dante-astro-theme" groups="blog,minimal,portfolio,tailwind"/>
   <project name="JustGoodUI/ovidius-astro-theme" path="JustGoodUI/ovidius-astro-theme" groups="landing-page,blog,tailwind,mdx"/>
@@ -84,7 +84,7 @@
   <project name="netaisllc/astro-strata" path="netaisllc/astro-strata" groups="portfolio,tailwind,mdx"/>
   <project name="netlesh/astro-business-template" path="netlesh/astro-business-template" groups="landing-page,tailwind"/>
   <project name="npmrun/art-theme" path="npmrun/art-theme" groups="blog,vue,tailwind,sass,mdx" revision="refs/heads/master"/>
-  <project name="Numonu/Luxury-Architect" path="Numonu/Luxury-Architect" groups="landing-page,tailwind,typescript"/>
+  <project name="Numonu/Luxury-Architect" path="Numonu/Luxury-Architect" groups="landing-page,tailwind,typescript" revision="refs/heads/master"/>
   <project name="onadrog/cmd_theme" path="onadrog/cmd_theme" groups="blog,sass,typescript"/>
   <project name="one-aalam/astro-ink" path="one-aalam/astro-ink" groups="featured,blog,svelte,tailwind,mdx"/>
   <project name="onwidget/astrowind" path="onwidget/astrowind" groups="featured,landing-page,tailwind,mdx"/>
@@ -93,7 +93,7 @@
   <project name="paabloLC/astro-neumorphism" path="paabloLC/astro-neumorphism" groups="other,preact,tailwind" revision="refs/heads/develop"/>
   <project name="palmiak/pacamara-astro" path="palmiak/pacamara-astro" groups="blog,tailwind,mdx" revision="refs/heads/master"/>
   <project name="Porter-smith/astro-firebase-svelte-tailwind-starter" path="Porter-smith/astro-firebase-svelte-tailwind-starter" groups="minimal,svelte,tailwind,typescript"/>
-  <project name="PriscaTonia/interior-design-website" path="PriscaTonia/interior-design-website" groups="landing-page,react,tailwind,typescript"/>
+  <project name="PriscaTonia/interior-design-website" path="PriscaTonia/interior-design-website" groups="landing-page,react,tailwind,typescript" revision="refs/heads/master"/>
   <project name="robertguss/Astro-Theme-Creek" path="robertguss/Astro-Theme-Creek" groups="featured,blog,tailwind" revision="refs/heads/master"/>
   <project name="rodneylab/astro-blog-markdown" path="rodneylab/astro-blog-markdown" groups="blog,svelte,postcss"/>
   <project name="saadeghi/daisy-blog" path="saadeghi/daisy-blog" groups="blog,tailwind" revision="refs/heads/master"/>
