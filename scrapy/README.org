@@ -1,0 +1,91 @@
+#+TITLE:     Ectorepo: Automation
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+* Environment
+
+** Setup
+
+This just uses a local =poetry= environment.
+
+*.envrc.eg*
+
+#+begin_src sh :tangle .envrc.eg
+# use_guix_manifest manifest.scm
+layout poetry
+#+end_src
+
+*** Guix
+
+I haven't tried getting Guix to work
+
+*manifest.scm*
+
+#+begin_src scheme :tangle manifest.scm
+(use-modules (gnu packages python-xyz))
+
+;; (concatenate-manifests ... )
+;; package->development-manifest only returns the `guix shell -D` dependencies
+;; just add python-lsp-server for now
+
+(specifications->manifest
+ '("python"
+   ;; "python-gql" ;; TODO: retry python-gql from Guix
+   ;; "python-lsp-server"
+   "python-scrapy"))
+#+end_src
+
+* Scrapy
+
+** GCP
+
+=GcpTfBlueprintsSpider= fetches a list of example projects from [[https://cloud.google.com/docs/terraform/blueprints/terraform-blueprints][GCP Terraform
+Blueprints]]. This was formerly in =../hashicorp/scraping=.
+
++ The output from gets converted from JSON to YML to XML ... which could be
+  simplified.
++ Perhaps [[https://www.crummy.com/software/BeautifulSoup/bs4/doc/][beautifulsoup]] was more appropriate for this. It's not quite complete
+  and requires some manual work. See below under "Misc."
+
+*** Blueprints
+
+From the =./scrapy= directory, run the following, which may be prefixed by
+=poetry run=.
+
+#+begin_src sh
+# this skips a few with http:/// and etc.
+scrapy runspider scraping/spiders/gcp_tf_blueprints.py -O output/repos.json
+yq -y '. | sort_by(.project.name)' "output/repos.json" > output/repos.yml
+#+end_src
+
+I'm not too sure the =xq= command is suited to setting attributes on a tag,
+instead of writing them to the nodes' children. So for now, this requires
+manually transforming the output with regexp.
+
+***** TODO use an Awk script or just include =libxml2-python=  and write xml directly
+
+**** Misc
+Getting =defaultBranchRef= from a list of repositories req. calling this query
+later in a Scrapy [[https://docs.scrapy.org/en/latest/topics/item-pipeline.html][RepositoryPipeline]] (see [[https://gql.readthedocs.io/en/latest/async/async_usage.html#async-usage][gql example for async usage]])
+
+#+begin_example graphql
+query {
+  repository(owner:"octocat", name:"Hello-World") {
+    title
+    url
+    owner{login}
+    name
+    defaultBranchRef{prefix name}
+    url
+    updatedAt
+    isArchived
+  }
+ }
+#+end_example
+
+So to validate, commit the =gcp_blueprints.xml= changes, which are sorted
+... and see which repo's don't clone.
+
+Since the GraphQL pipeline is not working for me -- and since it req. ~70 Github
+API requests per try, naively -- I just gave up and manually edited things.

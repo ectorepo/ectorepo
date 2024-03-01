@@ -1,0 +1,5 @@
+output/*
+.envrc
+.envrc.eg
+manifest.scm
+.venv

@@ -22,6 +22,8 @@ the [[https://github.com/ectorepo/ectorepo][ectorepo/ectorepo]] Repo ... repo.
   <project name="colinhacks/zod-deno" path="zod/zod-deno" remote="github" revision="main"/>
   <project name="samchungy/zod-openapi" path="zod/zod-openapi" remote="github" revision="master"/>
   <project name="asteasolutions/zod-to-openapi" path="zod/zod-to-openapi" remote="github" revision="master"/>
+  <!-- zod -->
+
 </manifest>
 #+end_src
 
@@ -201,10 +203,10 @@ Via restclient.el, which can pipes data to jq, via:
 # +headers: vars: tsxData=zodSnips
 
 # -*- mode: snippet -*-
-# name: 
-# key: 
-# uuid: 
-# group: 
+# name:
+# key:
+# uuid:
+# group:
 # --
 
 #+name: convertCodeSnippets
