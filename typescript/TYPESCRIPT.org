@@ -19,7 +19,7 @@ Install with =npm i -g ts_dependency_graph=
 From the root of the [[https://github.com/withastro/starlight][withastro/starlight]] 
 
 #+attr_html: :style: width:800px;
-#+begin_src sh :results output file :file img/ts-deps-starlight-index.svg :var ectoroot=(identity ectoroot)
+#+begin_src sh :results output file link :file img/ts-deps-starlight-index.svg :var ectoroot=(identity ectoroot)
 cd $ectoroot/typescript/astro/starlight
 ts_dependency_graph --start packages/starlight/index.ts \
                     --graph_folder \
@@ -33,7 +33,7 @@ ts_dependency_graph --start packages/starlight/index.ts \
 And on a directory, without an specific entry point:
 
 #+attr_html: :style: width:800px;
-#+begin_src sh :results output file :file img/ts-deps-starlight-all.svg :var ectoroot=(identity ectoroot)
+#+begin_src sh :results output file link :file img/ts-deps-starlight-all.svg :var ectoroot=(identity ectoroot)
 cd $ectoroot/typescript/astro/starlight
 ts_dependency_graph --start packages/starlight \
                     --graph_folder \
