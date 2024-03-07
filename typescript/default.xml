@@ -5,6 +5,8 @@
   <!-- astro -->
   <include name="typescript/astro.xml"/>
   <project name="themesberg/flowbite-astro-admin-dashboard" path="astro/flowbite-astro-admin-dashboard" remote="github" revision="main"/>
+  <!-- components -->
+  <project name="shadcn-ui/ui" path="shadcn-ui/ui" remote="github" revision="main"/>
   <!-- typedoc -->
   <project name="kamiazya/typedoc-plugin-mermaid" path="typedoc/typedoc-plugin-mermaid" remote="github" revision="main"/>
   <project name="Gerrit0/typedoc-plugin-zod" path="typedoc/typedoc-plugin-zod" remote="github" revision="main"/>
