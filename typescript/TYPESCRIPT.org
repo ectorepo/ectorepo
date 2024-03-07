@@ -18,8 +18,9 @@ Install with =npm i -g ts_dependency_graph=
 
 From the root of the [[https://github.com/withastro/starlight][withastro/starlight]] 
 
-#+attr_html: :style: width:800px;
-#+begin_src sh :results output file link :file img/ts-deps-starlight-index.svg :var ectoroot=(identity ectoroot)
+#+attr_html: :width 800px
+#+name: tsdeps1
+#+begin_src sh :results output file link :file img/ts-deps-starlight-index.svg :var ectoroot=(identity ectoroot) :exports both
 cd $ectoroot/typescript/astro/starlight
 ts_dependency_graph --start packages/starlight/index.ts \
                     --graph_folder \
@@ -27,13 +28,14 @@ ts_dependency_graph --start packages/starlight/index.ts \
    dot -Tsvg
 #+end_src
 
-#+RESULTS:
+#+RESULTS: tsdeps1
 [[file:img/ts-deps-starlight-index.svg]]
 
 And on a directory, without an specific entry point:
 
-#+attr_html: :style: width:800px;
-#+begin_src sh :results output file link :file img/ts-deps-starlight-all.svg :var ectoroot=(identity ectoroot)
+#+attr_html: :width 800px
+#+name: tsdeps2
+#+begin_src sh :results output file link :file img/ts-deps-starlight-all.svg :var ectoroot=(identity ectoroot) :exports both
 cd $ectoroot/typescript/astro/starlight
 ts_dependency_graph --start packages/starlight \
                     --graph_folder \
@@ -41,5 +43,5 @@ ts_dependency_graph --start packages/starlight \
    dot -Tsvg
 #+end_src
 
-#+RESULTS:
+#+RESULTS: tsdeps2
 [[file:img/ts-deps-starlight-all.svg]]
