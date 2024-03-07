@@ -1,3 +1,5 @@
+See themes.org for notes on themes.
+
 * Astro Themes
 
 To clone the repos in =astro-themes.xml=, enter an empty directory and run
@@ -38,19 +40,32 @@ documents, simply pass =--explicit-start= to =yq=.
 
 #+begin_src sh :dir (identity ectoroot) :results output verbatim
 repo forall --quiet -g svelte -c \
-     yq --explicit-start -y '.dependencies | keys' package.json  |\
-    yq -y '.' 2>/dev/null
+     yq --explicit-start -y '.dependencies | with_entries(.value |= 1)' package.json  |\
+     yq -sy 'reduce (.[] | to_entries)[] as $pkg
+             ({}; . += {"\($pkg.key)": ((.[$pkg.key] // 0) + $pkg.value)})' |\
+     rev | sort -nr | rev
+
+# ... dammit jq
+# {$pkg.key: $pkg.value})'
+#      yq -sy 'reduce .[] as $pkg ({}; . | with_entries(.value += (.value // ) += (.$pkg. // 0 )'
+#     yq -sy 'to_entries | reduce .[] as $pkg ({}; . += {($pkg.key): ($pkg.value)})'
+#     yq --explicit-start -sy 'reduce . as $pkg ({}; . += {$pkg.key: (.$pkg.value // 0 + 1)})'
+#   yq --explicit-start -y '.dependencies | keys | to_entries | map({ .key: . })'  package.json  |\
+#    yq -y 'reduce .[] as $pkg ({}; . += {($pkg): (."$pkg" // 0 + 1)})'
 #+end_src
 
 #+RESULTS:
-:
-: ... A new version of repo (2.42) is available.
-: ... New version is available at: /data/ecto/astro-themes/.repo/repo/repo
-: ... The launcher is run from: /usr/bin/repo
-: !!! The launcher is not writable.  Please talk to your sysadmin or distro
-: !!! to get an update installed.
-:
-: [ Babel evaluation exited with code 0 ]
+
+**** Dev Dependencies
+
+#+begin_src sh :dir (identity ectoroot) :results output table
+repo forall --quiet -c \
+     yq --explicit-start -y '.devDependencies | with_entries(.value |= 1)' package.json  |\
+     yq -sy 'reduce (.[] | to_entries)[] as $pkg
+             ({}; . += {"\($pkg.key)": ((.[$pkg.key] // 0) + $pkg.value)})' |\
+     yq -ry 'to_entries | map(@text "\(.key) \(.value)")' |\
+     tr "'" ' ' | sed -e 's/^- //'
+#+end_src
 
 *** Categories and Tools
 
@@ -92,6 +107,69 @@ xq -y '
 - unocss
 - vue
 #+end_example
+
+**** Themes without X including Y
+
+Running this in the =repo/typescript= directory will show:
+
++ all projects that include tailwind
++ aren't landing pages or minimal themes
++ don't use react, svelte or other frameworks
+
+#+name: themesNoFramework
+#+begin_src sh :results output table
+grep -vE '(vue|react|svelte|lit|preact|solidjs|landing-page|minimal)' ../astro-themes.xml |\
+    grep -e 'tailwind' | \
+    sed -e 's/.*path="\(.*\)" groups=.*$/\1/'
+#+end_src
+
+This shows the general complexity of their schema
+
+#+begin_src sh :var reporoot=(identity reporoot) :var tbl=themesNoFramework :dir (identity ectoroot)
+cd astro-themes
+
+echo $tbl | while IFS='' read -r -d ' ' project; do
+    configFile=$project/src/content/config.ts
+    [ -f "$configFile" ] && wc -l $configFile || echo 0 $configFile
+done
+#+end_src
+
+#+RESULTS:
+| 69 | DBozhinovski/astro-theme-ltree/src/content/config.ts            |
+| 50 | wanoo21/tailwind-astro-starting-blog/src/content/config.ts      |
+| 43 | mickasmt/astro-nomy/src/content/config.ts                       |
+| 38 | palmiak/pacamara-astro/src/content/config.ts                    |
+| 36 | chrismwilliams/astro-theme-cactus/src/content/config.ts         |
+| 35 | manuelernestog/astrofy/src/content/config.ts                    |
+| 22 | danielcgilibert/blog-template/src/content/config.ts             |
+| 21 | manuelernestog/astropod/src/content/config.ts                   |
+| 20 | michael-andreuzza/microblog/src/content/config.ts               |
+| 20 | TheOtterlord/manual/src/content/config.ts                       |
+| 19 | vratskyi/vratskyi.github.io/src/content/config.ts               |
+| 18 | isooosi/VisVrs/src/content/config.ts                            |
+| 16 | gndx/ev0-astro-theme/src/content/config.ts                      |
+| 16 | veranikabarel/astro-portfolio/src/content/config.ts             |
+| 14 | gxanshu/astro-decap-cms-starter/src/content/config.ts           |
+| 14 | joackob/nipon-astro-theme/src/content/config.ts                 |
+| 14 | MaeWolff/astro-portfolio-template/src/content/config.ts         |
+|  0 | 0xShapeShifter/solo/src/content/config.ts                       |
+|  0 | BryceRussell/astro-minecraft-theme/src/content/config.ts        |
+|  0 | EmaSuriano/astro-resume/src/content/config.ts                   |
+|  0 | fahad0samara/Astro.js-Chef-Project/src/content/config.ts        |
+|  0 | flexdinesh/blogster/src/content/config.ts                       |
+|  0 | iozcelik/SarissaBlogAstroStarter/src/content/config.ts          |
+|  0 | markteekman/accessible-astro-starter/src/content/config.ts      |
+|  0 | michael-andreuzza/quickstore/src/content/config.ts              |
+|  0 | michael-andreuzza/swissfolio/src/content/config.ts              |
+|  0 | MINOTAURO18/JamyPage/src/content/config.ts                      |
+|  0 | MoofyWoofy/Bob-blog/src/content/config.ts                       |
+|  0 | netaisllc/astro-strata/src/content/config.ts                    |
+|  0 | robertguss/Astro-Theme-Creek/src/content/config.ts              |
+|  0 | saadeghi/daisy-blog/src/content/config.ts                       |
+|  0 | sarasate/gate/src/content/config.ts                             |
+|  0 | themesberg/flowbite-astro-admin-dashboard/src/content/config.ts |
+|  0 | USKhokhar/astro-vitae/src/content/config.ts                     |
+|  0 | uzzii-21/astro-portfolio/src/content/config.ts                  |
 
 
 * Astro Repo

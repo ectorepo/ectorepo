@@ -1,0 +1,6 @@
+#+TITLE:     Astro: Notes
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+

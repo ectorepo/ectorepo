@@ -1,0 +1,49 @@
+* Themes
+
+** [[https://github.com/wanoo21/tailwind-astro-starting-blog][wanoo21/tailwind-astro-starting-blog]]
+
+
+
+** [[https://github.com/themefisher/bookworm-light-astro][themefisher/bookwork-light-astro]]
+
++ Uses react
++ Includes some pages where the markdown frontend has too much structure in
+  yaml, but most pages don't
+
+
+** [[https://github.com/unfolding-io/nebulix][unfolding-io/nebulix]]
+
++ Uses Vue and has well developed system of types for components/content
++ I don't particularly like this style of producing content in =*.mdx= files,
+  since the interface forces so much
+
+
+*** Slots
+
+Grepped for =slot== and there are plenty of examples of structuring components
+to render to slots.
+
+#+begin_example grep
+src/layouts/BaseLayout.astro:75:            slot="content"
+src/layouts/BaseLayout.astro:80:        slot="image"
+src/layouts/ProductLayoutSplit.astro:184:  <div class="pointer-events-none fixed bottom-0 z-40 w-full" slot="footer">
+src/components/common/PageFind.astro:17:  <Icon name="search" class="h-6 w-6" slot="btn-search" />'
+src/components/common/PageFind.astro:18:  <Icon name="close" class="h-10 w-10" slot="btn-close" />
+src/pages/blog/[...slug].astro:73:      <div class="container-md pb-20" slot="nav">
+src/pages/blog/[...slug].astro:92:      <ItemNav nav={post.data.nav} {base_url} slot="nav" />
+src/pages/menu/[...slug].astro:61:    slot="hero"
+src/pages/menu/[...slug].astro:76:    <div class="container-md pb-20" slot="nav">
+src/pages/images/[slug].astro:76:      <Icon name="close" class="w-8" slot="close" />
+src/pages/images/[slug].astro:77:      <Icon name="right" class="w-8" slot="next" />
+src/pages/images/[slug].astro:78:      <Icon name="left" class="w-8" slot="prev" />
+src/pages/shop/[...slug].astro:112:  <Breadcrumb title={post.data.title} slot="breadcrumb" filter={filter} />
+src/pages/shop/[...slug].astro:150:  <div slot="cart" class="container-xl flex justify-end">
+src/pages/shop/[...slug].astro:160:  <ItemNav nav={post.data.nav} {base_url} slot="nav" />
+src/components/Header.astro:81:              <Icon name="menu-solid" class="h-10 w-10" slot="menu" />
+src/components/Header.astro:83:              <Icon name="close" class="h-10 w-10" slot="close" />
+src/components/Header.astro:84:              <Icon name="logo" class="w-full" slot="logo" />
+src/components/Header.astro:87:                slot="links"
+src/components/Header.astro:107:                slot="social"
+src/pages/work/[...slug].astro:87:      <div class="container-md pb-20" slot="nav">
+src/pages/work/[...slug].astro:121:      <ItemNav nav={post.data.nav} {base_url} slot="nav" />
+#+end_example
