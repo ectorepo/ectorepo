@@ -12,7 +12,8 @@ the [[https://github.com/ectorepo/ectorepo][ectorepo/ectorepo]] Repo ... repo.
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <!-- astro -->
   <include name="typescript/astro.xml"/>
-  <project name="themesberg/flowbite-astro-admin-dashboard" path="astro/flowbite-astro-admin-dashboard" remote="github" revision="main"/>
+  <project name="themesberg/flowbite" path="components/flowbite/flowbite" remote="github" revision="main"/>
+  <project name="themesberg/flowbite-astro-admin-dashboard" path="components/flowbite/flowbite-astro-admin-dashboard" remote="github" revision="main"/>
   <!-- components -->
   <project name="shadcn-ui/ui" path="components/shadcn-ui/ui" remote="github" revision="main"/>
   <!-- typedoc -->
@@ -38,6 +39,14 @@ To avoid confirmations
 #+begin_src emacs-lisp
 (setq-local org-confirm-babel-evaluate nil)
 #+end_src
+
+* TODO add repos
+
+** Lloydjatkinson
+
+[[https://www.lloydatkinson.net/posts/2023/favour-typescript-types-over-interfaces/][Favour typescript types over interfaces]]
+
++ llyodjatkinson/astro-snipcart
 
 * GraphQL Params
 

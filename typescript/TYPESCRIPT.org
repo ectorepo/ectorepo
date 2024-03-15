@@ -6,8 +6,21 @@
 * Packaging
 
 ** Analysis
++ [[https://github.com/iambumblehead/depgraph][iambumblehead/depgraph]] no visualization
 
 ** Visualization
+
+*** [[https://github.com/gabotechs/dep-tree?tab=readme-ov-file#checkout-the-entropy-graph-of-well-known-projects][gabotechs/dep-tree]]
+
++ visualizes dependencies for many languages
++ requires configuration
+
+*** React
+
+[[https://www.rasmusolsson.dev/posts/visualizing-project-dependencies][Visualizing Dependencies in React]] suggests
+
++ [[https://github.com/sverweij/dependency-cruiser/blob/main/doc/faq.md#q-im-developing-in-react-and-use-jsx-tsx-csx-cjsx-how-do-i-get-that-to-work][dependency-cruiser]]
++ [[https://github.com/pahen/madge][pahen/madge]]
 
 *** [[https://github.com/PSeitz/ts-dependency-graph][TS Dependency Graph]]
 
@@ -20,8 +33,8 @@ From the root of the [[https://github.com/withastro/starlight][withastro/starlig
 
 #+attr_html: :width 800px
 #+name: tsdeps1
-#+begin_src sh :results output file link :file img/ts-deps-starlight-index.svg :var ectoroot=(identity ectoroot) :exports both
-cd $ectoroot/typescript/astro/starlight
+#+begin_src sh :results output file link :file img/ts-deps-starlight-index.svg :dir (identity ectoroot) :exports both
+typescript/astro/starlight
 ts_dependency_graph --start packages/starlight/index.ts \
                     --graph_folder \
                     --filter "__tests__" |\
