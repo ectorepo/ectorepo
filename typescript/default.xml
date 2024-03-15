@@ -4,8 +4,9 @@
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <!-- astro -->
   <include name="typescript/astro.xml"/>
-  <project name="themesberg/flowbite-astro-admin-dashboard" path="astro/flowbite-astro-admin-dashboard" remote="github" revision="main"/>
   <!-- components -->
+  <project name="themesberg/flowbite" path="components/flowbite/flowbite" remote="github" revision="main"/>
+  <project name="themesberg/flowbite-astro-admin-dashboard" path="components/flowbite/flowbite-astro-admin-dashboard" remote="github" revision="main"/>
   <project name="shadcn-ui/ui" path="components/shadcn-ui/ui" remote="github" revision="main"/>
   <!-- typedoc -->
   <project name="kamiazya/typedoc-plugin-mermaid" path="typedoc/typedoc-plugin-mermaid" remote="github" revision="main"/>
