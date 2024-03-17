@@ -1,0 +1,308 @@
+#+TITLE:     Flowbite
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+#+begin_src emacs-lisp
+(setq-local fb-ecto (expand-file-name "typescript/components/flowbite/flowbite" (getenv "_ECTO"))
+            fb-ecto-examples (expand-file-name "content/components" fb-ecto))
+#+end_src
+
+
+* Components
+
+** Extract
+
+*** AWK
+
+Extract templates.
+
+I should probably avoid appending to files inside awk here, since this breaks composability, but it gets dicey.
+
+#+begin_src awk :tangle extractComponents.awk
+# nprops=split(gsub(/(^{{< example| >}})/,""),props);
+
+# nprops=split($0,props," ");
+# for (p in props) { (p ~ /id="()"/) match(/id="(.+)*"/)}
+
+# idxId=match($0, /id="([0-9a-zA-Z\/]+)" /, arr)
+
+BEGIN { currentOut="extractComponents.error" }
+{
+    gsub(/([0-9a-zA-Z-]+:)?dark:([0-9a-zA-Z:-]+)/ , "")
+    gsub(/ ([0-9a-zA-Z-]+:)?dark:([0-9a-zA-Z:-]+)"/, "\"")
+    gsub(/{{< param homepage >}}/,"https://flowbite.com")
+    # & is a back-reference .... (nice to know)
+    gsub(/ & /," \\&amp; ")
+    gsub(/#\$&/,"#$\\&amp;")
+}
+($0 ~ /^{{< example.* >}}/) {
+    # remove wrapping
+    gsub(/(^{{< example | >}})/,"");
+    match($0, /id="([0-9a-zA-Z-]+)" /, arr);
+    exampleId=arr[1];
+    # need to match both components/typography
+    match($0, /github="([a-zA-Z0-9-]+\/[0-9a-zA-Z-]+).md"/, arr);
+    exampleComp=arr[1];
+
+    if (!exampleId) { exampleId="no_id" }
+
+    inComp=1;
+    currentOut=exampleComp "/" exampleId ".html"
+    
+    print "<div id=\"" exampleId "\">" >> currentOut
+    print "<p>" exampleId "</p>" >> currentOut
+    print currentOut
+    next
+}
+($0 ~ /^{{< \/example >}}/) {
+    print "</div>" >> currentOut;
+    inComp=0;
+    currentOut="extractComponents.error"
+    next
+}
+(inComp == 1) {print $0 >> currentOut}
+#+end_src
+
+*** Templatize
+
+Reset directory structure
+
+#+headers: :var fb_ecto=(identity fb-ecto-examples)
+#+begin_src sh :results output verbatim
+# hmmmm ... wasn't sure whether everything would be properly grouped
+#[[ ! -d "components" ]] && mkdir components
+#[[ ! -d "typography" ]] && mkdir typography
+
+for d in {components,typography}; do
+    [[ -d "$d" ]] && rm -f "$d"/**/*.html
+done
+
+cat $fb_ecto/*.md |\
+    grep -e '^{{< example.*id=.* >}}' |\
+    sed -e 's/^{{< example .*github="\(components\|typography\)\/\([a-zA-Z0-9.-]\+\)\.md".*/\1\/\2/g' |\
+    sort | uniq | xargs -n1 mkdir -p
+
+echo "components: $(ls components | wc -l) directories"
+echo "typography: $(ls typography | wc -l) directories"
+#+end_src
+
+#+RESULTS:
+: components: 39 directories
+: typography: 1 directories
+
+#+headers: :var fb_ecto=(identity fb-ecto-examples)
+#+begin_src sh :results output silent
+
+# {{< example id="iphone-mockup" github="components/device-mockups.md" show_dark=true >}}
+# {{< example id="android-mockup" github="components/device-mockups.md" show_dark=true >}}
+awk -f extractComponents.awk $fb_ecto/*.md
+#+end_src
+
+Format HTML
+
+#+begin_src sh :results output silent
+npx prettier -w {components,typography}/**/*.html
+#+end_src
+
+*** Pug
+
+#+begin_src sh :results output silent :async yes
+for t in {components,typography}; do
+    ls "$t"/**/*.html | while read f; do
+        pf="$(echo $f | sed -e 's/html/pug/')"
+        
+        html2pug -f < $f > $pf
+    done
+done
+#+end_src
+
+Then remove dark classes
+
+*** JQ
+
+Process HTML to yaml
+
+#+headers: :var query=jqWalkDom
+#+begin_src sh :results output code :wrap src yaml
+for t in {components,typography}; do
+    ls "$t"/**/*.html | while read f; do
+        yf="$(echo $f | sed -e 's/html/yml/')"
+
+        # jq blows up on much more prettier output (nevermind, codeblock was not running)
+        # cat $f | xq -y "${query}" > $yf
+        
+        # tidy blows up on some tags (needs 2>/dev/null and req. XML here?)
+        cat $f | tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
+            xq -y "${query}" > $yf 
+    done
+done
+
+#+end_src
+
+ 
+***** Errors in processing
+
+xq errors in processing prettier formatted HTML in these files:
+
+#+begin_src sh
+# YAML files with size sero
+find . -name *.yml -cmin -8 -size -1 -exec ls -h -s \{\} +
+#+end_src
+
+Tidy messes these up:
+
+#+begin_src 
+0 ./components/buttons/button-sizes-example.yml                
+0 ./components/chat-bubble/image-attachment-example.yml  
+0 ./components/sidebar/sidebar-logo-example.yml
+0 ./components/chat-bubble/clean-image-attachment-example.yml  
+0 ./components/chat-bubble/image-gallery-example.yml
+0 ./components/chat-bubble/clean-image-gallery-example.yml     
+0 ./components/popover/popover-description-example.yml
+#+end_src
+
+**** New Queries
+
+***** Remove SVGs
+
+#+name: jqRemoveSVG
+#+begin_example jq
+walk(
+  if type == "object" and has("svg") then
+    .svg = {Icon: {"@type": "Icon"}}
+  else .
+end)
+#+end_example
+
+#+headers: :var jqRemoveSVG=jqRemoveSVG
+#+begin_src sh :results output code :wrap src yaml
+cat components/accordion/accordion-always-open-example.html |\
+    tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
+    xq -y "${jqRemoveSVG}"
+#+end_src
+
+**** Testing Queries
+
+Also, =htmlq= would be useful (different query lang)
+
+***** Org babel noweb
+
+This would ensure that XML gets parsed as lists, but it's not essential (at
+least not for now)
+
+#+begin_src sh :noweb-ref xmlForceList :eval no
+--xml-force-list span --xml-force-list svg --xml-force-list p --xml-force-list
+....
+
+use with <<xmlForceList>>
+#+end_src
+
+***** Collect classes
+
+#+name: jqCollectClasses
+#+begin_example jq
+walk(if type == "object" and has("svg") then
+{Icon: {"@type": "Icon"}}
+# if has("svg") then {key: "Icon", value: {"@type": "Icon"}} else . end
+else .
+end)
+#+end_example
+
+Bash
+
+#+headers: :var jqCollectClasses=jqCollectClasses
+#+begin_src sh :results output code :wrap src yaml
+cat components/card/card-cta-example.html | xq -y "${jqCollectClasses}"
+
+# tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
+#+end_src
+
+#+RESULTS:
+#+begin_src yaml
+div:
+  '@id': card-cta-example
+  p: card-cta-example
+  div:
+    '@class': w-full p-4 text-center bg-white border border-gray-200 rounded-lg shadow
+      sm:p-8
+    h5:
+      '@class': mb-2 text-3xl font-bold text-gray-900
+      '#text': Work fast from anywhere
+    p:
+      '@class': mb-5 text-base text-gray-500 sm:text-lg
+      '#text': "Stay up to date and move work forward with Flowbite on iOS & Android.\n\
+        \      Download the app today."
+    div:
+      '@class': items-center justify-center space-y-4 sm:flex sm:space-y-0 sm:space-x-4
+        rtl:space-x-reverse
+      a:
+        - Icon:
+            '@type': Icon
+        - Icon:
+            '@type': Icon
+#+end_src
+
+**** Old Queries
+
+***** Remove SVG's
+
+Walk to remove SVGs, then =map= to convert SVG's into stubbed <Icon/>
+components. Combining =paths= with =setpaths= is an alternative.
+
+#+name: jqWalkDom
+#+begin_example jq
+walk(if type == "object" then
+      to_entries
+        | map(. |= if .key == "svg" then {key: "Icon", value: {"@type": "Icon"}} else . end)
+        | map(. += if .key == "@class" then {value: (.value | gsub("\\b\\sdark:[\\w\\-:]*\\b"; ""))} else . end)
+        | from_entries
+     else .
+    end)
+#+end_example
+
+Bash
+
+#+headers: :var query=jqWalkDom
+#+begin_src sh :results output code :wrap src yaml
+# The second map clears out the dark theme.
+cat components/accordion/accordion-always-open-example.html |\
+    tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
+    xq -y "${query}"
+
+# TODO: delete extraneous keys?
+#+end_src
+
+Replace SVG's (this [[https://github.com/jqlang/jq/blob/master/src/builtin.jq][builtin.jq]] file helps a lot)
+
+#+begin_src sh :results output code :wrap src yaml
+cat components/accordion/accordion-always-open-example.html |\
+    tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
+    xq -y '[getpath(paths(type == "object" and has("svg")))]'
+#    xq -y 'path(.div)'
+#+end_src
+
+***** Remove tailwind dark classes
+
+#+begin_src sh :results output code :wrap src yaml
+cat components/accordion/accordion-always-open-example.html |\
+    tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
+    xq -y 'walk(if type == "object" then
+    if ."@class" then
+        (."@class" |= gsub("\\b\\sdark:[\\w\\-:]*\\b"; ""))
+    elif 
+    end
+    else . end)'
+#+end_src
+
+
+Single Conditional
+
+#+begin_src sh :results silent
+cat components/accordion/accordion-always-open-example.html |\
+    tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
+    xq -y 'walk(if type == "object" and ."@class" then
+    (."@class" |= gsub("\\b\\sdark:[\\w\\-:]*\\b"; ""))
+    else . end)'
+#+end_src
+
