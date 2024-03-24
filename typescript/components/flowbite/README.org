@@ -4,22 +4,39 @@
 #+DESCRIPTION: notes
 
 #+begin_src emacs-lisp
-(setq-local fb-ecto (expand-file-name "typescript/components/flowbite/flowbite" (getenv "_ECTO"))
-            fb-ecto-examples (expand-file-name "content/components" fb-ecto))
+(setq-local fb-ecto (expand-file-name "typescript/components/flowbite/flowbite" (getenv "_ECTO")))
 #+end_src
 
-
 * Components
+
+** Tailwind-Styled Components
+
+This extension uses this
 
 ** Extract
 
 *** AWK
 
-Extract templates.
+**** Variables
+
+#+begin_src awk :noweb-ref hugo-version
+1.2.3
+#+end_src
+
+#+begin_src awk :noweb-ref hugo-homepage
+https://flowbite.com
+#+end_src
+
+#+begin_src awk :noweb-ref hugo-requires-js
+<a href="/docs/getting-started/quickstart/">Requires X</a>
+#+end_src
+
+
+**** Extract templates.
 
 I should probably avoid appending to files inside awk here, since this breaks composability, but it gets dicey.
 
-#+begin_src awk :tangle extractComponents.awk
+#+begin_src awk :tangle extractComponents.awk :noweb yes
 # nprops=split(gsub(/(^{{< example| >}})/,""),props);
 
 # nprops=split($0,props," ");
@@ -31,10 +48,13 @@ BEGIN { currentOut="extractComponents.error" }
 {
     gsub(/([0-9a-zA-Z-]+:)?dark:([0-9a-zA-Z:-]+)/ , "")
     gsub(/ ([0-9a-zA-Z-]+:)?dark:([0-9a-zA-Z:-]+)"/, "\"")
-    gsub(/{{< param homepage >}}/,"https://flowbite.com")
-    # & is a back-reference .... (nice to know)
+    gsub(/{{< param homepage >}}/,"<<hugo-homepage>>")
+      # & is a back-reference .... (nice to know)
     gsub(/ & /," \\&amp; ")
     gsub(/#\$&/,"#$\\&amp;")
+    gsub(/{{< ref "([a-zA-Z0-9/]+)" >}}/,"<<hugo-homepage>>/docs/&")
+    gsub(/{{< current_version >}}/,"<<hugo-version>>")
+    gsub(/{{< requires_([a-z]+) >}}/,"<<hugo-requires>>")
 }
 ($0 ~ /^{{< example.* >}}/) {
     # remove wrapping
@@ -49,14 +69,14 @@ BEGIN { currentOut="extractComponents.error" }
 
     inComp=1;
     currentOut=exampleComp "/" exampleId ".html"
-    
-    print "<div id=\"" exampleId "\">" >> currentOut
-    print "<p>" exampleId "</p>" >> currentOut
+
+    # print "<div id=\"" exampleId "\">" >> currentOut
+    # print "<p>" exampleId "</p>" >> currentOut
     print currentOut
     next
 }
 ($0 ~ /^{{< \/example >}}/) {
-    print "</div>" >> currentOut;
+    # print "</div>" >> currentOut;
     inComp=0;
     currentOut="extractComponents.error"
     next
@@ -66,58 +86,121 @@ BEGIN { currentOut="extractComponents.error" }
 
 *** Templatize
 
+#  :noweb-ref fbContentTypes :noweb-sep ""
+
+#+name: fbContentTypes
+#+begin_src emacs-lisp :results value
+'(components typography forms customize plugins)
+#+end_src
+
+#+RESULTS: fbContentTypes
+: (components typography forms customize plugins)
+
 Reset directory structure
 
-#+headers: :var fb_ecto=(identity fb-ecto-examples)
-#+begin_src sh :results output verbatim
+#+headers: :var fb_ecto=(identity fb-ecto) content_types=fbContentTypes
+#+begin_src sh :results output verbatim :noweb yes
 # hmmmm ... wasn't sure whether everything would be properly grouped
 #[[ ! -d "components" ]] && mkdir components
 #[[ ! -d "typography" ]] && mkdir typography
 
-for d in {components,typography}; do
+string_join() { local IFS="$1"; shift; echo "$*"; }
+
+content_regex="$(string_join '|' ${content_types[@]} | sed -e 's/|/\\|/g')" #damit
+
+for d in ${content_types[@]}; do
     [[ -d "$d" ]] && rm -f "$d"/**/*.html
+
+    grep -he '^{{< example.*id=.* >}}'  $fb_ecto/content/$d/*.md |\
+    sed -e 's/^{{< example .*github="\('$content_regex'\)\/\([a-zA-Z0-9.-]\+\)\.md".*/\1\/\2/g' |\
+    sort | uniq | xargs -n1 mkdir -p
 done
 
-cat $fb_ecto/*.md |\
-    grep -e '^{{< example.*id=.* >}}' |\
-    sed -e 's/^{{< example .*github="\(components\|typography\)\/\([a-zA-Z0-9.-]\+\)\.md".*/\1\/\2/g' |\
-    sort | uniq | xargs -n1 mkdir -p
+for d in ${content_types[@]}; do
+    echo "$d: $(ls $d | wc -l) directories"
+done
 
-echo "components: $(ls components | wc -l) directories"
-echo "typography: $(ls typography | wc -l) directories"
+# # almost works:
+# # echo ls -al ./${content_types[@]}/*
+# #   ls -al ./components typography forms customize/*
+# # can't pipe: pushd $fb_ecto
 #+end_src
 
 #+RESULTS:
-: components: 39 directories
-: typography: 1 directories
+: components: 42 directories
+: typography: 9 directories
+: forms: 11 directories
+: customize: 1 directories
+: plugins: 1 directories
 
-#+headers: :var fb_ecto=(identity fb-ecto-examples)
+#+headers: :var fb_ecto=(identity fb-ecto) content_types=fbContentTypes
 #+begin_src sh :results output silent
 
 # {{< example id="iphone-mockup" github="components/device-mockups.md" show_dark=true >}}
 # {{< example id="android-mockup" github="components/device-mockups.md" show_dark=true >}}
-awk -f extractComponents.awk $fb_ecto/*.md
+for d in ${content_types[@]}; do
+    awk -f extractComponents.awk $fb_ecto/content/$d/*.md
+done
 #+end_src
 
 Format HTML
 
+#+headers: :var fb_ecto=(identity fb-ecto) content_types=fbContentTypes
 #+begin_src sh :results output silent
-npx prettier -w {components,typography}/**/*.html
+for t in ${content_types[@]}; do
+    npx prettier -w $t/**/*.html
+done
 #+end_src
 
 *** Pug
 
+#+headers: :var fb_ecto=(identity fb-ecto) content_types=fbContentTypes
 #+begin_src sh :results output silent :async yes
-for t in {components,typography}; do
+for t in ${content_types[@]}; do
     ls "$t"/**/*.html | while read f; do
         pf="$(echo $f | sed -e 's/html/pug/')"
-        
+
         html2pug -f < $f > $pf
     done
 done
 #+end_src
 
-Then remove dark classes
+*** Xidel
+
+Without =--xquery=
+
+#+begin_example sh
+cat components/accordion/accordion-always-open-example.html |\
+    tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
+    xq -x "${jqRemoveSVG}" |\
+    xidel -s --html --xquery "$q" --data=- |\
+    xq -y
+#+end_example
+
+With =--xquery=
+
+#+headers: :var jqRemoveSVG=jqRemoveSVG
+#+begin_src sh :results output code :wrap src yaml
+q="//*[contains(concat(' ', @class, ' '), 'flex')]"
+f='components/accordion/accordion-always-open-example.html'
+
+cat $f | xidel -s --html --xquery "$q" --data=- |\
+    xq -y "${jqRemoveSVG}"
+#+end_src
+
+Without =xq= (can't quite get =except= to work)
+
+#+headers: :var jqRemoveSVG=jqRemoveSVG
+#+begin_src sh :results output code :wrap src yaml
+# q="//*[contains(concat(' ', @class, ' '), 'flex')] except //**/svg"
+# q="//span[contains(concat(' ', @class, ' '), 'flex')] intersect //span"
+q="//*/div except svg/."
+
+f='components/accordion/accordion-always-open-example.html'
+
+cat $f | xidel -s --html --xquery "$q" --data=- |\
+    xq -y "${jqRemoveSVG}"
+#+end_src
 
 *** JQ
 
@@ -131,16 +214,15 @@ for t in {components,typography}; do
 
         # jq blows up on much more prettier output (nevermind, codeblock was not running)
         # cat $f | xq -y "${query}" > $yf
-        
+
         # tidy blows up on some tags (needs 2>/dev/null and req. XML here?)
         cat $f | tidy -iq --tidy-mark no -w 0 --show-body-only auto --doctype omit -xml |\
-            xq -y "${query}" > $yf 
+            xq -y "${query}" > $yf
     done
 done
 
 #+end_src
 
- 
 ***** Errors in processing
 
 xq errors in processing prettier formatted HTML in these files:
@@ -152,13 +234,13 @@ find . -name *.yml -cmin -8 -size -1 -exec ls -h -s \{\} +
 
 Tidy messes these up:
 
-#+begin_src 
-0 ./components/buttons/button-sizes-example.yml                
-0 ./components/chat-bubble/image-attachment-example.yml  
+#+begin_src
+0 ./components/buttons/button-sizes-example.yml
+0 ./components/chat-bubble/image-attachment-example.yml
 0 ./components/sidebar/sidebar-logo-example.yml
-0 ./components/chat-bubble/clean-image-attachment-example.yml  
+0 ./components/chat-bubble/clean-image-attachment-example.yml
 0 ./components/chat-bubble/image-gallery-example.yml
-0 ./components/chat-bubble/clean-image-gallery-example.yml     
+0 ./components/chat-bubble/clean-image-gallery-example.yml
 0 ./components/popover/popover-description-example.yml
 #+end_src
 
@@ -290,7 +372,7 @@ cat components/accordion/accordion-always-open-example.html |\
     xq -y 'walk(if type == "object" then
     if ."@class" then
         (."@class" |= gsub("\\b\\sdark:[\\w\\-:]*\\b"; ""))
-    elif 
+    elif
     end
     else . end)'
 #+end_src
@@ -305,4 +387,3 @@ cat components/accordion/accordion-always-open-example.html |\
     (."@class" |= gsub("\\b\\sdark:[\\w\\-:]*\\b"; ""))
     else . end)'
 #+end_src
-
