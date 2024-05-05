@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
+  <project name="gnupg" path="gnupg/gnupg-2.4" revision="refs/tags/gnupg-2.4.5" remote="gnupg"/>
   <project name="gnupg" path="gnupg/gnupg-2.3" revision="refs/tags/gnupg-2.3.8" remote="gnupg"/>
   <project name="gnupg" path="gnupg/gnupg-2.2" revision="refs/tags/gnupg-2.2.42" remote="gnupg"/>
 </manifest>
