@@ -46,7 +46,7 @@ To avoid confirmations
 Get about 60 of the =smallstep= repositories. These should go into
 =/data/ecto/crypto/smallstep=.
 
-#+name: ac-repos
+#+name: smallstep-repos
 #+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
 (ghub-graphql
  (graphql-query ((organization
@@ -67,7 +67,7 @@ Get about 60 of the =smallstep= repositories. These should go into
 Filter the results, generate XML
 
 #+name: smallstep
-#+begin_src emacs-lisp :var gqldata=ac-repos :results value html
+#+begin_src emacs-lisp :var gqldata=smallstep-repos :results value html
 (thread-first
   (thread-last
     (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)

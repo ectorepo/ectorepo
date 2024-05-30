@@ -1,5 +1,11 @@
 See themes.org for notes on themes.
 
+| var       | example                       |
+|-----------+-------------------------------|
+| reporoot  | $_REPO/typescript             |
+| ectoroot  | $_ECTO/typescript             |
+| astroroot | $_ECTO/typescript/astro/astro |
+
 * Astro Themes
 
 To clone the repos in =astro-themes.xml=, enter an empty directory and run
@@ -684,3 +690,112 @@ diff ../astro-themes.xml ../astro-themes-auto2.xml
 ---
 >   <project name="vratskyi/vratskyi.github.io" path="vratskyi/vratskyi.github.io" groups="blog,portfolio,tailwind,postcss"/>
 #+end_example
+
+* Astro Packages
+
+List most of the core, non-test package.json files
+
+#+name: astrocorePackageJSON
+#+begin_src sh :dir (identity astroroot)
+find . -type f -name "package.json" \
+     ! -wholename "*node_modules*" \
+     ! -wholename "*test*" \
+     ! -wholename "*benchmark*" \
+     ! -wholename "*examples*" \
+     ! -wholename "*e2e*" \
+     ! -wholename "*performance*"
+#+end_src
+
+#+RESULTS:
+| ./scripts/package.json                          |
+| ./packages/create-astro/package.json            |
+| ./packages/markdown/remark/package.json         |
+| ./packages/astro/package.json                   |
+| ./packages/astro-prism/package.json             |
+| ./packages/astro-rss/package.json               |
+| ./packages/integrations/preact/package.json     |
+| ./packages/integrations/partytown/package.json  |
+| ./packages/integrations/mdx/package.json        |
+| ./packages/integrations/tailwind/package.json   |
+| ./packages/integrations/alpinejs/package.json   |
+| ./packages/integrations/vue/package.json        |
+| ./packages/integrations/svelte/package.json     |
+| ./packages/integrations/sitemap/package.json    |
+| ./packages/integrations/cloudflare/package.json |
+| ./packages/integrations/solid/package.json      |
+| ./packages/integrations/markdoc/package.json    |
+| ./packages/integrations/netlify/package.json    |
+| ./packages/integrations/web-vitals/package.json |
+| ./packages/integrations/vercel/package.json     |
+| ./packages/integrations/node/package.json       |
+| ./packages/integrations/react/package.json      |
+| ./packages/integrations/lit/package.json        |
+| ./packages/underscore-redirects/package.json    |
+| ./packages/telemetry/package.json               |
+| ./packages/upgrade/package.json                 |
+| ./packages/internal-helpers/package.json        |
+| ./packages/db/package.json                      |
+| ./package.json                                  |
+
+Query to extract the most likely entrypoint from =package.json=. It discards
+objects if they are returned.
+
+#+name: astrocoreGetEntryPoint
+#+begin_example jq
+@text "\($pjson),\(.exports.["."] | strings)"
+#+end_example
+
+Return the entry points in a table
+
+#+name:astrocoreEntrypoints
+#+headers: :var pkgJson=astrocorePackageJSON qEntry=astrocoreGetEntryPoint
+#+begin_src sh :dir (identity astroroot)
+echo $pkgJson | while read -r -d ' ' pjson; do
+    cat $pjson \
+         | jq --arg pjson $pjson --raw-output0 "$qEntry" \
+         | tr '\000' '\n'
+done
+#+end_src
+
+#+RESULTS: astrocoreEntrypoints
+| ./packages/create-astro/package.json            | ./create-astro.mjs |
+| ./packages/markdown/remark/package.json         | ./dist/index.js    |
+| ./packages/astro-prism/package.json             | ./dist/index.js    |
+| ./packages/astro-rss/package.json               | ./dist/index.js    |
+| ./packages/integrations/preact/package.json     | ./dist/index.js    |
+| ./packages/integrations/partytown/package.json  | ./dist/index.js    |
+| ./packages/integrations/mdx/package.json        | ./dist/index.js    |
+| ./packages/integrations/tailwind/package.json   | ./dist/index.js    |
+| ./packages/integrations/alpinejs/package.json   | ./dist/index.js    |
+| ./packages/integrations/vue/package.json        | ./dist/index.js    |
+| ./packages/integrations/svelte/package.json     | ./dist/index.js    |
+| ./packages/integrations/sitemap/package.json    | ./dist/index.js    |
+| ./packages/integrations/solid/package.json      | ./dist/index.js    |
+| ./packages/integrations/markdoc/package.json    | ./dist/index.js    |
+| ./packages/integrations/web-vitals/package.json | ./dist/index.js    |
+| ./packages/integrations/node/package.json       | ./dist/index.js    |
+| ./packages/integrations/react/package.json      | ./dist/index.js    |
+| ./packages/integrations/lit/package.json        | ./dist/index.js    |
+| ./packages/underscore-redirects/package.json    | ./dist/index.js    |
+| ./packages/upgrade/package.json                 | ./upgrade.mjs      |
+
+
+** TS Dep Graph
+
+*** Astro RSS
+
+#+name: astrocoreDepsAstroRSS
+#+headers: :results output file :file img/ts-deps-astro-rss.svg
+#+begin_src sh :var astroroot=(identity astroroot) :exports both
+pkgPath=packages/astro-rss
+cd $astroroot/$pkgPath
+pkgEntry=dist/index.js
+# cat $pkgpath/package.json | jq '.exports.["."]'
+
+ts_dependency_graph --start . --graphfolders | dot -Tsvg
+
+# ts_dependency_graph --start $pkgpath/
+#+end_src
+
+#+RESULTS: astrocoreDepsAstroRSS
+[[file:img/ts-deps-astro-rss.svg]]

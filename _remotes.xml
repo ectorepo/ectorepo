@@ -12,6 +12,7 @@
   <remote name="gnupg" fetch="https://dev.gnupg.org/source"/>
   <remote name="googlesource" fetch="https://gerrit.googlesource.com"/>
   <remote name="guix_bioinformatics" fetch="https://git.genenetwork.org"/>
+  <remote name="inria" fetch="https://gitlab.inria.fr"/>
   <remote name="invent" fetch="https://invent.kde.org"/>
   <remote name="kernel" fetch="https://git.kernel.org/pub/scm"/>
   <remote name="opencascade" fetch="https://git.dev.opencascade.org/repos"/>

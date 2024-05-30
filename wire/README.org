@@ -1,0 +1,51 @@
+#+TITLE:     Ectorepo: Wire Protocols
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+The main reason I'm adding this is to use tools like:
+
++ [[github:GoogleCloudPlatform/proto-gen-md-diagrams][GoogleCloudPlatform/proto-gen-md-diagrams]]
++ [[github:kinow/protobuf-uml-diagram][kinow/protobuf-uml-diagram]]
+
+The KNE project uses YANG xml to declaratively describe network hardware on K8S
+to emulate for integration testing.
+
+IDK YANG, but LO! there be protobufs. And these lend themselves to generating
+UML and diagrams. Simple langauage, simple tree transformations.
+
+Learning how to design data structures for decentralized devops in a
+robust-yet-efficient way has been a challenge in the past.
+
+* Formats
+
++ nanopb :: ansi c
++ flatbuffers :: orig from gaming, now in TF Lite
+
+* Protobuf
+
+** Types
+
+** Impl
+
+*** Go
+
+*** Python
+
+Tooling
+
++ [[github:dayfine/proto-matcher][dayfine/proto-matcher]] test matchers for protobuf (in pyhamcrest, wetf that is)
+
+*** Javascript
+
++ [[github:mafintosh/resolve-protobuf-schema][mafintosh/resolve-protobuf-schema]] import protobufs into JS code
+
+*** Scheme
+
++ [[https://gitlab.com/protobuf/r6rs-protobuf][joolean/r6rs-protobuf]] pure scheme, apparently includes parsing/codegen
+
+* Transport
+
+
+** Frame Streams
+

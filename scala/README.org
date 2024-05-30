@@ -39,8 +39,17 @@ Core goes in =./sbt= and plugins go in =./sbt-plugins=
 
 ** Plugins
 
-Herein, all the repos on the =sbt= org are considered plugins except the
-following:
+Herein, all the repos on the =sbt= org are imported, except what's listed in
+=sbtmisc=. The repos in =sbtcore= are set to the ~group="sbt"~ in the XML and
+set to =sbtmodules= otherwise. This only affects =repo sync= and similar CLI
+functionality.
+
+#+NAME: sbtmisc
+| website        |
+| sbt.github.com |
+| sbt-ghpages    |
+| scan-test      |
+| scala-seed.g8  |
 
 #+NAME: sbtcore
 | sbt               |
@@ -58,13 +67,6 @@ following:
 | sbt-validator     |
 | scalajson         |
 | junit-interface   |
-
-#+NAME: sbtmisc
-| website        |
-| sbt.github.com |
-| sbt-ghpages    |
-| scan-test      |
-| scala-seed.g8  |
 
 Get the non-core SBT repositories. These should go into =/data/ecto/scala/sbt-modules=.
 

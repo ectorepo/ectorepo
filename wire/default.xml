@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- pb2: protobuf -->
+  <project path="pb2/protobuf" name="protocolbuffers/protobuf" groups="pb2" revision="refs/heads/main"/>
+  <!-- types -->
+  <!-- types/pb2 -->
+  <!-- <project path="" name="types/pb2" groups="pb2" remote="github"/> -->
+  <!-- utils -->
+  <project path="utils/protobuf-uml-diagram" name="kinow/protobuf-uml-diagram" groups="pb2,diagram" remote="github" revision="refs/heads/master"/>
+  <project path="utils/proto-gen-md-diagrams" name="GoogleCloudProject/proto-gen-md-diagrams" groups="pb2,diagram" remote="github" revision="refs/heads/main"/>
+  <!-- fstrm -->
+  <project path="fstrm/fstrm" name="farsightsec/fstrm" groups="fstrm" remote="github"/>
+</manifest>

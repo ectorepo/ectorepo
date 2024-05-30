@@ -4,3 +4,12 @@
 #+DESCRIPTION: notes
 
 See [[https://github.com/atlas-engineer/nyxt/blob/master/build-scripts/nyxt.scm][Nyxt Build Script]] for info on building
+
+* Common Lisp
+
+** Resources
+
++ [[https://lispcookbook.github.io/cl-cookbook/][Common Lisp Cookbook]]
++ [[github:google/lisp-koans][google/lisp-koans]]
+
+* Nyxt

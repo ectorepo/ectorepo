@@ -86,27 +86,75 @@ portable.
 
 ** Shell Scripts
 
+Grok the general directory structure with =tree -dL 3 .= after submodules have
+been modulized
+
 *** Maintain Manifests
 
 Now that deltas are minimal (and XML's are guaranteed to be sorted/uniq), things
 like this work.
 
-**** Map =git stash/pull/pop= across submodules
+#+begin_quote
+I'm probably getting rid of this this submodules approach later. it's just messy
+and no one's consuming these repos.
 
-#+begin_src shell
-git submodule foreach "git stash && git pull origin master && git stash pop"
-#+end_src
+It's also not so great when signing commits.
+#+end_quote
 
-**** Check for changes
+**** Validate
+
+Check status
 
 #+begin_src shell
 git submodule foreach "git status -s"
 #+end_src
 
-**** Fan-out Copies of =_remotes.xml=
+Print gitignores
+
+#+begin_src sh
+find . -name .gitignore -type f -print \
+    | xargs grep --color=auto -e  '^'
+
+    # | xargs -n1 cat # this doesn't print the filename ... idk
+#+end_src
+
+**** Manage submodules
+
+#+begin_quote
+Quite a bit of this submodule stuff is a bit unwieldy, requiring manual
+intervention. The distinct content and my updates are sparse.
+#+end_quote
+
+Pull updates and try to rebase local extant commits not persistified
+upstream ... and don't checkout a dangling git reference.
+
+#+begin_src shell
+git submodule update --remote --rebase
+#+end_src
+
+Map =git stash/pull/pop= across submodules
+
+#+begin_src shell
+git submodule foreach "git stash && git pull origin master && git stash pop"
+#+end_src
+
+**** Manage =_remotes.xml=
+
+Fan-out Copies of =_remotes.xml=
 
 #+begin_src shell
 git submodule foreach "cp ../_remotes.xml _remotes.xml"
+#+end_src
+
+Diff for lagging copies of =_remotes.xml= across submodules.
+
++ Diff outputs non-standard exit codes which breaks these macro commands and
+  also org babel blocks.
++ The grep will only show the lines from files changed inside the submodule.
+  Just a quick check... There's probably a better way with submodule tooling.
+
+#+begin_src shell
+git submodule foreach "diff ../_remotes.xml _remotes.xml ; echo ''" | grep -e '^>'
 #+end_src
 
 **** And so forth
