@@ -1,0 +1,118 @@
+#+TITLE:     Ectorepo: Open Config
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+* Params
+
+nrepos
+
+#+name: nrepos
+#+begin_src emacs-lisp
+50
+#+end_src
+
+#+RESULTS: nrepos
+: 50
+
+avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+#+RESULTS:
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+* OpenBB Repos
+
+These repos are excluded
+
+#+NAME: openbbReposExclude
+| .github                |
+| pytest_recorder        |
+| landing-page           |
+| uptime                 |
+| hackathon              |
+| test-gitflow           |
+| GamestonkTerminalGuide |
+
+Collect OpenBB's repositories
+
+#+name: openbbRepos
+#+begin_src emacs-lisp :var nrepos=50 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "OpenBB-finance"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+RESULTS: openbbRepos
+| data | (organization (repositories (edges ((node (owner (login . OpenBB-finance)) (name . openbb-cookiecutter) (defaultBranchRef (prefix . refs/heads/) (name . develop)) (url . https://github.com/OpenBB-finance/openbb-cookiecutter) (updatedAt . 2024-06-03T09:52:17Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . openbb-agents) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/openbb-agents) (updatedAt . 2024-06-03T09:09:41Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . OpenBBTerminal) (defaultBranchRef (prefix . refs/heads/) (name . develop)) (url . https://github.com/OpenBB-finance/OpenBBTerminal) (updatedAt . 2024-06-03T07:07:16Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . uptime) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/OpenBB-finance/uptime) (updatedAt . 2024-06-03T00:23:54Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . openbb-metricsv2) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/openbb-metricsv2) (updatedAt . 2024-06-03T00:18:53Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . pywry) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/pywry) (updatedAt . 2024-06-02T17:04:25Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . copilot-for-terminal-pro) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/copilot-for-terminal-pro) (updatedAt . 2024-06-02T07:42:05Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . backend-for-terminal-pro) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/backend-for-terminal-pro) (updatedAt . 2024-05-31T11:47:48Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . design-system) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/design-system) (updatedAt . 2024-05-29T15:12:41Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . widgets-library) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/widgets-library) (updatedAt . 2024-05-29T13:59:04Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . openbb-bot) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/openbb-bot) (updatedAt . 2024-05-28T23:46:16Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . docs) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/docs) (updatedAt . 2024-05-28T16:06:37Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . LegacyTerminal) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/LegacyTerminal) (updatedAt . 2024-05-27T21:50:57Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . hackathon) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/hackathon) (updatedAt . 2024-05-20T13:05:11Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . landing-page) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/landing-page) (updatedAt . 2024-05-13T22:21:48Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . GamestonkTerminalGuide) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/GamestonkTerminalGuide) (updatedAt . 2024-05-13T22:21:43Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . openbb-platform-pro-backend) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/openbb-platform-pro-backend) (updatedAt . 2024-05-11T04:22:04Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . test-gitflow) (defaultBranchRef (prefix . refs/heads/) (name . develop)) (url . https://github.com/OpenBB-finance/test-gitflow) (updatedAt . 2024-04-25T07:08:48Z) (isArchived . t))) ((node (owner (login . OpenBB-finance)) (name . examples) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/examples) (updatedAt . 2024-04-12T02:09:19Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . OptionPricingModels) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/OptionPricingModels) (updatedAt . 2024-04-09T07:15:40Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . pytest_recorder) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/pytest_recorder) (updatedAt . 2023-11-21T13:24:49Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . .github) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/.github) (updatedAt . 2023-09-18T14:48:26Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . BenchmarkForecast) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/BenchmarkForecast) (updatedAt . 2023-06-01T23:37:21Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . openbb-docs) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/openbb-docs) (updatedAt . 2023-06-01T23:37:02Z) (isArchived))) ((node (owner (login . OpenBB-finance)) (name . DiscordBot) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/OpenBB-finance/DiscordBot) (updatedAt . 2023-05-20T17:23:24Z) (isArchived)))))) |
+
+Filter the results, generate XML.
+
+#+name: openbbReposXML
+#+begin_src emacs-lisp :var gqldata=openbbRepos repos-exclude=openbbReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos-core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "openbb" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+*** Generate OpenBB XML
+
+#+begin_src xml :tangle openbb.xml :noweb yes
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <<openbbReposXML()>>
+</manifest>
+#+end_src

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="Yubico/.github" path="yubico/.github" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/android-u2f-demo" path="yubico/android-u2f-demo" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/arkg-rfc" path="yubico/arkg-rfc" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/developers.yubico.com" path="yubico/developers.yubico.com" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/java-webauthn-server" path="yubico/java-webauthn-server" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/libfido2" path="yubico/libfido2" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/libu2f-server" path="yubico/libu2f-server" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/libu2f-server-dpkg" path="yubico/libu2f-server-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/pam-u2f" path="yubico/pam-u2f" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/pam-u2f-dpkg" path="yubico/pam-u2f-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/php-yubico-dpkg" path="yubico/php-yubico-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/python-fido2" path="yubico/python-fido2" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/python-pyhsm" path="yubico/python-pyhsm" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/python-pyhsm-dpkg" path="yubico/python-pyhsm-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/python-yubico" path="yubico/python-yubico" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/python-yubico-dpkg" path="yubico/python-yubico-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/python-yubihsm" path="yubico/python-yubihsm" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/webauthn-recovery-extension" path="yubico/webauthn-recovery-extension" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/webauthn-sign-kem-extensions" path="yubico/webauthn-sign-kem-extensions" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/ykneo-oath" path="yubico/ykneo-oath" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/ykneo-openpgp" path="yubico/ykneo-openpgp" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubico-c" path="yubico/yubico-c" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubico-j" path="yubico/yubico-j" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubico-pam" path="yubico/yubico-pam" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubico-pam-dpkg" path="yubico/yubico-pam-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubico-piv-tool" path="yubico/yubico-piv-tool" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/Yubico.NET.SDK" path="yubico/Yubico.NET.SDK" revision="refs/heads/develop" remote="github"/>
+  <project name="Yubico/yubihsm-connector" path="yubico/yubihsm-connector" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubihsm-setup" path="yubico/yubihsm-setup" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubihsm-shell" path="yubico/yubihsm-shell" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubihsmrs" path="yubico/yubihsmrs" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubikey-ksm-dpkg" path="yubico/yubikey-ksm-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubikey-manager" path="yubico/yubikey-manager" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/yubikey-manager-qt" path="yubico/yubikey-manager-qt" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/yubikey-personalization" path="yubico/yubikey-personalization" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubikey-personalization-gui" path="yubico/yubikey-personalization-gui" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubikey-personalization-gui-dpkg" path="yubico/yubikey-personalization-gui-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubikey-val-dpkg" path="yubico/yubikey-val-dpkg" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubikit-android" path="yubico/yubikit-android" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/yubikit-ios" path="yubico/yubikit-ios" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/yubikit-swift" path="yubico/yubikit-swift" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/yubioath-android" path="yubico/yubioath-android" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubioath-flutter" path="yubico/yubioath-flutter" revision="refs/heads/main" remote="github"/>
+  <project name="Yubico/yubioath-ios" path="yubico/yubioath-ios" revision="refs/heads/main" remote="github"/>
+</manifest>

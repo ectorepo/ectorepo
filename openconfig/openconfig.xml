@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="openconfig/aite" path="openconfig/aite" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/attestz" path="openconfig/attestz" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/bootz" path="openconfig/bootz" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/catalog-server" path="openconfig/catalog-server" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/clio" path="openconfig/clio" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/common-ci" path="openconfig/common-ci" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/containerz" path="openconfig/containerz" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/entity-naming" path="openconfig/entity-naming" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/featureprofiles" path="openconfig/featureprofiles" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/gnmi" path="openconfig/gnmi" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/gnmi-gateway" path="openconfig/gnmi-gateway" revision="refs/heads/release" remote="github"/>
+  <project name="openconfig/gnmic" path="openconfig/gnmic" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/gnmitest" path="openconfig/gnmitest" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/gnoi" path="openconfig/gnoi" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/gnoigo" path="openconfig/gnoigo" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/gnpsi" path="openconfig/gnpsi" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/gnsi" path="openconfig/gnsi" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/gocloser" path="openconfig/gocloser" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/goyang" path="openconfig/goyang" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/gribi" path="openconfig/gribi" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/gribigo" path="openconfig/gribigo" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/grpctunnel" path="openconfig/grpctunnel" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/hercules" path="openconfig/hercules" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/kne" path="openconfig/kne" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/lemming" path="openconfig/lemming" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/lsdbparse" path="openconfig/lsdbparse" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/magna" path="openconfig/magna" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/models-ci" path="openconfig/models-ci" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/oc-pyang" path="openconfig/oc-pyang" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/ondatra" path="openconfig/ondatra" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/ovgs" path="openconfig/ovgs" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/pattern-regex-tests" path="openconfig/pattern-regex-tests" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/public" path="openconfig/public" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/reference" path="openconfig/reference" revision="refs/heads/master" remote="github"/>
+  <project name="openconfig/replayer" path="openconfig/replayer" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/testt" path="openconfig/testt" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/ygnmi" path="openconfig/ygnmi" revision="refs/heads/main" remote="github"/>
+  <project name="openconfig/ygot" path="openconfig/ygot" revision="refs/heads/master" remote="github"/>
+</manifest>

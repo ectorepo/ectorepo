@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="OpenBB-finance/backend-for-terminal-pro" path="openbb/backend-for-terminal-pro" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/BenchmarkForecast" path="openbb/BenchmarkForecast" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/copilot-for-terminal-pro" path="openbb/copilot-for-terminal-pro" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/design-system" path="openbb/design-system" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/DiscordBot" path="openbb/DiscordBot" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/docs" path="openbb/docs" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/examples" path="openbb/examples" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/LegacyTerminal" path="openbb/LegacyTerminal" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/openbb-agents" path="openbb/openbb-agents" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/openbb-bot" path="openbb/openbb-bot" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/openbb-cookiecutter" path="openbb/openbb-cookiecutter" revision="refs/heads/develop" remote="github"/>
+  <project name="OpenBB-finance/openbb-docs" path="openbb/openbb-docs" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/openbb-metricsv2" path="openbb/openbb-metricsv2" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/openbb-platform-pro-backend" path="openbb/openbb-platform-pro-backend" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/OpenBBTerminal" path="openbb/OpenBBTerminal" revision="refs/heads/develop" remote="github"/>
+  <project name="OpenBB-finance/OptionPricingModels" path="openbb/OptionPricingModels" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/pywry" path="openbb/pywry" revision="refs/heads/main" remote="github"/>
+  <project name="OpenBB-finance/widgets-library" path="openbb/widgets-library" revision="refs/heads/main" remote="github"/>
+</manifest>
