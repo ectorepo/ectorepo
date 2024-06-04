@@ -1,4 +1,4 @@
-#+TITLE:     Ectorepo: Open Config
+#+TITLE:     Ectorepo: Finance
 #+AUTHOR:    David Conner
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
