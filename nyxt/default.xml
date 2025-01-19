@@ -5,4 +5,5 @@
   <project name="atlas-engineer/nyxt" path="nyxt" revision="refs/heads/master" remotes="github"/>
   <project name="aartaka/nyxt-config" path="eg/aartaka" revision="refs/heads/master" remotes="github"/>
   <project name="google/lisp-koans" path="cl/lisp-koans" revision="refs/heads/master" remotes="github"/>
+  <project name="jpellegrini/spartns" path="cl/math/spartns" revision="refs/heads/master" remotes="gitlab"/>
 </manifest>

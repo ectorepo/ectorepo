@@ -756,7 +756,7 @@ echo $pkgJson | while read -r -d ' ' pjson; do
          | tr '\000' '\n'
 done
 #+end_src
-
+ [[https://blog.ronin.cloud/gnu-parallel/#quoting-complex-commands]]
 #+RESULTS: astrocoreEntrypoints
 | ./packages/create-astro/package.json            | ./create-astro.mjs |
 | ./packages/markdown/remark/package.json         | ./dist/index.js    |

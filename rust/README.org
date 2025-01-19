@@ -2,9 +2,106 @@
 #+author:    David Conner
 #+email:     noreply@te.xel.io
 
-Organization:
+#+PROPERTY: header-args+ :var ectoRoot=(expand-file-name "rust" (or (bound-and-true-p dc/ecto-path) "/data/ecto"))
+#+PROPERTY: header-args+ :var repoRoot=(expand-file-name "rust" (or (bound-and-true-p dc/repo-path) "/data/repo"))
 
-**** TODO describe categories/etc
+* Cargo
+
+** Categories
+
+The directory structure after =repo sync= should look something like this
+
+#+begin_quote
+/tmp/tmp.jnckn8BGEp
+├── accessibility
+├── aerospace
+│     ├── drones
+│     ├── protocols
+│     ├── simulation
+│     ├── space-protocols
+│     └── unmanned-aerial-vehicles
+├── algorithms
+├── api-bindings
+├── asynchronous
+├── authentication
+├── caching
+├── command-line-interface
+├── command-line-utilities
+├── compilers
+├── compression
+├── computer-vision
+├── concurrency
+├── config
+├── cryptography
+│     └── cryptocurrencies
+├── database
+├── database-implementations
+├── data-structures
+├── date-and-time
+├── development-tools
+│     ├── build-utils
+│     ├── cargo-plugins
+│     ├── debugging
+│     ├── ffi
+│     ├── procedural-macro-helpers
+│     ├── profiling
+│     └── testing
+├── email
+├── embedded
+├── emulators
+├── encoding
+├── external-ffi-bindings
+├── filesystem
+├── finance
+├── game-development
+├── game-engines
+├── games
+├── graphics
+├── gui
+├── hardware-support
+├── internationalization
+├── localization
+├── mathematics
+├── memory-management
+├── multimedia
+│     ├── audio
+│     ├── encoding
+│     ├── images
+│     └── video
+├── network-programming
+├── no-std
+│     └── no-alloc
+├── os
+│     ├── freebsd-apis
+│     ├── linux-apis
+│     ├── macos-apis
+│     ├── unix-apis
+│     └── windows-apis
+├── parser-implementations
+├── parsing
+├── rendering
+│     ├── data-formats
+│     ├── engine
+│     └── graphics-api
+├── rust-patterns
+├── science
+│     ├── geo
+│     ├── neuroscience
+│     └── robotics
+├── simulation
+├── template-engine
+├── text-editors
+├── text-processing
+├── value-formatting
+├── virtualization
+├── visualization
+├── wasm
+└── web-programming
+    ├── http-client
+    └── http-server
+
+87 directories, 0 files
+#+end_quote
 
 * Resources
 

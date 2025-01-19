@@ -1,0 +1,23 @@
+#+TITLE:     Ectorepo: SQLite
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+
+I'm hoping that OpenConfig will give me some good ideas for how to model data
+structures for network automation.
+
+
+* SQLite
+
+** Source
+
+*** Src
+
+*** Wasm
+
+SQLite can be built  [[https://sqlite.org/wasm/doc/trunk/index.md][wasm docs]]. The =wasm= build is bundled at
+
+** Wrappers
+
+
+** Utils

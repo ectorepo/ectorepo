@@ -340,7 +340,10 @@ xq -y '
 
 *** Schema
 
-Get tables and foreign keys by dumping the schema
+Get tables and foreign keys by dumping the schema.
+
+Another way to get this would be to parse =forge--db-table-schemata= from
+=forge-db.el=
 
 #+name: forgeTablesSQL
 #+headers:  :db (identity forge-database-file) :var forgeDB=forgeDB
@@ -373,7 +376,7 @@ CREATE TABLE revnote (class NOT NULL, id NOT NULL PRIMARY KEY, repository , "com
 CREATE TABLE notification (class NOT NULL, id NOT NULL PRIMARY KEY, thread_id , repository , type , topic , url , title , reason , last_read , updated , FOREIGN KEY (repository) REFERENCES repository (id) ON DELETE CASCADE);
 #+end_src
 
-Using [[https://gitlab.com/Screwtapello/sqlite-schema-diagram][Screwtapello/sqlite-schema-diagram]]
+**** Using [[https://gitlab.com/Screwtapello/sqlite-schema-diagram][Screwtapello/sqlite-schema-diagram]]
 
 #+begin_src sh :results output file  :file img/forgeSchema.svg
 forgeDB=$HOME/.emacs.g/var/forge/database.sqlite
