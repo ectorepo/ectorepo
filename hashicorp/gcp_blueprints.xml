@@ -23,7 +23,7 @@
   <project name="GoogleCloudPlatform/terraform-google-three-tier-web-app" path="gcp/terraform-google-three-tier-web-app" revision="refs/heads/main" remotes="github"/>
   <!-- <project name="terraform-google-modules/cloud-foundation-fabric" path="gcp/cloud-foundation-fabric" revision="refs/heads/master" remotes="github"/> -->
   <!-- docs-examples & terraform-docs-samples: large, many code samples, maybe remove -->
-  <project name="terraform-google-modules/docs-examples" path="gcp/docs-examples" revision="refs/heads/main" remotes="github"/>
+  <project name="terraform-google-modules/docs-examples" path="gcp/docs-examples" revision="refs/heads/master" remotes="github"/>
   <project name="terraform-google-modules/terraform-example-foundation" path="gcp/terraform-example-foundation" revision="refs/heads/main" remotes="github"/>
   <project name="terraform-google-modules/terraform-docs-samples" path="gcp/terraform-docs-samples" revision="refs/heads/main" remotes="github"/>
   <project name="terraform-google-modules/terraform-google-api-police" path="gcp/terraform-google-api-police" revision="refs/heads/main" remotes="github"/>
