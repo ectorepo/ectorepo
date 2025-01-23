@@ -3,7 +3,7 @@
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="hashicorp/gcp_blueprints.xml"/>
-  <project name="twistedpair/google-cloud-sdk" path="gcp/google-cloud-sdk" revision="refs/heads/master" remotes="github" groups="gcp">
+  <project name="twistedpair/google-cloud-sdk" path="gcp/google-cloud-sdk" revision="refs/heads/master" remotes="github" groups="gcp"/>
   <!-- core -->
   <project name="hashicorp/terraform" path="terraform" revision="refs/heads/main" remotes="github" groups="core,terraform"/>
   <project name="hashicorp/nomad" path="nomad" revision="refs/heads/main" remotes="github" groups="core,nomad"/>
