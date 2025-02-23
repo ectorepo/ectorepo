@@ -16,6 +16,8 @@
   <remote name="invent" fetch="https://invent.kde.org"/>
   <remote name="kernel" fetch="https://git.kernel.org/pub/scm"/>
   <remote name="opencascade" fetch="https://git.dev.opencascade.org/repos"/>
+  <remote name="pantherx" fetch="https://git.pantherx.org"/>
+  <remote name="pantherxchannel" fetch="https://channels.pantherx.org/git"/>
   <remote name="phundrak" fetch="https://labs.phundrak.com"/>
   <remote name="savannah" fetch="https://git.savannah.gnu.org/git"/>
   <remote name="sourceware" fetch="https://sourceware.org/git"/>

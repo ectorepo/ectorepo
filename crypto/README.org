@@ -1,6 +1,7 @@
 #+title:     Ectorepo: Crypto
 #+author:    David Conner
 #+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
 
 A list of crypto, openssl, X.509 and similar repositories.
 
@@ -102,7 +103,7 @@ Generate =smallstep.xml=
 * Yubikey
 
 #+NAME: yubicoReposExclude
-| |
+|   |
 
 #+name: yubicoRepos
 #+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes

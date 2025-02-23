@@ -2,6 +2,7 @@
 #+AUTHOR:    David Conner
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
+#+PROPERTY: header-args :comments none
 
 I'm hoping that OpenConfig will give me some good ideas for how to model data
 structures for network automation.
@@ -79,7 +80,7 @@ avoid confirmations
 These repos are excluded
 
 #+NAME: ocReposExclude
-| |
+|   |
 
 Collect the OpenConfig org's repositories
 

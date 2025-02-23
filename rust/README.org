@@ -1,7 +1,7 @@
 #+title:     Ectorepo: Rust
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-
+#+PROPERTY: header-args :comments none
 #+PROPERTY: header-args+ :var ectoRoot=(expand-file-name "rust" (or (bound-and-true-p dc/ecto-path) "/data/ecto"))
 #+PROPERTY: header-args+ :var repoRoot=(expand-file-name "rust" (or (bound-and-true-p dc/repo-path) "/data/repo"))
 

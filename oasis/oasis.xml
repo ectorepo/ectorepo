@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="oasis-open/cacao-json-schemas" path="oasis/cacao-json-schemas" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/ces-specs" path="oasis/ces-specs" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/csaf-documentation" path="oasis/csaf-documentation" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/csaf-parser" path="oasis/csaf-parser" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-documentation" path="oasis/cti-documentation" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/cti-interop" path="oasis/cti-interop" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-pattern-matcher" path="oasis/cti-pattern-matcher" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-pattern-validator" path="oasis/cti-pattern-validator" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-python-stix2" path="oasis/cti-python-stix2" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-python-stix2-extensions" path="oasis/cti-python-stix2-extensions" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/cti-stix-common-objects" path="oasis/cti-stix-common-objects" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/cti-stix-elevator" path="oasis/cti-stix-elevator" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-stix-generator" path="oasis/cti-stix-generator" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/cti-stix-slider" path="oasis/cti-stix-slider" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-stix-validator" path="oasis/cti-stix-validator" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-stix-visualization" path="oasis/cti-stix-visualization" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-stix2-json-schemas" path="oasis/cti-stix2-json-schemas" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-taxii-client" path="oasis/cti-taxii-client" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-taxii-server" path="oasis/cti-taxii-server" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/cti-training" path="oasis/cti-training" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/dita-adoption-public" path="oasis/dita-adoption-public" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/dita-lightweight" path="oasis/dita-lightweight" revision="refs/heads/spec" remote="github"/>
+  <project name="oasis-open/dita-rng-converter" path="oasis/dita-rng-converter" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/dita-specializations" path="oasis/dita-specializations" revision="refs/heads/develop" remote="github"/>
+  <project name="oasis-open/dita-stylesheets" path="oasis/dita-stylesheets" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/emergency-emf" path="oasis/emergency-emf" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/legaldocml-akomantoso" path="oasis/legaldocml-akomantoso" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/legalruleml-repo" path="oasis/legalruleml-repo" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/mqtt-sn-sample-resources" path="oasis/mqtt-sn-sample-resources" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/odata-rapid" path="oasis/odata-rapid" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/Open-Repo-admin" path="oasis/Open-Repo-admin" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/openc2-compatibility" path="oasis/openc2-compatibility" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-custom-aps" path="oasis/openc2-custom-aps" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-iosacl-adapter" path="oasis/openc2-iosacl-adapter" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-jadn-software" path="oasis/openc2-jadn-software" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-lycan-beam" path="oasis/openc2-lycan-beam" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-lycan-elixir" path="oasis/openc2-lycan-elixir" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-lycan-java" path="oasis/openc2-lycan-java" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-lycan-python" path="oasis/openc2-lycan-python" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-ocas" path="oasis/openc2-ocas" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-oif-device" path="oasis/openc2-oif-device" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-oif-obo" path="oasis/openc2-oif-obo" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/openc2-oif-orchestrator" path="oasis/openc2-oif-orchestrator" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-orchid" path="oasis/openc2-orchid" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-pub-sub-on-bsd" path="oasis/openc2-pub-sub-on-bsd" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-reactor-master" path="oasis/openc2-reactor-master" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-reactor-relay" path="oasis/openc2-reactor-relay" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openc2-yuuki" path="oasis/openc2-yuuki" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/openeox" path="oasis/openeox" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/tab-documentation" path="oasis/tab-documentation" revision="refs/heads/master" remote="github"/>
+  <project name="oasis-open/tac-common-semantic-individuals" path="oasis/tac-common-semantic-individuals" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/tac-ontology" path="oasis/tac-ontology" revision="refs/heads/main" remote="github"/>
+  <project name="oasis-open/tosca-community-contributions" path="oasis/tosca-community-contributions" revision="refs/heads/master" remote="github"/>
+</manifest>

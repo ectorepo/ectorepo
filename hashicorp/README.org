@@ -2,6 +2,7 @@
 #+AUTHOR:    David Conner
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
+#+PROPERTY: header-args :comments none
 
 The docs are now greppable. I wish I had realized this sooner.
 
@@ -77,6 +78,38 @@ User-Agent: Emacs
 GET :gh-url-base/:gh-url-path
 :headers
 #+end_src
+
+#+RESULTS: gcpTerraformMetadata
+| terraform-google-modules | docs-examples                      |  1747 | master |
+| terraform-google-modules | terraform-google-address           |   499 | main   |
+| terraform-google-modules | terraform-google-api-police        |    22 | main   |
+| terraform-google-modules | terraform-google-bastion-host      |   498 | main   |
+| terraform-google-modules | terraform-google-bigquery          |  1731 | main   |
+| terraform-google-modules | terraform-google-cloud-datastore   |   144 | main   |
+| terraform-google-modules | terraform-google-cloud-dns         | 26725 | main   |
+| terraform-google-modules | terraform-google-cloud-nat         |   489 | main   |
+| terraform-google-modules | terraform-google-container-vm      |   389 | main   |
+| terraform-google-modules | terraform-google-endpoints-dns     |    52 | master |
+| terraform-google-modules | terraform-google-gsuite-export     |   239 | main   |
+| terraform-google-modules | terraform-google-iam               |   693 | main   |
+| terraform-google-modules | terraform-google-jenkins           |   180 | main   |
+| terraform-google-modules | terraform-google-k8s-gce           |   101 | master |
+| terraform-google-modules | terraform-google-kubernetes-engine |  5653 | main   |
+| terraform-google-modules | terraform-google-lb                |   449 | main   |
+| terraform-google-modules | terraform-google-lb-http           |  1301 | main   |
+| terraform-google-modules | terraform-google-lb-internal       |   361 | main   |
+| terraform-google-modules | terraform-google-log-export        |   842 | main   |
+| terraform-google-modules | terraform-google-memorystore       |   619 | main   |
+| terraform-google-modules | terraform-google-network           |  1410 | main   |
+| terraform-google-modules | terraform-google-org-policy        |   378 | main   |
+| terraform-google-modules | terraform-google-project-factory   |  2089 | main   |
+| terraform-google-modules | terraform-google-pubsub            |   604 | main   |
+| terraform-google-modules | terraform-google-secret            |   205 | master |
+| terraform-google-modules | terraform-google-sql-db            |  1688 | main   |
+| terraform-google-modules | terraform-google-startup-scripts   |   204 | main   |
+| terraform-google-modules | terraform-google-vault             |   382 | main   |
+| terraform-google-modules | terraform-google-vm                |  1219 | main   |
+| terraform-google-modules | terraform-google-vpn               |   413 | main   |
 
 
 * Notes

@@ -1,6 +1,7 @@
 #+title:     Ectorepo: Pytorch
 #+author:    David Conner
 #+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
 
 A list of PyTorch repositories. To learn how to use this Repo repo, see the
 the [[https://github.com/ectorepo/ectorepo][ectorepo/ectorepo]] Repo ... repo.

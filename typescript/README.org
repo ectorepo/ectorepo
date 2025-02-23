@@ -1,6 +1,7 @@
 #+title:     Ectorepo: Typescript
 #+author:    David Conner
 #+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
 
 A list of Typescript repositories. To learn how to use this Repo repo, see the
 the [[https://github.com/ectorepo/ectorepo][ectorepo/ectorepo]] Repo ... repo.
@@ -113,13 +114,13 @@ These are too large: more than 20 GB  combined. For the remainder, none is large
 than 2.2 GB.
 
 #+NAME: ignoreProjects
-| .github               |
-| tutorials             |
-| action                |
-| roadmap               |
-| vite                  |
-| codesandbox-client    |
-| vite-ecosystem-ci     |
+| .github            |
+| tutorials          |
+| action             |
+| roadmap            |
+| vite               |
+| codesandbox-client |
+| vite-ecosystem-ci  |
 
 *** Filter
 

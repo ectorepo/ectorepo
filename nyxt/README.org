@@ -2,6 +2,7 @@
 #+AUTHOR:    David Conner
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
+#+PROPERTY: header-args :comments none
 
 See [[https://github.com/atlas-engineer/nyxt/blob/master/build-scripts/nyxt.scm][Nyxt Build Script]] for info on building
 
@@ -13,3 +14,12 @@ See [[https://github.com/atlas-engineer/nyxt/blob/master/build-scripts/nyxt.scm]
 + [[github:google/lisp-koans][google/lisp-koans]]
 
 * Nyxt
+
+
+** Submodules
+
+#+begin_src shell
+git config get --all --show-names \
+    --file $_ECTO/nyxt/.gitmodules \
+    --regexp '.*url'
+#+end_src

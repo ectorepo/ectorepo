@@ -2,6 +2,7 @@
 #+AUTHOR:    David Conner
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
+#+PROPERTY: header-args :comments none
 
 
 #+begin_src xml :tangle basics.xml
@@ -83,11 +84,11 @@ All the =obs= tools here except latencytop connect to =cpu 1=
 
 ***** Sockets
 
-| obs    | ss |
+| obs | ss |
 
 ***** TCP/UDP
 
-| perf   | tcptop tcplife tcpconnect tcpaccept tcpconnlat tcpretrans |
+| perf | tcptop tcplife tcpconnect tcpaccept tcpconnlat tcpretrans |
 
 ***** IP
 
@@ -95,7 +96,7 @@ All the =obs= tools here except latencytop connect to =cpu 1=
 
 ***** Ethernet
 
-| obs    | tcpdump |
+| obs | tcpdump |
 
 **** Disks
 
@@ -140,9 +141,9 @@ All the =obs= tools here except latencytop connect to =cpu 1=
 
 **** AMD
 
-| perf   | rocprof rocprofv2 |
+| perf   | rocprof rocprofv2                       |
 | static | rocminfo rocm_agent_enumerator rocm-smi |
-| obs    | roctracer  |
+| obs    | roctracer                               |
 
 ***** Debugging
 
