@@ -14,9 +14,33 @@
 (setq-local org-confirm-babel-evaluate nil)
 #+end_src
 
-* Repo Tools
+* Integration
 
-** Manifest
+** Org Notes
+
+*** Running scripts on =$_ECTO= content from =$_REPO=
+
+****** TODO _maybe_ use =.dir-locals.el= for setting =ectoroot= ...
+
++ This won't work well if this notes repository gets absorbed into
+  dcunited001/zettlekasten (even as symlink. or git submodule...)
++ direnv may be confusing as well
++ probably best to avoid the refactor and use the ole =Ctrl-C, Ctrl-V= ...
+  (shit) i mean ... yasnippets.
+
+** Automation
+
+It would be nice if some of this were automated -- e.g. identification of sqlite3
+databases to facilitate generation of sqlite schema diagrams
+
+* Analysis
+
+*** JSON Schema
+
+* Maintenance
+** Repo Tools
+
+*** Manifest
 
 Guix environment in =manifest.scm= must be loaded by =buffer-env.el= for tangling to work.
 
@@ -44,7 +68,7 @@ Guix environment in =manifest.scm= must be loaded by =buffer-env.el= for tanglin
                            (list python)))))
 #+end_src
 
-*** Package Transformations
+**** Package Transformations
 
 See =options->transformations= for info about [[https://guix.gnu.org/manual/en/html_node/Defining-Package-Variants.html][package variants]].
 
@@ -69,7 +93,7 @@ replace the =(source...)= declaration with a reference to the project's path in
 the sync'd repo superproject. There may be a be a better way to do this: =guix
 build --help-transform=.
 
-** Environment
+*** Environment
 
 When running the scripts, prefix them with =guix shell -m manifest.scm -- python
 $script=. This is the most consistent way to do this in emacs.
@@ -84,12 +108,12 @@ For example, the org-babel header =:python (expand-file-name "bin/python3"
 emacs. Other ways to addess include =.env= scripts, which aren't necessarily
 portable.
 
-** Shell Scripts
+*** Shell Scripts
 
 Grok the general directory structure with =tree -dL 3 .= after submodules have
 been modulized
 
-*** Maintain Manifests
+**** Maintain Manifests
 
 Now that deltas are minimal (and XML's are guaranteed to be sorted/uniq), things
 like this work.
@@ -101,7 +125,7 @@ and no one's consuming these repos.
 It's also not so great when signing commits.
 #+end_quote
 
-**** Validate
+***** Validate
 
 Check status
 
@@ -118,7 +142,7 @@ find . -name .gitignore -type f -print \
     # | xargs -n1 cat # this doesn't print the filename ... idk
 #+end_src
 
-**** Manage submodules
+***** Manage submodules
 
 #+begin_quote
 Quite a bit of this submodule stuff is a bit unwieldy, requiring manual
@@ -138,7 +162,7 @@ Map =git stash/pull/pop= across submodules
 git submodule foreach "git stash && git pull origin master && git stash pop"
 #+end_src
 
-**** Manage =_remotes.xml=
+***** Manage =_remotes.xml=
 
 Fan-out Copies of =_remotes.xml=
 
@@ -157,9 +181,9 @@ Diff for lagging copies of =_remotes.xml= across submodules.
 git submodule foreach "diff ../_remotes.xml _remotes.xml ; echo ''" | grep -e '^>'
 #+end_src
 
-**** And so forth
+***** And so forth
 
-*** Old Merge =_remotes.xml= Manifests
+**** Old Merge =_remotes.xml= Manifests
 
 I'm not sure how to merge patches while dropping file source info. This just
 finds and reports all lines not in the top-level manifest.
@@ -195,7 +219,7 @@ cat $mergedir/* | grep -e "^>\s*<remote" | sort | uniq | cut -b2-
    <remote name="srht_whereiseveryone" fetch="https://git.sr.ht/~whereiseveryone"/>
 #+end_example
 
-*** Commit Missing Remotes
+**** Commit Missing Remotes
 
 After copying updated =_remotes.xml=
 
@@ -217,7 +241,7 @@ done
 
 #+RESULTS:
 
-** Python Scripts
+*** Python Scripts
 
 When provided the above manifest, a vanilla =buffer-env= configuration, permits
 hacking on the python scripts using commands like:
@@ -229,7 +253,7 @@ Repo's =XmlManifest= class requires a =repodir= and =manifest_file= path. for
 these scripts below, I assume that the script is running from =$_REPO= and that
 the manifests are sync'd into =$_ECTO/$project=.
 
-*** Merge Manifests
+**** Merge Manifests
 
 #+begin_src shell
 guix shell -m manifest.scm -- python util/merge_manifests.py
@@ -291,9 +315,10 @@ if __name__ == '__main__':
 
 #+end_example
 
-* Repo Checkout Tools
 
-** Fix misbehaving checkouts
+** Repo Checkout Tools
+
+*** Fix misbehaving checkouts
 
 Running =repo sync= and cloning too many bundles at once ends up not updating
 the =pwd= with checkouts, which makes running manual =repo sync $project= a bit
@@ -410,4 +435,5 @@ transform
 
 #+end_src
 
-* Git
+
+** Git

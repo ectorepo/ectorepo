@@ -1,0 +1,207 @@
+#+title:     Ectorepo: Astral
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+#+begin_quote
+High-performance developer tools for the Python ecosystem.
+#+end_quote
+
+
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="astral-sh/astral.xml"/>
+  <project path="RustPython/interpreter" name="RustPython/RustPython" revision="refs/heads/main" />
+  <project path="RustPython/parser" name="RustPython/Parser" revision="refs/heads/main" />
+</manifest>
+#+end_src
+
+* Code
+
+** astral-sh
+
+*** uv
+
++ Example pyproject.toml files in [[https://github.com/astral-sh/uv/tree/main/ecosystem][ecosystem/**.pyproject.toml]]
+
+*** packse
+
+The =packse= tool shows dep trees of scenarios
+
++ JSON description of dependency trees in [[https://github.com/astral-sh/packse/blob/main/scenarios/examples][scenarios/examples]]; elsewhere in
+  ./scenarios are mostly toml & yaml scenarios. The schema doesn't correspond to
+  =uv.json= in the schema store
+
+
+* Setup
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+#+RESULTS:
+#+begin_src emacs-lisp
+((limit . 5000) (cost . 1) (remaining . 5000) (resetAt . "2025-02-21T04:38:22Z"))
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+* Astral
+
+Clone bundle sizes
+
+#+name: astralMetadata
+#+begin_src restclient :jq "map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv" :results table :jq-args "--raw-output"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-org = astral-sh
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Emacs
+#
+
+GET :gh-url-base/:gh-url-path
+:headers
+#+end_src
+
+#+RESULTS: astralMetadata
+| astral-sh | python-build-standalone     |   2310 | main   | false | 2025-02-25T16:51:40Z |
+| astral-sh | ruff                        |  66835 | main   | false | 2025-02-25T22:22:57Z |
+| astral-sh | RustPython                  |  62003 | main   | true  | 2025-01-29T00:24:32Z |
+| astral-sh | ruff-pre-commit             |    177 | main   | false | 2025-02-24T17:13:17Z |
+| astral-sh | ruff-vscode                 |   1447 | main   | false | 2025-02-25T11:04:56Z |
+| astral-sh | ruff-lsp                    |    601 | main   | false | 2025-02-22T23:28:09Z |
+| astral-sh | rye                         |   3332 | main   | false | 2025-02-25T17:04:13Z |
+| astral-sh | RustPython-Parser           |   5118 | main   | true  | 2024-05-17T16:54:52Z |
+| astral-sh | schemastore                 |  31868 | master | false | 2024-09-09T14:00:06Z |
+| astral-sh | transformers                | 158147 | main   | false | 2024-10-14T09:54:28Z |
+| astral-sh | uv                          |  88912 | main   | false | 2025-02-25T22:01:20Z |
+| astral-sh | pubgrub                     |   2230 | main   | false | 2025-02-17T05:49:46Z |
+| astral-sh | packse                      |   9066 | main   | false | 2025-02-21T15:23:46Z |
+| astral-sh | pypi-proxy                  |     10 | main   | false | 2025-01-29T22:12:31Z |
+| astral-sh | uv-pre-commit               |     73 | main   | false | 2025-02-25T00:20:28Z |
+| astral-sh | lsp-types                   |    709 | master | false | 2024-04-29T18:12:29Z |
+| astral-sh | reqwest-middleware          |    222 | main   | false | 2024-08-19T14:06:50Z |
+| astral-sh | docs                        |  15289 | main   | false | 2025-02-24T22:51:59Z |
+| astral-sh | nginx_pypi_cache            |     12 | master | false | 2024-08-02T02:28:53Z |
+| astral-sh | tl                          |    172 | master | false | 2024-12-21T15:29:02Z |
+| astral-sh | uv-fastapi-example          |     27 | main   | false | 2025-02-24T01:47:37Z |
+| astral-sh | setup-uv                    |   5053 | main   | false | 2025-02-25T22:31:13Z |
+| astral-sh | uv-docker-example           |     60 | main   | false | 2025-02-25T18:59:42Z |
+| astral-sh | uv-flask-example            |      4 | main   | false | 2024-12-11T05:51:05Z |
+| astral-sh | ruff-action                 |   1265 | main   | false | 2025-02-25T14:44:09Z |
+| astral-sh | trusted-publishing-examples |     30 | main   | false | 2025-02-17T22:34:54Z |
+| astral-sh | workspace-in-root-test      |      1 | main   | false | 2024-12-12T08:57:40Z |
+| astral-sh | workspace-virtual-root-test |      6 | main   | false | 2024-10-29T16:03:21Z |
+| astral-sh | sanitize-wheel-test         |      3 | main   | false | 2024-10-31T18:42:18Z |
+| astral-sh | .github                     |      0 | main   | false | 2024-11-22T16:11:29Z |
+
+
+#+NAME: astralReposExclude
+| schemastore  |
+| transformers |
+| .github      |
+
+
+** Astral Repos
+
+#+name: astralRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "astral-sh"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+
+Filter the results, generate XML
+
+#+name: astralReposXML
+#+begin_src emacs-lisp :var gqldata=astralRepos repos-exclude=astralReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       ;; (path-dirs (list "astral" raw-name))
+                       (path-dirs (list raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+
+** Generate XML
+
+Generate =astral.xml=
+
+#+begin_src xml :tangle astral.xml :noweb yes
+<manifest>
+  <<astralReposXML()>>
+</manifest>
+#+end_src

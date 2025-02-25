@@ -13,13 +13,199 @@ See [[https://github.com/atlas-engineer/nyxt/blob/master/build-scripts/nyxt.scm]
 + [[https://lispcookbook.github.io/cl-cookbook/][Common Lisp Cookbook]]
 + [[github:google/lisp-koans][google/lisp-koans]]
 
+
 * Nyxt
 
+#+name: atlasRepos
+#+begin_src restclient :jq "map(select(.archived | not) | [.owner.login, .name, .size])[] | @csv" :results table :jq-args "--raw-output"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-org = atlas-engineer
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Emacs
+#
+
+GET :gh-url-base/:gh-url-path
+:headers
+
+# nope, just use :jq and :jq-args above.
+# -> jq-set-var :repo-sizes map(.owner)
+# -> jq-set-var :repo-sizes map(. | "(.owner.login)")
+#+end_src
+
+#+RESULTS: atlasRepos
+| atlas-engineer | nyxt                           | 53986 |
+| atlas-engineer | cl-webkit                      |   403 |
+| atlas-engineer | closure                        |  1634 |
+| atlas-engineer | nx-ace                         |    22 |
+| atlas-engineer | ospm                           |    44 |
+| atlas-engineer | stripe                         |    41 |
+| atlas-engineer | nx-fruit                       |     9 |
+| atlas-engineer | nhooks                         |    75 |
+| atlas-engineer | nfiles                         |   208 |
+| atlas-engineer | cl-readability                 |   174 |
+| atlas-engineer | default-hosts-no-procrastinate |     8 |
+| atlas-engineer | nkeymaps                       |   268 |
+| atlas-engineer | deploy                         |    90 |
+| atlas-engineer | cl-xmpp                        |   283 |
+| atlas-engineer | njson                          |   171 |
+| atlas-engineer | nactivitypub                   |    38 |
+| atlas-engineer | nsymbols                       |    56 |
+| atlas-engineer | nclasses                       |   276 |
+| atlas-engineer | libwebextensions               |   196 |
+
+
+#+name: atlasReposExclude
+| cl-electron  |
+| history-tree |
+| nclasses     |
+| nfiles       |
+| nhooks       |
+| njson        |
+| nkeymaps     |
+| nsymbols     |
+| prompter     |
+
+The API request is missing closure, nui, nx-lisp-system
+
+Also, API doesn't return submodules for cl-electron, prompter, synchronous-socket
+
+** Archived
+
+build-script-archive
+cl-webengine
+history-tree
+ndebug
+ntemplate
+nx-reader
+nx-vcs
+nx-video
+nyxt-xmpp-mode
+ports
+source
 
 ** Submodules
 
-#+begin_src shell
+#+begin_src shell :dir /data/ecto/nyxt
 git config get --all --show-names \
-    --file $_ECTO/nyxt/.gitmodules \
-    --regexp '.*url'
+    --file nyxt/.gitmodules \
+    --regexp '.*url' | sort -k2
 #+end_src
+
+#+RESULTS:
+| submodule._build/cl-colors-ng.url                    | https://codeberg.org/cage/cl-colors-ng.git                               |
+| submodule._build/cl-prevalence.url                   | https://github.com/40ants/cl-prevalence                                  |
+| submodule._build/lisp-unit2.url                      | https://github.com/AccelerationNet/lisp-unit2                            |
+| submodule._build/cl-gobject-introspection.url        | https://github.com/andy128k/cl-gobject-introspection                     |
+| submodule._build/idna.url                            | https://github.com/antifuchs/idna                                        |
+| submodule._build/cl-electron.url                     | https://github.com/atlas-engineer/cl-electron/                           |
+| submodule._build/history-tree.url                    | https://github.com/atlas-engineer/history-tree                           |
+| submodule._build/nclasses.url                        | https://github.com/atlas-engineer/nclasses/                              |
+| submodule._build/nfiles.url                          | https://github.com/atlas-engineer/nfiles                                 |
+| submodule._build/nhooks.url                          | https://github.com/atlas-engineer/nhooks                                 |
+| submodule._build/njson.url                           | https://github.com/atlas-engineer/njson                                  |
+| submodule._build/nkeymaps.url                        | https://github.com/atlas-engineer/nkeymaps                               |
+| submodule._build/nsymbols.url                        | https://github.com/atlas-engineer/nsymbols                               |
+| submodule._build/prompter.url                        | https://github.com/atlas-engineer/prompter                               |
+| submodule._build/introspect-environment.url          | https://github.com/Bike/introspect-environment                           |
+| submodule._build/trivial-macroexpand-all.url         | https://github.com/cbaggers/trivial-macroexpand-all                      |
+| submodule._build/cffi.url                            | https://github.com/cffi/cffi                                             |
+| submodule._build/babel.url                           | https://github.com/cl-babel/babel                                        |
+| submodule._build/cl-plus-ssl.url                     | https://github.com/cl-plus-ssl/cl-plus-ssl                               |
+| submodule._build/local-time.url                      | https://github.com/dlowe-net/local-time                                  |
+| submodule._build/chunga.url                          | https://github.com/edicl/chunga                                          |
+| submodule._build/cl-ppcre.url                        | https://github.com/edicl/cl-ppcre                                        |
+| submodule._build/cl-unicode.url                      | https://github.com/edicl/cl-unicode                                      |
+| submodule._build/drakma.url                          | https://github.com/edicl/drakma                                          |
+| submodule._build/flexi-streams.url                   | https://github.com/edicl/flexi-streams                                   |
+| submodule._build/cl-cookie.url                       | https://github.com/fukamachi/cl-cookie                                   |
+| submodule._build/dexador.url                         | https://github.com/fukamachi/dexador                                     |
+| submodule._build/fast-http.url                       | https://github.com/fukamachi/fast-http                                   |
+| submodule._build/proc-parse.url                      | https://github.com/fukamachi/proc-parse                                  |
+| submodule._build/quri.url                            | https://github.com/fukamachi/quri                                        |
+| submodule._build/smart-buffer.url                    | https://github.com/fukamachi/smart-buffer                                |
+| submodule._build/xsubseq.url                         | https://github.com/fukamachi/xsubseq                                     |
+| submodule._build/lisp-namespace.url                  | https://github.com/guicho271828/lisp-namespace                           |
+| submodule._build/trivia.url                          | https://github.com/guicho271828/trivia                                   |
+| submodule._build/type-i.url                          | https://github.com/guicho271828/type-i                                   |
+| submodule._build/cl-containers.url                   | https://github.com/gwkkwg/cl-containers                                  |
+| submodule._build/metatilities-base.url               | https://github.com/gwkkwg/metatilities-base                              |
+| submodule._build/moptilities.url                     | https://github.com/gwkkwg/moptilities/                                   |
+| submodule._build/calispel.url                        | https://github.com/hawkir/calispel                                       |
+| submodule._build/cl-jpl-util.url                     | https://github.com/hawkir/cl-jpl-util                                    |
+| submodule._build/cl-qrencode.url                     | https://github.com/jnjcc/cl-qrencode                                     |
+| submodule._build/cl-webkit.url                       | https://github.com/joachifm/cl-webkit                                    |
+| submodule._build/sly.url                             | https://github.com/joaotavora/sly                                        |
+| submodule._build/cl-gopher.url                       | https://github.com/knusbaum/cl-gopher                                    |
+| submodule._build/unix-opts.url                       | https://github.com/libre-man/unix-opts                                   |
+| submodule._build/global-vars.url                     | https://github.com/lmj/global-vars                                       |
+| submodule._build/lparallel.url                       | https://github.com/lmj/lparallel/                                        |
+| submodule._build/cl-tld.url                          | https://github.com/lu4nx/cl-tld                                          |
+| submodule._build/optima.url                          | https://github.com/m2ym/optima                                           |
+| submodule._build/trivial-types.url                   | https://github.com/m2ym/trivial-types                                    |
+| submodule._build/named-readtables.url                | https://github.com/melisgl/named-readtables                              |
+| submodule._build/cl-custom-hash-table.url            | https://github.com/metawilm/cl-custom-hash-table                         |
+| submodule._build/phos.url                            | https://github.com/omar-polo/phos                                        |
+| submodule._build/osicat.url                          | https://github.com/osicat/osicat                                         |
+| submodule._build/closer-mop.url                      | https://github.com/pcostanza/closer-mop                                  |
+| submodule._build/trivial-custom-debugger.url         | https://github.com/phoe/trivial-custom-debugger                          |
+| submodule._build/trivial-package-local-nicknames.url | https://github.com/phoe/trivial-package-local-nicknames                  |
+| submodule._build/string-case.url                     | https://github.com/pkhuong/string-case                                   |
+| submodule._build/Acclimation.url                     | https://github.com/robert-strandh/Acclimation                            |
+| submodule._build/cluffer.url                         | https://github.com/robert-strandh/cluffer                                |
+| submodule._build/Clump.url                           | https://github.com/robert-strandh/Clump                                  |
+| submodule._build/fast-io.url                         | https://github.com/rpav/fast-io                                          |
+| submodule._build/cl-change-case.url                  | https://github.com/rudolfochrist/cl-change-case                          |
+| submodule._build/serapeum.url                        | https://github.com/ruricolist/serapeum                                   |
+| submodule._build/spinneret.url                       | https://github.com/ruricolist/spinneret/                                 |
+| submodule._build/trivial-file-size.url               | https://github.com/ruricolist/trivial-file-size                          |
+| submodule._build/chipz.url                           | https://github.com/sharplispers/chipz                                    |
+| submodule._build/cl-cffi-gtk.url                     | https://github.com/sharplispers/cl-cffi-gtk                              |
+| submodule._build/cl-json.url                         | https://github.com/sharplispers/cl-json                                  |
+| submodule._build/log4cl.url                          | https://github.com/sharplispers/log4cl                                   |
+| submodule._build/parse-number.url                    | https://github.com/sharplispers/parse-number/                            |
+| submodule._build/split-sequence.url                  | https://github.com/sharplispers/split-sequence                           |
+| submodule._build/array-utils.url                     | https://github.com/Shinmera/array-utils                                  |
+| submodule._build/clss.url                            | https://github.com/Shinmera/clss                                         |
+| submodule._build/documentation-utils.url             | https://github.com/Shinmera/documentation-utils                          |
+| submodule._build/LASS.url                            | https://github.com/Shinmera/LASS                                         |
+| submodule._build/plump.url                           | https://github.com/Shinmera/plump                                        |
+| submodule._build/trivial-indent.url                  | https://github.com/Shinmera/trivial-indent                               |
+| submodule._build/trivial-mimes.url                   | https://github.com/Shinmera/trivial-mimes                                |
+| submodule._build/bordeaux-threads.url                | https://github.com/sionescu/bordeaux-threads                             |
+| submodule._build/iolib.url                           | https://github.com/sionescu/iolib                                        |
+| submodule._build/static-vectors.url                  | https://github.com/sionescu/static-vectors                               |
+| submodule._build/swap-bytes.url                      | https://github.com/sionescu/swap-bytes                                   |
+| submodule._build/fset.url                            | https://github.com/slburson/fset                                         |
+| submodule._build/slime.url                           | https://github.com/slime/slime/                                          |
+| submodule._build/trivial-clipboard.url               | https://github.com/snmsts/trivial-clipboard                              |
+| submodule._build/s-sysdeps.url                       | https://github.com/svenvc/s-sysdeps                                      |
+| submodule._build/cl-sqlite.url                       | https://github.com/TeMPOraL/cl-sqlite                                    |
+| submodule._build/cl-enchant.url                      | https://github.com/tlikonen/cl-enchant                                   |
+| submodule._build/anaphora.url                        | https://github.com/tokenrove/anaphora                                    |
+| submodule._build/trivial-features.url                | https://github.com/trivial-features/trivial-features                     |
+| submodule._build/trivial-garbage.url                 | https://github.com/trivial-garbage/trivial-garbage                       |
+| submodule._build/trivial-gray-streams.url            | https://github.com/trivial-gray-streams/trivial-gray-streams             |
+| submodule._build/usocket.url                         | https://github.com/usocket/usocket/                                      |
+| submodule._build/cl-str.url                          | https://github.com/vindarel/cl-str                                       |
+| submodule._build/salza2.url                          | https://github.com/xach/salza2                                           |
+| submodule._build/zpng.url                            | https://github.com/xach/zpng                                             |
+| submodule._build/trivial-cltl2.url                   | https://github.com/Zulu-Inuoe/trivial-cltl2                              |
+| submodule._build/alexandria.url                      | https://gitlab.common-lisp.net/alexandria/alexandria.git                 |
+| submodule._build/cl-utilities.url                    | https://gitlab.common-lisp.net/cl-utilities/cl-utilities                 |
+| submodule._build/iterate.url                         | https://gitlab.common-lisp.net/iterate/iterate.git                       |
+| submodule._build/misc-extensions.url                 | https://gitlab.common-lisp.net/misc-extensions/misc-extensions.git       |
+| submodule._build/cl-base64.url                       | https://gitlab.common-lisp.net/nyxt/cl-base64.git                        |
+| submodule._build/jpl-queues.url                      | https://gitlab.common-lisp.net/nyxt/jpl-queues.git                       |
+| submodule._build/mt19937.url                         | https://gitlab.common-lisp.net/nyxt/mt19937                              |
+| submodule._build/puri.url                            | https://gitlab.common-lisp.net/nyxt/puri.git                             |
+| submodule._build/py-configparser.url                 | https://gitlab.common-lisp.net/nyxt/py-configparser                      |
+| submodule._build/parenscript.url                     | https://gitlab.common-lisp.net/parenscript/parenscript                   |
+| submodule._build/parse-declarations.url              | https://gitlab.common-lisp.net/parse-declarations/parse-declarations.git |
+| submodule._build/s-xml.url                           | https://gitlab.common-lisp.net/s-xml/s-xml                               |
