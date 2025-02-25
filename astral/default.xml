@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
-  <include name="astral-sh/astral.xml"/>
-  <project path="RustPython/interpreter" name="RustPython/RustPython" revision="refs/heads/main" />
-  <project path="RustPython/parser" name="RustPython/Parser" revision="refs/heads/main" />
+  <include name="astral/astral.xml"/>
+  <project path="RustPython/interpreter" name="RustPython/RustPython" revision="refs/heads/main"/>
+  <project path="RustPython/parser" name="RustPython/Parser" revision="refs/heads/main"/>
 </manifest>
