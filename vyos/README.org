@@ -53,11 +53,11 @@ curl -L \
 
 Clone bundle sizes
 
-#+name: vyosMetadata
-#+begin_src restclient :jq "map([.owner.login, .name, .size, .default_branch])[] | @csv" :results table :jq-args "--raw-output"
+#+name: fetchMetadata
+#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
+#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
 :gh-graphql-url = https://api.github.com/graphql
 :gh-url-base = https://api.github.com
-:gh-org = vyos
 :gh-url-path = orgs/:gh-org/repos
 :gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
 
@@ -72,42 +72,54 @@ GET :gh-url-base/:gh-url-path
 :headers
 #+end_src
 
+#+name: vyosMetadata
+#+call: fetchMetadata(gh-org="vyos")
+
+#+RESULTS: vyosMetadata
+| vyos | vyos-build            | 9388 | current | false | 2025-03-20T06:00:43Z |
+| vyos | vyatta-bash           | 5915 | current | false | 2024-10-04T11:33:40Z |
+| vyos | vyatta-cfg-quagga     | 3827 | current | false | 2023-08-04T17:15:21Z |
+| vyos | vyatta-cfg-system     | 3667 | current | false | 2024-07-04T17:06:47Z |
+| vyos | vyatta-cfg            | 2191 | current | false | 2024-11-19T20:13:13Z |
+| vyos | conntrack-tools       | 2146 | current | false | 2024-12-03T22:43:29Z |
+| vyos | live-boot             | 1519 | current | false | 2024-10-04T11:38:27Z |
+| vyos | vyatta-op             | 1407 | current | false | 2024-07-02T18:44:23Z |
+| vyos | vyatta-cfg-firewall   |  823 | current | false | 2022-10-26T07:05:52Z |
+| vyos | vyatta-cfg-vpn        |  792 | current | false | 2021-05-28T14:38:47Z |
+| vyos | vyatta-cfg-qos        |  683 | current | false | 2023-03-15T13:58:59Z |
+| vyos | initramfs-tools       |  569 | lithium | false | 2018-04-25T20:55:20Z |
+| vyos | MAC-Telnet            |  544 | master  | false | 2021-04-28T07:06:48Z |
+| vyos | vyatta-wanloadbalance |  528 | current | false | 2024-10-04T11:35:18Z |
+| vyos | vyatta-op-vpn         |  382 | current | false | 2022-12-05T20:58:13Z |
+| vyos | vyconf                |  366 | master  | false | 2025-03-18T15:10:13Z |
+| vyos | libmnl                |  336 | lithium | false | 2025-01-01T14:48:21Z |
+| vyos | vyatta-nat            |  269 | current | false | 2021-12-25T09:31:34Z |
+| vyos | vyos-opennhrp         |  256 | current | false | 2023-07-12T07:49:41Z |
+| vyos | vyatta-conntrack      |  251 | current | false | 2022-01-10T20:35:30Z |
+| vyos | vyatta-biosdevname    |  204 | current | false | 2024-10-04T11:35:36Z |
+| vyos | vyatta-op-firewall    |  168 | current | false | 2021-12-31T18:40:32Z |
+| vyos | ipaddrcheck           |  153 | current | false | 2025-02-25T18:50:55Z |
+| vyos | vyatta-cluster        |  120 | current | false | 2021-12-20T18:25:09Z |
+| vyos | vyatta-op-qos         |  119 | current | false | 2023-01-01T07:18:09Z |
+| vyos | vyatta-config-mgmt    |  118 | current | false | 2021-12-25T17:29:01Z |
+| vyos | vyatta-zone           |   71 | current | false | 2021-12-31T18:40:45Z |
+| vyos | vyos-nhrp             |   71 | current | false | 2021-06-06T09:05:45Z |
+| vyos | vyos-world            |   55 | current | false | 2024-06-24T06:20:16Z |
+| vyos | vyos-utils-misc       |   23 | master  | false | 2024-06-15T18:13:03Z |
+
+Clone Bundle Total
+
+#+begin_src emacs-lisp :var tbl=vyosMetadata[,2] :eval no
+(apply #'+ tbl)
+#+end_src
+
 #+RESULTS:
-| 23   | vyos-utils-misc       |   23 | master  |
-| vyos | ipaddrcheck           |  148 | current |
-| vyos | vyatta-cfg            | 2189 | current |
-| vyos | vyatta-cfg-system     | 3667 | current |
-| vyos | conntrack-tools       | 2146 | current |
-| vyos | initramfs-tools       |  569 | lithium |
-| vyos | libmnl                |  336 | lithium |
-| vyos | vyatta-cluster        |  120 | current |
-| vyos | vyatta-config-mgmt    |  118 | current |
-| vyos | vyatta-conntrack      |  251 | current |
-| vyos | vyatta-nat            |  269 | current |
-| vyos | vyatta-op-firewall    |  168 | current |
-| vyos | vyatta-op-qos         |  119 | current |
-| vyos | vyatta-op-vpn         |  382 | current |
-| vyos | vyatta-op             | 1407 | current |
-| vyos | vyatta-wanloadbalance |  528 | current |
-| vyos | vyatta-zone           |   71 | current |
-| vyos | vyatta-bash           | 5915 | current |
-| vyos | vyatta-biosdevname    |  204 | current |
-| vyos | vyatta-cfg-firewall   |  823 | current |
-| vyos | vyatta-cfg-qos        |  683 | current |
-| vyos | vyatta-cfg-quagga     | 3827 | current |
-| vyos | vyatta-cfg-vpn        |  792 | current |
-| vyos | MAC-Telnet            |  544 | master  |
-| vyos | vyos-opennhrp         |  256 | current |
-| vyos | vyos-nhrp             |   71 | current |
-| vyos | vyconf                |  334 | master  |
-| vyos | vyos-build            | 9285 | current |
-| vyos | vyos-world            |   55 | current |
-| vyos | live-boot             | 1519 | current |
-|------+-----------------------+------+---------|
-#+TBLFM: @O$1=vsum($3)
+: 36961
+
+Excluded Repositories
+
 #+NAME: vyosReposExclude
 |   |
-
 
 ** VyOS Repos
 

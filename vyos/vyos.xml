@@ -22,6 +22,7 @@
   <project name="vyos/mdns-repeater" path="vyos/mdns-repeater" revision="refs/heads/master" remote="github"/>
   <project name="vyos/openvpn-duo-plugin" path="vyos/openvpn-duo-plugin" revision="refs/heads/master" remote="github"/>
   <project name="vyos/pam_tacplus" path="vyos/pam_tacplus" revision="refs/heads/master" remote="github"/>
+  <project name="vyos/public-images" path="vyos/public-images" revision="refs/heads/main" remote="github"/>
   <project name="vyos/tacplusd" path="vyos/tacplusd" revision="refs/heads/master" remote="github"/>
   <project name="vyos/ticket-app" path="vyos/ticket-app" revision="refs/heads/main" remote="github"/>
   <project name="vyos/udp-broadcast-relay" path="vyos/udp-broadcast-relay" revision="refs/heads/current" remote="github"/>
