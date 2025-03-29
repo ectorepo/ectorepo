@@ -1,0 +1,22 @@
+#+title:     Ectorepo: Keyboard
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+#+begin_quote
+Keyboard stuff
+#+end_quote
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+
+  <project path="kle/kle-serial" name="ijprest/kle-serial" revision="refs/heads/master" />
+  <project path="kle/kle" name="ijprest/keyboard-layout-editor" revision="refs/heads/master" />
+</manifest>
+#+end_src
