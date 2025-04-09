@@ -53,6 +53,25 @@ of git repos.
 The =git-repo= tool helps manage builds, automation and distribution of code for
 projects that have many dependencies. I hope to begin use it for that.
 
+*** Scripting
+
+The =repo forall= tool is useful
+
+**** Annotations
+
+For scripting, you can set up annotations to get =REPO__name= variables injected
+into the environment of =repo forall= scripts
+
++ annotations can be added under =project= and =remote= XML entries only
++ annotations accumulate downwards through =submanifest= objects entries (i guess
+  if they include/modify remotes? idk).
++ This only affects scripts using =repo forall=, which limits its utility.
+
+The manifests in ectorepo project usually share a =_remotes.xml= file. This makes
+it difficult to define annotations without modifying the =<project/>= XML itself.
+So I can't quite utilize =annotations=. Something like this would be a handy place
+to store file paths, so they don't pollute my =*.org= files.
+
 *** Code Reference
 
 For now, specifying these XML's helps me manage +1000 projects that I may
@@ -91,11 +110,14 @@ repo forall -g svelte -c \
     yq -y '. | sort | unique'
 #+end_src
 
-
 *** Build Automation
 
 Repo offers [[https://android.googlesource.com/tools/repo/+/HEAD/docs/repo-hooks.md][hooks]] and integration into CI systems that run
-build tasks, tests and containerized applications.
+build tasks, tests and containerized applications. There are:
+
++ .repo/repo/hooks :: git hooks copied into each =.git/hooks= folder, according to
+  repo/hooks.py. this includes =commit-msg= and =pre-auto-gc=
++ "repo-level" hooks, which are assoc to =repo= actions. Only =pre-upload= for now.
 
 ***** TODO describe automating a build of Guix channel checkouts
 
@@ -574,3 +596,9 @@ them a special place.
 *** Can I branch and manage my manifest.xml's in different branches?
 
 Don't LOL
+
+*** What's a submanifest
+
+Submanifests refer to other manifests that are fetched remotely. They are not
+nested within the XML document. The URL structure is chosen AoT for you, so this
+isn't very useful.
