@@ -68,8 +68,6 @@ Generate =wpilibsuite.xml=
   <project name="glinia/3501-spark-clojure" path="clj/3501-spark-clojure" revision="refs/heads/master"/>
   <!-- PhotonVision -->
   <project name="photonvision/champs_2024" path="photon_champs_2024" revision="refs/heads/master"/>
-  <!-- dupes -->
-  <project name="wpilibsuite/vendor-template-2024" path="wpilibsuite/vendor-template" revision="refs/heads/2024" remote="github"/>
 </manifest>
 #+end_src
 
