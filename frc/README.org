@@ -42,7 +42,7 @@ To avoid confirmations
 #+RESULTS: nrepos
 : 100
 
-*  Core
+* Core
 
 * Misc
 
@@ -67,7 +67,7 @@ Generate =wpilibsuite.xml=
   <project name="glinia/3501-spark" path="clj/3501-spark" revision="refs/heads/master"/>
   <project name="glinia/3501-spark-clojure" path="clj/3501-spark-clojure" revision="refs/heads/master"/>
   <!-- PhotonVision -->
-  <project name="" path="" revision=""/>
+  <project name="photonvision/champs_2024" path="photon_champs_2024" revision="refs/heads/master"/>
 </manifest>
 #+end_src
 
@@ -181,5 +181,115 @@ Generate =robotpy.xml=
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<robotpy()>>
+</manifest>
+#+end_src
+
+* PhotonVision
+
+Excluded Repositories
+
+#+NAME: photonvisionReposExclude
+| vendor-json-repo      |
+| PhotonPro             |
+| champs_2024           |
+| opi-image-generator   |
+| vue-native-websocket  |
+| photonvision-branding |
+| photonlib-examples    |
+| vue-native-websocket  |
+
+Get about 60 of the =photonvision= repositories. These should go into
+=/data/ecto/frc/photonvision=.
+
+#+name: photonvisionRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "photonvision"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+RESULTS: photonvisionRepos
+| data | (organization (repositories (edges ((node (owner (login . PhotonVision)) (name . photonvision) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/photonvision) (updatedAt . 2025-04-15T06:52:28Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . ansible-playbooks) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/ansible-playbooks) (updatedAt . 2025-04-12T23:25:04Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonvision-website) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photonvision-website) (updatedAt . 2025-04-11T03:37:56Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . PhotonPro) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/PhotonPro) (updatedAt . 2025-04-10T02:48:37Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonlib-examples) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/photonlib-examples) (updatedAt . 2025-04-09T16:22:12Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . photon-libcamera-gl-driver) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photon-libcamera-gl-driver) (updatedAt . 2025-04-08T05:06:33Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photon-image-modifier) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/photon-image-modifier) (updatedAt . 2025-02-10T03:08:30Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . rknn_jni) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/rknn_jni) (updatedAt . 2025-02-08T07:13:03Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . mrcal-java) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/mrcal-java) (updatedAt . 2024-12-19T05:51:38Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . vendor-json-repo) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/vendor-json-repo) (updatedAt . 2024-11-12T20:48:22Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonvision-docs) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photonvision-docs) (updatedAt . 2024-11-05T21:36:25Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . thirdparty-opencv) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/thirdparty-opencv) (updatedAt . 2024-10-08T22:37:29Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . build-tools) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/build-tools) (updatedAt . 2024-09-30T15:30:17Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonlib) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photonlib) (updatedAt . 2024-08-17T21:09:48Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . opencv) (defaultBranchRef (prefix . refs/heads/) (name . 4.x)) (url . https://github.com/PhotonVision/opencv) (updatedAt . 2024-06-06T03:33:50Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . champs_2024) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/champs_2024) (updatedAt . 2024-05-17T17:26:18Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photon-picam-driver) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photon-picam-driver) (updatedAt . 2024-04-02T18:59:07Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . opi-image-generator) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/opi-image-generator) (updatedAt . 2024-01-03T21:31:09Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . aruconano-jni) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/aruconano-jni) (updatedAt . 2024-01-03T21:28:55Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photon-pi-gen) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photon-pi-gen) (updatedAt . 2023-12-17T23:45:53Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . gloworm-docs) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/gloworm-docs) (updatedAt . 2023-02-01T15:14:27Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . orangepi-builder) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/orangepi-builder) (updatedAt . 2023-01-03T18:37:25Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . apriltag) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/apriltag) (updatedAt . 2022-10-07T05:12:11Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photon-pi-os) (defaultBranchRef (prefix . refs/heads/) (name . devel)) (url . https://github.com/PhotonVision/photon-pi-os) (updatedAt . 2022-10-01T05:28:16Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . vue-native-websocket) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/vue-native-websocket) (updatedAt . 2022-09-26T20:01:09Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonvision-branding) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photonvision-branding) (updatedAt . 2020-07-12T21:28:10Z) (isArchived)))))) |
+
+Filter the results, generate XML
+
+#+name: photonvisionReposXML
+#+begin_src emacs-lisp :var gqldata=photonvisionRepos repos-exclude=photonvisionReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "photonvision" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: photonvisionReposXML
+#+begin_export html
+<project name="PhotonVision/ansible-playbooks" path="photonvision/ansible-playbooks" revision="refs/heads/main" remote="github"/>
+<project name="PhotonVision/apriltag" path="photonvision/apriltag" revision="refs/heads/master" remote="github"/>
+<project name="PhotonVision/aruconano-jni" path="photonvision/aruconano-jni" revision="refs/heads/master" remote="github"/>
+<project name="PhotonVision/build-tools" path="photonvision/build-tools" revision="refs/heads/master" remote="github"/>
+<project name="PhotonVision/gloworm-docs" path="photonvision/gloworm-docs" revision="refs/heads/master" remote="github"/>
+<project name="PhotonVision/mrcal-java" path="photonvision/mrcal-java" revision="refs/heads/main" remote="github"/>
+<project name="PhotonVision/opencv" path="photonvision/opencv" revision="refs/heads/4.x" remote="github"/>
+<project name="PhotonVision/orangepi-builder" path="photonvision/orangepi-builder" revision="refs/heads/main" remote="github"/>
+<project name="PhotonVision/photon-image-modifier" path="photonvision/photon-image-modifier" revision="refs/heads/main" remote="github"/>
+<project name="PhotonVision/photon-libcamera-gl-driver" path="photonvision/photon-libcamera-gl-driver" revision="refs/heads/master" remote="github"/>
+<project name="PhotonVision/photon-pi-gen" path="photonvision/photon-pi-gen" revision="refs/heads/master" remote="github"/>
+<project name="PhotonVision/photon-pi-os" path="photonvision/photon-pi-os" revision="refs/heads/devel" remote="github"/>
+<project name="PhotonVision/photon-picam-driver" path="photonvision/photon-picam-driver" revision="refs/heads/master" remote="github"/>
+<project name="PhotonVision/photonvision" path="photonvision/photonvision" revision="refs/heads/main" remote="github"/>
+<project name="PhotonVision/rknn_jni" path="photonvision/rknn_jni" revision="refs/heads/main" remote="github"/>
+<project name="PhotonVision/thirdparty-opencv" path="photonvision/thirdparty-opencv" revision="refs/heads/main" remote="github"/>
+#+end_export
+
+Generate =photonvision.xml=
+
+#+begin_src xml :tangle photonvision.xml :noweb yes
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <<photonvisionReposXML()>>
 </manifest>
 #+end_src

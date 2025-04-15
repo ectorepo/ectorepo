@@ -2,12 +2,15 @@
 <manifest>
   <project name="robotpy/.github" path="robotpy/.github" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/build-actions" path="robotpy/build-actions" revision="refs/heads/v2023" remote="github"/>
+  <project name="robotpy/ccache-action" path="robotpy/ccache-action" revision="refs/heads/main" remote="github"/>
+  <project name="robotpy/cmp-talk-2024" path="robotpy/cmp-talk-2024" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/cxxheaderparser" path="robotpy/cxxheaderparser" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/devtools" path="robotpy/devtools" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/docs-sidebar" path="robotpy/docs-sidebar" revision="refs/heads/master" remote="github"/>
   <project name="robotpy/examples" path="robotpy/examples" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/fakearmv7l" path="robotpy/fakearmv7l" revision="refs/heads/master" remote="github"/>
   <project name="robotpy/github-action-scp" path="robotpy/github-action-scp" revision="refs/heads/master" remote="github"/>
+  <project name="robotpy/hatch-robotpy" path="robotpy/hatch-robotpy" revision="" remote="github"/>
   <project name="robotpy/mostrobotpy" path="robotpy/mostrobotpy" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/pybind11" path="robotpy/pybind11" revision="refs/heads/master" remote="github"/>
   <project name="robotpy/pyfrc" path="robotpy/pyfrc" revision="refs/heads/main" remote="github"/>
@@ -24,7 +27,7 @@
   <project name="robotpy/roborio-pkgtools" path="robotpy/roborio-pkgtools" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/roborio-python" path="robotpy/roborio-python" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/roborio-vm" path="robotpy/roborio-vm" revision="refs/heads/master" remote="github"/>
-  <project name="robotpy/roborio-wheels" path="robotpy/roborio-wheels" revision="refs/heads/2024" remote="github"/>
+  <project name="robotpy/roborio-wheels" path="robotpy/roborio-wheels" revision="refs/heads/2025" remote="github"/>
   <project name="robotpy/robotpy-build" path="robotpy/robotpy-build" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/robotpy-build-talk" path="robotpy/robotpy-build-talk" revision="refs/heads/master" remote="github"/>
   <project name="robotpy/robotpy-cli" path="robotpy/robotpy-cli" revision="refs/heads/main" remote="github"/>
@@ -43,6 +46,7 @@
   <project name="robotpy/robotpy-rev" path="robotpy/robotpy-rev" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/robotpy-romi" path="robotpy/robotpy-romi" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/robotpy-sphinx-plugin" path="robotpy/robotpy-sphinx-plugin" revision="refs/heads/main" remote="github"/>
+  <project name="robotpy/robotpy-urcl" path="robotpy/robotpy-urcl" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/robotpy-wpilib-utilities" path="robotpy/robotpy-wpilib-utilities" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/robotpy.github.io" path="robotpy/robotpy.github.io" revision="refs/heads/master" remote="github"/>
   <project name="robotpy/test-actions" path="robotpy/test-actions" revision="refs/heads/master" remote="github"/>
