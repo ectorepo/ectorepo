@@ -57,7 +57,6 @@
   <project name="wpilibsuite/thirdparty-libssh" path="wpilibsuite/thirdparty-libssh" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-opencv" path="wpilibsuite/thirdparty-opencv" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-protobuf" path="wpilibsuite/thirdparty-protobuf" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/vendor-template" path="wpilibsuite/vendor-template" revision="refs/heads/2024" remote="github"/>
   <project name="wpilibsuite/vendor-json-repo" path="wpilibsuite/vendor-json-repo" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/vendor-template" path="wpilibsuite/vendor-template" revision="refs/heads/2025" remote="github"/>
   <project name="wpilibsuite/vscode-wpilib" path="wpilibsuite/vscode-wpilib" revision="refs/heads/main" remote="github"/>
