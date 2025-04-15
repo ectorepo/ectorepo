@@ -10,7 +10,7 @@
   <project name="robotpy/examples" path="robotpy/examples" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/fakearmv7l" path="robotpy/fakearmv7l" revision="refs/heads/master" remote="github"/>
   <project name="robotpy/github-action-scp" path="robotpy/github-action-scp" revision="refs/heads/master" remote="github"/>
-  <project name="robotpy/hatch-robotpy" path="robotpy/hatch-robotpy" revision="" remote="github"/>
+  <!-- <project name="robotpy/hatch-robotpy" path="robotpy/hatch-robotpy" revision="" remote="github"/> -->
   <project name="robotpy/mostrobotpy" path="robotpy/mostrobotpy" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/pybind11" path="robotpy/pybind11" revision="refs/heads/master" remote="github"/>
   <project name="robotpy/pyfrc" path="robotpy/pyfrc" revision="refs/heads/main" remote="github"/>
