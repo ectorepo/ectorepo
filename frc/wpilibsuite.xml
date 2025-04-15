@@ -43,22 +43,17 @@
   <project name="wpilibsuite/scservices" path="wpilibsuite/scservices" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/shuffleboard" path="wpilibsuite/shuffleboard" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-delta" path="wpilibsuite/sphinxext-delta" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/sphinxext-opengraph" path="wpilibsuite/sphinxext-opengraph" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-photofinish" path="wpilibsuite/sphinxext-photofinish" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-presentations" path="wpilibsuite/sphinxext-presentations" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-pwa" path="wpilibsuite/sphinxext-pwa" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/sphinxext-rediraffe" path="wpilibsuite/sphinxext-rediraffe" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-remoteliteralinclude" path="wpilibsuite/sphinxext-remoteliteralinclude" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/styleguide" path="wpilibsuite/styleguide" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/systemcore-blocks-interface" path="wpilibsuite/systemcore-blocks-interface" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/thirdparty-apriltag" path="wpilibsuite/thirdparty-apriltag" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-ceres" path="wpilibsuite/thirdparty-ceres" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/thirdparty-fonts" path="wpilibsuite/thirdparty-fonts" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-gtsam" path="wpilibsuite/thirdparty-gtsam" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-imgui" path="wpilibsuite/thirdparty-imgui" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-libssh" path="wpilibsuite/thirdparty-libssh" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-opencv" path="wpilibsuite/thirdparty-opencv" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/thirdparty-protobuf" path="wpilibsuite/thirdparty-protobuf" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/vendor-json-repo" path="wpilibsuite/vendor-json-repo" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/vendor-template" path="wpilibsuite/vendor-template" revision="refs/heads/2025" remote="github"/>
   <project name="wpilibsuite/vscode-wpilib" path="wpilibsuite/vscode-wpilib" revision="refs/heads/main" remote="github"/>
