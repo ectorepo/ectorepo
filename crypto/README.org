@@ -15,6 +15,10 @@ repository.
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="crypto/smallstep.xml"/>
+  <include name="crypto/yubikey.xml"/>
+
+  <!-- PKI reference -->
+  <project path="pki/fpkilint" name="gsa/fpkilint" remote="github" revision="refs/heads/dev"/>
 </manifest>
 #+end_src
 
@@ -47,7 +51,10 @@ To avoid confirmations
 Get about 60 of the =smallstep= repositories. These should go into
 =/data/ecto/crypto/smallstep=.
 
-#+name: smallstep-repos
+#+NAME: smallstepReposExclude
+|   |
+
+#+name: smallstepRepos
 #+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
 (ghub-graphql
  (graphql-query ((organization
@@ -67,26 +74,45 @@ Get about 60 of the =smallstep= repositories. These should go into
 
 Filter the results, generate XML
 
-#+name: smallstep
-#+begin_src emacs-lisp :var gqldata=smallstep-repos :results value html
-(thread-first
-  (thread-last
-    (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-    (mapcar (lambda (el) (a-get* el 'node)))
-    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
-    (mapcar (lambda (el)
-              (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
-                     (path (a-get* el 'name))
-                     (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                  (a-get* el 'defaultBranchRef 'name)))
-                     (name (string-join (list (a-get* el 'owner 'login)
-                                              (a-get* el 'name)) "/")))
-                (concat "<project"
-                        " name=\"" name
-                        "\" path=\"" path
-                        "\" revision=\"" ref "\" remote=\"github\"/>")))))
-  (cl-sort 'string-lessp :key 'downcase)
-  (string-join "\n"))
+#+name: smallstepReposXML
+#+begin_src emacs-lisp :var gqldata=smallstepRepos repos-exclude=smallstepReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos-core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "smallstep" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
 #+end_src
 
 ** Generate XML
@@ -96,7 +122,7 @@ Generate =smallstep.xml=
 #+begin_src xml :tangle smallstep.xml :noweb yes
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <<smallstep()>>
+  <<smallstepReposXML()>>
 </manifest>
 #+end_src
 

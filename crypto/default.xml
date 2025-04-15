@@ -3,4 +3,8 @@
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="crypto/smallstep.xml"/>
+  <include name="crypto/yubikey.xml"/>
+
+  <!-- PKI reference -->
+  <project path="pki/fpkilint" name="gsa/fpkilint" remote="github" revision="refs/heads/dev"/>
 </manifest>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <project name="Yubico/.github" path="yubico/.github" revision="refs/heads/main" remote="github"/>
-  <project name="Yubico/android-u2f-demo" path="yubico/android-u2f-demo" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/arkg-rfc" path="yubico/arkg-rfc" revision="refs/heads/main" remote="github"/>
   <project name="Yubico/developers.yubico.com" path="yubico/developers.yubico.com" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/java-webauthn-server" path="yubico/java-webauthn-server" revision="refs/heads/main" remote="github"/>
@@ -10,7 +11,6 @@
   <project name="Yubico/libu2f-server-dpkg" path="yubico/libu2f-server-dpkg" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/pam-u2f" path="yubico/pam-u2f" revision="refs/heads/main" remote="github"/>
   <project name="Yubico/pam-u2f-dpkg" path="yubico/pam-u2f-dpkg" revision="refs/heads/master" remote="github"/>
-  <project name="Yubico/php-yubico-dpkg" path="yubico/php-yubico-dpkg" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/python-fido2" path="yubico/python-fido2" revision="refs/heads/main" remote="github"/>
   <project name="Yubico/python-pyhsm" path="yubico/python-pyhsm" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/python-pyhsm-dpkg" path="yubico/python-pyhsm-dpkg" revision="refs/heads/master" remote="github"/>
