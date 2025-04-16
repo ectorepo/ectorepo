@@ -10,13 +10,15 @@ checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
 repository.
 
 #+begin_src xml :tangle default.xml
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="frc/wpilibsuite.xml"/>
   <include name="frc/robotpy.xml"/>
   <include name="frc/frcmisc.xml"/>
+  <include name="frc/photonvision.xml"/>
+  <!-- wpilibsuite,robotpy,frcmisc: 4GB (4/15/2025) -->
+  <include name="frc/2025.xml />
 </manifest>
 #+end_src
 
@@ -53,21 +55,35 @@ the FRC ecosystem.
 Generate =wpilibsuite.xml=
 
 #+begin_src xml :tangle frcmisc.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <!-- texts -->
   <project name="krishauser/RoboticSystemsBook" path="text/RoboticSystemsBook" revision="refs/heads/master" remote="github"/>
   <project name="krishauser/Klampt" path="text/Klampt" revision="refs/heads/master" remote="github"/>
   <project name="krishauser/Klampt-jupyter-extension" path="text/Klampt-jupyter-extension" revision="refs/heads/master" remote="github"/>
-  <!-- third party dashboards -->
+  <!-- ./dash -->
   <project name="binex-dsk/QFRCDashboard" path="dash/QFRCDashboard" revision="refs/heads/master" remote="github"/>
   <project name="Gold872/elastic-dashboard" path="dash/elastic-dashboard" revision="refs/heads/main" remote="github"/>
   <project name="frc-web-components/frc-web-components" path="dash/frc-web-components" revision="refs/heads/master" remote="github"/>
+  <!-- ./dash/shuffleboard -->
+  <project name="Mechanical-Advantage/NetworkAlerts" path="dash/shuffleboard/NetworkAlerts" revision="refs/heads/main" />
+  <!-- ./dash/advantage -->
+  <project name="Mechanical-Advantage/AdvantageKit" path="dash/advantage/AdvantageKit" revision="refs/heads/main" />
+  <project name="Mechanical-Advantage/AdvantageScope" path="dash/advantage/AdvantageScope" revision="refs/heads/main" />
+  <project name="Mechanical-Advantage/AdvantageScout" path="dash/advantage/AdvantageScout" revision="refs/heads/main" />
+
   <!-- Gradle Builds for other languages -->
   <project name="glinia/3501-spark" path="clj/3501-spark" revision="refs/heads/master"/>
   <project name="glinia/3501-spark-clojure" path="clj/3501-spark-clojure" revision="refs/heads/master"/>
   <!-- PhotonVision -->
   <project name="photonvision/champs_2024" path="photon_champs_2024" revision="refs/heads/master"/>
+</manifest>
+#+end_src
+
+** 2025 Teams
+
+#+begin_src xml :tangle 2025.xml :noweb yes
+<manifest>
+  <project name="Mechanical-Advantage/RobotCode2025Public" path="2025/Mechanical-Advantage/RobotCode2025Public" revision="refs/heads/main" />
 </manifest>
 #+end_src
 
@@ -121,7 +137,6 @@ Filter the results, generate XML
 Generate =wpilibsuite.xml=
 
 #+begin_src xml :tangle wpilibsuite.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<wpilibsuite()>>
 </manifest>
@@ -178,7 +193,6 @@ Filter the results, generate XML
 Generate =robotpy.xml=
 
 #+begin_src xml :tangle robotpy.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<robotpy()>>
 </manifest>
@@ -288,7 +302,6 @@ Filter the results, generate XML
 Generate =photonvision.xml=
 
 #+begin_src xml :tangle photonvision.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<photonvisionReposXML()>>
 </manifest>
