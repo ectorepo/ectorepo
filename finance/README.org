@@ -112,7 +112,6 @@ Filter the results, generate XML.
 *** Generate OpenBB XML
 
 #+begin_src xml :tangle openbb.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<openbbReposXML()>>
 </manifest>

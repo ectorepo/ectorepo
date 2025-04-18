@@ -127,7 +127,6 @@ Filter the results, generate XML.
 *** Generate SBT XML
 
 #+begin_src xml :tangle sbt_libs.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<sbt-libs()>>
 </manifest>

@@ -495,7 +495,6 @@ cat $astroroot/../astro.build/src/content/themes/*.md |\
 I would sync this as a separate project. So this needs to be a root XML.
 
 #+begin_src xml :tangle ../astro-themes.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/main"/>

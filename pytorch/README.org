@@ -7,7 +7,6 @@ A list of PyTorch repositories. To learn how to use this Repo repo, see the
 the [[https://github.com/ectorepo/ectorepo][ectorepo/ectorepo]] Repo ... repo.
 
 #+begin_src xml :tangle default.xml
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
@@ -135,7 +134,6 @@ Filter the results, generate XML
 Generate =pytorch.xml=
 
 #+begin_src xml :tangle pytorch.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<gitreposet(gqldata=torch-repos,subdir="core")>>
 </manifest>

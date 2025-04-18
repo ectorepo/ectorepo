@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- [[file:README.org::+begin_src xml :tangle default.xml][No heading:1]] -->
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+
+  <project path="web/makeroanoke.org" name="MAKEroanoke/makeroanoke.org" groups="web" revision="refs/heads/main" />
+  <project path="web/theme" name="MAKEroanoke/jekyll-theme-basically-make-roanoke" groups="web" revision="refs/heads/master" />
+  <project path="membermatters" name="membermatters/membermatters" groups="membermatters" revision="refs/heads/dev" />
+
+</manifest>
+<!-- No heading:1 ends here -->

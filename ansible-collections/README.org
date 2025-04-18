@@ -12,7 +12,6 @@ checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
 repository.
 
 #+begin_src xml :tangle default.xml
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
@@ -91,7 +90,6 @@ Filter the results, generate XML
 Generate =ac_core.xml=
 
 #+begin_src xml :tangle ac_core.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<ac-core()>>
 </manifest>
@@ -160,7 +158,6 @@ Filter the results, generate XML
 Generate =lsr_core.xml=
 
 #+begin_src xml :tangle lsr_core.xml :noweb yes
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <<lsr-core()>>
 </manifest>

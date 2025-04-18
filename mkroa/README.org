@@ -1,0 +1,47 @@
+#+title: Make Roanoke
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+Open source repositories for makerspaces.
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+
+  <project path="web/makeroanoke.org" name="MAKEroanoke/makeroanoke.org" groups="web" revision="refs/heads/main" />
+  <project path="web/theme" name="MAKEroanoke/jekyll-theme-basically-make-roanoke" groups="web" revision="refs/heads/master" />
+  <project path="membermatters" name="membermatters/membermatters" groups="membermatters" revision="refs/heads/dev" />
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Setup
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+* Graphql
+
+No queries yet.
