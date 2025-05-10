@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest>
   <project name="vyos/.github" path="vyos/.github" revision="refs/heads/current" remote="github"/>
   <project name="vyos/amplify-build-status" path="vyos/amplify-build-status" revision="refs/heads/master" remote="github"/>
@@ -45,7 +44,6 @@
   <project name="vyos/vyatta-op-vpn" path="vyos/vyatta-op-vpn" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyatta-wanloadbalance" path="vyos/vyatta-wanloadbalance" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyatta-zone" path="vyos/vyatta-zone" revision="refs/heads/current" remote="github"/>
-  <project name="vyos/vyconf" path="vyos/vyconf" revision="refs/heads/master" remote="github"/>
   <project name="vyos/vyconf" path="vyos/vyconf" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos" path="vyos/vyos" revision="refs/heads/master" remote="github"/>
   <project name="vyos/vyos-1x" path="vyos/vyos-1x" revision="refs/heads/current" remote="github"/>
