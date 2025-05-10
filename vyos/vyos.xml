@@ -46,6 +46,7 @@
   <project name="vyos/vyatta-wanloadbalance" path="vyos/vyatta-wanloadbalance" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyatta-zone" path="vyos/vyatta-zone" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyconf" path="vyos/vyconf" revision="refs/heads/master" remote="github"/>
+  <project name="vyos/vyconf" path="vyos/vyconf" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos" path="vyos/vyos" revision="refs/heads/master" remote="github"/>
   <project name="vyos/vyos-1x" path="vyos/vyos-1x" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos-automation" path="vyos/vyos-automation" revision="refs/heads/main" remote="github"/>
