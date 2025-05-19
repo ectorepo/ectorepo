@@ -162,9 +162,36 @@ Map =git stash/pull/pop= across submodules
 git submodule foreach "git stash && git pull origin master && git stash pop"
 #+end_src
 
+
 ***** Manage =_remotes.xml=
 
-Fan-out Copies of =_remotes.xml=
+Consolidate =<remote ... />= nodes from all =_remote.xml= files and compare with the
+top-level.
+
+The red is missing from =$_REPO/_remote.xml=
+
+#+begin_src shell :results output code :wrap example diff
+cat  **/_remotes.xml | grep '<remote' | sort | uniq | diff - <(grep '<remote ' _remotes.xml)
+#+end_src
+
+#+RESULTS:
+#+begin_example diff
+2d1
+<   <remote name="blender" fetch="https://projects.blender.org"/>
+6d4
+<   <remote name="elephly" fetch="https://git.elephly.net/software"/>
+19d16
+<   <remote name="pantherxchannel" fetch="https://channels.pantherx.org/git"/>
+20a18
+>   <remote name="pantherxchannel" fetch="https://channels.pantherx.org/git"/>
+21a20
+>   <remote name="salsa" fetch="https://salsa.debian.org"/>
+27d25
+<   <remote name="srht_csantosb" fetch="https://git.sr.ht/~csantosb"/>
+#+end_example
+
+
+****** Fan-out Copies of =_remotes.xml=
 
 #+begin_src shell
 git submodule foreach "cp ../_remotes.xml _remotes.xml"
@@ -180,7 +207,6 @@ Diff for lagging copies of =_remotes.xml= across submodules.
 #+begin_src shell
 git submodule foreach "diff ../_remotes.xml _remotes.xml ; echo ''" | grep -e '^>'
 #+end_src
-
 ***** And so forth
 
 **** Old Merge =_remotes.xml= Manifests

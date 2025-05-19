@@ -1,0 +1,253 @@
+#+title:     Ectorepo: Hacknet
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+Network hacking/recon repositories
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="hacknet/ivre.xml"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Setup
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+#+begin_src restclient
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <YOUR-TOKEN>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/dispatches \
+  -d '{"event_type":"on-demand-test","client_payload":{"unit":false,"integration":true}}'
+#+end_src
+
+* Ivre
+
+Clone bundle sizes
+
+#+name: fetchMetadata
+#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
+#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
+# User-Agent: dcunited001 # um okay that doesn't work
+# https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent
+
+GET :gh-url-base/:gh-url-path
+:headers
+#+end_src
+
+#+name: ivreMetadata
+#+call: fetchMetadata(gh-org="ivre")
+
+#+RESULTS: ivreMetadata
+| ivre | ivre-test-samples    | 38496 | master | false | 2023-06-30T19:21:55Z |
+| ivre | ivre                 | 30340 | master | false | 2025-05-18T17:34:25Z |
+| ivre | masscanned           |  3459 | master | false | 2025-05-16T15:26:31Z |
+| ivre | obsidian-ivre-plugin |  3056 | master | false | 2025-05-19T07:55:17Z |
+| ivre | masscan              |  2991 | master | true  | 2025-03-28T22:00:16Z |
+| ivre | .github              |     1 | main   | false | 2025-01-28T22:04:03Z |
+
+Clone Bundle Total
+
+#+begin_src emacs-lisp :var tbl=ivreMetadata[,2] :eval no
+(apply #'+ tbl)
+#+end_src
+
+#+RESULTS:
+: 36961
+
+Excluded Repositories
+
+#+NAME: ivreReposExclude
+|   |
+
+** IVRE Repos
+
+#+name: ivreRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "ivre"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+RESULTS: ivreRepos
+| data | (organization (repositories (edges ((node (owner (login . ivre)) (name . vyos-1x) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-1x) (updatedAt . 2025-01-18T20:35:07Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-build) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-build) (updatedAt . 2025-01-18T20:12:55Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-nightly-build) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-nightly-build) (updatedAt . 2025-01-18T01:54:20Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-documentation) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-documentation) (updatedAt . 2025-01-16T16:00:15Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-vpp) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-vpp) (updatedAt . 2025-01-15T18:16:47Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos1x-config) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos1x-config) (updatedAt . 2025-01-14T02:23:01Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-vpp-patches) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-vpp-patches) (updatedAt . 2025-01-10T09:38:29Z) (isArchived))) ((node (owner (login . vyos)) (name . gh-action-test-vyos-1x) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/gh-action-test-vyos-1x) (updatedAt . 2025-01-08T09:13:21Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos.vyos) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/vyos.vyos) (updatedAt . 2025-01-07T22:03:47Z) (isArchived))) ((node (owner (login . vyos)) (name . libmnl) (defaultBranchRef (prefix . refs/heads/) (name . lithium)) (url . https://github.com/vyos/libmnl) (updatedAt . 2025-01-01T14:48:21Z) (isArchived))) ((node (owner (login . vyos)) (name . community.vyos.net) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/community.vyos.net) (updatedAt . 2024-12-30T13:23:59Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-utils) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-utils) (updatedAt . 2024-12-24T20:09:33Z) (isArchived))) ((node (owner (login . vyos)) (name . .github) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/.github) (updatedAt . 2024-12-22T19:14:21Z) (isArchived))) ((node (owner (login . vyos)) (name . libnss-tacplus) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/libnss-tacplus) (updatedAt . 2024-12-15T20:08:41Z) (isArchived))) ((node (owner (login . vyos)) (name . libvyosconfig) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/libvyosconfig) (updatedAt . 2024-12-10T06:33:37Z) (isArchived))) ((node (owner (login . vyos)) (name . vyconf) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/vyconf) (updatedAt . 2024-12-09T19:38:06Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-infrastructure) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/vyos-infrastructure) (updatedAt . 2024-12-08T14:29:22Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-http-api-tools) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-http-api-tools) (updatedAt . 2024-12-04T16:45:09Z) (isArchived))) ((node (owner (login . vyos)) (name . conntrack-tools) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/conntrack-tools) (updatedAt . 2024-12-03T22:43:29Z) (isArchived))) ((node (owner (login . vyos)) (name . ticket-app) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/ticket-app) (updatedAt . 2024-11-28T12:14:03Z) (isArchived))) ((node (owner (login . vyos)) (name . libtacplus-map) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/libtacplus-map) (updatedAt . 2024-11-22T20:14:10Z) (isArchived))) ((node (owner (login . vyos)) (name . libpam-tacplus) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/libpam-tacplus) (updatedAt . 2024-11-22T20:13:55Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-cfg) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-cfg) (updatedAt . 2024-11-19T20:13:13Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/vyos) (updatedAt . 2024-11-13T12:21:00Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-cloud-init) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-cloud-init) (updatedAt . 2024-11-11T00:23:59Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-workflow-test-temp) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-workflow-test-temp) (updatedAt . 2024-11-06T19:14:12Z) (isArchived))) ((node (owner (login . vyos)) (name . amplify-build-status) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/amplify-build-status) (updatedAt . 2024-11-04T14:25:56Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-vm-images) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-vm-images) (updatedAt . 2024-11-03T03:30:37Z) (isArchived . t))) ((node (owner (login . vyos)) (name . vyos-automation) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/vyos-automation) (updatedAt . 2024-10-31T13:24:05Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-user-utils) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-user-utils) (updatedAt . 2024-10-24T05:00:30Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-integration-test) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/vyos-integration-test) (updatedAt . 2024-10-10T21:12:59Z) (isArchived . t))) ((node (owner (login . vyos)) (name . python-vyos-mgmt) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/python-vyos-mgmt) (updatedAt . 2024-10-10T21:12:23Z) (isArchived . t))) ((node (owner (login . vyos)) (name . vyos-workflow-testing) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/vyos-workflow-testing) (updatedAt . 2024-10-10T13:33:45Z) (isArchived))) ((node (owner (login . vyos)) (name . live-boot) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/live-boot) (updatedAt . 2024-10-04T11:38:27Z) (isArchived))) ((node (owner (login . vyos)) (name . ipaddrcheck) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/ipaddrcheck) (updatedAt . 2024-10-04T11:37:18Z) (isArchived))) ((node (owner (login . vyos)) (name . hvinfo) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/hvinfo) (updatedAt . 2024-10-04T11:37:08Z) (isArchived))) ((node (owner (login . vyos)) (name . udp-broadcast-relay) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/udp-broadcast-relay) (updatedAt . 2024-10-04T11:35:47Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-biosdevname) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-biosdevname) (updatedAt . 2024-10-04T11:35:36Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-wanloadbalance) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-wanloadbalance) (updatedAt . 2024-10-04T11:35:18Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-bash) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-bash) (updatedAt . 2024-10-04T11:33:40Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-walinuxagent) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-walinuxagent) (updatedAt . 2024-09-14T01:34:08Z) (isArchived))) ((node (owner (login . vyos)) (name . uncron) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/uncron) (updatedAt . 2024-08-01T18:57:21Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-cfg-system) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-cfg-system) (updatedAt . 2024-07-04T17:06:47Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-op) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-op) (updatedAt . 2024-07-02T18:44:23Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-world) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-world) (updatedAt . 2024-06-24T06:20:16Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-utils-misc) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/vyos-utils-misc) (updatedAt . 2024-06-15T18:13:03Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-github-actions) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-github-actions) (updatedAt . 2024-05-09T07:10:55Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-live-build) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-live-build) (updatedAt . 2024-04-25T15:53:46Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-community-flavors) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/vyos-community-flavors) (updatedAt . 2024-04-10T17:43:47Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-xe-guest-utilities) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-xe-guest-utilities) (updatedAt . 2024-02-23T07:10:45Z) (isArchived))) ((node (owner (login . vyos)) (name . mdns-repeater) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/mdns-repeater) (updatedAt . 2023-09-07T14:14:16Z) (isArchived))) ((node (owner (login . vyos)) (name . libnss-mapuser) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/libnss-mapuser) (updatedAt . 2023-08-04T17:40:21Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-community-process) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/vyos-community-process) (updatedAt . 2023-08-04T17:37:16Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-cfg-quagga) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-cfg-quagga) (updatedAt . 2023-08-04T17:15:21Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-strongswan) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-strongswan) (updatedAt . 2023-07-28T12:00:30Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-opennhrp) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-opennhrp) (updatedAt . 2023-07-12T07:49:41Z) (isArchived))) ((node (owner (login . vyos)) (name . infinitytier) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/vyos/infinitytier) (updatedAt . 2023-05-10T20:02:28Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-cfg-qos) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-cfg-qos) (updatedAt . 2023-03-15T13:58:59Z) (isArchived))) ((node (owner (login . vyos)) (name . libpam-radius-auth) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/libpam-radius-auth) (updatedAt . 2023-02-20T15:43:30Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-op-qos) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-op-qos) (updatedAt . 2023-01-01T07:18:09Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-op-vpn) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-op-vpn) (updatedAt . 2022-12-05T20:58:13Z) (isArchived))) ((node (owner (login . vyos)) (name . openvpn-duo-plugin) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/openvpn-duo-plugin) (updatedAt . 2022-11-11T18:50:24Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-cfg-firewall) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-cfg-firewall) (updatedAt . 2022-10-26T07:05:52Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-conntrack) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-conntrack) (updatedAt . 2022-01-10T20:35:30Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-zone) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-zone) (updatedAt . 2021-12-31T18:40:45Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-op-firewall) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-op-firewall) (updatedAt . 2021-12-31T18:40:32Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-config-mgmt) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-config-mgmt) (updatedAt . 2021-12-25T17:29:01Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-nat) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-nat) (updatedAt . 2021-12-25T09:31:34Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-cluster) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-cluster) (updatedAt . 2021-12-20T18:25:09Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-nhrp) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-nhrp) (updatedAt . 2021-06-06T09:05:45Z) (isArchived))) ((node (owner (login . vyos)) (name . vyatta-cfg-vpn) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyatta-cfg-vpn) (updatedAt . 2021-05-28T14:38:47Z) (isArchived))) ((node (owner (login . vyos)) (name . MAC-Telnet) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/MAC-Telnet) (updatedAt . 2021-04-28T07:06:48Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-salt-minion) (defaultBranchRef (prefix . refs/heads/) (name . current)) (url . https://github.com/vyos/vyos-salt-minion) (updatedAt . 2021-04-17T20:19:15Z) (isArchived))) ((node (owner (login . vyos)) (name . vyos-sdk) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/vyos-sdk) (updatedAt . 2020-01-12T05:59:58Z) (isArchived))) ((node (owner (login . vyos)) (name . pam_tacplus) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/pam_tacplus) (updatedAt . 2019-11-16T19:30:19Z) (isArchived))) ((node (owner (login . vyos)) (name . tacplusd) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/vyos/tacplusd) (updatedAt . 2019-11-16T19:30:05Z) (isArchived))) ((node (owner (login . vyos)) (name . initramfs-tools) (defaultBranchRef (prefix . refs/heads/) (name . lithium)) (url . https://github.com/vyos/initramfs-tools) (updatedAt . 2018-04-25T20:55:20Z) (isArchived)))))) |
+
+Filter the results, generate XML
+
+#+name: ivreReposXML
+#+begin_src emacs-lisp :var gqldata=ivreRepos repos-exclude=ivreReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "ivre" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: ivreReposXML
+#+begin_export html
+<project name="vyos/.github" path="vyos/.github" revision="refs/heads/current" remote="github"/>
+<project name="vyos/amplify-build-status" path="vyos/amplify-build-status" revision="refs/heads/master" remote="github"/>
+<project name="vyos/community.vyos.net" path="vyos/community.vyos.net" revision="refs/heads/main" remote="github"/>
+<project name="vyos/conntrack-tools" path="vyos/conntrack-tools" revision="refs/heads/current" remote="github"/>
+<project name="vyos/gh-action-test-vyos-1x" path="vyos/gh-action-test-vyos-1x" revision="refs/heads/current" remote="github"/>
+<project name="vyos/hvinfo" path="vyos/hvinfo" revision="refs/heads/current" remote="github"/>
+<project name="vyos/infinitytier" path="vyos/infinitytier" revision="refs/heads/main" remote="github"/>
+<project name="vyos/initramfs-tools" path="vyos/initramfs-tools" revision="refs/heads/lithium" remote="github"/>
+<project name="vyos/ipaddrcheck" path="vyos/ipaddrcheck" revision="refs/heads/current" remote="github"/>
+<project name="vyos/libmnl" path="vyos/libmnl" revision="refs/heads/lithium" remote="github"/>
+<project name="vyos/libnss-mapuser" path="vyos/libnss-mapuser" revision="refs/heads/current" remote="github"/>
+<project name="vyos/libnss-tacplus" path="vyos/libnss-tacplus" revision="refs/heads/master" remote="github"/>
+<project name="vyos/libpam-radius-auth" path="vyos/libpam-radius-auth" revision="refs/heads/current" remote="github"/>
+<project name="vyos/libpam-tacplus" path="vyos/libpam-tacplus" revision="refs/heads/master" remote="github"/>
+<project name="vyos/libtacplus-map" path="vyos/libtacplus-map" revision="refs/heads/master" remote="github"/>
+<project name="vyos/libvyosconfig" path="vyos/libvyosconfig" revision="refs/heads/current" remote="github"/>
+<project name="vyos/live-boot" path="vyos/live-boot" revision="refs/heads/current" remote="github"/>
+<project name="vyos/MAC-Telnet" path="vyos/MAC-Telnet" revision="refs/heads/master" remote="github"/>
+<project name="vyos/mdns-repeater" path="vyos/mdns-repeater" revision="refs/heads/master" remote="github"/>
+<project name="vyos/openvpn-duo-plugin" path="vyos/openvpn-duo-plugin" revision="refs/heads/master" remote="github"/>
+<project name="vyos/pam_tacplus" path="vyos/pam_tacplus" revision="refs/heads/master" remote="github"/>
+<project name="vyos/tacplusd" path="vyos/tacplusd" revision="refs/heads/master" remote="github"/>
+<project name="vyos/ticket-app" path="vyos/ticket-app" revision="refs/heads/main" remote="github"/>
+<project name="vyos/udp-broadcast-relay" path="vyos/udp-broadcast-relay" revision="refs/heads/current" remote="github"/>
+<project name="vyos/uncron" path="vyos/uncron" revision="refs/heads/main" remote="github"/>
+<project name="vyos/vyatta-bash" path="vyos/vyatta-bash" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-biosdevname" path="vyos/vyatta-biosdevname" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-cfg" path="vyos/vyatta-cfg" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-cfg-firewall" path="vyos/vyatta-cfg-firewall" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-cfg-qos" path="vyos/vyatta-cfg-qos" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-cfg-quagga" path="vyos/vyatta-cfg-quagga" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-cfg-system" path="vyos/vyatta-cfg-system" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-cfg-vpn" path="vyos/vyatta-cfg-vpn" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-cluster" path="vyos/vyatta-cluster" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-config-mgmt" path="vyos/vyatta-config-mgmt" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-conntrack" path="vyos/vyatta-conntrack" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-nat" path="vyos/vyatta-nat" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-op" path="vyos/vyatta-op" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-op-firewall" path="vyos/vyatta-op-firewall" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-op-qos" path="vyos/vyatta-op-qos" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-op-vpn" path="vyos/vyatta-op-vpn" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-wanloadbalance" path="vyos/vyatta-wanloadbalance" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyatta-zone" path="vyos/vyatta-zone" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyconf" path="vyos/vyconf" revision="refs/heads/master" remote="github"/>
+<project name="vyos/vyos" path="vyos/vyos" revision="refs/heads/master" remote="github"/>
+<project name="vyos/vyos-1x" path="vyos/vyos-1x" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-automation" path="vyos/vyos-automation" revision="refs/heads/main" remote="github"/>
+<project name="vyos/vyos-build" path="vyos/vyos-build" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-cloud-init" path="vyos/vyos-cloud-init" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-community-flavors" path="vyos/vyos-community-flavors" revision="refs/heads/main" remote="github"/>
+<project name="vyos/vyos-community-process" path="vyos/vyos-community-process" revision="refs/heads/main" remote="github"/>
+<project name="vyos/vyos-documentation" path="vyos/vyos-documentation" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-github-actions" path="vyos/vyos-github-actions" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-http-api-tools" path="vyos/vyos-http-api-tools" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-infrastructure" path="vyos/vyos-infrastructure" revision="refs/heads/main" remote="github"/>
+<project name="vyos/vyos-live-build" path="vyos/vyos-live-build" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-nhrp" path="vyos/vyos-nhrp" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-nightly-build" path="vyos/vyos-nightly-build" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-opennhrp" path="vyos/vyos-opennhrp" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-salt-minion" path="vyos/vyos-salt-minion" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-sdk" path="vyos/vyos-sdk" revision="refs/heads/master" remote="github"/>
+<project name="vyos/vyos-strongswan" path="vyos/vyos-strongswan" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-user-utils" path="vyos/vyos-user-utils" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-utils" path="vyos/vyos-utils" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-utils-misc" path="vyos/vyos-utils-misc" revision="refs/heads/master" remote="github"/>
+<project name="vyos/vyos-vpp" path="vyos/vyos-vpp" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-vpp-patches" path="vyos/vyos-vpp-patches" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-walinuxagent" path="vyos/vyos-walinuxagent" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-workflow-test-temp" path="vyos/vyos-workflow-test-temp" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-workflow-testing" path="vyos/vyos-workflow-testing" revision="refs/heads/main" remote="github"/>
+<project name="vyos/vyos-world" path="vyos/vyos-world" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos-xe-guest-utilities" path="vyos/vyos-xe-guest-utilities" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos.vyos" path="vyos/vyos.vyos" revision="refs/heads/main" remote="github"/>
+<project name="vyos/vyos1x-config" path="vyos/vyos1x-config" revision="refs/heads/current" remote="github"/>
+#+end_export
+
+** Generate XML
+
+Generate =ivre.xml=
+
+#+begin_src xml :tangle ivre.xml :noweb yes
+<manifest>
+  <<ivreReposXML()>>
+</manifest>
+#+end_src

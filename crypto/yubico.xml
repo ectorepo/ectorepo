@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<?xml version="1.0" encoding="utf-8"?>
 <manifest>
   <project name="Yubico/.github" path="yubico/.github" revision="refs/heads/main" remote="github"/>
   <project name="Yubico/arkg-rfc" path="yubico/arkg-rfc" revision="refs/heads/main" remote="github"/>
