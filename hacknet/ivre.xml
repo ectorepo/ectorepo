@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest>
-  <project name="ivre/.github" path="ivre/.github" revision="refs/heads/main" remote="github"/>
   <project name="ivre/ivre" path="ivre/ivre" revision="refs/heads/master" remote="github"/>
   <project name="ivre/ivre-test-samples" path="ivre/ivre-test-samples" revision="refs/heads/master" remote="github"/>
   <project name="ivre/masscanned" path="ivre/masscanned" revision="refs/heads/master" remote="github"/>
