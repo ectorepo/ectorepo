@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="cldrn/nmap-nse-scripts" path="nmapetc/nmap-nse-scripts" revision="refs/heads/master" remote="github"/>
+  <project name="vdjagilev/nmap-formatter" path="nmapetc/nmap-formatter" revision="refs/heads/main" remote="github"/>
+  <project name="leonjza/awesome-nmap-grep" path="nmapetc/awesome-nmap-grep" revision="refs/heads/master" remote="github"/>
+  <project name="snovvcrash/DivideAndScan " path="nmapetc/divideandscan" revision="refs/heads/main" remote="github"/>
+</manifest>

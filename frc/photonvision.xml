@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
   <project name="PhotonVision/ansible-playbooks" path="photonvision/ansible-playbooks" revision="refs/heads/main" remote="github"/>
   <project name="PhotonVision/apriltag" path="photonvision/apriltag" revision="refs/heads/master" remote="github"/>

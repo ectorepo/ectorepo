@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="phaag/nfdump" path="nfdump/nfdump" revision="refs/heads/master" remote="github"/>
+  <project name="phaag/go-nfdump" path="nfdump/go-nfdump" revision="refs/heads/main" remote="github"/>
+  <project name="phaag/nfsen" path="nfdump/nfsen" revision="refs/heads/main" remote="github"/>
+  <project name="phaag/nfinflux" path="nfdump/nfinflux" revision="refs/heads/master" remote="github"/>
+  <project name="phaag/nfexporter" path="nfdump/nfexporter" revision="refs/heads/master" remote="github"/>
+</manifest>

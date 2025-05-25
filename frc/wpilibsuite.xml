@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
   <project name="wpilibsuite/.github" path="wpilibsuite/.github" revision="refs/heads/master" remote="github"/>
   <project name="wpilibsuite/2024Beta" path="wpilibsuite/2024Beta" revision="refs/heads/main" remote="github"/>
@@ -20,33 +21,42 @@
   <project name="wpilibsuite/build-tools" path="wpilibsuite/build-tools" revision="refs/heads/master" remote="github"/>
   <project name="wpilibsuite/bzlmodRio-ni" path="wpilibsuite/bzlmodRio-ni" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/bzlmodRio-opencv" path="wpilibsuite/bzlmodRio-opencv" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/Control-System-Vectors" path="wpilibsuite/Control-System-Vectors" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/deploy-utils" path="wpilibsuite/deploy-utils" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/DetectCoral" path="wpilibsuite/DetectCoral" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/dev-ops" path="wpilibsuite/dev-ops" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/docker-images" path="wpilibsuite/docker-images" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/doxygen-mirror" path="wpilibsuite/doxygen-mirror" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/frc-docs" path="wpilibsuite/frc-docs" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/frc-docs-translations" path="wpilibsuite/frc-docs-translations" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/frc-openjdk-roborio" path="wpilibsuite/frc-openjdk-roborio" revision="refs/heads/2024" remote="github"/>
+  <project name="wpilibsuite/gnu-config" path="wpilibsuite/gnu-config" revision="refs/heads/master" remote="github"/>
   <project name="wpilibsuite/gradle-cpp-vscode" path="wpilibsuite/gradle-cpp-vscode" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/gradle-jni" path="wpilibsuite/gradle-jni" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/homebrew-wpilib" path="wpilibsuite/homebrew-wpilib" revision="refs/heads/master" remote="github"/>
+  <project name="wpilibsuite/GradleRIO" path="wpilibsuite/GradleRIO" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/import-signing-certificate" path="wpilibsuite/import-signing-certificate" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/native-utils" path="wpilibsuite/native-utils" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/NetworkTablesClients" path="wpilibsuite/NetworkTablesClients" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/ni-libraries" path="wpilibsuite/ni-libraries" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/node-wpilib-ws" path="wpilibsuite/node-wpilib-ws" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/ohnoyoudidnt" path="wpilibsuite/ohnoyoudidnt" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/opencv" path="wpilibsuite/opencv" revision="refs/heads/4.5.4-wpilib" remote="github"/>
   <project name="wpilibsuite/opensdk" path="wpilibsuite/opensdk" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/PathWeaver" path="wpilibsuite/PathWeaver" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/RobotBuilder" path="wpilibsuite/RobotBuilder" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/robotbuilder-2" path="wpilibsuite/robotbuilder-2" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/rules_bzlmodrio_jdk" path="wpilibsuite/rules_bzlmodrio_jdk" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/rules_bzlmodrio_toolchains" path="wpilibsuite/rules_bzlmodrio_toolchains" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/scservices" path="wpilibsuite/scservices" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/shuffleboard" path="wpilibsuite/shuffleboard" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/SmartDashboard" path="wpilibsuite/SmartDashboard" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-delta" path="wpilibsuite/sphinxext-delta" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-photofinish" path="wpilibsuite/sphinxext-photofinish" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-presentations" path="wpilibsuite/sphinxext-presentations" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-pwa" path="wpilibsuite/sphinxext-pwa" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/sphinxext-remoteliteralinclude" path="wpilibsuite/sphinxext-remoteliteralinclude" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/StandaloneAppSamples" path="wpilibsuite/StandaloneAppSamples" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/styleguide" path="wpilibsuite/styleguide" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/systemcore-blocks-interface" path="wpilibsuite/systemcore-blocks-interface" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-ceres" path="wpilibsuite/thirdparty-ceres" revision="refs/heads/main" remote="github"/>
@@ -62,6 +72,8 @@
   <project name="wpilibsuite/wpilib-version-plugin" path="wpilibsuite/wpilib-version-plugin" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/wpilib-ws-robot" path="wpilibsuite/wpilib-ws-robot" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/wpilib-ws-robot-romi" path="wpilibsuite/wpilib-ws-robot-romi" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/WPILibInstaller-Avalonia" path="wpilibsuite/WPILibInstaller-Avalonia" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/WPILibPi" path="wpilibsuite/WPILibPi" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/wpilibsuite.github.io" path="wpilibsuite/wpilibsuite.github.io" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/xcode-notarize" path="wpilibsuite/xcode-notarize" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/xrp-wpilib-firmware" path="wpilibsuite/xrp-wpilib-firmware" revision="refs/heads/main" remote="github"/>

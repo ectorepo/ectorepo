@@ -18,7 +18,8 @@ repository.
   <include name="frc/frcmisc.xml"/>
   <include name="frc/photonvision.xml"/>
   <!-- wpilibsuite,robotpy,frcmisc: 4GB (4/15/2025) -->
-  <include name="frc/2025.xml />
+  <include name="frc/2025.xml"/>
+  <include name="frc/bbFrc.xml"/>
 </manifest>
 #+end_src
 
@@ -197,6 +198,63 @@ Generate =robotpy.xml=
   <<robotpy()>>
 </manifest>
 #+end_src
+
+* bb-frc-workshops
+
+#+NAME: bbFrcReposExclude
+|   |
+
+#+name: bbFrcRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "bb-frc-workshops"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+Filter the results, generate XML
+
+#+name: bbFrc
+#+begin_src emacs-lisp :var gqldata=robotpy-repos :results value html
+(thread-first
+  (thread-last
+    (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+    (mapcar (lambda (el) (a-get* el 'node)))
+    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+    (mapcar (lambda (el)
+              (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
+                     (path (a-get* el 'name))
+                     (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                  (a-get* el 'defaultBranchRef 'name)))
+                     (name (string-join (list (a-get* el 'owner 'login)
+                                              (a-get* el 'name)) "/")))
+                (concat "<project"
+                        " name=\"" name
+                        "\" path=\"robotpy/" path
+                        "\" revision=\"" ref "\" remote=\"github\"/>")))))
+  (cl-sort 'string-lessp :key 'downcase)
+  (string-join "\n"))
+#+end_src
+
+Generate =bbFrc.xml=
+
+#+begin_src xml :tangle bbFrc.xml :noweb yes
+<manifest>
+  <<bbFrc()>>
+</manifest>
+#+end_src
+
+
 
 * PhotonVision
 

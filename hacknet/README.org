@@ -13,6 +13,11 @@ repository.
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <project name="nmap/nmap" path="nmap" revision="refs/heads/master" remote="github"/>
+  <include name="hacknet/nmapetc.xml"/>
+  <include name="hacknet/scanners.xml"/>
+  <include name="hacknet/orch.xml"/>
+  <include name="hacknet/nfdump.xml"/>
   <include name="hacknet/ivre.xml"/>
 </manifest>
 #+end_src
@@ -49,6 +54,70 @@ curl -L \
   -d '{"event_type":"on-demand-test","client_payload":{"unit":false,"integration":true}}'
 #+end_src
 
+* NMap
+
+
+
+** nmapetc
+
+=nmapetc.xml= contains extensions to =nmap=, including bash/etc drivers or NSE scripts
+
+#+begin_src xml :tangle nmapetc.xml :noweb yes
+<manifest>
+  <project name="cldrn/nmap-nse-scripts" path="nmapetc/nmap-nse-scripts" revision="refs/heads/master" remote="github"/>
+  <project name="vdjagilev/nmap-formatter" path="nmapetc/nmap-formatter" revision="refs/heads/main" remote="github"/>
+  <project name="leonjza/awesome-nmap-grep" path="nmapetc/awesome-nmap-grep" revision="refs/heads/master" remote="github"/>
+  <project name="snovvcrash/DivideAndScan " path="nmapetc/divideandscan" revision="refs/heads/main" remote="github"/>
+</manifest>
+#+end_src
+
++ DivideAndScan contains [[https://github.com/snovvcrash/DivideAndScan/tree/main/das/parsers][das/parsers]] with various scanner formats
+
+* scan
+
+=scan.xml= contains alternative scanners
+
+#+begin_src xml :tangle scanners.xml :noweb yes
+<manifest>
+  <project name="bee-san/RustScan" path="scan/rustscan" revision="refs/heads/master" remote="github"/>
+  <project name="projectdiscovery/nuclei" path="scan/nuclei" revision="refs/heads/dev" remote="github"/>
+  <project name="projectdiscovery/nuclei-templates" path="scan/nuclei-templates" revision="refs/heads/main" remote="github"/>
+</manifest>
+#+end_src
+
+* Orchestration
+
+Generate =orch.xml=
+
+#+begin_src xml :tangle orch.xml :noweb yes
+<manifest>
+  <project name="opsdisk/opsdisk" path="orc/scantron" revision="refs/heads/master" remote="github"/>
+  <project name="GhostTroops/scan4all" path="orc/scan4all" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/naabu" path="orc/projectdiscovery/naabu" revision="refs/heads/dev" remote="github"/>
+  <project name="projectdiscovery/mapcidr" path="orc/projectdiscovery/mapcidr" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/shuffledns" path="orc/projectdiscovery/shuffledns" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/asnmap" path="orc/projectdiscovery/asnmap" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/interactsh" path="orc/projectdiscovery/interactsh" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/subfinder" path="orc/projectdiscovery/subfinder" revision="refs/heads/dev" remote="github"/>
+  <project name="projectdiscovery/tunnelx" path="orc/projectdiscovery/tunnelx" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/uncover" path="orc/projectdiscovery/uncover" revision="refs/heads/main" remote="github"/>
+</manifest>
+#+end_src
+
+
+* Netflow
+
+** nfdump
+
+#+begin_src xml :tangle nfdump.xml :noweb yes
+<manifest>
+  <project name="phaag/nfdump" path="nfdump/nfdump" revision="refs/heads/master" remote="github"/>
+  <project name="phaag/go-nfdump" path="nfdump/go-nfdump" revision="refs/heads/main" remote="github"/>
+  <project name="phaag/nfsen" path="nfdump/nfsen" revision="refs/heads/main" remote="github"/>
+  <project name="phaag/nfinflux" path="nfdump/nfinflux" revision="refs/heads/master" remote="github"/>
+  <project name="phaag/nfexporter" path="nfdump/nfexporter" revision="refs/heads/master" remote="github"/>
+</manifest>
+#+end_src
 * Ivre
 
 Clone bundle sizes
@@ -96,7 +165,7 @@ Clone Bundle Total
 Excluded Repositories
 
 #+NAME: ivreReposExclude
-| .github  |
+| .github |
 
 ** IVRE Repos
 

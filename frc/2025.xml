@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
-  <project name="Mechanical-Advantage/RobotCode2025Public" path="2025/Mechanical-Advantage/RobotCode2025Public" revision="refs/heads/main"/>
+  <project name="Mechanical-Advantage/RobotCode2025Public" path="2025/Mechanical-Advantage/RobotCode2025Public" revision="refs/heads/main" />
 </manifest>

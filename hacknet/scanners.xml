@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="bee-san/RustScan" path="scan/rustscan" revision="refs/heads/master" remote="github"/>
+  <project name="projectdiscovery/nuclei" path="scan/nuclei" revision="refs/heads/dev" remote="github"/>
+  <project name="projectdiscovery/nuclei-templates" path="scan/nuclei-templates" revision="refs/heads/main" remote="github"/>
+</manifest>

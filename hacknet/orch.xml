@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="opsdisk/opsdisk" path="orc/scantron" revision="refs/heads/master" remote="github"/>
+  <project name="GhostTroops/scan4all" path="orc/scan4all" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/naabu" path="orc/projectdiscovery/naabu" revision="refs/heads/dev" remote="github"/>
+  <project name="projectdiscovery/mapcidr" path="orc/projectdiscovery/mapcidr" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/shuffledns" path="orc/projectdiscovery/shuffledns" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/asnmap" path="orc/projectdiscovery/asnmap" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/interactsh" path="orc/projectdiscovery/interactsh" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/subfinder" path="orc/projectdiscovery/subfinder" revision="refs/heads/dev" remote="github"/>
+  <project name="projectdiscovery/tunnelx" path="orc/projectdiscovery/tunnelx" revision="refs/heads/main" remote="github"/>
+  <project name="projectdiscovery/uncover" path="orc/projectdiscovery/uncover" revision="refs/heads/main" remote="github"/>
+</manifest>
