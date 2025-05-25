@@ -73,8 +73,8 @@ Generate =wpilibsuite.xml=
   <project name="Mechanical-Advantage/AdvantageScout" path="dash/advantage/AdvantageScout" revision="refs/heads/main" />
 
   <!-- Gradle Builds for other languages -->
-  <project name="glinia/3501-spark" path="clj/3501-spark" revision="refs/heads/master"/>
-  <project name="glinia/3501-spark-clojure" path="clj/3501-spark-clojure" revision="refs/heads/master"/>
+  <!-- <project name="glinia/3501-spark" path="clj/3501-spark" revision="refs/heads/master"/> -->
+  <!-- <project name="glinia/3501-spark-clojure" path="clj/3501-spark-clojure" revision="refs/heads/master"/> -->
   <!-- PhotonVision -->
   <project name="photonvision/champs_2024" path="photon_champs_2024" revision="refs/heads/master"/>
 </manifest>
