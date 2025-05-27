@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest>
-  <project name="opsdisk/opsdisk" path="orc/scantron" revision="refs/heads/master" remote="github"/>
+  <project name="opsdisk/scantron" path="orc/scantron" revision="refs/heads/master" remote="github"/>
   <project name="GhostTroops/scan4all" path="orc/scan4all" revision="refs/heads/main" remote="github"/>
   <project name="projectdiscovery/naabu" path="orc/projectdiscovery/naabu" revision="refs/heads/dev" remote="github"/>
   <project name="projectdiscovery/mapcidr" path="orc/projectdiscovery/mapcidr" revision="refs/heads/main" remote="github"/>

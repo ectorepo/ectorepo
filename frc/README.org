@@ -90,6 +90,16 @@ Generate =wpilibsuite.xml=
 </manifest>
 #+end_src
 
+** Cross The Road Electronics
+
+#+begin_src xml :tangle ctr.xml :noweb yes
+<manifest>
+  <project name="CrossTheRoadElec/Device-CADs" path="ctr/Device-CADs" revision="refs/heads/master" />
+  <project name="CrossTheRoadElec/Phoenix6-Documentation" path="ctr/Phoenix6-Documentation" revision="refs/heads/main" />
+  <project name="CrossTheRoadElec/Phoenix6-Examples" path="ctr/Phoenix6-Examples" revision="refs/heads/main" />
+</manifest>
+#+end_src
+
 * WPI Lib
 
 Get about 60 of the =wpilibsuite= repositories. These should go into

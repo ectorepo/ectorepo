@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="budimanjojo/vyos-config" path="budimanjojo/vyos-config" revision="refs/heads/main" remote="github"/>
+  <project name="huihuimoe/vyos-arm64-build" path="huihuimoe/vyos-arm64-build" revision="refs/heads/master" remote="github"/>
+  <project name="yunzheng/vyos-arm64-iso" path="yunzheng/vyos-arm64-iso" revision="refs/heads/main" remote="github"/>
+  <project name="mu-ruU1/vyos-build-container-image" path="mu-ruU1/vyos-build-container-image" revision="refs/heads/main" remote="github"/>
+  <project name="srl-labs/containerlab" path="srl-labs/containerlab" revision="refs/heads/main" remote="github"/>
+  <project name="srl-labs/network-multitool" path="srl-labs/network-multitool" revision="refs/heads/main" remote="github"/>
+  <!-- <project name="" path="" revision="refs/heads/" remote="github"/> -->
+</manifest>

@@ -67,7 +67,7 @@ curl -L \
   <project name="cldrn/nmap-nse-scripts" path="nmapetc/nmap-nse-scripts" revision="refs/heads/master" remote="github"/>
   <project name="vdjagilev/nmap-formatter" path="nmapetc/nmap-formatter" revision="refs/heads/main" remote="github"/>
   <project name="leonjza/awesome-nmap-grep" path="nmapetc/awesome-nmap-grep" revision="refs/heads/master" remote="github"/>
-  <project name="snovvcrash/DivideAndScan " path="nmapetc/divideandscan" revision="refs/heads/main" remote="github"/>
+  <project name="snovvcrash/DivideAndScan" path="nmapetc/divideandscan" revision="refs/heads/main" remote="github"/>
 </manifest>
 #+end_src
 
@@ -91,7 +91,7 @@ Generate =orch.xml=
 
 #+begin_src xml :tangle orch.xml :noweb yes
 <manifest>
-  <project name="opsdisk/opsdisk" path="orc/scantron" revision="refs/heads/master" remote="github"/>
+  <project name="opsdisk/scantron" path="orc/scantron" revision="refs/heads/master" remote="github"/>
   <project name="GhostTroops/scan4all" path="orc/scan4all" revision="refs/heads/main" remote="github"/>
   <project name="projectdiscovery/naabu" path="orc/projectdiscovery/naabu" revision="refs/heads/dev" remote="github"/>
   <project name="projectdiscovery/mapcidr" path="orc/projectdiscovery/mapcidr" revision="refs/heads/main" remote="github"/>
