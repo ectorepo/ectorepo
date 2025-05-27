@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
   <project name="bb-frc-workshops/2021-Workshop-Docs" path="bbFrc/2021-Workshop-Docs" revision="refs/heads/main" remote="github"/>
   <project name="bb-frc-workshops/arduino-pico" path="bbFrc/arduino-pico" revision="refs/heads/master" remote="github"/>

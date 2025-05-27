@@ -14,6 +14,7 @@ repository.
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="vyos/vyos.xml"/>
+  <include name="vyos/misc.xml"/>
 </manifest>
 #+end_src
 
@@ -48,6 +49,21 @@ curl -L \
   https://api.github.com/repos/OWNER/REPO/dispatches \
   -d '{"event_type":"on-demand-test","client_payload":{"unit":false,"integration":true}}'
 #+end_src
+
+* Misc
+
+#+begin_src xml :tangle misc.xml
+<manifest>
+  <project name="budimanjojo/vyos-config" path="budimanjojo/vyos-config" revision="refs/heads/main" remote="github"/>
+  <project name="huihuimoe/vyos-arm64-build" path="huihuimoe/vyos-arm64-build" revision="refs/heads/master" remote="github"/>
+  <project name="yunzheng/vyos-arm64-iso" path="yunzheng/vyos-arm64-iso" revision="refs/heads/main" remote="github"/>
+  <project name="mu-ruU1/vyos-build-container-image" path="mu-ruU1/vyos-build-container-image" revision="refs/heads/main" remote="github"/>
+  <project name="srl-labs/containerlab" path="srl-labs/containerlab" revision="refs/heads/main" remote="github"/>
+  <project name="srl-labs/network-multitool" path="srl-labs/network-multitool" revision="refs/heads/main" remote="github"/>
+
+</manifest>
+#+end_src
+
 
 * VyOS
 

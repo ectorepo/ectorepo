@@ -58,6 +58,8 @@ Generate =wpilibsuite.xml=
 #+begin_src xml :tangle frcmisc.xml :noweb yes
 <manifest>
   <!-- texts -->
+  <project name="mjansen4857/pathplanner" path="pathplanner" revision="refs/heads/main" remote="github"/>
+  <!-- texts -->
   <project name="krishauser/RoboticSystemsBook" path="text/RoboticSystemsBook" revision="refs/heads/master" remote="github"/>
   <project name="krishauser/Klampt" path="text/Klampt" revision="refs/heads/master" remote="github"/>
   <project name="krishauser/Klampt-jupyter-extension" path="text/Klampt-jupyter-extension" revision="refs/heads/master" remote="github"/>
