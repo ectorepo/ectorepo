@@ -14,7 +14,7 @@ repository.
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="vyos/vyos.xml"/>
-  <project name="frrouting/frr" path="frr" revision="refs/heads/main" remote="master"/>
+  <project name="frrouting/frr" path="frr" revision="refs/heads/master" remote="github"/>
   <include name="vyos/misc.xml"/>
 </manifest>
 #+end_src
