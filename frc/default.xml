@@ -10,4 +10,5 @@
   <!-- wpilibsuite,robotpy,frcmisc: 4GB (4/15/2025) -->
   <include name="frc/2025.xml"/>
   <include name="frc/bbFrc.xml"/>
+  <include name="frc/ctr.xml"/>
 </manifest>
