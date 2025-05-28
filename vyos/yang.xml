@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="mbj4668/yang-mode" path="yang/yang-mode" revision="refs/heads/master" remote="github"/>
+  <project name="mbj4668/pyang" path="yang/pyang" revision="refs/heads/master" remote="github"/>
+  <project name="CiscoDevNet/yangsuite" path="yang/yangsuite" revision="refs/heads/main" remote="github"/>
+  <project name="CESNET/libyang" path="yang/libyang" revision="refs/heads/master" remote="github"/>
+</manifest>
