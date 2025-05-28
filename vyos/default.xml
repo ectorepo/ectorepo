@@ -5,4 +5,5 @@
   <include name="vyos/vyos.xml"/>
   <project name="frrouting/frr" path="frr" revision="refs/heads/master" remote="github"/>
   <include name="vyos/misc.xml"/>
+  <include name="vyos/yang.xml"/>
 </manifest>
