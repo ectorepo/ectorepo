@@ -207,6 +207,21 @@ Diff for lagging copies of =_remotes.xml= across submodules.
 #+begin_src shell
 git submodule foreach "diff ../_remotes.xml _remotes.xml ; echo ''" | grep -e '^>'
 #+end_src
+
+****** Check, commit and push submodules
+
+#+begin_src shell
+git submodule foreach "git add _remotes.xml"
+git status
+git submodule foreach "git diff"
+git submodule foreach "git status" # just to be sure
+git submodule foreach "git commit -m 'bump remotes.xml zomg why'"
+git submodule foreach "git push origin master"
+#+end_src
+
+Then in magit, add submodule refs, commit to super-duper-project and push
+
+... then pull again maybe (reference copies be on a server with SSH access)
 ***** And so forth
 
 **** Old Merge =_remotes.xml= Manifests
