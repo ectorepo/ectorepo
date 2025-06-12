@@ -1,0 +1,215 @@
+itle:     Ectorepo: Hacknet
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+Network hacking/recon repositories
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Setup
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+#+begin_src restclient
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer <YOUR-TOKEN>" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/dispatches \
+  -d '{"event_type":"on-demand-test","client_payload":{"unit":false,"integration":true}}'
+#+end_src
+
+* Sidero Labs
+
+Alot of the archive projects have been bundled into the [[https://github.com/siderolabs/sidero][siderolabs/sidero]] project
+
+
+Clone bundle sizes
+
+#+name: fetchMetadata
+#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
+#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
+# User-Agent: dcunited001 # um okay that doesn't work
+# https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent
+
+GET :gh-url-base/:gh-url-path
+:headers
+#+end_src
+
+#+name: siderolabsMetadata
+#+call: fetchMetadata(gh-org="siderolabs")
+
+#+RESULTS: siderolabsMetadata
+| siderolabs | talos                                  | 92156 | main   | false | 2025-06-11T23:53:11Z |
+| siderolabs | bootkube                               | 76492 | master | true  | 2023-01-27T22:49:37Z |
+| siderolabs | pkgs                                   | 62500 | main   | false | 2025-06-10T18:22:05Z |
+| siderolabs | cluster-api-provider-talos             | 41290 | master | true  | 2025-03-06T14:31:54Z |
+| siderolabs | conform                                | 17824 | main   | false | 2025-05-21T23:54:50Z |
+| siderolabs | go-gsuite                              | 15017 | master | true  | 2024-08-27T15:47:50Z |
+| siderolabs | tools                                  | 14924 | main   | false | 2025-06-09T14:07:20Z |
+| siderolabs | devise                                 |  4686 | master | true  | 2024-08-27T15:46:34Z |
+| siderolabs | talos-doc-site                         |  3836 | master | true  | 2024-09-16T15:31:14Z |
+| siderolabs | ui                                     |  1780 | master | true  | 2023-01-28T05:21:10Z |
+| siderolabs | bldr-web                               |   969 | master | true  | 2023-01-28T05:21:11Z |
+| siderolabs | cluster-api-bootstrap-provider-talos   |   723 | main   | false | 2025-06-09T13:06:42Z |
+| siderolabs | toolchain                              |   708 | main   | false | 2025-06-09T13:25:32Z |
+| siderolabs | bldr                                   |   657 | main   | false | 2025-05-28T05:36:36Z |
+| siderolabs | go-smbios                              |   268 | main   | false | 2025-04-09T10:15:22Z |
+| siderolabs | grpc-proxy                             |   186 | main   | false | 2025-05-28T03:11:43Z |
+| siderolabs | talos-controller-manager               |   137 | master | true  | 2024-08-27T15:48:19Z |
+| siderolabs | cluster-api-provider-metal             |   110 | master | true  | 2025-05-22T05:56:47Z |
+| siderolabs | homebrew-tap                           |    98 | main   | false | 2025-06-11T14:17:12Z |
+| siderolabs | metal-controller-manager               |    95 | master | true  | 2024-07-19T18:14:40Z |
+| siderolabs | build-container                        |    91 | main   | false | 2025-02-18T02:39:26Z |
+| siderolabs | toolchain-musl                         |    84 | master | true  | 2024-04-17T00:59:46Z |
+| siderolabs | gitmeta                                |    58 | master | true  | 2024-08-27T15:48:04Z |
+| siderolabs | kernel                                 |    54 | master | true  | 2023-01-28T16:58:47Z |
+| siderolabs | protoc-gen-proxy                       |    34 | master | true  | 2025-02-27T09:31:43Z |
+| siderolabs | charts                                 |    33 | master | true  | 2024-08-27T15:46:24Z |
+| siderolabs | toolchain-glibc                        |    22 | master | true  | 2023-08-02T11:56:13Z |
+| siderolabs | project-template-kubernetes-controller |    18 | master | false | 2023-11-09T00:44:50Z |
+| siderolabs | project-template-go                    |    11 | master | false | 2020-02-19T02:14:02Z |
+| siderolabs | talos-app                              |     6 | master | true  | 2023-01-28T05:21:10Z |
+
+Excluded Repositories
+
+#+NAME: siderolabsReposExclude
+| bldr-web                               |
+| bootkube                               |
+| bootkube-plugin                        |
+| cluster-api-provider-talos             |
+| devise                                 |
+| .github                                |
+| go-gsuite                              |
+| homebrew-tap                           |
+| katacoda-scenarios                     |
+| signing-keys                           |
+| kernel                                 |
+| metal-controller-manager               |
+| metal-metadata-server                  |
+| os-engine                              |
+| project-template-go                    |
+| project-template-kubernetes-controller |
+| protobuf                               |
+| protoc-gen-proxy                       |
+| sfyra                                  |
+| talos-app                              |
+| talos-controller-manager               |
+| talos-doc-site                         |
+| toolchain-glibc                        |
+| toolchain-musl                         |
+| ui                                     |
+
+
+** Talos Repos
+
+#+name: siderolabsRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "siderolabs"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: siderolabsReposXML
+#+begin_src emacs-lisp :var gqldata=siderolabsRepos repos-exclude=siderolabsReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "siderolabs" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: siderolabsReposXML
+
+
+** Generate XML
+
+Generate =siderolabs.xml=
+
+#+begin_src xml :tangle siderolabs.xml :noweb yes
+<manifest>
+  <<siderolabsReposXML()>>
+</manifest>
+#+end_src
