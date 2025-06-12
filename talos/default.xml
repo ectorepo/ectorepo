@@ -2,5 +2,5 @@
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
-  <include name="siderolabs.xml"/>
+  <include name="talos/siderolabs.xml"/>
 </manifest>
