@@ -13,8 +13,9 @@ repository.
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
-  <include name="clab/srl-labs.xml"/>
+  <include name="clab/srllabs.xml"/>
   <include name="clab/nokia.xml"/>
+  <include name="clab/netreplica.xml"/>
   <include name="clab/misc.xml"/>
 </manifest>
 #+end_src
@@ -70,7 +71,7 @@ curl -L \
 
 * Misc Networking
 
-These could move
+These could move somewhere else idk
 
 #+begin_src xml :tangle misc.xml :noweb yes
 <manifest>
@@ -91,6 +92,7 @@ Netbox to Container Lab (for digital twins, basel)
   <project name="netreplica/node-data" path="netreplica/node-data" revision="refs/heads/main" remote="github"/>
   <project name="netreplica/nrx" path="netreplica/nrx" revision="refs/heads/main" remote="github"/>
   <project name="netreplica/templates" path="netreplica/templates" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/graphite" path="netreplica/graphite" revision="refs/heads/main" remote="github"/>
   <project name="ipspace/netlab" path="ipspace/netlab" revision="refs/heads/dev" remote="github"/>
   <project name="ipspace/netlab-examples" path="ipspace/netlab-examples" revision="refs/heads/master" remote="github"/>
   <project name="netbox-community/awesome-netbox" path="netreplica/awesome-netbox" revision="refs/heads/main" remote="github"/>
