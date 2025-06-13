@@ -5,6 +5,6 @@
   <project name="nokia/srlinux-ndk-py" path="nokia/srlinux-ndk-py" revision="refs/heads/main" remote="github"/>
   <project name="nokia/srlinux-yang-models" path="nokia/srlinux-yang-models" revision="refs/tags/v25.3.2" remote="github"/>
   <project name="nokia/network-as-code-ts" path="nokia/network-as-code-ts" revision="refs/heads/main" remote="github"/>
-  <project name="nokia/network-as-code-python" path="nokia/network-as-code-python" revision="refs/heads/main" remote="github"/>
+  <project name="nokia/network-as-code-py" path="nokia/network-as-code-py" revision="refs/heads/main" remote="github"/>
   <project name="nokia/ansible-networking-collections" path="nokia/ansible-networking-collections" revision="refs/heads/master" remote="github"/>
 </manifest>
