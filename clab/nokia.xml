@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="nokia/srlinux-ndk-protobufs" path="nokia/srlinux-ndk-protobufs" revision="refs/heads/protos" remote="github"/>
+  <project name="nokia/srlinux-ndk-go" path="nokia/srlinux-ndk-go" revision="refs/heads/main" remote="github"/>
+  <project name="nokia/srlinux-ndk-python" path="nokia/srlinux-ndk-python" revision="refs/heads/main" remote="github"/>
+  <project name="nokia/srlinux-yang-models" path="nokia/srlinux-yang-models" revision="refs/tags/v25.3.2" remote="github"/>
+
+  <project name="nokia/network-as-code-ts" path="nokia/network-as-code-ts" revision="refs/heads/main" remote="github"/>
+  <project name="nokia/network-as-code-python" path="nokia/network-as-code-python" revision="refs/heads/main" remote="github"/>
+  <project name="nokia/network-as-code-" path="nokia/network-as-code-" revision="refs/heads/main" remote="github"/>
+  <project name="nokia/ansible-networking-collections" path="nokia/ansible-networking-collections" revision="refs/heads/master" remote="github"/>
+  <project name="nokia/" path="nokia/" revision="refs/heads/main" remote="github"/>
+</manifest>

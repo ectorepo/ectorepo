@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="netreplica/node-data" path="netreplica/node-data" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/nrx" path="netreplica/nrx" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/templates" path="netreplica/templates" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/graphite" path="netreplica/graphite" revision="refs/heads/main" remote="github"/>
+  <project name="ipspace/netlab" path="ipspace/netlab" revision="refs/heads/dev" remote="github"/>
+  <project name="ipspace/netlab-examples" path="ipspace/netlab-examples" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/awesome-netbox" path="netreplica/awesome-netbox" revision="refs/heads/main" remote="github"/>
+</manifest>

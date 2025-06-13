@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="troglobit/mcjoin" path="tools/mcjoin" revision="refs/heads/master" remote="github"/>
+</manifest>

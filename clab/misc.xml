@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <!-- didn't know this used "standard routing protocols" -->
+  <project name="metallb/metallb" path="cnf/metallb" revision="refs/heads/main" remote="github"/>
+  <!-- driven by crystal -->
+  <project name="lfn-cnti/testsuite" path="cnf/testsuite" revision="refs/heads/main" remote="github"/>
+</manifest>
