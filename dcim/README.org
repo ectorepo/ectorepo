@@ -1,4 +1,4 @@
-#+title:     Ectorepo: Container Lab
+#+title:     Ectorepo: DCIM & IPAM
 #+author:    David Conner
 #+email:     noreply@te.xel.io
 #+PROPERTY: header-args :comments none
@@ -13,9 +13,9 @@ repository.
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
-  <include name="clab/srllabs.xml"/>
-  <include name="clab/nokia.xml"/>
-  <include name="clab/misc.xml"/>
+  <include name="dcim/netbox.xml"/>
+  <include name="dcim/nautobot.xml"/>
+  <include name="dcim/netreplica.xml"/>
 </manifest>
 #+end_src
 
@@ -51,34 +51,28 @@ curl -L \
   -d '{"event_type":"on-demand-test","client_payload":{"unit":false,"integration":true}}'
 #+end_src
 
-* Nokia
+* Netreplica
 
-#+begin_src xml :tangle nokia.xml :noweb yes
+Netbox to Container Lab (for digital twins, basel)
+
+#+begin_src xml :tangle netreplica.xml :noweb yes
 <manifest>
-  <project name="nokia/srlinux-ndk-protobufs" path="nokia/srlinux-ndk-protobufs" revision="refs/heads/protos" remote="github"/>
-  <project name="nokia/srlinux-ndk-go" path="nokia/srlinux-ndk-go" revision="refs/heads/main" remote="github"/>
-  <project name="nokia/srlinux-ndk-py" path="nokia/srlinux-ndk-py" revision="refs/heads/main" remote="github"/>
-  <project name="nokia/srlinux-yang-models" path="nokia/srlinux-yang-models" revision="refs/tags/v25.3.2" remote="github"/>
-  <project name="nokia/network-as-code-ts" path="nokia/network-as-code-ts" revision="refs/heads/main" remote="github"/>
-  <project name="nokia/network-as-code-py" path="nokia/network-as-code-py" revision="refs/heads/main" remote="github"/>
-  <project name="nokia/ansible-networking-collections" path="nokia/ansible-networking-collections" revision="refs/heads/master" remote="github"/>
+  <project name="netreplica/node-data" path="netreplica/node-data" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/nrx" path="netreplica/nrx" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/templates" path="netreplica/templates" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/graphite" path="netreplica/graphite" revision="refs/heads/main" remote="github"/>
+  <project name="ipspace/netlab" path="ipspace/netlab" revision="refs/heads/dev" remote="github"/>
+  <project name="ipspace/netlab-examples" path="ipspace/netlab-examples" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/awesome-netbox" path="awesome-netbox" revision="refs/heads/main" remote="github"/>
 </manifest>
 #+end_src
 
-* Misc Networking
+* Netbox
 
-These could move somewhere else idk
 
-#+begin_src xml :tangle misc.xml :noweb yes
-<manifest>
-  <!-- didn't know this used "standard routing protocols" -->
-  <project name="metallb/metallb" path="cnf/metallb" revision="refs/heads/main" remote="github"/>
-  <!-- driven by crystal -->
-  <project name="lfn-cnti/testsuite" path="cnf/testsuite" revision="refs/heads/main" remote="github"/>
-</manifest>
-#+end_src
 
-* SRL Labs
+
+* Nautobot
 
 Clone bundle sizes
 
@@ -105,7 +99,7 @@ GET :gh-url-base/:gh-url-path
 #+RESULTS: fetchMetadata
 
 #+name: srllabsMetadata
-#+call: fetchMetadata(gh-org="srl-labs")
+#+call: fetchMetadata(gh-org="nautobot")
 
 #+RESULTS: srllabsMetadata
 | srl-labs | containerlab              | 52335 | main   | false | 2025-06-12T16:54:33Z |
@@ -142,7 +136,7 @@ GET :gh-url-base/:gh-url-path
 Excluded Repositories
 
 #+NAME: srllabsReposExclude
-|  |
+|   |
 
 
 ** SRL Labs Repos
