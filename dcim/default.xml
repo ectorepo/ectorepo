@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="dcim/netbox.xml"/>
+  <include name="dcim/nautobot.xml"/>
+  <include name="dcim/netreplica.xml"/>
+</manifest>

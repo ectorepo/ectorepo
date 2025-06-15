@@ -7,5 +7,5 @@
   <project name="netreplica/graphite" path="netreplica/graphite" revision="refs/heads/main" remote="github"/>
   <project name="ipspace/netlab" path="ipspace/netlab" revision="refs/heads/dev" remote="github"/>
   <project name="ipspace/netlab-examples" path="ipspace/netlab-examples" revision="refs/heads/master" remote="github"/>
-  <project name="netbox-community/awesome-netbox" path="netreplica/awesome-netbox" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/awesome-netbox" path="awesome-netbox" revision="refs/heads/main" remote="github"/>
 </manifest>

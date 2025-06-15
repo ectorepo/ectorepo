@@ -51,30 +51,7 @@ curl -L \
   -d '{"event_type":"on-demand-test","client_payload":{"unit":false,"integration":true}}'
 #+end_src
 
-* Netreplica
-
-Netbox to Container Lab (for digital twins, basel)
-
-#+begin_src xml :tangle netreplica.xml :noweb yes
-<manifest>
-  <project name="netreplica/node-data" path="netreplica/node-data" revision="refs/heads/main" remote="github"/>
-  <project name="netreplica/nrx" path="netreplica/nrx" revision="refs/heads/main" remote="github"/>
-  <project name="netreplica/templates" path="netreplica/templates" revision="refs/heads/main" remote="github"/>
-  <project name="netreplica/graphite" path="netreplica/graphite" revision="refs/heads/main" remote="github"/>
-  <project name="ipspace/netlab" path="ipspace/netlab" revision="refs/heads/dev" remote="github"/>
-  <project name="ipspace/netlab-examples" path="ipspace/netlab-examples" revision="refs/heads/master" remote="github"/>
-  <project name="netbox-community/awesome-netbox" path="awesome-netbox" revision="refs/heads/main" remote="github"/>
-</manifest>
-#+end_src
-
-* Netbox
-
-
-
-
-* Nautobot
-
-Clone bundle sizes
+Babel block to get clone bundle sizes
 
 #+name: fetchMetadata
 #+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
@@ -98,54 +75,88 @@ GET :gh-url-base/:gh-url-path
 
 #+RESULTS: fetchMetadata
 
-#+name: srllabsMetadata
+* Netreplica
+
+Netbox to Container Lab (for digital twins, basel)
+
+#+begin_src xml :tangle netreplica.xml :noweb yes
+<manifest>
+  <project name="netreplica/node-data" path="netreplica/node-data" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/nrx" path="netreplica/nrx" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/templates" path="netreplica/templates" revision="refs/heads/main" remote="github"/>
+  <project name="netreplica/graphite" path="netreplica/graphite" revision="refs/heads/main" remote="github"/>
+  <project name="ipspace/netlab" path="ipspace/netlab" revision="refs/heads/dev" remote="github"/>
+  <project name="ipspace/netlab-examples" path="ipspace/netlab-examples" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/awesome-netbox" path="awesome-netbox" revision="refs/heads/main" remote="github"/>
+</manifest>
+#+end_src
+
+* Nautobot
+
+#+name: nautobotMetadata
 #+call: fetchMetadata(gh-org="nautobot")
 
-#+RESULTS: srllabsMetadata
-| srl-labs | containerlab              | 52335 | main   | false | 2025-06-12T16:54:33Z |
-| srl-labs | srl-sros-telemetry-lab    | 49212 | main   | false | 2025-04-24T00:38:46Z |
-| srl-labs | yang-browser              | 41885 | master | false | 2025-05-14T07:02:57Z |
-| srl-labs | srl-telemetry-lab         | 17153 | main   | false | 2025-06-04T15:02:46Z |
-| srl-labs | learn-srlinux             | 15053 | main   | false | 2025-05-26T03:28:06Z |
-| srl-labs | ygotsrl                   | 10033 | main   | false | 2023-08-09T19:48:38Z |
-| srl-labs | nokia-segment-routing-lab |  8976 | master | false | 2025-05-02T11:16:02Z |
-| srl-labs | nornir-srl                |  4948 | main   | false | 2025-06-11T23:56:39Z |
-| srl-labs | srl-elk-lab               |  4407 | main   | false | 2025-04-29T15:10:59Z |
-| srl-labs | sros-anysec-lab           |  4382 | main   | false | 2025-02-18T14:13:45Z |
-| srl-labs | gnxi-browser              |  1478 | main   | false | 2025-05-02T11:15:28Z |
-| srl-labs | nokia-evpn-lab            |  1298 | main   | false | 2025-04-11T14:57:13Z |
-| srl-labs | srl-k8s-anycast-lab       |  1288 | main   | false | 2024-09-10T14:27:49Z |
-| srl-labs | srl-features-lab          |   605 | main   | false | 2025-04-11T14:57:12Z |
-| srl-labs | intent-based-ansible-lab  |   565 | main   | false | 2025-06-10T19:19:43Z |
-| srl-labs | srl-controller            |   418 | main   | false | 2024-07-01T15:45:36Z |
-| srl-labs | srl-splunk-lab            |   297 | main   | false | 2025-04-11T14:56:26Z |
-| srl-labs | multivendor-evpn-lab      |   222 | master | false | 2025-06-10T08:22:06Z |
-| srl-labs | ndk-dev-environment       |    73 | main   | false | 2023-08-09T19:48:25Z |
-| srl-labs | srlinux-gnmi-go           |    66 | main   | false | 2024-07-26T11:47:34Z |
-| srl-labs | srlinux-scrapli           |    42 | master | false | 2022-12-20T12:07:14Z |
-| srl-labs | network-multitool         |    42 | main   | false | 2025-06-11T14:55:26Z |
-| srl-labs | srxnam2022-cicd-demo      |    27 | main   | false | 2024-05-07T19:28:06Z |
-| srl-labs | opergroup-lab             |    26 | main   | false | 2025-02-25T10:05:19Z |
-| srl-labs | jsonrpc-ansible           |    18 | main   | false | 2025-05-02T11:15:44Z |
-| srl-labs | protoc-container          |    17 | main   | false | 2025-05-02T11:16:57Z |
-| srl-labs | srlinux-pygments          |    11 | main   | false | 2023-12-14T15:50:32Z |
-| srl-labs | irrd-container            |     8 | main   | false | 2023-06-05T09:21:50Z |
-| srl-labs | bird-container            |     7 | main   | false | 2025-05-18T22:22:43Z |
-| srl-labs | containerlab-border0.com  |     1 | main   | false | 2025-05-02T11:15:38Z |
+#+RESULTS: nautobotMetadata
+| nautobot | nautobot                                   | 172068 | develop | false | 2025-06-14T23:33:13Z |
+| nautobot | nautobot-app-version-control               |  48646 | develop | false | 2025-02-06T02:51:48Z |
+| nautobot | helm-charts                                |  34787 | develop | false | 2025-06-12T10:09:32Z |
+| nautobot | nautobot-app-ssot                          |  29241 | develop | false | 2025-06-12T21:48:34Z |
+| nautobot | nautobot-app-welcome-wizard                |  28730 | develop | false | 2025-05-20T13:02:46Z |
+| nautobot | nautobot-app-chatops                       |  12156 | develop | false | 2025-05-13T17:01:16Z |
+| nautobot | nautobot-app-golden-config                 |  10024 | develop | false | 2025-06-04T19:39:16Z |
+| nautobot | nautobot-app-data-validation-engine        |   8025 | develop | false | 2025-05-20T13:28:55Z |
+| nautobot | nautobot-ansible                           |   5703 | develop | false | 2025-06-05T20:14:10Z |
+| nautobot | nautobot-app-device-onboarding             |   5625 | develop | false | 2025-06-04T14:36:46Z |
+| nautobot | nautobot-app-netbox-importer               |   5111 | develop | false | 2025-06-13T18:24:51Z |
+| nautobot | nautobot-plugin-chatops-panorama           |   4221 | main    | true  | 2023-08-22T00:31:36Z |
+| nautobot | nautobot-app-circuit-maintenance           |   3597 | develop | false | 2025-05-21T05:14:58Z |
+| nautobot | nautobot-app-nornir                        |   2799 | develop | false | 2025-04-26T21:39:25Z |
+| nautobot | nautobot-lab                               |   2534 | main    | false | 2025-01-06T12:31:13Z |
+| nautobot | nautobot-app-capacity-metrics              |   1842 | develop | false | 2025-05-20T22:30:15Z |
+| nautobot | nautobot-plugin-chatops-grafana            |   1701 | develop | true  | 2023-09-07T13:30:16Z |
+| nautobot | pynautobot                                 |   1455 | develop | false | 2025-06-08T18:02:48Z |
+| nautobot | nautobot-plugin-chatops-meraki             |    965 | develop | true  | 2023-09-07T13:29:49Z |
+| nautobot | nautobot-plugin-ssot-servicenow            |    965 | develop | true  | 2023-12-01T18:44:02Z |
+| nautobot | nornir-nautobot                            |    898 | develop | false | 2025-04-27T19:39:16Z |
+| nautobot | nautobot-plugin-ssot-arista-cloudvision    |    726 | develop | true  | 2023-12-01T18:44:27Z |
+| nautobot | nautobot-plugin-chatops-ipfabric           |    605 | develop | true  | 2023-09-07T13:29:24Z |
+| nautobot | nautobot-plugin-chatops-arista-cloudvision |    530 | develop | true  | 2023-09-07T13:28:54Z |
+| nautobot | nautobot-docker-compose                    |    415 | main    | false | 2025-04-28T16:57:01Z |
+| nautobot | nautobot-plugin-chatops-ansible            |    318 | main    | true  | 2023-09-07T13:21:24Z |
+| nautobot | demo-gc-backups                            |    166 | main    | false | 2024-05-02T10:02:19Z |
+| nautobot | demo-gc-generated-configs                  |    104 | main    | false | 2025-01-31T20:49:25Z |
+| nautobot | demo-git-datasource                        |     43 | main    | false | 2025-02-17T17:36:33Z |
+| nautobot | demo-gc-templates                          |     41 | main    | false | 2025-06-13T14:20:40Z |
 
-Excluded Repositories
+Excluded Repositories (mostly what's archived)
 
-#+NAME: srllabsReposExclude
-|   |
+#+NAME: nautobotReposExclude
+| nautobot-ui                                |
+| nautobot-plugin-ssot-dna-center            |
+| nautobot-chatops-cookiecutter              |
+| nautobot-plugin-chatops-ansible            |
+| nautobot-plugin-chatops-arista-cloudvision |
+| nautobot-plugin-chatops-ipfabric           |
+| nautobot-plugin-chatops-meraki             |
+| nautobot-plugin-chatops-grafana            |
+| nautobot-plugin-chatops-panorama           |
+| nautobot-plugin-chatops-aci                |
+| nautobot-plugin-ssot-ipfabric              |
+| nautobot-plugin-ssot-arista-cloudvision    |
+| nautobot-plugin-ssot-infoblox              |
+| nautobot-plugin-ssot-aci                   |
+| nautobot-plugin-ssot-servicenow            |
+| nautobot-plugin-ssot-device42              |
+| nautobot-ssot-vsphere                      |
+| .github                                    |
 
+** Nautobot Repos
 
-** SRL Labs Repos
-
-#+name: srllabsRepos
+#+name: nautobotRepos
 #+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
 (ghub-graphql
  (graphql-query ((organization
-                  :arguments ((login . "srl-labs"))
+                  :arguments ((login . "nautobot"))
                   (repositories
                    :arguments ((first . <<nrepos()>>)
                                (orderBy . ((field . UPDATED_AT)
@@ -159,8 +170,8 @@ Excluded Repositories
                           isArchived)))))))
 #+end_src
 
-#+name: srllabsReposXML
-#+begin_src emacs-lisp :var gqldata=srllabsRepos repos-exclude=srllabsReposExclude :results value html
+#+name: nautobotReposXML
+#+begin_src emacs-lisp :var gqldata=nautobotRepos repos-exclude=nautobotReposExclude :results value html
 (setq -gql-data gqldata)
 
 ;; no repos-core variable
@@ -182,7 +193,7 @@ Excluded Repositories
 
                        ;; (repo-core? (member raw-name repos-core))
 
-                       (path-dirs (list "srl-labs" raw-name))
+                       (path-dirs (list "nautobot" raw-name))
 
                        ;; (path-dirs (cond (repo-core? (list "core" raw-name))
                        ;;                 (t (list "misc" raw-name))))
@@ -200,15 +211,136 @@ Excluded Repositories
     (string-join "\n")))
 #+end_src
 
-#+RESULTS: srllabsReposXML
+#+RESULTS: nautobotReposXML
 
 
 ** Generate XML
 
-Generate =srllabs.xml=
+Generate =nautobot.xml=
 
-#+begin_src xml :tangle srllabs.xml :noweb yes
+#+begin_src xml :tangle nautobot.xml :noweb yes
 <manifest>
-  <<srllabsReposXML()>>
+  <<nautobotReposXML()>>
+</manifest>
+#+end_src
+
+* Netbox
+
+Ooof [[https://github.com/netbox-community/devicetype-library][netbox-community/devicetype-library]] is 600 MB ... but it's kinda useful.
+hmmm
+
+#+name: netboxMetadata
+#+call: fetchMetadata(gh-org="netbox-community")
+
+#+RESULTS: netboxMetadata
+| netbox-community | devicetype-library         | 589102 | master        | false | 2025-06-14T23:49:25Z |
+| netbox-community | netbox                     | 138782 | main          | false | 2025-06-14T18:44:57Z |
+| netbox-community | go-netbox                  |  16654 | master        | false | 2025-05-31T02:14:06Z |
+| netbox-community | netbox-zero-to-hero        |   9926 | main          | false | 2025-06-02T21:59:07Z |
+| netbox-community | netbox-demo-data           |   6434 | master        | false | 2025-05-02T11:53:22Z |
+| netbox-community | netbox-bgp                 |   6415 | develop       | false | 2025-06-14T07:49:20Z |
+| netbox-community | netbox-napalm-plugin       |   4836 | main          | false | 2025-06-08T14:18:33Z |
+| netbox-community | ansible_modules            |   4730 | devel         | false | 2025-06-07T12:28:10Z |
+| netbox-community | netbox-topology-views      |   3390 | develop       | false | 2025-06-12T15:16:54Z |
+| netbox-community | netbox-acls                |   3134 | dev           | false | 2025-05-24T09:44:34Z |
+| netbox-community | netbox-qrcode              |   2762 | master        | false | 2025-06-06T05:52:57Z |
+| netbox-community | netbox-floorplan-plugin    |   2116 | master        | false | 2025-05-25T19:52:21Z |
+| netbox-community | netbox-operator            |   1872 | main          | false | 2025-06-11T06:11:45Z |
+| netbox-community | netbox-reorder-rack        |   1691 | main          | false | 2025-06-12T17:30:57Z |
+| netbox-community | netbox-chart               |   1519 | main          | false | 2025-06-14T21:18:03Z |
+| netbox-community | pynetbox                   |   1390 | master        | false | 2025-06-03T13:25:12Z |
+| netbox-community | netbox-docker              |   1310 | release       | false | 2025-06-13T21:57:00Z |
+| netbox-community | netbox-python              |    661 | main          | false | 2025-05-02T11:21:16Z |
+| netbox-community | cookiecutter-netbox-plugin |    655 | main          | false | 2025-06-02T12:46:45Z |
+| netbox-community | netbox-healthcheck-plugin  |    629 | main          | false | 2025-05-15T19:36:38Z |
+| netbox-community | netbox-plugin-tutorial     |    556 | main          | false | 2025-05-21T02:35:38Z |
+| netbox-community | netbox.dev-old             |    397 | master        | false | 2024-09-27T22:52:34Z |
+| netbox-community | customizations             |    131 | master        | false | 2025-06-11T07:43:07Z |
+| netbox-community | Device-Type-Library-Import |     80 | develop       | false | 2025-06-14T23:49:22Z |
+| netbox-community | netdev.chat                |     29 | master        | false | 2025-06-05T13:33:14Z |
+| netbox-community | awesome-netbox             |     28 | main          | false | 2025-06-10T13:00:26Z |
+| netbox-community | netbox-plugin-demo         |     27 | step11-search | false | 2024-10-25T06:25:29Z |
+| netbox-community | netbox-demo                |     12 | master        | false | 2025-05-02T11:20:36Z |
+| netbox-community | migration-scripts          |      7 | main          | false | 2025-05-02T11:20:43Z |
+| netbox-community | forklift-test              |      7 | main          | false | 2024-02-22T14:00:26Z |
+
+Excluded Repositories
+
+#+NAME: netboxReposExclude
+| netbox.dev-old    |
+| migration-scripts |
+| forklift-test     |
+
+** Netbox Repos
+
+#+name: netboxRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "netbox-community"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: netboxReposXML
+#+begin_src emacs-lisp :var gqldata=netboxRepos repos-exclude=netboxReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "netbox-community" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: netboxReposXML
+
+
+** Generate XML
+
+Generate =netbox.xml=
+
+#+begin_src xml :tangle netbox.xml :noweb yes
+<manifest>
+  <<netboxReposXML()>>
 </manifest>
 #+end_src

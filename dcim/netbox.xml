@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="netbox-community/ansible_modules" path="netbox-community/ansible_modules" revision="refs/heads/devel" remote="github"/>
+  <project name="netbox-community/awesome-netbox" path="netbox-community/awesome-netbox" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/cookiecutter-netbox-plugin" path="netbox-community/cookiecutter-netbox-plugin" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/customizations" path="netbox-community/customizations" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/Device-Type-Library-Import" path="netbox-community/Device-Type-Library-Import" revision="refs/heads/develop" remote="github"/>
+  <project name="netbox-community/devicetype-library" path="netbox-community/devicetype-library" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/go-netbox" path="netbox-community/go-netbox" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/netbox" path="netbox-community/netbox" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netbox-acls" path="netbox-community/netbox-acls" revision="refs/heads/dev" remote="github"/>
+  <project name="netbox-community/netbox-bgp" path="netbox-community/netbox-bgp" revision="refs/heads/develop" remote="github"/>
+  <project name="netbox-community/netbox-chart" path="netbox-community/netbox-chart" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netbox-demo" path="netbox-community/netbox-demo" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/netbox-demo-data" path="netbox-community/netbox-demo-data" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/netbox-docker" path="netbox-community/netbox-docker" revision="refs/heads/release" remote="github"/>
+  <project name="netbox-community/netbox-floorplan-plugin" path="netbox-community/netbox-floorplan-plugin" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/netbox-healthcheck-plugin" path="netbox-community/netbox-healthcheck-plugin" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netbox-napalm-plugin" path="netbox-community/netbox-napalm-plugin" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netbox-operator" path="netbox-community/netbox-operator" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netbox-plugin-demo" path="netbox-community/netbox-plugin-demo" revision="refs/heads/step11-search" remote="github"/>
+  <project name="netbox-community/netbox-plugin-tutorial" path="netbox-community/netbox-plugin-tutorial" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netbox-python" path="netbox-community/netbox-python" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netbox-qrcode" path="netbox-community/netbox-qrcode" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/netbox-reorder-rack" path="netbox-community/netbox-reorder-rack" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netbox-topology-views" path="netbox-community/netbox-topology-views" revision="refs/heads/develop" remote="github"/>
+  <project name="netbox-community/netbox-zero-to-hero" path="netbox-community/netbox-zero-to-hero" revision="refs/heads/main" remote="github"/>
+  <project name="netbox-community/netdev.chat" path="netbox-community/netdev.chat" revision="refs/heads/master" remote="github"/>
+  <project name="netbox-community/pynetbox" path="netbox-community/pynetbox" revision="refs/heads/master" remote="github"/>
+</manifest>

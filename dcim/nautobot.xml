@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="nautobot/100-days-of-nautobot" path="nautobot/100-days-of-nautobot" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/community" path="nautobot/community" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/cookiecutter-nautobot-app" path="nautobot/cookiecutter-nautobot-app" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/demo-designs" path="nautobot/demo-designs" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/demo-gc-backups" path="nautobot/demo-gc-backups" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/demo-gc-generated-configs" path="nautobot/demo-gc-generated-configs" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/demo-gc-templates" path="nautobot/demo-gc-templates" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/demo-git-datasource" path="nautobot/demo-git-datasource" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/devicetype-library" path="nautobot/devicetype-library" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/docs-landing-page" path="nautobot/docs-landing-page" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/go-nautobot" path="nautobot/go-nautobot" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/helm-charts" path="nautobot/helm-charts" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot" path="nautobot/nautobot" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-ansible" path="nautobot/nautobot-ansible" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-bgp-models" path="nautobot/nautobot-app-bgp-models" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-capacity-metrics" path="nautobot/nautobot-app-capacity-metrics" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-chatops" path="nautobot/nautobot-app-chatops" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-circuit-maintenance" path="nautobot/nautobot-app-circuit-maintenance" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-data-validation-engine" path="nautobot/nautobot-app-data-validation-engine" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-design-builder" path="nautobot/nautobot-app-design-builder" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-dev-example" path="nautobot/nautobot-app-dev-example" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-device-lifecycle-mgmt" path="nautobot/nautobot-app-device-lifecycle-mgmt" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-device-onboarding" path="nautobot/nautobot-app-device-onboarding" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-dns-models" path="nautobot/nautobot-app-dns-models" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-firewall-models" path="nautobot/nautobot-app-firewall-models" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-floor-plan" path="nautobot/nautobot-app-floor-plan" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-golden-config" path="nautobot/nautobot-app-golden-config" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-netbox-importer" path="nautobot/nautobot-app-netbox-importer" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-nornir" path="nautobot/nautobot-app-nornir" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-secrets-providers" path="nautobot/nautobot-app-secrets-providers" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-ssot" path="nautobot/nautobot-app-ssot" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-version-control" path="nautobot/nautobot-app-version-control" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-app-welcome-wizard" path="nautobot/nautobot-app-welcome-wizard" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-arista-cloudvision-importer" path="nautobot/nautobot-arista-cloudvision-importer" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/nautobot-docker-compose" path="nautobot/nautobot-docker-compose" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/nautobot-lab" path="nautobot/nautobot-lab" revision="refs/heads/main" remote="github"/>
+  <project name="nautobot/nornir-nautobot" path="nautobot/nornir-nautobot" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/pylint-nautobot" path="nautobot/pylint-nautobot" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/pynautobot" path="nautobot/pynautobot" revision="refs/heads/develop" remote="github"/>
+  <project name="nautobot/terraform-provider-nautobot" path="nautobot/terraform-provider-nautobot" revision="refs/heads/main" remote="github"/>
+</manifest>
