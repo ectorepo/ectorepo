@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
@@ -10,5 +9,5 @@
   <!-- wpilibsuite,robotpy,frcmisc: 4GB (4/15/2025) -->
   <include name="frc/2025.xml"/>
   <include name="frc/bbFrc.xml"/>
-  <include name="frc/ctr.xml"/>
+  <include name="frc/ctre.xml"/>
 </manifest>
