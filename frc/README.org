@@ -20,7 +20,7 @@ repository.
   <!-- wpilibsuite,robotpy,frcmisc: 4GB (4/15/2025) -->
   <include name="frc/2025.xml"/>
   <include name="frc/bbFrc.xml">/
-  <include name="frc/ctr.xml"/>
+  <include name="frc/ctre.xml"/>
 </manifest>
 #+end_src
 
@@ -83,21 +83,22 @@ Generate =wpilibsuite.xml=
 </manifest>
 #+end_src
 
-** 2025 Teams
+** 2025 Robots
 
 #+begin_src xml :tangle 2025.xml :noweb yes
 <manifest>
   <project name="Mechanical-Advantage/RobotCode2025Public" path="2025/Mechanical-Advantage/RobotCode2025Public" revision="refs/heads/main" />
+  <project name="Gregadeaux/TrainingDay2025Simulation" path="robots/TrainingDay2025Simulation" revision="refs/heads/main" />
 </manifest>
 #+end_src
 
 ** Cross The Road Electronics
 
-#+begin_src xml :tangle ctr.xml :noweb yes
+#+begin_src xml :tangle ctre.xml :noweb yes
 <manifest>
-  <project name="CrossTheRoadElec/Device-CADs" path="ctr/Device-CADs" revision="refs/heads/master" />
-  <project name="CrossTheRoadElec/Phoenix6-Documentation" path="ctr/Phoenix6-Documentation" revision="refs/heads/main" />
-  <project name="CrossTheRoadElec/Phoenix6-Examples" path="ctr/Phoenix6-Examples" revision="refs/heads/main" />
+  <project name="CrossTheRoadElec/Device-CADs" path="ctre/Device-CADs" revision="refs/heads/master" />
+  <project name="CrossTheRoadElec/Phoenix6-Documentation" path="ctre/Phoenix6-Documentation" revision="refs/heads/main" />
+  <project name="CrossTheRoadElec/Phoenix6-Examples" path="ctre/Phoenix6-Examples" revision="refs/heads/main" />
 </manifest>
 #+end_src
 

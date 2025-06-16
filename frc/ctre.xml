@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="CrossTheRoadElec/Device-CADs" path="ctre/Device-CADs" revision="refs/heads/master"/>
+  <project name="CrossTheRoadElec/Phoenix6-Documentation" path="ctre/Phoenix6-Documentation" revision="refs/heads/main"/>
+  <project name="CrossTheRoadElec/Phoenix6-Examples" path="ctre/Phoenix6-Examples" revision="refs/heads/main"/>
+</manifest>
