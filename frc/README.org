@@ -88,7 +88,7 @@ Generate =wpilibsuite.xml=
 #+begin_src xml :tangle 2025.xml :noweb yes
 <manifest>
   <project name="Mechanical-Advantage/RobotCode2025Public" path="2025/Mechanical-Advantage/RobotCode2025Public" revision="refs/heads/main" />
-  <project name="Gregadeaux/TrainingDay2025Simulation" path="robots/TrainingDay2025Simulation" revision="refs/heads/main" />
+  <project name="Gregadeaux/TrainingDay2025Simulation" path="2025/TrainingDay2025Simulation" revision="refs/heads/main" />
 </manifest>
 #+end_src
 
