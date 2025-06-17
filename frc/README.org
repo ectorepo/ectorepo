@@ -99,6 +99,8 @@ Generate =wpilibsuite.xml=
   <project name="CrossTheRoadElec/Device-CADs" path="ctre/Device-CADs" revision="refs/heads/master" />
   <project name="CrossTheRoadElec/Phoenix6-Documentation" path="ctre/Phoenix6-Documentation" revision="refs/heads/main" />
   <project name="CrossTheRoadElec/Phoenix6-Examples" path="ctre/Phoenix6-Examples" revision="refs/heads/main" />
+  <project name="CrossTheRoadElec/Phoenix5-Documentation" path="ctre/Phoenix5-Documentation" revision="refs/heads/dev" />
+  <project name="CrossTheRoadElec/Phoenix5-Examples" path="ctre/Phoenix5-Examples" revision="refs/heads/master" />
 </manifest>
 #+end_src
 
