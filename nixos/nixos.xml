@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="nixos/amis" path="nixos/amis" />
+  <project name="nixos/cabal2nix" path="nixos/cabal2nix" />
+  <project name="nixos/calamares-nixos-extensions" path="nixos/calamares-nixos-extensions" />
+  <project name="nixos/flake-regressions" path="nixos/flake-regressions" />
+  <project name="nixos/infra" path="nixos/infra" />
+  <project name="nixos/nix" path="nixos/nix" />
+  <project name="nixos/nix-idea" path="nixos/nix-idea" />
+  <project name="nixos/nixos-metrics" path="nixos/nixos-metrics" />
+  <project name="nixos/nix-pills" path="nixos/nix-pills" />
+  <project name="nixos/nix.dev" path="nixos/nix.dev" />
+  <project name="nixos/nixops" path="nixos/nixops" />
+  <project name="nixos/nixos-hardware" path="nixos/nixos-hardware" />
+  <project name="nixos/nixos-search" path="nixos/nixos-search" />
+  <project name="nixos/nixpkgs" path="nixos/nixpkgs" />
+  <project name="nixos/nixpkgs-committers" path="nixos/nixpkgs-committers" />
+  <project name="nixos/org" path="nixos/org" />
+  <project name="nixos/patchelf" path="nixos/patchelf" />
+</manifest>
