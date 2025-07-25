@@ -15,6 +15,6 @@
   <project name="nixos/nixos-search" path="nixos/nixos-search" revision="refs/heads/main" />
   <project name="nixos/nixpkgs" path="nixos/nixpkgs" />
   <project name="nixos/nixpkgs-committers" path="nixos/nixpkgs-committers" revision="refs/heads/main" />
-  <project name="nixos/org" path="nixos/org" revision="refs/heads/main" revision="refs/heads/main" />
+  <project name="nixos/org" path="nixos/org" revision="refs/heads/main" />
   <project name="nixos/patchelf" path="nixos/patchelf" />
 </manifest>
