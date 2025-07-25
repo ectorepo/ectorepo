@@ -9,7 +9,7 @@
   <project name="nixos/nix-idea" path="nixos/nix-idea" />
   <project name="nixos/nixos-metrics" path="nixos/nixos-metrics" revision="refs/heads/main" />
   <project name="nixos/nix-pills" path="nixos/nix-pills" />
-  <project name="nixos/nix.dev" path="nixos/nix.dev" revision="refs/heads/main" />
+  <project name="nixos/nix.dev" path="nixos/nix.dev" />
   <project name="nixos/nixops" path="nixos/nixops" />
   <project name="nixos/nixos-hardware" path="nixos/nixos-hardware" />
   <project name="nixos/nixos-search" path="nixos/nixos-search" revision="refs/heads/main" />
