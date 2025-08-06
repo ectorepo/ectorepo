@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="hyprland-community/awesome-hyprland" path="hyprland-community/awesome-hyprland" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hpr-scratcher" path="hyprland-community/hpr-scratcher" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hypr-binds" path="hyprland-community/hypr-binds" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hypr-trans" path="hyprland-community/hypr-trans" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hyprcombot" path="hyprland-community/hyprcombot" revision="refs/heads/master" remote="github"/>
+  <project name="hyprland-community/hyprland-autoname-workspaces" path="hyprland-community/hyprland-autoname-workspaces" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hyprland-config-rename-proposals" path="hyprland-community/hyprland-config-rename-proposals" revision="refs/heads/master" remote="github"/>
+  <project name="hyprland-community/hyprland-plugin-template" path="hyprland-community/hyprland-plugin-template" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hyprland-rs" path="hyprland-community/hyprland-rs" revision="refs/heads/master" remote="github"/>
+  <project name="hyprland-community/hyprland.c" path="hyprland-community/hyprland.c" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hyprls" path="hyprland-community/hyprls" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/Hyprmaid" path="hyprland-community/Hyprmaid" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hyprnix" path="hyprland-community/hyprnix" revision="refs/heads/master" remote="github"/>
+  <project name="hyprland-community/hyprparse" path="hyprland-community/hyprparse" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/hyprset" path="hyprland-community/hyprset" revision="refs/heads/master" remote="github"/>
+  <project name="hyprland-community/hyprtheme" path="hyprland-community/hyprtheme" revision="refs/heads/master" remote="github"/>
+  <project name="hyprland-community/hyprweb" path="hyprland-community/hyprweb" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/MonitorMaestro" path="hyprland-community/MonitorMaestro" revision="refs/heads/master" remote="github"/>
+  <project name="hyprland-community/pyprland" path="hyprland-community/pyprland" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/submissions" path="hyprland-community/submissions" revision="refs/heads/main" remote="github"/>
+  <project name="hyprland-community/theme-repo" path="hyprland-community/theme-repo" revision="refs/heads/main" remote="github"/>
+</manifest>

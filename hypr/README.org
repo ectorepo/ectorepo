@@ -1,0 +1,292 @@
+#+title:     Ectorepo: Hypr
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="hypr/hyprwm.xml"/>
+  <include name="hypr/hyprcommunity.xml"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Setup
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+* Hyprwm
+
+Clone bundle sizes
+
+#+name: fetchMetadata
+#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
+#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
+# User-Agent: dcunited001 # um okay that doesn't work
+# https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent
+
+GET :gh-url-base/:gh-url-path
+:headers
+#+end_src
+
+#+RESULTS: fetchMetadata
+
+#+name: hyprwmMetadata
+#+call: fetchMetadata(gh-org="hyprwm")
+
+#+RESULTS: hyprwmMetadata
+| hyprwm | hyprland-website            | 208290 | main   | false | 2025-08-05T18:28:00Z |
+| hyprwm | Hyprland                    |  71456 | main   | false | 2025-08-05T23:28:31Z |
+| hyprwm | wlroots-hyprland            |  11202 | main   | true  | 2025-05-05T07:46:53Z |
+| hyprwm | .github                     |   9455 | main   | false | 2025-04-11T13:01:09Z |
+| hyprwm | hyprland-wiki               |   2346 | main   | false | 2025-08-04T19:29:45Z |
+| hyprwm | hyprland-welcome            |   1368 | main   | false | 2025-03-08T09:04:33Z |
+| hyprwm | aur                         |    886 | main   | false | 2025-01-29T07:32:05Z |
+| hyprwm | hyprlock                    |    691 | main   | false | 2025-08-05T19:14:05Z |
+| hyprwm | xdg-desktop-portal-hyprland |    567 | master | false | 2025-08-05T19:47:30Z |
+| hyprwm | aquamarine                  |    486 | main   | false | 2025-08-05T20:20:12Z |
+| hyprwm | hyprgraphics                |    447 | main   | false | 2025-08-04T10:56:57Z |
+| hyprwm | hyprsysteminfo              |    405 | main   | false | 2025-08-01T22:10:26Z |
+| hyprwm | hyprland-plugins            |    372 | main   | false | 2025-08-05T19:48:05Z |
+| hyprwm | Hypr                        |    361 | main   | false | 2025-08-05T19:47:48Z |
+| hyprwm | hyprpaper                   |    226 | main   | false | 2025-08-05T19:47:54Z |
+| hyprwm | hyprlang                    |    195 | main   | false | 2025-07-31T01:29:08Z |
+| hyprwm | hyprcursor                  |    167 | main   | false | 2025-08-04T02:27:17Z |
+| hyprwm | hyprutils                   |    159 | main   | false | 2025-07-31T01:30:32Z |
+| hyprwm | contrib                     |    146 | main   | false | 2025-08-05T08:17:58Z |
+| hyprwm | hyprpicker                  |    131 | main   | false | 2025-08-05T19:48:00Z |
+| hyprwm | RFCs                        |     98 | main   | false | 2025-04-21T05:35:24Z |
+| hyprwm | hypridle                    |     91 | main   | false | 2025-08-05T13:22:47Z |
+| hyprwm | hyprpolkitagent             |     56 | main   | false | 2025-08-04T13:08:12Z |
+| hyprwm | hyprland-qt-support         |     53 | main   | false | 2025-07-31T01:03:11Z |
+| hyprwm | hyprwayland-scanner         |     48 | main   | false | 2025-07-31T01:03:37Z |
+| hyprwm | hyprland-protocols          |     47 | main   | false | 2025-08-01T09:28:59Z |
+| hyprwm | hyprsunset                  |     41 | main   | false | 2025-08-05T10:38:12Z |
+| hyprwm | hyprland-infra              |     40 | main   | false | 2025-04-04T04:13:38Z |
+| hyprwm | hyprland-qtutils            |     31 | main   | false | 2025-07-31T01:31:14Z |
+| hyprwm | standards                   |      8 | main   | false | 2025-04-04T04:13:40Z |
+
+Excluded Repositories
+
+#+NAME: hyprwmReposExclude
+| .github   |
+| standards |
+
+** Hyprwm Repos
+
+#+name: hyprwmRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "hyprwm"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: hyprwmReposXML
+#+begin_src emacs-lisp :var gqldata=hyprwmRepos repos-exclude=hyprwmReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "hyprwm" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: hyprwmReposXML
+
+** Generate XML
+
+Generate =hyprwm.xml=
+
+#+begin_src xml :tangle hyprwm.xml :noweb yes
+<manifest>
+  <<hyprwmReposXML()>>
+</manifest>
+#+end_src
+
+* Hyprwm
+
+#+name: hyprcommunityMetadata
+#+call: fetchMetadata(gh-org="hyprland-community")
+
+#+RESULTS: hyprcommunityMetadata
+| hyprland-community | hyprweb                          | 7463 | main   | false | 2025-06-02T21:48:30Z |
+| hyprland-community | _hyprtheme-theme-wip             | 5259 | main   | false | 2024-06-18T19:07:41Z |
+| hyprland-community | hyprls                           | 4844 | main   | false | 2025-08-04T06:08:12Z |
+| hyprland-community | hypr-binds                       | 2363 | main   | false | 2025-07-09T23:12:10Z |
+| hyprland-community | pyprland                         | 1781 | main   | false | 2025-07-31T15:15:33Z |
+| hyprland-community | hyprland-rs                      |  830 | master | false | 2025-08-02T21:03:03Z |
+| hyprland-community | awesome-hyprland                 |  288 | main   | false | 2025-08-06T00:22:25Z |
+| hyprland-community | hyprland-autoname-workspaces     |  274 | main   | false | 2025-08-03T10:52:25Z |
+| hyprland-community | hyprland-py                      |  239 | master | true  | 2025-06-12T10:13:18Z |
+| hyprland-community | hyprtheme                        |  233 | master | false | 2025-06-26T22:31:41Z |
+| hyprland-community | hyprnix                          |  186 | master | false | 2025-08-05T13:20:31Z |
+| hyprland-community | Hyprkeys                         |  176 | main   | true  | 2025-07-14T00:38:20Z |
+| hyprland-community | hyprset                          |  158 | master | false | 2025-07-31T16:48:19Z |
+| hyprland-community | theme-repo                       |  101 | main   | false | 2025-07-28T11:25:19Z |
+| hyprland-community | MonitorMaestro                   |   92 | master | false | 2025-04-09T15:16:24Z |
+| hyprland-community | hypract                          |   65 | master | true  | 2025-03-18T17:31:02Z |
+| hyprland-community | hpr-scratcher                    |   53 | main   | false | 2025-04-20T07:07:03Z |
+| hyprland-community | hyprparse                        |   52 | main   | false | 2025-06-28T11:06:41Z |
+| hyprland-community | hyprweb-old                      |   31 | main   | true  | 2024-01-27T20:15:51Z |
+| hyprland-community | Fylgja                           |   31 | main   | true  | 2024-08-19T09:08:26Z |
+| hyprland-community | Hyprmaid                         |   23 | main   | false | 2024-06-19T15:03:57Z |
+| hyprland-community | hyprland.c                       |   21 | main   | false | 2024-02-19T06:20:25Z |
+| hyprland-community | hypr-trans                       |   21 | main   | false | 2025-08-01T03:23:53Z |
+| hyprland-community | hyprland-plugin-template         |   16 | main   | false | 2025-02-24T16:32:43Z |
+| hyprland-community | .github                          |    6 | main   | false | 2024-10-12T01:40:14Z |
+| hyprland-community | submissions                      |    4 | main   | false | 2025-02-04T00:09:43Z |
+| hyprland-community | hyprland-config-rename-proposals |    1 | master | false | 2024-04-23T14:50:06Z |
+| hyprland-community | community                        |    0 | main   | false | 2023-02-11T05:17:15Z |
+| hyprland-community | hyprcombot                       |    0 | master | false | 2023-04-15T06:14:26Z |
+
+Excluded Repositories
+
+#+NAME: hyprcommunityReposExclude
+| .github              |
+| standards            |
+| community            |
+| _hyprtheme-theme-wip |
+
+#+name: hyprcommunityRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "hyprland-community"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: hyprcommunityReposXML
+#+begin_src emacs-lisp :var gqldata=hyprcommunityRepos repos-exclude=hyprcommunityReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "hyprland-community" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+** Generate XML
+
+Generate =hyprcommunity.xml=
+
+#+begin_src xml :tangle hyprcommunity.xml :noweb yes
+<manifest>
+  <<hyprcommunityReposXML()>>
+</manifest>
+#+end_src
