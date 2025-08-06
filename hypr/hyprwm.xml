@@ -14,7 +14,6 @@
   <project name="hyprwm/hyprland-protocols" path="hyprwm/hyprland-protocols" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-qt-support" path="hyprwm/hyprland-qt-support" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-qtutils" path="hyprwm/hyprland-qtutils" revision="refs/heads/main" remote="github"/>
-  <project name="hyprwm/hyprland-website" path="hyprwm/hyprland-website" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-welcome" path="hyprwm/hyprland-welcome" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-wiki" path="hyprwm/hyprland-wiki" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprlang" path="hyprwm/hyprlang" revision="refs/heads/main" remote="github"/>

@@ -102,8 +102,11 @@ GET :gh-url-base/:gh-url-path
 Excluded Repositories
 
 #+NAME: hyprwmReposExclude
-| .github   |
-| standards |
+| .github          |
+| standards        |
+| hyprland-website |
+
++ hyprland-website never finishes
 
 ** Hyprwm Repos
 
