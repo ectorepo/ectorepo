@@ -181,7 +181,7 @@ Generate =hyprwm.xml=
 </manifest>
 #+end_src
 
-* Hyprwm
+* hyprland-community
 
 #+name: hyprcommunityMetadata
 #+call: fetchMetadata(gh-org="hyprland-community")

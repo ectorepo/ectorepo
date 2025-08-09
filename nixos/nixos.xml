@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <project name="nixos/amis" path="nixos/amis" revision="refs/heads/main" />
-  <project name="nixos/cabal2nix" path="nixos/cabal2nix" />
-  <project name="nixos/calamares-nixos-extensions" path="nixos/calamares-nixos-extensions" revision="refs/heads/calamares" />
-  <project name="nixos/flake-regressions" path="nixos/flake-regressions" revision="refs/heads/main" />
-  <project name="nixos/infra" path="nixos/infra" revision="refs/heads/main" />
-  <project name="nixos/nix" path="nixos/nix" />
-  <project name="nixos/nix-idea" path="nixos/nix-idea" />
-  <project name="nixos/nixos-metrics" path="nixos/nixos-metrics" revision="refs/heads/main" />
-  <project name="nixos/nix-pills" path="nixos/nix-pills" />
-  <project name="nixos/nix.dev" path="nixos/nix.dev" />
-  <project name="nixos/nixops" path="nixos/nixops" />
-  <project name="nixos/nixos-hardware" path="nixos/nixos-hardware" />
-  <project name="nixos/nixos-search" path="nixos/nixos-search" revision="refs/heads/main" />
-  <project name="nixos/nixpkgs" path="nixos/nixpkgs" />
-  <project name="nixos/nixpkgs-committers" path="nixos/nixpkgs-committers" revision="refs/heads/main" />
-  <project name="nixos/org" path="nixos/org" revision="refs/heads/main" />
-  <project name="nixos/patchelf" path="nixos/patchelf" />
+  <project name="NixOS/amis" path="nixos/amis" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/branding" path="nixos/branding" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/bundlers" path="nixos/bundlers" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/cabal2nix" path="nixos/cabal2nix" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/calamares-nixos-extensions" path="nixos/calamares-nixos-extensions" revision="refs/heads/calamares" remote="github"/>
+  <project name="NixOS/darwin-stubs" path="nixos/darwin-stubs" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/experimental-nix-installer" path="nixos/experimental-nix-installer" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/flake-registry" path="nixos/flake-registry" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/flake-regressions" path="nixos/flake-regressions" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/flake-regressions-data" path="nixos/flake-regressions-data" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/foundation" path="nixos/foundation" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/GSoC" path="nixos/GSoC" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/hydra" path="nixos/hydra" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/infra" path="nixos/infra" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/jailbreak-cabal" path="nixos/jailbreak-cabal" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/marketing" path="nixos/marketing" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/mobile-nixos-website" path="nixos/mobile-nixos-website" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nix" path="nixos/nix" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nix-idea" path="nixos/nix-idea" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nix-mode" path="nixos/nix-mode" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nix-pills" path="nixos/nix-pills" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nix.dev" path="nixos/nix.dev" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nixfmt" path="nixos/nixfmt" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nixops" path="nixos/nixops" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nixops-aws" path="nixos/nixops-aws" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nixops-hetzner" path="nixos/nixops-hetzner" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nixos-channel-scripts" path="nixos/nixos-channel-scripts" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nixos-common-styles" path="nixos/nixos-common-styles" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/nixos-hardware" path="nixos/nixos-hardware" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nixos-homepage" path="nixos/nixos-homepage" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/nixos-metrics" path="nixos/nixos-metrics" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/nixos-search" path="nixos/nixos-search" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/nixos-status" path="nixos/nixos-status" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/nixos-wiki-infra" path="nixos/nixos-wiki-infra" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/nixpkgs" path="nixos/nixpkgs" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/nixpkgs-committers" path="nixos/nixpkgs-committers" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/nixpkgs-merge-bot" path="nixos/nixpkgs-merge-bot" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/nixpkgs-vet" path="nixos/nixpkgs-vet" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/ofborg" path="nixos/ofborg" revision="refs/heads/released" remote="github"/>
+  <project name="NixOS/ofborg-viewer" path="nixos/ofborg-viewer" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/org" path="nixos/org" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/patchelf" path="nixos/patchelf" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/release-wiki" path="nixos/release-wiki" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/reproducible.nixos.org" path="nixos/reproducible.nixos.org" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/rfc39" path="nixos/rfc39" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/rfc39-record" path="nixos/rfc39-record" revision="refs/heads/main" remote="github"/>
+  <project name="NixOS/rfcs" path="nixos/rfcs" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/templates" path="nixos/templates" revision="refs/heads/master" remote="github"/>
 </manifest>

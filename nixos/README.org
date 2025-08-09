@@ -1,0 +1,316 @@
+#+title:     Ectorepo: NixOS
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="nixos/nixos.xml"/>
+  <include name="nixos/nixcommunity.xml"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Setup
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+* Nixos
+
+Clone bundle sizes
+
+#+name: fetchMetadata
+#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
+#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
+# User-Agent: dcunited001 # um okay that doesn't work
+# https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent
+
+GET :gh-url-base/:gh-url-path
+:headers
+#+end_src
+
+#+RESULTS: fetchMetadata
+
+#+name: nixosMetadata
+#+call: fetchMetadata(gh-org="nixos")
+
+#+RESULTS: nixosMetadata
+| NixOS | cabal2nix             |    3380 | master         | false | 2025-08-04T17:50:56Z |
+| NixOS | distribution-nixpkgs  |     103 | moved          | true  | 2024-02-27T09:35:22Z |
+| NixOS | foundation            |    2782 | master         | false | 2025-08-06T11:07:01Z |
+| NixOS | hackage-db            |     106 | moved          | true  | 2024-02-27T09:35:25Z |
+| NixOS | hydra                 |   16613 | master         | false | 2025-08-07T15:30:02Z |
+| NixOS | hydra-ant-logger      |    1456 | master         | true  | 2024-02-27T09:34:46Z |
+| NixOS | hydra-provisioner     |      15 | master         | true  | 2025-01-10T10:11:16Z |
+| NixOS | infra                 |    7586 | main           | false | 2025-08-08T14:42:11Z |
+| NixOS | jailbreak-cabal       |      47 | master         | false | 2025-07-17T16:11:33Z |
+| NixOS | language-nix          |      95 | moved          | true  | 2024-02-27T09:35:30Z |
+| NixOS | mvn2nix-maven-plugin  |     181 | master         | true  | 2024-11-25T11:31:28Z |
+| NixOS | nix                   |  124094 | master         | false | 2025-08-08T23:48:30Z |
+| NixOS | nix.dev               |    2084 | master         | false | 2025-08-08T23:08:10Z |
+| NixOS | nix-eclipse           |   16600 | master         | true  | 2024-08-22T13:40:53Z |
+| NixOS | nix-mode              |     561 | master         | false | 2025-08-05T16:04:44Z |
+| NixOS | nixops                |    7013 | master         | false | 2025-08-08T05:49:57Z |
+| NixOS | nixops-dashboard      |       0 | master         | false | 2023-02-16T19:24:11Z |
+| NixOS | nixos                 |   14670 | master         | true  | 2025-06-08T20:06:59Z |
+| NixOS | nixos-artwork         |  616120 | master         | true  | 2025-08-05T12:25:15Z |
+| NixOS | nixos-channel-scripts |     246 | master         | false | 2025-07-21T14:48:11Z |
+| NixOS | nixos-hardware        |    2431 | master         | false | 2025-08-07T14:14:07Z |
+| NixOS | nixos-homepage        |   35294 | main           | false | 2025-08-08T18:20:51Z |
+| NixOS | nixos-weekly          |    1231 | master         | true  | 2024-12-29T00:36:28Z |
+| NixOS | nixpart               |     104 | master         | true  | 2025-07-06T02:50:13Z |
+| NixOS | nixpkgs               | 5490317 | master         | false | 2025-08-08T23:44:38Z |
+| NixOS | nixpkgs-channels      |  786893 | nixos-unstable | true  | 2025-06-05T18:07:17Z |
+| NixOS | npm2nix               |     150 | master         | true  | 2024-08-09T19:36:19Z |
+| NixOS | package-list          |      37 | master         | true  | 2024-02-27T09:35:15Z |
+| NixOS | patchelf              |    1245 | master         | false | 2025-08-07T08:04:59Z |
+| NixOS | systemd               |  123696 | nixos-v230     | true  | 2023-02-16T19:23:49Z |
+
+Excluded Repositories
+
+#+NAME: nixosReposExclude
+| .github                        |
+| first-time-contribution-tagger |
+| hackage-db                     |
+| hydra-ant-logger               |
+| images                         |
+| language-nix                   |
+| mobile-nix-website             |
+| moderation                     |
+| mvn2nix-maven-plugin           |
+| nix-constitutional-assembly    |
+| nix-eclipse                    |
+| nixops-dashboard               |
+| nixos                          |
+| nixos-artwork                  |
+| nixos-weekly                   |
+| nixpart                        |
+| rfc-steering-committee         |
+| sc-election-2024               |
+| surveys                        |
+| systemd                        |
+| teams-collaboration            |
+| whats-new-in-nix               |
+
+
+** Nixos Repos
+
+#+name: nixosRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "nixos"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: nixosReposXML
+#+begin_src emacs-lisp :var gqldata=nixosRepos repos-exclude=nixosReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "nixos" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: nixosReposXML
+
+** Generate XML
+
+Generate =nixos.xml=
+
+#+begin_src xml :tangle nixos.xml :noweb yes
+<manifest>
+  <<nixosReposXML()>>
+</manifest>
+#+end_src
+
+* nix-community
+
+#+name: nixcommunityMetadata
+#+call: fetchMetadata(gh-org="nix-community")
+
+#+RESULTS: nixcommunityMetadata
+| nix-community | NUR                   | 162654 | main   | false | 2025-08-08T21:54:14Z |
+| nix-community | home-manager          | 109413 | master | false | 2025-08-08T23:37:49Z |
+| nix-community | pypi2nix              |  33671 | master | true  | 2025-06-05T18:07:08Z |
+| nix-community | luarocks-nix          |  12588 | master | false | 2025-04-09T03:52:26Z |
+| nix-community | todomvc-nix           |  10130 | master | false | 2025-07-16T21:02:18Z |
+| nix-community | vulnix                |   4050 | master | false | 2025-08-08T17:02:38Z |
+| nix-community | nixbox                |   1668 | master | false | 2025-07-25T14:01:11Z |
+| nix-community | nix-bundle            |   1478 | master | false | 2025-08-08T06:01:07Z |
+| nix-community | emacs2nix             |   1251 | master | false | 2025-04-05T16:15:40Z |
+| nix-community | nix-emacs             |    986 | master | false | 2025-06-27T17:12:51Z |
+| nix-community | nixpkgs-update        |    941 | main   | false | 2025-08-07T14:14:03Z |
+| nix-community | yarn2nix              |    814 | master | true  | 2025-08-03T04:49:47Z |
+| nix-community | nix-index             |    510 | master | false | 2025-08-08T18:57:54Z |
+| nix-community | builtwithnix.org      |    438 | master | false | 2025-07-08T21:11:35Z |
+| nix-community | nixos-generators      |    333 | master | false | 2025-08-08T19:16:26Z |
+| nix-community | pip2nix               |    320 | master | false | 2025-08-06T04:47:44Z |
+| nix-community | setup.nix             |    319 | master | true  | 2023-06-25T18:32:53Z |
+| nix-community | bundix                |    313 | master | false | 2025-08-01T23:33:03Z |
+| nix-community | pnpm2nix              |    295 | master | false | 2025-07-26T08:43:30Z |
+| nix-community | nix-zsh-completions   |    202 | master | false | 2025-08-05T21:06:20Z |
+| nix-community | nur-packages-template |    162 | main   | false | 2025-08-01T18:03:23Z |
+| nix-community | nixGL                 |    122 | main   | false | 2025-08-08T23:48:13Z |
+| nix-community | mavenix               |    120 | master | false | 2025-05-03T14:55:21Z |
+| nix-community | acpi_call             |    112 | master | false | 2025-08-03T07:09:46Z |
+| nix-community | linuxkit-nix          |     91 | master | true  | 2025-02-16T06:26:55Z |
+| nix-community | nur-update            |     65 | main   | false | 2025-07-28T20:45:59Z |
+| nix-community | vagrant-nixos-plugin  |     50 | master | false | 2025-02-21T23:00:57Z |
+| nix-community | docker-nix            |     40 | master | true  | 2024-12-12T08:14:38Z |
+| nix-community | google-summer-of-code |     29 | master | true  | 2024-02-12T04:12:26Z |
+| nix-community | wiki                  |     11 | master | true  | 2025-06-15T17:51:28Z |
+
+Excluded Repositories
+
+#+NAME: nixcommunityReposExclude
+| .github                    |
+| all-cabal-json             |
+| bundix                     |
+| composer-local-repo-plugin |
+| dream2nix-auto-test        |
+| eask2nix                   |
+
+#+name: nixcommunityRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "nix-community"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: nixcommunityReposXML
+#+begin_src emacs-lisp :var gqldata=nixcommunityRepos repos-exclude=nixcommunityReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "nix-community" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+** Generate XML
+
+Generate =nixcommunity.xml=
+
+#+begin_src xml :tangle nixcommunity.xml :noweb yes
+<manifest>
+  <<nixcommunityReposXML()>>
+</manifest>
+#+end_src
