@@ -55,7 +55,9 @@ A lot of interesting devops/consulting-oriented repos:
 
 
 
-* Babel Setup
+
+* Repo Setup
+** Babel Setup
 
 Check rates:
 
@@ -79,7 +81,7 @@ To avoid confirmations
 #+RESULTS: nrepos
 : 100
 
-* Flakes
+** Flakes
 
 #+begin_src xml :tangle flakes.xml :noweb yes
 <manifest>
@@ -111,7 +113,7 @@ To avoid confirmations
 
 *
 
-* Nixos
+** Nixos
 
 Clone bundle sizes
 
@@ -262,7 +264,7 @@ Excluded Repositories
 
 #+RESULTS: nixosReposXML
 
-** Generate XML
+*** Generate XML
 
 Generate =nixos.xml=
 
@@ -271,7 +273,7 @@ Generate =nixos.xml=
   <<nixosReposXML()>>
 </manifest>
 #+end_src
-* nix-community
+** nix-community
 
 #+name: nixcommunityMetadata
 #+call: fetchMetadata(gh-org="nix-community")
@@ -377,7 +379,7 @@ Excluded Repositories
     (string-join "\n")))
 #+end_src
 
-** Generate XML
+*** Generate XML
 
 Generate =nixcommunity.xml=
 
@@ -387,7 +389,7 @@ Generate =nixcommunity.xml=
 </manifest>
 #+end_src
 
-* Numtide
+** Numtide
 
 #+name: numtideMetadata
 #+call: fetchMetadata(gh-org="numtide")
@@ -504,7 +506,7 @@ Excluded Repositories
     (string-join "\n")))
 #+end_src
 
-** Generate XML
+*** Generate XML
 
 Generate =numtide.xml=
 
