@@ -18,7 +18,7 @@
   <!-- hive -->
   <project name="PrimaMateria/nixos-hive" path="hive/nixos-hive" revision="refs/heads/main" remote="github"/>
   <project name="PrimaMateria/blog-hive" path="hive/blog-hive" revision="refs/heads/main" remote="github"/>
-  <project name="divinix/hive" path="hive/hive" revision="refs/heads/main" remote="github"/>
+  <project name="divnix/hive" path="hive/hive" revision="refs/heads/main" remote="github"/>
   <!-- clan -->
   <project name="clan-lol/clan-core" path="clan/clan-core" revision="refs/heads/main" remote="github"/>
   <project name="clan-lol/clan-infra" path="clan/clan-infra" revision="refs/heads/main" remote="github"/>
