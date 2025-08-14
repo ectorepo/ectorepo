@@ -6,5 +6,5 @@
   <include name="nixos/nixos.xml"/>
   <include name="nixos/nixcommunity.xml"/>
   <include name="nixos/numtide.xml"/>
-  <include name="nixos/flakes.xml/>
+  <include name="nixos/flakes.xml"/>
 </manifest>
