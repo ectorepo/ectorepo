@@ -13,8 +13,49 @@ repository.
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="nixos/nixos.xml"/>
   <include name="nixos/nixcommunity.xml"/>
+  <include name="nixos/numtide.xml"/>
+  <include name="nixos/flakes.xml/>
 </manifest>
 #+end_src
+
+* NixOS Repos
+
+Networking
+
++ [[https://github.com/oddlama/nix-topology?tab=readme-ov-file][oddlama/nix-topology]] looks fantastic 4 homelab
+
+Infra
+
++ [[https://primamateria.github.io/blog/hive/][PrimaMateria's Hive]] (blog on)
+
+Security
+
++ [[https://github.com/cynicsketch/nix-mineral][cynicsketch/nix-mineral]]
+
+CLI
+
++ [[https://github.com/utdemir/nix-tree][utdemir/nix-tree]]
++ nix-visualise
+
+** Numtide
+
+A lot of interesting devops/consulting-oriented repos:
+
++ [[https://github.com/numtide/software-consulting-documents][numtide/software-consulting-documents]] :: copyright-free? as in ... Patron's on
+  me?
++ [[https://github.com/numtide/deploy-kit][numtide/deploy-kit]] :: lightweight Ansible bc why not write your own Nornir?
++ [[https://github.com/numtide/generate-terraform-provider-shim][numtide/software-consulting-documents]]
++ [[https://github.com/numtide/action-cli][numtide/action-cli]]
++ [[https://github.com/numtide/nits][numtide/nits]] :: nix + [[https://docs.nats.io/?_gl=1*16na8r0*_ga*ODgyMTUzOTYxLjE3NTQ5MDgwNjU.*_ga_6242VH03CH*czE3NTQ5MDgwNjQkbzEkZzAkdDE3NTQ5MDgwNjgkajU2JGwwJGgw][nats]]: open source data layer for IoT messaging,
+  cloud-native applications & +microservices+.
+  - share state between services. Jetstream provides the persistence layer.
+  - "when you need lower-level access to persistence streams", move on to using
+    [[https://github.com/nats-io/nats.docs/blob/master/nats-concepts/jetstream/README.md][JetStream]] directly "for more advanced messaging patterns"
++ [[https://github.com/numtide/NixOS-Fleet-Update-Provider][numtide/NixOS-Fleet-Update-Provider​]]
+
+
+
+* Babel Setup
 
 Check rates:
 
@@ -25,10 +66,10 @@ Check rates:
 To avoid confirmations
 
 #+begin_src emacs-lisp
-(setq-local org-confirm-babel-evaluate nil)
+(setq-local org-confirm-babel-evaluate nil
+            org-table-convert-region-max-lines 9999)
 #+end_src
 
-* Setup
 
 #+name: nrepos
 #+begin_src emacs-lisp
@@ -37,6 +78,38 @@ To avoid confirmations
 
 #+RESULTS: nrepos
 : 100
+
+* Flakes
+
+#+begin_src xml :tangle flakes.xml :noweb yes
+<manifest>
+  <project name="mrVanDalo/flake-templates" path="flakes/flake-templates" revision="refs/heads/main" remote="github"/>
+  <!-- security -->
+  <project name="cynicsketch/nix-mineral" path="sec/nix-mineral" revision="refs/heads/main" remote="github"/>
+  <!-- secrets -->
+  <project name="Mic92/sops-nix" path="secrets/sops-nix" revision="refs/heads/master" remote="github"/>
+  <!-- containers -->
+  <project name="SEIAROTg/quadlet-nix" path="cni/quadlet-nix" revision="refs/heads/main" remote="github"/>
+  <!-- networking -->
+  <project name="oddlama/nix-topology" path="net/nix-topology" revision="refs/heads/main" remote="github"/>
+  <project name="divnix/std" path="net/std" revision="refs/heads/main" remote="github"/>
+  <!-- vm -->
+  <project name="Mic92/nixos-shell" path="vm/nixos-shell" revision="refs/heads/master" remote="github"/>
+  <!-- hardware -->
+  <project name="aws/uefi" path="hardware/uefi" revision="refs/heads/main" remote="github"/>
+  <!-- hive -->
+  <project name="PrimaMateria/nixos-hive" path="hive/nixos-hive" revision="refs/heads/main" remote="github"/>
+  <project name="PrimaMateria/blog-hive" path="hive/blog-hive" revision="refs/heads/main" remote="github"/>
+  <project name="divinix/hive" path="hive/hive" revision="refs/heads/main" remote="github"/>
+  <!-- clan -->
+  <project name="clan-lol/clan-core" path="clan/clan-core" revision="refs/heads/main" remote="github"/>
+  <project name="clan-lol/clan-infra" path="clan/clan-infra" revision="refs/heads/main" remote="github"/>
+  <project name="clan-lol/nix-select" path="clan/nix-select" revision="refs/heads/main" remote="github"/>
+  <project name="mrVanDalo/clan-vars-generators" path="clan/clan-vars-generators" revision="refs/heads/main" remote="github"/>
+</manifest>
+#+end_src
+
+*
 
 * Nixos
 
@@ -198,7 +271,6 @@ Generate =nixos.xml=
   <<nixosReposXML()>>
 </manifest>
 #+end_src
-
 * nix-community
 
 #+name: nixcommunityMetadata
@@ -312,5 +384,132 @@ Generate =nixcommunity.xml=
 #+begin_src xml :tangle nixcommunity.xml :noweb yes
 <manifest>
   <<nixcommunityReposXML()>>
+</manifest>
+#+end_src
+
+* Numtide
+
+#+name: numtideMetadata
+#+call: fetchMetadata(gh-org="numtide")
+
+#+RESULTS: numtideMetadata
+| numtide | action-cli                       |      52 | main   | false | 2025-02-01T18:56:50Z |
+| numtide | cert-wizard                      |      39 | main   | false | 2025-06-19T19:36:55Z |
+| numtide | clean-git-action                 |      55 | main   | false | 2025-06-19T19:37:29Z |
+| numtide | devshell                         |    1532 | main   | false | 2025-08-10T08:44:09Z |
+| numtide | docker-host-forwarder            |       3 | main   | false | 2024-07-26T18:05:57Z |
+| numtide | flake-utils                      |     113 | main   | false | 2025-08-06T21:28:37Z |
+| numtide | freelancer-toolbox               |     318 | main   | false | 2025-07-16T21:26:42Z |
+| numtide | generate-terraform-provider-shim |      50 | main   | false | 2025-06-18T02:10:35Z |
+| numtide | .github                          |      17 | main   | false | 2025-03-18T21:49:03Z |
+| numtide | github-deploy                    |    7072 | main   | false | 2025-03-18T17:31:02Z |
+| numtide | kuta                             |    2151 | master | true  | 2023-01-28T05:06:21Z |
+| numtide | nar-serve                        |     393 | main   | false | 2025-05-03T06:14:01Z |
+| numtide | nix-eval-cache                   |      24 | main   | false | 2025-04-24T16:02:28Z |
+| numtide | nix-filter                       |      63 | main   | false | 2025-08-06T13:42:24Z |
+| numtide | nix-gitignore                    |       8 | master | true  | 2023-03-02T04:15:10Z |
+| numtide | nix-parallel-test-case           |      50 | master | true  | 2023-01-28T15:55:52Z |
+| numtide | nixpkgs                          | 3783551 | master | false | 2024-06-17T07:01:00Z |
+| numtide | nixpkgs-unfree                   |     379 | main   | false | 2025-07-28T18:15:44Z |
+| numtide | numtide.github.io                |       4 | main   | false | 2024-06-17T06:58:31Z |
+| numtide | serve-go                         |      48 | main   | false | 2025-03-18T17:31:02Z |
+| numtide | software-consulting-documents    |      45 | main   | false | 2023-07-07T13:19:09Z |
+| numtide | terraform-deploy-nixos-flakes    |      10 | main   | false | 2025-03-18T17:31:02Z |
+| numtide | terraform-linuxbox-monitorpack   |      37 | main   | false | 2025-03-18T17:31:02Z |
+| numtide | terraform-linuxbox-traefik       |       6 | main   | false | 2025-03-18T17:31:02Z |
+| numtide | terraform-nix-build              |       3 | main   | false | 2024-06-17T06:58:30Z |
+| numtide | terraform-nixos-amis             |      14 | main   | false | 2025-03-18T21:49:02Z |
+| numtide | terraform-provider-linuxbox      |     301 | main   | false | 2025-04-01T01:51:46Z |
+| numtide | terraform-provider-secret        |    8273 | main   | false | 2023-07-01T17:03:48Z |
+| numtide | treefmt                          |    3703 | main   | false | 2025-08-11T08:05:26Z |
+| numtide | yarnlock2json                    |      13 | master | true  | 2023-01-28T18:27:03Z |
+
+Excluded Repositories
+
+#+NAME: numtideReposExclude
+| .github                   |
+| cert-wizard               |
+| docker-host-forwarder     |
+| go-nix                    |
+| hwinfo                    |
+| linux-lkl                 |
+| matterircd                |
+| nixmodules                |
+| nixpkgs                   |
+| activate                  |
+| nix-stdlib                |
+| numtide.github.io         |
+| OpenGen.nix               |
+| pro-spec                  |
+| terraform-nix-build       |
+| terraform-provider-secret |
+| terraform-upload-ami      |
+
+#+name: numtideRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "numtide"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: numtideReposXML
+#+begin_src emacs-lisp :var gqldata=numtideRepos repos-exclude=numtideReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "numtide" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+** Generate XML
+
+Generate =numtide.xml=
+
+#+begin_src xml :tangle numtide.xml :noweb yes
+<manifest>
+  <<numtideReposXML()>>
 </manifest>
 #+end_src

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
   <project name="NixOS/amis" path="nixos/amis" revision="refs/heads/main" remote="github"/>
   <project name="NixOS/branding" path="nixos/branding" revision="refs/heads/main" remote="github"/>

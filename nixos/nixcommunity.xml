@@ -12,6 +12,8 @@
   <project name="nix-community/comma" path="nix-community/comma" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/crate2nix" path="nix-community/crate2nix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/disko" path="nix-community/disko" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/disko-templates" path="nix-community/disko-templates" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/docker-nixpkgs" path="nix-community/docker-nixpkgs" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/dream2nix" path="nix-community/dream2nix" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/emacs-overlay" path="nix-community/emacs-overlay" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/ethereum.nix" path="nix-community/ethereum.nix" revision="refs/heads/main" remote="github"/>
@@ -29,6 +31,7 @@
   <project name="nix-community/lanzaboote" path="nix-community/lanzaboote" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/lib-aggregate" path="nix-community/lib-aggregate" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/lorri" path="nix-community/lorri" revision="refs/heads/canon" remote="github"/>
+  <project name="nix-community/manix" path="nix-community/manix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/mediawiki-matrix-bot" path="nix-community/mediawiki-matrix-bot" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/naersk" path="nix-community/naersk" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/namaka" path="nix-community/namaka" revision="refs/heads/main" remote="github"/>
@@ -47,6 +50,7 @@
   <project name="nix-community/nix-on-droid-app" path="nix-community/nix-on-droid-app" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-snapd" path="nix-community/nix-snapd" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix-unit" path="nix-community/nix-unit" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/nix-ts-mode" path="nix-community/nix-ts-mode" revision="refs/heads/trunk" remote="github"/>
   <project name="nix-community/nix-vscode-extensions" path="nix-community/nix-vscode-extensions" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-zsh-completions" path="nix-community/nix-zsh-completions" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix4nvchad" path="nix-community/nix4nvchad" revision="refs/heads/main" remote="github"/>
@@ -94,6 +98,7 @@
   <project name="nix-community/rustowl-flake" path="nix-community/rustowl-flake" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/srvos" path="nix-community/srvos" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/stylix" path="nix-community/stylix" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/templates" path="nix-community/templates" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/terraform-nixos" path="nix-community/terraform-nixos" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/tree-sitter-nix" path="nix-community/tree-sitter-nix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/trustix" path="nix-community/trustix" revision="refs/heads/master" remote="github"/>
