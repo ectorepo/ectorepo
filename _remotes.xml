@@ -21,6 +21,7 @@
   <remote name="pantherx" fetch="https://git.pantherx.org"/>
   <remote name="pantherxchannel" fetch="https://channels.pantherx.org/git"/>
   <remote name="phundrak" fetch="https://labs.phundrak.com"/>
+  <remote name="proot" fetch="https://git.proot.pl"/>
   <remote name="salsa" fetch="https://salsa.debian.org"/>
   <remote name="savannah" fetch="https://git.savannah.gnu.org/git"/>
   <remote name="savannah_nongnu" fetch="https://git.savannah.nongnu.org/git"/>

@@ -168,26 +168,22 @@ git submodule foreach "git stash && git pull origin master && git stash pop"
 Consolidate =<remote ... />= nodes from all =_remote.xml= files and compare with the
 top-level.
 
-The red is missing from =$_REPO/_remote.xml=
+The red is missing from =$_REPO/_remote.xml= ...
+
++ something weird here: use the =git submodule foreach= below
 
 #+begin_src shell :results output code :wrap example diff
-cat  **/_remotes.xml | grep '<remote' | sort | uniq | diff - <(grep '<remote ' _remotes.xml)
+cat  **/_remotes.xml | grep '<remote' | sort | uniq \
+    | diff - <(grep '<remote ' _remotes.xml)
+echo
 #+end_src
 
 #+RESULTS:
 #+begin_example diff
-2d1
-<   <remote name="blender" fetch="https://projects.blender.org"/>
-6d4
-<   <remote name="elephly" fetch="https://git.elephly.net/software"/>
-19d16
+19d18
 <   <remote name="pantherxchannel" fetch="https://channels.pantherx.org/git"/>
-20a18
+20a20
 >   <remote name="pantherxchannel" fetch="https://channels.pantherx.org/git"/>
-21a20
->   <remote name="salsa" fetch="https://salsa.debian.org"/>
-27d25
-<   <remote name="srht_csantosb" fetch="https://git.sr.ht/~csantosb"/>
 #+end_example
 
 
