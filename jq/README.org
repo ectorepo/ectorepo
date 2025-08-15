@@ -98,7 +98,6 @@ misc
   <project name="joelpurra/ep-erroneous-votes" path="eg/ep-erroneous-votes" revision="refs/heads/master" remote="github" />
   <!-- har -->
   <project name="joelpurra/har-dulcify" path="eg/har-dulcify" revision="refs/heads/master" remote="github" />
-  <project name="joelpurra/har-hopkok" path="eg/har-hopkok" revision="refs/heads/master" remote="github" />
 </manifest>
 #+end_src
 
