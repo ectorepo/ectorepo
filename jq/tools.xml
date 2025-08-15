@@ -3,7 +3,6 @@
 <manifest>
   <project name="jpmens/jo" path="tools/jo" revision="refs/heads/master" remote="github" />
   <project name="jtopjian/jsed" path="tools/jsed" revision="refs/heads/master" remote="github" />
-  <project name="jtopjian/jsed" path="tools/jsed" revision="refs/heads/master" remote="github" />
   <project name="joelpurra/har-hopkok" path="tools/har-hopkok" revision="refs/heads/master" remote="github" />
   <project name="skanehira/gjo" path="tools/har-hopkok" revision="refs/heads/master" remote="github" />
 </manifest>
