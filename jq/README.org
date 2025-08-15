@@ -101,3 +101,385 @@ misc
 </manifest>
 #+end_src
 
+
+** JQ Contents
+
+#+begin_example text
+.
+├── eg
+│   ├── fhir-jq
+│   │   └── module
+│   │       ├── fhir
+│   │       │   ├── common.jq
+│   │       │   ├── fhir.jq
+│   │       │   └── r4
+│   │       │       └── r4.jq
+│   │       └── terminology
+│   │           └── terminology.jq
+│   ├── jq_cookbook
+│   │   ├── collate-keys-get.jq
+│   │   ├── collate-keys-index.jq
+│   │   ├── collate-keys.jq
+│   │   ├── find-key.jq
+│   │   ├── har-getall-req-url.jq
+│   │   ├── har-getall-res-url.jq
+│   │   ├── har-getall-res-url-json.jq
+│   │   ├── har-get-req.jq
+│   │   ├── har-get-req-postdata.jq
+│   │   ├── har-get-res.jq
+│   │   ├── har-get-res-json.jq
+│   │   ├── har-scan-req-domains-report.jq
+│   │   ├── har-scan-req-domains-unique.jq
+│   │   ├── har-scan-req-postdata-full.jq
+│   │   ├── har-scan-req-postdata.jq
+│   │   ├── har-scan-req-referrer-report.jq
+│   │   ├── har-scan-req-referrer-unique.jq
+│   │   ├── har-scan-req-urls-report.jq
+│   │   ├── har-scan-req-urls-unique.jq
+│   │   ├── har-scan-res-json-full.jq
+│   │   ├── har-scan-res-json.jq
+│   │   └── scan-key-values.jq
+│   ├── jq-recipes
+│   │   └── recipes.jq
+│   └── open-data
+│       └── scripts
+│           └── views.jq
+├── fq
+│   ├── dev
+│   │   ├── format_summary.jq
+│   │   └── x264sei.jq
+│   ├── doc
+│   │   ├── formats_diagram.jq
+│   │   └── formats.jq
+│   ├── format
+│   │   ├── apple
+│   │   │   ├── bookmark
+│   │   │   │   └── apple_bookmark.jq
+│   │   │   └── bplist
+│   │   │       ├── bplist.jq
+│   │   │       └── ns_keyed_archiver.jq
+│   │   ├── asn1
+│   │   │   └── asn1_ber.jq
+│   │   ├── bencode
+│   │   │   └── bencode.jq
+│   │   ├── bson
+│   │   │   └── bson.jq
+│   │   ├── cbor
+│   │   │   └── cbor.jq
+│   │   ├── crypto
+│   │   │   ├── hash.jq
+│   │   │   └── pem.jq
+│   │   ├── csv
+│   │   │   └── csv.jq
+│   │   ├── json
+│   │   │   ├── jq.jq
+│   │   │   ├── json.jq
+│   │   │   └── jsonl.jq
+│   │   ├── leveldb
+│   │   │   └── leveldb_descriptor.jq
+│   │   ├── markdown
+│   │   │   └── markdown.jq
+│   │   ├── math
+│   │   │   └── radix.jq
+│   │   ├── matroska
+│   │   │   └── matroska.jq
+│   │   ├── mp4
+│   │   │   └── mp4.jq
+│   │   ├── msgpack
+│   │   │   └── msgpack.jq
+│   │   ├── nes
+│   │   │   └── nes.jq
+│   │   ├── text
+│   │   │   └── encoding.jq
+│   │   ├── tls
+│   │   │   ├── ciphersuites
+│   │   │   │   └── ciphersuites.jq
+│   │   │   └── testdata
+│   │   │       ├── ja3.jq
+│   │   │       ├── split.jq
+│   │   │       └── to_tar.jq
+│   │   ├── toml
+│   │   │   └── toml.jq
+│   │   ├── xml
+│   │   │   ├── html.jq
+│   │   │   └── xml.jq
+│   │   └── yaml
+│   │       └── yaml.jq
+│   └── pkg
+│       └── interp
+│           ├── ansi.jq
+│           ├── args.jq
+│           ├── args.jq.test
+│           ├── binary.jq
+│           ├── decode.jq
+│           ├── eval.jq
+│           ├── format_decode.jq
+│           ├── format_func.jq
+│           ├── funcs.jq
+│           ├── funcs.jq.test
+│           ├── grep.jq
+│           ├── help.jq
+│           ├── init.jq
+│           ├── internal.jq
+│           ├── interp.jq
+│           ├── jqtest.jq
+│           ├── options.jq
+│           ├── query.jq
+│           ├── query.jq.test
+│           ├── registry_include.jq
+│           └── repl.jq
+├── jq
+│   ├── gojq
+│   │   ├── builtin.jq
+│   │   └── cli
+│   │       └── testdata
+│   │           ├── 10.jq
+│   │           ├── 11.jq
+│   │           ├── 12.jq
+│   │           ├── 13.jq
+│   │           ├── 14.jq
+│   │           ├── 1.jq
+│   │           ├── 2.jq
+│   │           ├── 4.jq
+│   │           ├── 5.jq
+│   │           ├── 6.jq
+│   │           ├── 7.jq
+│   │           ├── 8.jq
+│   │           ├── 9.jq
+│   │           ├── m1
+│   │           │   └── m1.jq
+│   │           ├── m2
+│   │           │   ├── m2.jq
+│   │           │   └── m3.jq
+│   │           └── m3
+│   │               └── m3.jq
+│   ├── jess
+│   │   ├── doc
+│   │   │   └── JESS.jq.txt
+│   │   └── JESS.jq
+│   ├── jq
+│   │   ├── src
+│   │   │   └── builtin.jq
+│   │   └── tests
+│   │       ├── modules
+│   │       │   ├── a.jq
+│   │       │   ├── b
+│   │       │   │   └── b.jq
+│   │       │   ├── c
+│   │       │   │   ├── c.jq
+│   │       │   │   └── d.jq
+│   │       │   ├── lib
+│   │       │   │   └── jq
+│   │       │   │       ├── e
+│   │       │   │       │   └── e.jq
+│   │       │   │       └── f.jq
+│   │       │   ├── shadow1.jq
+│   │       │   ├── shadow2.jq
+│   │       │   ├── syntaxerror
+│   │       │   │   └── syntaxerror.jq
+│   │       │   ├── test_bind_order0.jq
+│   │       │   ├── test_bind_order1.jq
+│   │       │   ├── test_bind_order2.jq
+│   │       │   └── test_bind_order.jq
+│   │       ├── no-main-program.jq
+│   │       ├── utf8-truncate.jq
+│   │       └── yes-main-program.jq
+│   ├── jqjq
+│   │   └── jqjq.jq
+│   └── jq-lsp
+│       └── lsp
+│           ├── builtin_env.jq
+│           ├── docs.jq
+│           ├── gen_builtin_env.jq
+│           ├── gen_docs.jq
+│           ├── lsp.jq
+│           └── testdata
+│               ├── at_func.jq
+│               ├── completion.jq
+│               ├── definition.jq
+│               ├── did_change_regression1.jq
+│               ├── dot-jq-lsp
+│               │   └── test.jq
+│               ├── first_column_error_lc.jq
+│               ├── foreach-reduce-query.jq
+│               ├── global_bindings.jq
+│               ├── hover.jq
+│               ├── import_as_binding.jq
+│               ├── import_search
+│               │   ├── a
+│               │   │   └── b.jq
+│               │   └── import.jq
+│               ├── include_not_found.jq
+│               ├── include_syntax_error.jq
+│               ├── include_valid.jq
+│               ├── keywords.jq
+│               ├── not_found.jq
+│               ├── object_val_query.jq
+│               ├── syntax_error.jq
+│               ├── syntax.jq
+│               └── valid.jq
+├── jqnpm
+│   ├── jq-bigint
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-bugfix-jq-552
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-counter-buckets
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-disarray
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-dry
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-fallbacks
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-interval-buckets
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-key-counter
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-math
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-object-sorting
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-random-prng-bsd
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-random-prng-microsoft
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-random-prng-vdc
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-ratio-buckets
+│   │   └── jq
+│   │       └── main.jq
+│   ├── jq-stress
+│   │   └── jq
+│   │       └── main.jq
+│   └── jq-zeros
+│       └── jq
+│           └── main.jq
+└── tools
+    └── jqnpm
+        ├── resources
+        │   └── template
+        │       └── package
+        │           └── jq
+        │               └── main.jq
+        ├── src
+        │   └── shared
+        │       └── metadata
+        │           └── main.jq.sh
+        └── tests
+            ├── install-add-manually
+            │   └── package-source
+            │       ├── anotheruser
+            │       │   └── pack1
+            │       │       └── jq
+            │       │           └── main.jq
+            │       └── someuser
+            │           └── pack2
+            │               └── jq
+            │                   └── main.jq
+            ├── jq-deep-dependencies
+            │   ├── local-project
+            │   │   └── jq
+            │   │       └── main.jq
+            │   └── package-source
+            │       ├── anotheruser
+            │       │   ├── pack1
+            │       │   │   └── jq
+            │       │   │       └── main.jq
+            │       │   └── pack3
+            │       │       └── jq
+            │       │           └── main.jq
+            │       └── someuser
+            │           ├── pack2
+            │           │   └── jq
+            │           │       └── main.jq
+            │           └── pack4
+            │               └── jq
+            │                   └── main.jq
+            ├── jq-deep-execution
+            │   ├── local-project
+            │   │   └── one
+            │   │       └── two
+            │   │           └── deep.jq
+            │   └── package-source
+            │       └── anotheruser
+            │           └── pack1
+            │               └── jq
+            │                   └── main.jq
+            ├── jq-flat-dependencies
+            │   ├── local-project
+            │   │   └── jq
+            │   │       └── main.jq
+            │   └── package-source
+            │       ├── anotheruser
+            │       │   └── pack1
+            │       │       └── jq
+            │       │           └── main.jq
+            │       └── someuser
+            │           └── pack2
+            │               └── jq
+            │                   └── main.jq
+            ├── jq-import-direct-file-paths
+            │   ├── local-project
+            │   │   ├── jq
+            │   │   │   ├── main.jq
+            │   │   │   ├── more
+            │   │   │   │   └── subfolder.jq
+            │   │   │   └── same-folder.jq
+            │   │   ├── other
+            │   │   │   └── sibling-folder.jq
+            │   │   └── parent-folder.jq
+            │   └── outside-of-package.jq
+            ├── jq-mixed-level-dependencies
+            │   ├── local-project
+            │   │   └── jq
+            │   │       └── main.jq
+            │   └── package-source
+            │       ├── anotheruser
+            │       │   ├── pack1
+            │       │   │   └── jq
+            │       │   │       └── main.jq
+            │       │   └── pack3
+            │       │       └── jq
+            │       │           └── main.jq
+            │       └── someuser
+            │           ├── pack2
+            │           │   └── jq
+            │           │       └── main.jq
+            │           └── pack4
+            │               └── jq
+            │                   └── main.jq
+            ├── jq-no-dependencies
+            │   └── local-project
+            │       └── jq
+            │           └── main.jq
+            ├── jq-non-standard-main-path
+            │   └── local-project
+            │       └── other
+            │           └── location
+            │               └── the-code.jq
+            ├── jq-with-file-argument
+            │   └── local-project
+            │       ├── jq
+            │       │   └── main.jq
+            │       └── other.jq
+            ├── jq-without-jq.json
+            │   └── local-project
+            │       └── jq
+            │           └── main.jq
+            └── jq-without-jq.json-nor-main.jq
+                ├── local-project
+                └── test.sh
+#+end_example
