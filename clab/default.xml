@@ -4,6 +4,5 @@
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="clab/srllabs.xml"/>
   <include name="clab/nokia.xml"/>
-  <include name="clab/netreplica.xml"/>
   <include name="clab/misc.xml"/>
 </manifest>
