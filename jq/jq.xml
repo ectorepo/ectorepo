@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="jqlang/jq" path="jq/jq" revision="refs/heads/master" remote="github" />
+  <project name="wader/fq" path="fq" revision="refs/heads/master" remote="github" />
+  <project name="itchyny/gojq" path="jq/gojq" revision="refs/heads/main" remote="github" />
+  <project name="wader/jqjq" path="jq/jqjq" revision="refs/heads/master" remote="github" />
+  <project name="wader/jq-lsp" path="jq/jq-lsp" revision="refs/heads/master" remote="github" />
+  <project name="pkoppstein/JESS" path="jq/jess" revision="refs/heads/master" remote="github" />
+</manifest>

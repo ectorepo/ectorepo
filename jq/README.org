@@ -1,0 +1,105 @@
+#+title:     Ectorepo: JQ
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="jq/jq.xml"/>
+  <include name="jq/tools.xml"/>
+  <include name="jq/jqnpm.xml"/>
+  <include name="jq/eg.xml"/>
+</manifest>
+#+end_src
+
+* JQ Lang
+
+Also: [[https://github.com/wader/fq/blob/master/doc/usage.md][wader/fq]], a =jq= to work with hex & bins
+
+#+begin_src xml :tangle jq.xml :noweb yes
+<manifest>
+  <project name="jqlang/jq" path="jq/jq" revision="refs/heads/master" remote="github" />
+  <project name="wader/fq" path="fq" revision="refs/heads/master" remote="github" />
+  <project name="itchyny/gojq" path="jq/gojq" revision="refs/heads/main" remote="github" />
+  <project name="wader/jqjq" path="jq/jqjq" revision="refs/heads/master" remote="github" />
+  <project name="wader/jq-lsp" path="jq/jq-lsp" revision="refs/heads/master" remote="github" />
+  <project name="pkoppstein/JESS" path="jq/jess" revision="refs/heads/master" remote="github" />
+</manifest>
+#+end_src
+
+** Tools
+
+#+begin_src xml :tangle tools.xml :noweb yes
+<manifest>
+  <project name="jpmens/jo" path="tools/jo" revision="refs/heads/master" remote="github" />
+  <project name="jtopjian/jsed" path="tools/jsed" revision="refs/heads/master" remote="github" />
+  <project name="jtopjian/jsed" path="tools/jsed" revision="refs/heads/master" remote="github" />
+  <project name="joelpurra/har-hopkok" path="tools/har-hopkok" revision="refs/heads/master" remote="github" />
+  <project name="skanehira/gjo" path="tools/har-hopkok" revision="refs/heads/master" remote="github" />
+</manifest>
+#+end_src
+
++ [[https://github.com/jpmens/jo/blob/master/jo.md][jpmens/jo]]: a CLI tool to instantiate simple json objects
++ [[https://github.com/skanehira/gjo][skanehira/gjo]]: same thing
+
+misc
+
++ [[https://github.com/jtopjian/jsed][jtopjian/jsed]]: sed for json
++ [[https://github.com/json-e/json-e][json-e/json-e]]: parameterize/template json
++ [[https://github.com/micha/jsawk][micha/jsawk]]: awk for json
+
+** JQNPM
+
+[[https://github.com/jqnpm/jqnpm][jqnpm/jqnpm]]
+
+| [[https://github.com/jqnpm/jq-dry][jqnpm/jq-dry]]       | [[https://github.com/jqnpm/jq-ratio-buckets][jqnpm/jq-ratio-buckets]]    | [[https://github.com/jqnpm/jq-key-counter][jqnpm/jq-key-counter]]     | [[https://github.com/jqnpm/jq-random-prng-microsoft][jqnpm/jq-random-prng-microsoft]] |
+| [[https://github.com/jqnpm/jq-stress][jqnpm/jq-stress]]    | [[https://github.com/jqnpm/jq-interval-buckets][jqnpm/jq-interval-buckets]] | [[https://github.com/jqnpm/jq-disarray][jqnpm/jq-disarray]]        | [[https://github.com/jqnpm/jq-object-sorting][jqnpm/jq-object-sorting]]        |
+| [[https://github.com/jqnpm/jq-fallbacks][jqnpm/jq-fallbacks]] | [[https://github.com/jqnpm/jq-math][jqnpm/jq-math]]             | [[https://github.com/jqnpm/jq-bigint][jqnpm/jq-bigint]]          | [[https://github.com/jqnpm/jq-bugfix-jq-552][jqnpm/jq-bugfix-jq-552]]         |
+| [[https://github.com/jqnpm/jq-zeros][jqnpm/jq-zeros]]     | [[https://github.com/jqnpm/jq-counter-buckets][jqnpm/jq-counter-buckets]]  | [[https://github.com/jqnpm/jq-random-prng-vdc][jqnpm/jq-random-prng-vdc]] | [[https://github.com/jqnpm/jq-random-prng-bsd][jqnpm/jq-random-prng-bsd]]       |
+
+#+begin_src xml :tangle jqnpm.xml :noweb yes
+<manifest>
+  <project name="jqnpm/jq-bigint" path="jqnpm/jq-bigint" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-bugfix-jq-552" path="jqnpm/jq-bugfix-jq-552" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-counter-buckets" path="jqnpm/jq-counter-buckets" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-disarray" path="jqnpm/jq-disarray" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-dry" path="jqnpm/jq-dry" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-fallbacks" path="jqnpm/jq-fallbacks" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-interval-buckets" path="jqnpm/jq-interval-buckets" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-key-counter" path="jqnpm/jq-key-counter" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-math" path="jqnpm/jq-math" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-object-sorting" path="jqnpm/jq-object-sorting" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-random-prng-bsd" path="jqnpm/jq-random-prng-bsd" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-random-prng-microsoft" path="jqnpm/jq-random-prng-microsoft" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-random-prng-vdc" path="jqnpm/jq-random-prng-vdc" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-ratio-buckets" path="jqnpm/jq-ratio-buckets" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-stress" path="jqnpm/jq-stress" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-zeros" path="jqnpm/jq-zeros" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jqnpm" path="tools/jqnpm" revision="refs/heads/master" remote="github" />
+</manifest>
+#+end_src
+
+* Examples
+
+
+#+begin_src xml :tangle eg.xml :noweb yes
+<manifest>
+  <!-- recipes -->
+  <project name="nntrn/jq-recipes" path="eg/jq-recipes" revision="refs/heads/main" remote="github" />
+  <project name="nntrn/open-data" path="eg/open-data" revision="refs/heads/devel" remote="github" />
+  <project name="satisfice/jq_cookbook" path="eg/jq_cookbook" revision="refs/heads/main" remote="github" />
+  <!-- applications -->
+  <project name="barabo/fhir-jq" path="eg/fhir-jq" revision="refs/heads/main" remote="github" />
+  <project name="joelpurra/ep-erroneous-votes" path="eg/ep-erroneous-votes" revision="refs/heads/master" remote="github" />
+  <!-- har -->
+  <project name="joelpurra/har-dulcify" path="eg/har-dulcify" revision="refs/heads/master" remote="github" />
+  <project name="joelpurra/har-hopkok" path="eg/har-hopkok" revision="refs/heads/master" remote="github" />
+</manifest>
+#+end_src
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="jqnpm/jq-bigint" path="jqnpm/jq-bigint" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-bugfix-jq-552" path="jqnpm/jq-bugfix-jq-552" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-counter-buckets" path="jqnpm/jq-counter-buckets" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-disarray" path="jqnpm/jq-disarray" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-dry" path="jqnpm/jq-dry" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-fallbacks" path="jqnpm/jq-fallbacks" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-interval-buckets" path="jqnpm/jq-interval-buckets" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-key-counter" path="jqnpm/jq-key-counter" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-math" path="jqnpm/jq-math" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-object-sorting" path="jqnpm/jq-object-sorting" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-random-prng-bsd" path="jqnpm/jq-random-prng-bsd" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-random-prng-microsoft" path="jqnpm/jq-random-prng-microsoft" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-random-prng-vdc" path="jqnpm/jq-random-prng-vdc" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-ratio-buckets" path="jqnpm/jq-ratio-buckets" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-stress" path="jqnpm/jq-stress" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jq-zeros" path="jqnpm/jq-zeros" revision="refs/heads/master" remote="github"/>
+  <project name="jqnpm/jqnpm" path="tools/jqnpm" revision="refs/heads/master" remote="github" />
+</manifest>
