@@ -218,15 +218,16 @@ Via restclient.el, which can pipes data to jq, via:
 # --
 
 #+name: convertCodeSnippets
-#+begin_src jq :stdin zodSnips
+#+begin_src jq :stdin zodSnips :results output verbatim
 . | to_entries
   | map({ group: "zod",
           name: (.key),
           prefix: .value.prefix[0],
+          body: .value.body,
           abbrev: (.value.prefix[0] | split("_") | map(.[0:2]) | .[1:2] | join("")) # as $abbrev)
         })
   | map(. + ({key: (.abbrev | @text "<Zo\(.)") }))
-  | map(. + {snippet: @text "# -*- mode:snippet -*-\nname: \(.name)\nkey:\(.key)\ngroup: \(.group)"})
+  | map(. + {snippet: @text "# -*- mode:snippet -*-\nname: \(.name)\nkey: \(.key)\ngroup: \(.group)\nbody: \(.body)"})
 
 #
 # key: (.value.prefix | @text "<ZO\(.[0] | sub(\"\"; \"\") )"),
@@ -245,25 +246,28 @@ Via restclient.el, which can pipes data to jq, via:
     "group": "zod",
     "name": "Zod date max",
     "prefix": "zod_date_max",
+    "body": "z.date().max(new Date())",
     "abbrev": "da",
     "key": "<Zoda",
-    "snippet": "# -*- mode:snippet -*-\nname: Zod date max\nkey:<Zoda\ngroup: zod"
+    "snippet": "# -*- mode:snippet -*-\nname: Zod date max\nkey:<Zoda\ngroup: zod\nbody: z.date().max(new Date())"
   },
   {
     "group": "zod",
     "name": "Zod string optional",
     "prefix": "zod_string_optional",
+    "body": "z.optional(z.string())",
     "abbrev": "st",
     "key": "<Zost",
-    "snippet": "# -*- mode:snippet -*-\nname: Zod string optional\nkey:<Zost\ngroup: zod"
+    "snippet": "# -*- mode:snippet -*-\nname: Zod string optional\nkey:<Zost\ngroup: zod\nbody: z.optional(z.string())"
   },
   {
     "group": "zod",
     "name": "Zod schema partial",
     "prefix": "zod_schema_partial",
+    "body": "const $1 = ${2:schema}.partial();",
     "abbrev": "sc",
     "key": "<Zosc",
-    "snippet": "# -*- mode:snippet -*-\nname: Zod schema partial\nkey:<Zosc\ngroup: zod"
+    "snippet": "# -*- mode:snippet -*-\nname: Zod schema partial\nkey:<Zosc\ngroup: zod\nbody: const $1 = ${2:schema}.partial();"
   }
 ]
 #+end_example
@@ -568,9 +572,11 @@ GET https://raw.githubusercontent.com/ManuelGil/vscode-zod-snippets/main/snippet
 
 And here we have our snippets
 
+
 #+name: asdf
-#+begin_src jq :stdin zodSnipsBabel :results output verbatime file :file /tmp/vscodeSnippets.sh
-.[] | @text "printf '\(.snippet)' > ~/.emacs.g/etc/yasnippet/snippets/typescript-mode/\(.prefix).snippet"
+#+headers: :file /tmp/vscodeSnippets.sh
+#+begin_src jq :stdin zodSnipsBabel :results output verbatim file :cmd-line -rj
+[.[] | @text "printf '\(.snippet)' > ~/.emacs.g/etc/yasnippet/snippets/typescript-mode/\(.prefix).snippet"] | join("\n")
 #+end_src
 
 #+RESULTS: asdf
