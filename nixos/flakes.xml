@@ -6,13 +6,19 @@
   <project name="cynicsketch/nix-mineral" path="sec/nix-mineral" revision="refs/heads/main" remote="github"/>
   <!-- secrets -->
   <project name="Mic92/sops-nix" path="secrets/sops-nix" revision="refs/heads/master" remote="github"/>
+  <!-- dev -->
+  <project name="tweag/jupyenv" path="dev/jupyenv" revision="refs/heads/main" remote="github"/>
+  <!-- learn -->
+  <project name="tweag/nix-hour" path="learn/nix-hour" revision="refs/heads/master" remote="github"/>
+  <!-- tools/nix -->
+  <project name="tweag/nixtract" path="tools/nix/nixtract" revision="refs/heads/main" remote="github"/>
   <!-- containers -->
   <project name="SEIAROTg/quadlet-nix" path="cni/quadlet-nix" revision="refs/heads/main" remote="github"/>
+  <!-- vm -->
+  <project name="Mic92/nixos-shell" path="vm/nixos-shell" revision="refs/heads/master" remote="github"/>
   <!-- networking -->
   <project name="oddlama/nix-topology" path="net/nix-topology" revision="refs/heads/main" remote="github"/>
   <project name="divnix/std" path="net/std" revision="refs/heads/main" remote="github"/>
-  <!-- vm -->
-  <project name="Mic92/nixos-shell" path="vm/nixos-shell" revision="refs/heads/master" remote="github"/>
   <!-- hardware -->
   <project name="aws/uefi" path="hardware/uefi" revision="refs/heads/main" remote="github"/>
   <!-- hive -->
