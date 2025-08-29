@@ -170,7 +170,8 @@ top-level.
 
 The red is missing from =$_REPO/_remote.xml= ...
 
-+ something weird here: use the =git submodule foreach= below
++ something weird here: use the =git submodule foreach= below (EDIT: some
+  non-module, uncommited repos lacked the remotes...)
 
 #+begin_src shell :results output code :wrap example diff
 cat  **/_remotes.xml | grep '<remote' | sort | uniq \
@@ -209,10 +210,12 @@ git submodule foreach "diff ../_remotes.xml _remotes.xml ; echo ''" | grep -e '^
 #+begin_src shell
 git submodule foreach "git add _remotes.xml"
 git status
-git submodule foreach "git diff"
+git submodule foreach "git diff --color" # | less
 git submodule foreach "git status" # just to be sure
-git submodule foreach "git commit -m 'bump remotes.xml zomg why'"
+git submodule foreach "git commit -m 'bump remotes.xml'"
 git submodule foreach "git push origin master"
+
+# && add the um modules... todo
 #+end_src
 
 Then in magit, add submodule refs, commit to super-duper-project and push
