@@ -21,6 +21,10 @@
   <project name="divnix/std" path="net/std" revision="refs/heads/main" remote="github"/>
   <!-- hardware -->
   <project name="aws/uefi" path="hardware/uefi" revision="refs/heads/main" remote="github"/>
+  <!-- home -->
+  <project name="feel-co/hjem" path="home/hjem" revision="refs/heads/main" remote="github"/>
+  <project name="snugnug/hjem-rum" path="home/hjem-rum" revision="refs/heads/main" remote="github"/>
+  <project name="Rexcrazy804/hjem-impure" path="home/hjem-impure" revision="refs/heads/master" remote="github"/>
   <!-- hive -->
   <project name="PrimaMateria/nixos-hive" path="hive/nixos-hive" revision="refs/heads/main" remote="github"/>
   <project name="PrimaMateria/blog-hive" path="hive/blog-hive" revision="refs/heads/main" remote="github"/>
