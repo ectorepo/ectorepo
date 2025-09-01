@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest>
-  <project name="mrVanDalo/flake-templates" path="flakes/flake-templates" revision="refs/heads/main" remote="github"/>
+  <!-- flakes/snippets -->
+  <project name="mrVanDalo/flake-templates" path="flakes/snippets/flake-templates" revision="refs/heads/main" remote="github"/>
+  <!-- flakes/lib -->
+  <project name="Lunarnovaa/LunarsLib" path="flakes/lib/lunarslib" revision="refs/heads/main" remote="github"/>
   <!-- security -->
   <project name="cynicsketch/nix-mineral" path="sec/nix-mineral" revision="refs/heads/main" remote="github"/>
+  <project name="schizofox/schizofox" path="sec/schizofox" revision="refs/heads/main" remote="github"/>
+  <project name="schizofox/searx-randomizer" path="sec/schizofox" revision="refs/heads/main" remote="github"/>
   <!-- secrets -->
   <project name="Mic92/sops-nix" path="secrets/sops-nix" revision="refs/heads/master" remote="github"/>
   <!-- dev -->
@@ -16,6 +21,15 @@
   <project name="SEIAROTg/quadlet-nix" path="cni/quadlet-nix" revision="refs/heads/main" remote="github"/>
   <!-- vm -->
   <project name="Mic92/nixos-shell" path="vm/nixos-shell" revision="refs/heads/main" remote="github"/>
+  <!-- platforms -->
+  <project name="cleverca22/not-os" path="platforms/not-os" groups="nixos" revision="refs/heads/master"/>
+  <!-- systems -->
+  <project name="cloudripper/NixLFS" path="systems/NixLFS" groups="nixos" revision="refs/heads/main"/>
+  <!-- iot -->
+  <project name="cleverca22/rpi-nixos-example" path="iot/rpi-nixos-example" groups="nixos" revision="refs/heads/master"/>
+  <project name="ElvishJerricco/rpi-uefi-nix" path="iot/rpi-uefi-nix" groups="nixos" revision="refs/heads/main"/>
+  <!-- boot -->
+  <project name="Tow-Boot/Tow-Boot" path="boot/Tow-Boot" revision="refs/heads/development" remote="github"/>
   <!-- networking -->
   <project name="oddlama/nix-topology" path="net/nix-topology" revision="refs/heads/main" remote="github"/>
   <project name="divnix/std" path="net/std" revision="refs/heads/main" remote="github"/>
