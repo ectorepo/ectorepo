@@ -15,6 +15,8 @@
 + [[https://chromium.googlesource.com/chromiumos/docs/+/HEAD/work_on_branch.md][ChromiumOS Guide to Working on Branches]]
 + Gerrit [[https://gerrit-review.googlesource.com/Documentation/index.html][Docs]]
 
+See also the alternatives listed below
+
 ** Android
 
 + The main Android platform [[https://android.googlesource.com/platform/manifest/][manifest]]
@@ -502,7 +504,29 @@ difference. it seems to just =print= it idk.
 
 * Other Repo Resources
 
-** A Brief List of Alternatives to [[https://gerrit.googlesource.com/git-repo/][Google Repo]]
+
+** Alternatives
+
+*** [[https://hakoerber.github.io/git-repo-manager/][Git Repo Manager]]
+
+This similar, but doesn't seem to use =git-repo=. It's TOML/YAML-based.
+
++ It supports =git-worktree= well
+  - This is a great reference for worktree workflows, which without some
+    training wheels or norms (acting as constraints) can be pretty disruptive.
++ It doesn't natively support other =git= tools like =git-stack=.
+  - It is =git= under the hood, but there would require "ship in a bottle" workflow, which
+    can leave indeterminate state
+  - git-stack :: rebase downstream & local feature/bug branches (to maybe push)
+  - graphite :: rebase upstream feature/bug branches down to local
+  - Integrating such tools as git-stack, graphite or the like would be a bit
+    difficult
++ For development that doesn't require =git-stack= -- or where you don't
+  anticipate needing to observe/validate a half-dozen issues & PRs -- then this
+  tool is sufficiently simple while being powerful enough.
+  - Maybe, i didn't actually test drive
+
+** A Prior List of Alternatives to [[https://gerrit.googlesource.com/git-repo/][Google Repo]] (2022/2023)
 
 GLHF. You'll probably arrive at the same conclusion as I, but hopefully more
 quickly: just use the software built by Google.
