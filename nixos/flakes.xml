@@ -8,7 +8,7 @@
   <!-- security -->
   <project name="cynicsketch/nix-mineral" path="sec/nix-mineral" revision="refs/heads/main" remote="github"/>
   <project name="schizofox/schizofox" path="sec/schizofox" revision="refs/heads/main" remote="github"/>
-  <project name="schizofox/searx-randomizer" path="sec/schizofox" revision="refs/heads/main" remote="github"/>
+  <project name="schizofox/searx-randomizer" path="sec/searx-randomizer" revision="refs/heads/main" remote="github"/>
   <!-- secrets -->
   <project name="Mic92/sops-nix" path="secrets/sops-nix" revision="refs/heads/master" remote="github"/>
   <!-- dev -->
