@@ -58,7 +58,7 @@ Generate =wpilibsuite.xml=
 
 #+begin_src xml :tangle frcmisc.xml :noweb yes
 <manifest>
-  <!-- texts -->
+  <!-- pathplanner -->
   <project name="mjansen4857/pathplanner" path="pathplanner" revision="refs/heads/main" remote="github"/>
   <!-- texts -->
   <project name="krishauser/RoboticSystemsBook" path="text/RoboticSystemsBook" revision="refs/heads/master" remote="github"/>
@@ -74,12 +74,8 @@ Generate =wpilibsuite.xml=
   <project name="Mechanical-Advantage/AdvantageKit" path="dash/advantage/AdvantageKit" revision="refs/heads/main" />
   <project name="Mechanical-Advantage/AdvantageScope" path="dash/advantage/AdvantageScope" revision="refs/heads/main" />
   <project name="Mechanical-Advantage/AdvantageScout" path="dash/advantage/AdvantageScout" revision="refs/heads/main" />
-
-  <!-- Gradle Builds for other languages -->
-  <!-- <project name="glinia/3501-spark" path="clj/3501-spark" revision="refs/heads/master"/> -->
-  <!-- <project name="glinia/3501-spark-clojure" path="clj/3501-spark-clojure" revision="refs/heads/master"/> -->
-  <!-- PhotonVision -->
-  <project name="photonvision/champs_2024" path="photon_champs_2024" revision="refs/heads/master"/>
+  <!-- utils -->
+  <project name="Boomaa23/open-ds" path="utils/open-ds" revision="refs/heads/master" />
 </manifest>
 #+end_src
 
