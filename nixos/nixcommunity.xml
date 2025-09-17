@@ -56,7 +56,6 @@
   <project name="nix-community/nix-on-droid" path="nix-community/nix-on-droid" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-on-droid-app" path="nix-community/nix-on-droid-app" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-snapd" path="nix-community/nix-snapd" revision="refs/heads/main" remote="github"/>
-  <project name="nix-community/nix-unit" path="nix-community/nix-unit" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix-ts-mode" path="nix-community/nix-ts-mode" revision="refs/heads/trunk" remote="github"/>
   <project name="nix-community/nix-unit" path="nix-community/nix-unit" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix-user-chroot" path="nix-community/nix-user-chroot" revision="refs/heads/master" remote="github"/>
