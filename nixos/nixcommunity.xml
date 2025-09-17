@@ -21,6 +21,8 @@
   <project name="nix-community/flake-firefox-nightly" path="nix-community/flake-firefox-nightly" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/flakelight" path="nix-community/flakelight" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/gomod2nix" path="nix-community/gomod2nix" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/gnome-session-ctl" path="nix-community/gnome-session-ctl" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/go-nix" path="nix-community/go-nix" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/harmonia" path="nix-community/harmonia" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/haumea" path="nix-community/haumea" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/home-manager" path="nix-community/home-manager" revision="refs/heads/master" remote="github"/>
@@ -30,6 +32,7 @@
   <project name="nix-community/kickstart-nix.nvim" path="nix-community/kickstart-nix.nvim" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/lanzaboote" path="nix-community/lanzaboote" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/lib-aggregate" path="nix-community/lib-aggregate" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/linyaps-flake" path="nix-community/linyaps-flake" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/lorri" path="nix-community/lorri" revision="refs/heads/canon" remote="github"/>
   <project name="nix-community/manix" path="nix-community/manix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/mediawiki-matrix-bot" path="nix-community/mediawiki-matrix-bot" revision="refs/heads/master" remote="github"/>
@@ -40,21 +43,29 @@
   <project name="nix-community/nix-bundle" path="nix-community/nix-bundle" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-data-science" path="nix-community/nix-data-science" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-direnv" path="nix-community/nix-direnv" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/nix-doom-emacs" path="nix-community/nix-doom-emacs" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/nix-environments" path="nix-community/nix-environments" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-eval-jobs" path="nix-community/nix-eval-jobs" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/nix-github-actions" path="nix-community/nix-github-actions" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-index" path="nix-community/nix-index" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-index-database" path="nix-community/nix-index-database" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix-init" path="nix-community/nix-init" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix-installers" path="nix-community/nix-installers" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-ld" path="nix-community/nix-ld" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/nix-melt" path="nix-community/nix-melt" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix-on-droid" path="nix-community/nix-on-droid" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-on-droid-app" path="nix-community/nix-on-droid-app" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-snapd" path="nix-community/nix-snapd" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix-unit" path="nix-community/nix-unit" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix-ts-mode" path="nix-community/nix-ts-mode" revision="refs/heads/trunk" remote="github"/>
+  <project name="nix-community/nix-unit" path="nix-community/nix-unit" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/nix-user-chroot" path="nix-community/nix-user-chroot" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-vscode-extensions" path="nix-community/nix-vscode-extensions" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix-zsh-completions" path="nix-community/nix-zsh-completions" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nix4nvchad" path="nix-community/nix4nvchad" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nix4vscode" path="nix-community/nix4vscode" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/nixago" path="nix-community/nixago" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/nixago-extensions" path="nix-community/nixago-extensions" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nixd" path="nix-community/nixd" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nixdoc" path="nix-community/nixdoc" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nixGL" path="nix-community/nixGL" revision="refs/heads/main" remote="github"/>
@@ -64,6 +75,7 @@
   <project name="nix-community/nixos-anywhere-examples" path="nix-community/nixos-anywhere-examples" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nixos-apple-silicon" path="nix-community/nixos-apple-silicon" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nixos-avf" path="nix-community/nixos-avf" revision="refs/heads/trunk" remote="github"/>
+  <project name="nix-community/nixos-avf-image-app" path="nix-community/nixos-avf-image-app" revision="refs/heads/trunk" remote="github"/>
   <project name="nix-community/nixos-cli" path="nix-community/nixos-cli" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nixos-facter" path="nix-community/nixos-facter" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nixos-facter-modules" path="nix-community/nixos-facter-modules" revision="refs/heads/main" remote="github"/>
@@ -76,15 +88,19 @@
   <project name="nix-community/nixpkgs-swh" path="nix-community/nixpkgs-swh" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nixpkgs-terraform-providers-bin" path="nix-community/nixpkgs-terraform-providers-bin" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nixpkgs-update" path="nix-community/nixpkgs-update" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/nixpkgs-update-github-releases" path="nix-community/nixpkgs-update-github-releases" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nixpkgs-wayland" path="nix-community/nixpkgs-wayland" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nixpkgs-xr" path="nix-community/nixpkgs-xr" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nixpkgs.lib" path="nix-community/nixpkgs.lib" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/nixt" path="nix-community/nixt" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/nixvim" path="nix-community/nixvim" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/noogle" path="nix-community/noogle" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/npmlock2nix" path="nix-community/npmlock2nix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/NUR" path="nix-community/NUR" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nur-combined" path="nix-community/nur-combined" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nur-packages-template" path="nix-community/nur-packages-template" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nur-search" path="nix-community/nur-search" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/nur-update" path="nix-community/nur-update" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/nurl" path="nix-community/nurl" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/pip2nix" path="nix-community/pip2nix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/plasma-manager" path="nix-community/plasma-manager" revision="refs/heads/trunk" remote="github"/>
@@ -97,6 +113,7 @@
   <project name="nix-community/robotnix" path="nix-community/robotnix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/rustowl-flake" path="nix-community/rustowl-flake" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/srvos" path="nix-community/srvos" revision="refs/heads/main" remote="github"/>
+  <project name="nix-community/steam-fetcher" path="nix-community/steam-fetcher" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/stylix" path="nix-community/stylix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/templates" path="nix-community/templates" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/terraform-nixos" path="nix-community/terraform-nixos" revision="refs/heads/master" remote="github"/>

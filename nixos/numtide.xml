@@ -39,6 +39,7 @@
   <project name="numtide/nixmodules" path="numtide/nixmodules" revision="refs/heads/main" remote="github"/>
   <project name="numtide/NixOS-Fleet-Update-Provider" path="numtide/NixOS-Fleet-Update-Provider" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nixos-passthru-cache" path="numtide/nixos-passthru-cache" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/nixos-passthru-cache-demo" path="numtide/nixos-passthru-cache-demo" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nixos-rke2" path="numtide/nixos-rke2" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nixpkgs" path="numtide/nixpkgs" revision="refs/heads/master" remote="github"/>
   <project name="numtide/nixpkgs-unfree" path="numtide/nixpkgs-unfree" revision="refs/heads/main" remote="github"/>

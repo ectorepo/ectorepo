@@ -5,7 +5,6 @@
   <project name="NixOS/branding" path="nixos/branding" revision="refs/heads/main" remote="github"/>
   <project name="NixOS/bundlers" path="nixos/bundlers" revision="refs/heads/master" remote="github"/>
   <project name="NixOS/cabal2nix" path="nixos/cabal2nix" revision="refs/heads/master" remote="github"/>
-  <project name="NixOS/calamares-nixos-extensions" path="nixos/calamares-nixos-extensions" revision="refs/heads/calamares" remote="github"/>
   <project name="NixOS/darwin-stubs" path="nixos/darwin-stubs" revision="refs/heads/main" remote="github"/>
   <project name="NixOS/experimental-nix-installer" path="nixos/experimental-nix-installer" revision="refs/heads/main" remote="github"/>
   <project name="NixOS/flake-registry" path="nixos/flake-registry" revision="refs/heads/master" remote="github"/>
@@ -48,5 +47,6 @@
   <project name="NixOS/rfc39" path="nixos/rfc39" revision="refs/heads/master" remote="github"/>
   <project name="NixOS/rfc39-record" path="nixos/rfc39-record" revision="refs/heads/main" remote="github"/>
   <project name="NixOS/rfcs" path="nixos/rfcs" revision="refs/heads/master" remote="github"/>
+  <project name="NixOS/SC-election-2025" path="nixos/SC-election-2025" revision="refs/heads/main" remote="github"/>
   <project name="NixOS/templates" path="nixos/templates" revision="refs/heads/master" remote="github"/>
 </manifest>
