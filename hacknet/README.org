@@ -60,6 +60,9 @@ curl -L \
 #+begin_src xml :tangle tools.xml :noweb yes
 <manifest>
   <project name="troglobit/mcjoin" path="tools/mcjoin" revision="refs/heads/master" remote="github"/>
+  <project name="Orange-OpenSource/iptrie" path="tools/ip/iptrie" revision="refs/heads/master" remote="github"/>
+  <project name="mjschultz/py-radix" path="tools/ip/py-radix" revision="refs/heads/main" remote="github"/>
+  <project name="jsommers/pytricia" path="tools/ip/pytricia" revision="refs/heads/master" remote="github"/>
 </manifest>
 #+end_src
 
