@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <project name="troglobit/mcjoin" path="utils/mcjoin" revision="refs/heads/master" remote="github"/>
+  <project name="Orange-OpenSource/iptrie" path="utils/ip/iptrie" revision="refs/heads/master" remote="github"/>
+  <project name="mjschultz/py-radix" path="utils/ip/py-radix" revision="refs/heads/main" remote="github"/>
+  <project name="jsommers/pytricia" path="utils/ip/pytricia" revision="refs/heads/master" remote="github"/>
+</manifest>
