@@ -7,7 +7,7 @@
   <include name="frc/frcmisc.xml"/>
   <include name="frc/photonvision.xml"/>
   <!-- wpilibsuite,robotpy,frcmisc: 4GB (4/15/2025) -->
-  <include name="frc/2025.xml"/>
+  <include name="frc/team.xml"/>
   <include name="frc/bbFrc.xml"/>
   <include name="frc/ctre.xml"/>
 </manifest>
