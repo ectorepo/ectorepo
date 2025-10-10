@@ -19,7 +19,8 @@ repository.
   <include name="frc/photonvision.xml"/>
   <!-- wpilibsuite,robotpy,frcmisc: 4GB (4/15/2025) -->
   <include name="frc/2025.xml"/>
-  <include name="frc/bbFrc.xml">/
+  <include name="frc/teams.xml"/>
+  <include name="frc/bbFrc.xml"/>
   <include name="frc/ctre.xml"/>
 </manifest>
 #+end_src
@@ -79,13 +80,14 @@ Generate =wpilibsuite.xml=
 </manifest>
 #+end_src
 
-** 2025 Robots
+** Teams
 
-#+begin_src xml :tangle 2025.xml :noweb yes
+
+#+begin_src xml :tangle teams.xml :noweb yes
 <manifest>
-  <project name="Mechanical-Advantage/RobotCode2025Public" path="2025/Mechanical-Advantage/RobotCode2025Public" revision="refs/heads/main" />
-  <project name="Gregadeaux/TrainingDay2025Simulation" path="2025/TrainingDay2025Simulation" revision="refs/heads/main" />
-  <project name="frc2052/2025-Reefscape" path="2025/frc2052/2025-Reefscape" revision="refs/heads/main"/>
+  <project name="Mechanical-Advantage/RobotCode2025Public" path="teams/6238-mechadv/RobotCode2025Public" revision="refs/heads/main" />
+  <project name="frc2052/2025-Reefscape" path="teams/2052-knightkrawler/2025-Reefscape" revision="refs/heads/main"/>
+  <project name="BlueCheese1086/FRC-1086-Offseason-2025-Stringray" path="teams/1086-bluecheese/FRC-1086-Offseason-2025-Stringray" revision="refs/heads/Rewrite"/>
 </manifest>
 #+end_src
 

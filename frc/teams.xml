@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="Mechanical-Advantage/RobotCode2025Public" path="teams/6238-mechadv/RobotCode2025Public" revision="refs/heads/main" />
+  <project name="frc2052/2025-Reefscape" path="teams/2052-knightkrawler/2025-Reefscape" revision="refs/heads/main"/>
+  <project name="BlueCheese1086/FRC-1086-Offseason-2025-Stringray" path="teams/1086-bluecheese/FRC-1086-Offseason-2025-Stringray" revision="refs/heads/Rewrite"/>
+</manifest>
