@@ -96,6 +96,8 @@ To avoid confirmations
   <project name="Mic92/sops-nix" path="secrets/sops-nix" revision="refs/heads/master" remote="github"/>
   <!-- dev -->
   <project name="tweag/jupyenv" path="dev/jupyenv" revision="refs/heads/main" remote="github"/>
+  <!-- pkg -->
+  <project name="Martin.Eek.Gerhardsen/useful-nix-packages" path="pkg/3d/useful-nix-packages" revision="refs/heads/main" remote="sintef"/>
   <!-- learn -->
   <project name="tweag/nix-hour" path="learn/nix-hour" revision="refs/heads/master" remote="github"/>
   <!-- tools/nix -->

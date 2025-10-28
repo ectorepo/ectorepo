@@ -14,7 +14,6 @@
   <project name="hyprland-community/hyprls" path="hyprland-community/hyprls" revision="refs/heads/main" remote="github"/>
   <project name="hyprland-community/Hyprmaid" path="hyprland-community/Hyprmaid" revision="refs/heads/main" remote="github"/>
   <project name="hyprland-community/hyprnix" path="hyprland-community/hyprnix" revision="refs/heads/master" remote="github"/>
-  <project name="hyprland-community/hyprparse" path="hyprland-community/hyprparse" revision="refs/heads/main" remote="github"/>
   <project name="hyprland-community/hyprset" path="hyprland-community/hyprset" revision="refs/heads/master" remote="github"/>
   <project name="hyprland-community/hyprtheme" path="hyprland-community/hyprtheme" revision="refs/heads/master" remote="github"/>
   <project name="hyprland-community/hyprweb" path="hyprland-community/hyprweb" revision="refs/heads/main" remote="github"/>

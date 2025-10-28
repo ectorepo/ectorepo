@@ -162,6 +162,61 @@ Map =git stash/pull/pop= across submodules
 git submodule foreach "git stash && git pull origin master && git stash pop"
 #+end_src
 
+***** List submodules
+
+#+begin_src shell
+git config --file=.gitmodules submodule."blender".path
+#+end_src
+
+#+RESULTS:
+: blender
+
+I'm assuming the next command comports with the previous
+
+#+name: ectorepoModules
+#+begin_src shell :results output silent
+srepo="$(pwd)"
+git submodule foreach --quiet 'echo $(pwd)' | sed -E "s|$srepo/||g" | sort
+#+end_src
+
+All the =_remotes.xml= files
+
+#+name: ectorepoRemotesXML
+#+begin_src shell :results output silent
+find . -mindepth 2 -maxdepth 2 -name "_remotes.xml" | cut -f2- -d'/' | sort
+#+end_src
+
+All the directories with =default.xml=
+
+#+name: ectorepoDefaultXML
+#+begin_src shell :results output silent
+find . -mindepth 2 -maxdepth 2 -name "default.xml" | cut -f2- -d'/' | sort
+#+end_src
+
+The subprojects that aren't gitmodules
+
+#+name: ectorepoNonModules
+#+begin_src shell :results output silent :var modules=ectorepoModules defxml=ectorepoDefaultXML
+comm -2 -3 <(echo $defxml | tr ' ' '\n' | cut -f1 -d'/' | sort) \
+   <(echo $modules | tr ' ' '\n' | sort)
+#+end_src
+
+****** Misc
+
+Which one sticks out?
+
+#+begin_src shell :results output code :wrap example diff
+diff <(find . -mindepth 2 -name "default.xml" | sort | cut -f2- -d'/') \
+    <(grep -re _remotes.xml --include="default.xml" * | sort | cut -f1 -d':')
+echo
+#+end_src
+
+#+RESULTS:
+#+begin_example diff
+4d3
+< basic-sec/default.xml
+
+#+end_example
 
 ***** Manage =_remotes.xml=
 
@@ -175,18 +230,20 @@ The red is missing from =$_REPO/_remote.xml= ...
 
 #+begin_src shell :results output code :wrap example diff
 cat  **/_remotes.xml | grep '<remote' | sort | uniq \
-    | diff - <(grep '<remote ' _remotes.xml)
+    | diff - <(grep '<remote ' _remotes.xml | sort | uniq)
 echo
 #+end_src
 
-#+RESULTS:
-#+begin_example diff
-19d18
-<   <remote name="pantherxchannel" fetch="https://channels.pantherx.org/git"/>
-20a20
->   <remote name="pantherxchannel" fetch="https://channels.pantherx.org/git"/>
-#+end_example
+Again, but only for projects with modules
 
+#+begin_src shell :results output code :wrap example diff :var modules=ectorepoModules
+mremotes=$(find $modules -name _remotes.xml)
+for m in $mremotes; do
+    echo $m
+    grep '<remote' $m | sort | uniq \
+        | diff - <(grep '<remote ' _remotes.xml | sort | uniq)
+done
+#+end_src
 
 ****** Fan-out Copies of =_remotes.xml=
 
@@ -202,8 +259,11 @@ Diff for lagging copies of =_remotes.xml= across submodules.
   Just a quick check... There's probably a better way with submodule tooling.
 
 #+begin_src shell
-git submodule foreach "diff ../_remotes.xml _remotes.xml ; echo ''" | grep -e '^>'
+git submodule --quiet foreach "diff ../_remotes.xml _remotes.xml ; echo ''" | grep -e '^>'
+echo ' '
 #+end_src
+
+#+RESULTS:
 
 ****** Check, commit and push submodules
 
@@ -470,10 +530,5 @@ toolchains
 tpu
 transform
 #+end_example
-
-#+begin_src
-
-#+end_src
-
 
 ** Git

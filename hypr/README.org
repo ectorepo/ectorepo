@@ -62,42 +62,40 @@ GET :gh-url-base/:gh-url-path
 :headers
 #+end_src
 
-#+RESULTS: fetchMetadata
-
 #+name: hyprwmMetadata
 #+call: fetchMetadata(gh-org="hyprwm")
 
 #+RESULTS: hyprwmMetadata
-| hyprwm | hyprland-website            | 208290 | main   | false | 2025-08-05T18:28:00Z |
-| hyprwm | Hyprland                    |  71456 | main   | false | 2025-08-05T23:28:31Z |
-| hyprwm | wlroots-hyprland            |  11202 | main   | true  | 2025-05-05T07:46:53Z |
-| hyprwm | .github                     |   9455 | main   | false | 2025-04-11T13:01:09Z |
-| hyprwm | hyprland-wiki               |   2346 | main   | false | 2025-08-04T19:29:45Z |
-| hyprwm | hyprland-welcome            |   1368 | main   | false | 2025-03-08T09:04:33Z |
-| hyprwm | aur                         |    886 | main   | false | 2025-01-29T07:32:05Z |
-| hyprwm | hyprlock                    |    691 | main   | false | 2025-08-05T19:14:05Z |
-| hyprwm | xdg-desktop-portal-hyprland |    567 | master | false | 2025-08-05T19:47:30Z |
-| hyprwm | aquamarine                  |    486 | main   | false | 2025-08-05T20:20:12Z |
-| hyprwm | hyprgraphics                |    447 | main   | false | 2025-08-04T10:56:57Z |
-| hyprwm | hyprsysteminfo              |    405 | main   | false | 2025-08-01T22:10:26Z |
-| hyprwm | hyprland-plugins            |    372 | main   | false | 2025-08-05T19:48:05Z |
-| hyprwm | Hypr                        |    361 | main   | false | 2025-08-05T19:47:48Z |
-| hyprwm | hyprpaper                   |    226 | main   | false | 2025-08-05T19:47:54Z |
-| hyprwm | hyprlang                    |    195 | main   | false | 2025-07-31T01:29:08Z |
-| hyprwm | hyprcursor                  |    167 | main   | false | 2025-08-04T02:27:17Z |
-| hyprwm | hyprutils                   |    159 | main   | false | 2025-07-31T01:30:32Z |
-| hyprwm | contrib                     |    146 | main   | false | 2025-08-05T08:17:58Z |
-| hyprwm | hyprpicker                  |    131 | main   | false | 2025-08-05T19:48:00Z |
-| hyprwm | RFCs                        |     98 | main   | false | 2025-04-21T05:35:24Z |
-| hyprwm | hypridle                    |     91 | main   | false | 2025-08-05T13:22:47Z |
-| hyprwm | hyprpolkitagent             |     56 | main   | false | 2025-08-04T13:08:12Z |
-| hyprwm | hyprland-qt-support         |     53 | main   | false | 2025-07-31T01:03:11Z |
-| hyprwm | hyprwayland-scanner         |     48 | main   | false | 2025-07-31T01:03:37Z |
-| hyprwm | hyprland-protocols          |     47 | main   | false | 2025-08-01T09:28:59Z |
-| hyprwm | hyprsunset                  |     41 | main   | false | 2025-08-05T10:38:12Z |
-| hyprwm | hyprland-infra              |     40 | main   | false | 2025-04-04T04:13:38Z |
-| hyprwm | hyprland-qtutils            |     31 | main   | false | 2025-07-31T01:31:14Z |
-| hyprwm | standards                   |      8 | main   | false | 2025-04-04T04:13:40Z |
+| hyprwm | hyprland-website            | 208358 | main   | false | 2025-10-23T17:29:20Z |
+| hyprwm | Hyprland                    |  71975 | main   | false | 2025-10-28T17:24:04Z |
+| hyprwm | wlroots-hyprland            |  11202 | main   | true  | 2025-09-27T01:06:33Z |
+| hyprwm | .github                     |   9455 | main   | false | 2025-09-22T12:26:02Z |
+| hyprwm | hyprland-wiki               |   2328 | main   | false | 2025-10-26T19:37:23Z |
+| hyprwm | hyprland-welcome            |   1368 | main   | false | 2025-09-10T10:56:41Z |
+| hyprwm | aur                         |    886 | main   | false | 2025-09-10T10:56:38Z |
+| hyprwm | hyprlock                    |    702 | main   | false | 2025-10-26T15:57:37Z |
+| hyprwm | xdg-desktop-portal-hyprland |    558 | master | false | 2025-10-26T16:46:00Z |
+| hyprwm | hyprgraphics                |    499 | main   | false | 2025-10-16T03:03:48Z |
+| hyprwm | aquamarine                  |    444 | main   | false | 2025-10-27T16:17:46Z |
+| hyprwm | hyprsysteminfo              |    407 | main   | false | 2025-10-16T13:41:45Z |
+| hyprwm | hyprland-plugins            |    389 | main   | false | 2025-10-28T17:56:34Z |
+| hyprwm | Hypr                        |    361 | main   | false | 2025-10-27T16:00:54Z |
+| hyprwm | hyprpaper                   |    227 | main   | false | 2025-10-28T12:25:03Z |
+| hyprwm | hyprutils                   |    189 | main   | false | 2025-10-27T11:14:14Z |
+| hyprwm | hyprlang                    |    175 | main   | false | 2025-10-26T12:45:53Z |
+| hyprwm | contrib                     |    172 | main   | false | 2025-10-22T10:51:07Z |
+| hyprwm | hyprcursor                  |    167 | main   | false | 2025-10-27T15:32:41Z |
+| hyprwm | hyprpicker                  |    128 | main   | false | 2025-10-27T21:25:19Z |
+| hyprwm | RFCs                        |     98 | main   | false | 2025-10-26T06:21:55Z |
+| hyprwm | hypridle                    |     92 | main   | false | 2025-10-26T13:28:02Z |
+| hyprwm | hyprsunset                  |     58 | main   | false | 2025-10-28T02:54:50Z |
+| hyprwm | hyprpolkitagent             |     56 | main   | false | 2025-10-22T20:39:13Z |
+| hyprwm | hyprland-qt-support         |     55 | main   | false | 2025-10-12T14:18:28Z |
+| hyprwm | hyprwayland-scanner         |     49 | main   | false | 2025-10-16T13:42:23Z |
+| hyprwm | hyprland-protocols          |     45 | main   | false | 2025-10-18T07:25:53Z |
+| hyprwm | hyprland-infra              |     40 | main   | false | 2025-09-21T17:48:31Z |
+| hyprwm | hyprland-qtutils            |     36 | main   | false | 2025-10-05T12:06:46Z |
+| hyprwm | standards                   |      8 | main   | false | 2025-09-10T10:57:20Z |
 
 Excluded Repositories
 
@@ -187,24 +185,24 @@ Generate =hyprwm.xml=
 #+call: fetchMetadata(gh-org="hyprland-community")
 
 #+RESULTS: hyprcommunityMetadata
-| hyprland-community | hyprweb                          | 7463 | main   | false | 2025-06-02T21:48:30Z |
+| hyprland-community | hyprweb                          | 7469 | main   | false | 2025-09-17T20:31:39Z |
 | hyprland-community | _hyprtheme-theme-wip             | 5259 | main   | false | 2024-06-18T19:07:41Z |
-| hyprland-community | hyprls                           | 4844 | main   | false | 2025-08-04T06:08:12Z |
-| hyprland-community | hypr-binds                       | 2363 | main   | false | 2025-07-09T23:12:10Z |
-| hyprland-community | pyprland                         | 1781 | main   | false | 2025-07-31T15:15:33Z |
-| hyprland-community | hyprland-rs                      |  830 | master | false | 2025-08-02T21:03:03Z |
-| hyprland-community | awesome-hyprland                 |  288 | main   | false | 2025-08-06T00:22:25Z |
-| hyprland-community | hyprland-autoname-workspaces     |  274 | main   | false | 2025-08-03T10:52:25Z |
-| hyprland-community | hyprland-py                      |  239 | master | true  | 2025-06-12T10:13:18Z |
-| hyprland-community | hyprtheme                        |  233 | master | false | 2025-06-26T22:31:41Z |
-| hyprland-community | hyprnix                          |  186 | master | false | 2025-08-05T13:20:31Z |
-| hyprland-community | Hyprkeys                         |  176 | main   | true  | 2025-07-14T00:38:20Z |
-| hyprland-community | hyprset                          |  158 | master | false | 2025-07-31T16:48:19Z |
-| hyprland-community | theme-repo                       |  101 | main   | false | 2025-07-28T11:25:19Z |
+| hyprland-community | hyprls                           | 4966 | main   | false | 2025-10-27T23:42:46Z |
+| hyprland-community | hypr-binds                       | 2363 | main   | false | 2025-10-06T20:10:07Z |
+| hyprland-community | pyprland                         | 1823 | main   | false | 2025-10-27T21:39:05Z |
+| hyprland-community | hyprland-rs                      |  975 | master | false | 2025-10-26T22:15:03Z |
+| hyprland-community | hyprland-autoname-workspaces     |  274 | main   | false | 2025-10-13T05:21:41Z |
+| hyprland-community | hyprland-py                      |  239 | master | true  | 2025-08-29T09:21:53Z |
+| hyprland-community | hyprtheme                        |  233 | master | false | 2025-10-21T10:24:47Z |
+| hyprland-community | awesome-hyprland                 |  226 | main   | false | 2025-10-28T14:03:21Z |
+| hyprland-community | hyprnix                          |  184 | master | false | 2025-10-01T14:17:43Z |
+| hyprland-community | Hyprkeys                         |  176 | main   | true  | 2025-10-23T22:09:34Z |
+| hyprland-community | hyprset                          |  158 | master | false | 2025-10-15T12:09:34Z |
+| hyprland-community | theme-repo                       |  101 | main   | false | 2025-10-08T17:43:16Z |
 | hyprland-community | MonitorMaestro                   |   92 | master | false | 2025-04-09T15:16:24Z |
-| hyprland-community | hypract                          |   65 | master | true  | 2025-03-18T17:31:02Z |
-| hyprland-community | hpr-scratcher                    |   53 | main   | false | 2025-04-20T07:07:03Z |
-| hyprland-community | hyprparse                        |   52 | main   | false | 2025-06-28T11:06:41Z |
+| hyprland-community | hypract                          |   65 | master | true  | 2025-09-29T22:35:05Z |
+| hyprland-community | hpr-scratcher                    |   53 | main   | false | 2025-08-15T20:02:17Z |
+| hyprland-community | hyprparse                        |   52 | main   | true  | 2025-10-11T16:42:11Z |
 | hyprland-community | hyprweb-old                      |   31 | main   | true  | 2024-01-27T20:15:51Z |
 | hyprland-community | Fylgja                           |   31 | main   | true  | 2024-08-19T09:08:26Z |
 | hyprland-community | Hyprmaid                         |   23 | main   | false | 2024-06-19T15:03:57Z |
@@ -212,7 +210,7 @@ Generate =hyprwm.xml=
 | hyprland-community | hypr-trans                       |   21 | main   | false | 2025-08-01T03:23:53Z |
 | hyprland-community | hyprland-plugin-template         |   16 | main   | false | 2025-02-24T16:32:43Z |
 | hyprland-community | .github                          |    6 | main   | false | 2024-10-12T01:40:14Z |
-| hyprland-community | submissions                      |    4 | main   | false | 2025-02-04T00:09:43Z |
+| hyprland-community | submissions                      |    4 | main   | false | 2025-10-15T10:36:00Z |
 | hyprland-community | hyprland-config-rename-proposals |    1 | master | false | 2024-04-23T14:50:06Z |
 | hyprland-community | community                        |    0 | main   | false | 2023-02-11T05:17:15Z |
 | hyprland-community | hyprcombot                       |    0 | master | false | 2023-04-15T06:14:26Z |

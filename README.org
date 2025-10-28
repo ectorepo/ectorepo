@@ -12,7 +12,7 @@
 
 + The [[https://android.googlesource.com/tools/repo/+/HEAD/docs/manifest-format.md][DTD definition]] for Repo's Manifest XML
 + The main ChromiumOS platform [[https://chromium.googlesource.com/chromiumos/manifest/][manifest]] examples of groups & multiple manifests.
-+ [[https://chromium.googlesource.com/chromiumos/docs/+/HEAD/work_on_branch.md][ChromiumOS Guide to Working on Branches]]
++ [[https://www.chromium.org/chromium-os/developer-library/guides/development/work-on-branch/#check-out-the-whole-tree-with-repo][ChromiumOS Guide to Working on Branches]]
 + Gerrit [[https://gerrit-review.googlesource.com/Documentation/index.html][Docs]]
 
 See also the alternatives listed below
