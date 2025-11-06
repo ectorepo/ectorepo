@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- [[file:README.org::*Generate XML][Generate XML:1]] -->
+<manifest>
+  <project name="fcitx/fcitx5" path="fcitx/fcitx5" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-anthy" path="fcitx/fcitx5-anthy" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-bamboo" path="fcitx/fcitx5-bamboo" revision="refs/heads/main" remote="github"/>
+  <project name="fcitx/fcitx5-chewing" path="fcitx/fcitx5-chewing" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-chinese-addons" path="fcitx/fcitx5-chinese-addons" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-configtool" path="fcitx/fcitx5-configtool" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-cskk" path="fcitx/fcitx5-cskk" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-fbterm" path="fcitx/fcitx5-fbterm" revision="refs/heads/main" remote="github"/>
+  <project name="fcitx/fcitx5-gtk" path="fcitx/fcitx5-gtk" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-hangul" path="fcitx/fcitx5-hangul" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-keyman" path="fcitx/fcitx5-keyman" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-kkc" path="fcitx/fcitx5-kkc" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-libthai" path="fcitx/fcitx5-libthai" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-lua" path="fcitx/fcitx5-lua" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-m17n" path="fcitx/fcitx5-m17n" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-online" path="fcitx/fcitx5-online" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-qt" path="fcitx/fcitx5-qt" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-quwei" path="fcitx/fcitx5-quwei" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-rime" path="fcitx/fcitx5-rime" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-sayura" path="fcitx/fcitx5-sayura" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-skk" path="fcitx/fcitx5-skk" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-table-dayi" path="fcitx/fcitx5-table-dayi" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-table-extra" path="fcitx/fcitx5-table-extra" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-table-other" path="fcitx/fcitx5-table-other" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-unikey" path="fcitx/fcitx5-unikey" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-wayland-binding-generator" path="fcitx/fcitx5-wayland-binding-generator" revision="refs/heads/main" remote="github"/>
+  <project name="fcitx/fcitx5-wayland-generator" path="fcitx/fcitx5-wayland-generator" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/fcitx5-zhuyin" path="fcitx/fcitx5-zhuyin" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/flatpak-fcitx5" path="fcitx/flatpak-fcitx5" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/kcm-fcitx" path="fcitx/kcm-fcitx" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/keyman" path="fcitx/keyman" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/libime" path="fcitx/libime" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/libime-jyutping" path="fcitx/libime-jyutping" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/libime-web" path="fcitx/libime-web" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/mozc" path="fcitx/mozc" revision="refs/heads/fcitx" remote="github"/>
+  <project name="fcitx/mozc-cmake" path="fcitx/mozc-cmake" revision="refs/heads/master" remote="github"/>
+  <project name="fcitx/xcb-imdkit" path="fcitx/xcb-imdkit" revision="refs/heads/master" remote="github"/>
+</manifest>
+<!-- Generate XML:1 ends here -->
