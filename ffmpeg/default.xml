@@ -3,6 +3,7 @@
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- main projects -->
   <project name="ffmpeg/ffmpeg" path="ffmpeg/ffmpeg" revision="refs/heads/master" remote="github"/>
   <project name="ffmpeg/gas-preprocessor" path="ffmpeg/gas-preprocessor" revision="refs/heads/master" remote="github"/>
   <project name="ffmpeg/FFmpeg-Coverity" path="ffmpeg/ffmpeg-coverity" revision="refs/heads/master" remote="github"/>
@@ -10,6 +11,11 @@
   <project name="ffmpeg/ffmpeg-CI" path="ffmpeg/ffmpeg-ci" revision="refs/heads/master" remote="github"/>
   <project name="ffmpeg/asm-lessons" path="asm-lessons" revision="refs/heads/master" remote="github"/>
   <project name="ffmpeg/web" path="web" revision="refs/heads/master" remote="github"/>
+
+  <!-- tools -->
   <project name="maruyamaworks/ffmpeg-completion" path="tools/ffmpeg-completion" revision="refs/heads/master" remote="github"/>
   <project name="momo0853/ffmpeg-bash-completion" path="tools/ffmpeg-completion2" revision="refs/heads/main" remote="github"/>
+
+  <!-- apps -->
+  <project name="Draver93/ff-studio" path="apps/ff-studio" revision="refs/heads/main" remote="github"/>
 </manifest>
