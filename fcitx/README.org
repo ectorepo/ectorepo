@@ -1,4 +1,4 @@
-#+title:     Ectorepo: Hypr
+#+title:     Ectorepo: FCITX
 #+author:    David Conner
 #+email:     noreply@te.xel.io
 #+PROPERTY: header-args :comments none
@@ -12,7 +12,6 @@ repository.
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="fcitx/fcitx5.xml"/>
-  <include name="hypr/hyprcommunity.xml"/>
 </manifest>
 #+end_src
 
