@@ -1,0 +1,182 @@
+#+title:     Ectorepo: Hypr
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="fcitx/fcitx5.xml"/>
+  <include name="hypr/hyprcommunity.xml"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Setup
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+* Fcitx
+
+Clone bundle sizes
+
+#+name: fetchMetadata
+#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
+#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
+# User-Agent: dcunited001 # um okay that doesn't work
+# https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent
+
+GET :gh-url-base/:gh-url-path
+:headers
+#+end_src
+
+
+#+name: fcitxMetadata
+#+call: fetchMetadata(gh-org="fcitx")
+
+#+RESULTS: fcitxMetadata
+| fcitx | fcitx              | 20081 | master | true  | 2025-10-22T03:00:00Z |
+| fcitx | fcitx-table-extra  | 11766 | master | true  | 2025-07-23T03:51:55Z |
+| fcitx | fcitx-en           | 10892 | master | true  | 2023-01-28T20:35:55Z |
+| fcitx | fcitx-table-data   |  3600 | master | true  | 2025-06-26T14:40:12Z |
+| fcitx | fcitx-googlepinyin |  1240 | master | true  | 2025-09-13T21:40:31Z |
+| fcitx | kcm-fcitx          |   745 | master | false | 2025-09-02T07:06:55Z |
+| fcitx | fcitx-handwriting  |   629 | master | true  | 2025-05-09T14:57:01Z |
+| fcitx | fcitx-configtool   |   616 | master | true  | 2024-05-08T00:37:16Z |
+| fcitx | fcitx-qt5          |   604 | master | true  | 2025-10-24T04:35:16Z |
+| fcitx | fcitx-table-other  |   591 | master | true  | 2024-05-08T00:38:45Z |
+| fcitx | fcitx-anthy        |   568 | master | true  | 2025-03-03T12:34:34Z |
+| fcitx | handbook           |   469 | master | true  | 2023-01-28T20:35:54Z |
+| fcitx | fcitx-libpinyin    |   386 | master | true  | 2024-05-08T00:37:52Z |
+| fcitx | fcitx-ui-light     |   323 | master | true  | 2023-03-23T05:45:08Z |
+| fcitx | fcitx-rime         |   302 | master | true  | 2025-10-23T13:45:55Z |
+| fcitx | fcitx-unikey       |   248 | master | true  | 2025-10-22T04:18:32Z |
+| fcitx | fcitx-sunpinyin    |   248 | master | true  | 2025-09-02T07:05:57Z |
+| fcitx | fcitx-cloudpinyin  |   176 | master | true  | 2025-10-21T14:32:00Z |
+| fcitx | fcitx-simple       |   172 | master | true  | 2023-08-25T08:35:27Z |
+| fcitx | fcitx-fbterm       |   147 | master | true  | 2024-12-18T12:46:47Z |
+| fcitx | fcitx-m17n         |   146 | master | true  | 2024-05-08T00:38:07Z |
+| fcitx | fcitx-skk          |   130 | master | true  | 2025-09-27T07:51:51Z |
+| fcitx | fcitx-maliit       |   120 | master | true  | 2023-01-28T20:35:54Z |
+| fcitx | fcitx-chewing      |   117 | master | true  | 2024-05-08T00:36:38Z |
+| fcitx | fcitx-config       |   114 | master | true  | 2023-01-28T20:35:55Z |
+| fcitx | fcitx-clutter      |   104 | master | true  | 2023-01-28T20:35:55Z |
+| fcitx | fcitx-hangul       |    93 | master | true  | 2024-05-08T00:37:47Z |
+| fcitx | fcitx-templates    |    72 | master | true  | 2023-01-28T20:35:56Z |
+| fcitx | fcitx-sayura       |    66 | master | true  | 2024-05-08T00:38:24Z |
+| fcitx | developer-handbook |    24 | master | true  | 2023-07-20T21:53:52Z |
+
+Excluded Repositories
+
+#+NAME: fcitxReposExclude
+| freewb             |
+| fcitx-artwork      |
+| github-actions     |
+| handbook           |
+| developer-handbook |
+
+
+** Fcitx Repos
+
+#+name: fcitxRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "fcitx"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: fcitxReposXML
+#+begin_src emacs-lisp :var gqldata=fcitxRepos repos-exclude=fcitxReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "fcitx" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: fcitxReposXML
+
+** Generate XML
+
+Generate =fcitx.xml=
+
+#+begin_src xml :tangle fcitx.xml :noweb yes
+<manifest>
+  <<fcitxReposXML()>>
+</manifest>
+#+end_src
