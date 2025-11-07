@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
   <project name="Yubico/.github" path="yubico/.github" revision="refs/heads/main" remote="github"/>
   <project name="Yubico/arkg-rfc" path="yubico/arkg-rfc" revision="refs/heads/main" remote="github"/>
@@ -26,10 +27,10 @@
   <project name="Yubico/yubico-piv-tool" path="yubico/yubico-piv-tool" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/Yubico.NET.SDK" path="yubico/Yubico.NET.SDK" revision="refs/heads/develop" remote="github"/>
   <project name="Yubico/yubihsm-connector" path="yubico/yubihsm-connector" revision="refs/heads/master" remote="github"/>
+  <project name="Yubico/yubihsm-manager" path="yubico/yubihsm-manager" revision="refs/heads/main" remote="github"/>
   <project name="Yubico/yubihsm-setup" path="yubico/yubihsm-setup" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/yubihsm-shell" path="yubico/yubihsm-shell" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/yubihsmrs" path="yubico/yubihsmrs" revision="refs/heads/master" remote="github"/>
-  <project name="Yubico/yubikey-ksm-dpkg" path="yubico/yubikey-ksm-dpkg" revision="refs/heads/master" remote="github"/>
   <project name="Yubico/yubikey-manager" path="yubico/yubikey-manager" revision="refs/heads/main" remote="github"/>
   <project name="Yubico/yubikey-manager-qt" path="yubico/yubikey-manager-qt" revision="refs/heads/main" remote="github"/>
   <project name="Yubico/yubikey-personalization" path="yubico/yubikey-personalization" revision="refs/heads/master" remote="github"/>

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
   <project name="smallstep/action-install-step-cli" path="smallstep/action-install-step-cli" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/action-smallstep-ca-bootstrap" path="smallstep/action-smallstep-ca-bootstrap" revision="refs/heads/main" remote="github"/>
-  <project name="smallstep/analyze-step-ca-db" path="smallstep/analyze-step-ca-db" revision="refs/heads/master" remote="github"/>
+  <project name="smallstep/agent-token-examples" path="smallstep/agent-token-examples" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/ansible-collection-agent" path="smallstep/ansible-collection-agent" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/ansible-collection-cli" path="smallstep/ansible-collection-cli" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/ansible-collection-sigstore" path="smallstep/ansible-collection-sigstore" revision="refs/heads/main" remote="github"/>
@@ -30,6 +31,7 @@
   <project name="smallstep/linkedca" path="smallstep/linkedca" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/logging" path="smallstep/logging" revision="refs/heads/master" remote="github"/>
   <project name="smallstep/mongo-tls" path="smallstep/mongo-tls" revision="refs/heads/main" remote="github"/>
+  <project name="smallstep/next-product-docs" path="smallstep/next-product-docs" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/nosql" path="smallstep/nosql" revision="refs/heads/master" remote="github"/>
   <project name="smallstep/ocsp" path="smallstep/ocsp" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/openapi-python-client" path="smallstep/openapi-python-client" revision="refs/heads/main" remote="github"/>
@@ -38,6 +40,7 @@
   <project name="smallstep/pkcs11-proxy" path="smallstep/pkcs11-proxy" revision="refs/heads/master" remote="github"/>
   <project name="smallstep/pkcs7" path="smallstep/pkcs7" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/qb" path="smallstep/qb" revision="refs/heads/main" remote="github"/>
+  <project name="smallstep/radius-webhooks" path="smallstep/radius-webhooks" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/render-md-mermaid" path="smallstep/render-md-mermaid" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/run-anywhere-terraform" path="smallstep/run-anywhere-terraform" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/rusty-jwt-tools" path="smallstep/rusty-jwt-tools" revision="refs/heads/main" remote="github"/>
@@ -50,11 +53,13 @@
   <project name="smallstep/smallstep-desktop" path="smallstep/smallstep-desktop" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/smallstep-python" path="smallstep/smallstep-python" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/smimesign" path="smallstep/smimesign" revision="refs/heads/main" remote="github"/>
+  <project name="smallstep/ssh-attest-proxy" path="smallstep/ssh-attest-proxy" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/sshutil" path="smallstep/sshutil" revision="refs/heads/master" remote="github"/>
   <project name="smallstep/step-agent-plugin" path="smallstep/step-agent-plugin" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/step-issuer" path="smallstep/step-issuer" revision="refs/heads/master" remote="github"/>
   <project name="smallstep/step-kms-plugin" path="smallstep/step-kms-plugin" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/step-sds" path="smallstep/step-sds" revision="refs/heads/master" remote="github"/>
+  <project name="smallstep/step-ssh-kube" path="smallstep/step-ssh-kube" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/terraform-provider-smallstep" path="smallstep/terraform-provider-smallstep" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/tls-probe" path="smallstep/tls-probe" revision="refs/heads/main" remote="github"/>
   <project name="smallstep/truststore" path="smallstep/truststore" revision="refs/heads/master" remote="github"/>

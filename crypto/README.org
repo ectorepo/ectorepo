@@ -15,6 +15,9 @@ repository.
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="crypto/smallstep.xml"/>
   <include name="crypto/yubico.xml"/>
+  <include name="crypto/gnupg.xml"/>
+  <include name="crypto/go.xml"/>
+  <include name="crypto/python.xml"/>
 
   <!-- PKI reference -->
   <project path="pki/fpkilint" name="gsa/fpkilint" remote="github" revision="refs/heads/dev"/>

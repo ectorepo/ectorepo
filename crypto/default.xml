@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="crypto/smallstep.xml"/>
-  <include name="crypto/yubikey.xml"/>
+  <include name="crypto/yubico.xml"/>
+  <include name="crypto/gnupg.xml"/>
+  <include name="crypto/go.xml"/>
+  <include name="crypto/python.xml"/>
 
   <!-- PKI reference -->
   <project path="pki/fpkilint" name="gsa/fpkilint" remote="github" revision="refs/heads/dev"/>
