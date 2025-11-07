@@ -113,6 +113,62 @@ portable.
 Grok the general directory structure with =tree -dL 3 .= after submodules have
 been modulized
 
+#+begin_src shell :results output :var repoproject="crypto" :dir /data/ecto
+cd $repoproject
+repo forall  -c 'echo $REPO_LREV $REPO_RREV $REPO_PATH $REPO_PROJECT' | head -n7
+
+echo -n '' # idk. it just be like that sometimes
+#+end_src
+
+#+RESULTS:
+: 78571a281eb251e75683b345025ed74f8b5c6c54 refs/tags/gnupg-2.2.50 gnupg/gnupg-2.2 gnupg
+: 9d302f978bd718a7b477294c2f5b386bea6ca00d refs/heads/STABLE-BRANCH-2-4 gnupg/gnupg-2.4 gnupg
+: b39a0298112de853cc7c0833ed1c366330a225ef refs/tags/gnupg-2.5.13 gnupg/gnupg-2.5 gnupg
+: d0d9652e402ede5824204cf2a8595a89d8f3f9ff refs/heads/master go/go-ykpiv go-piv/go-ykpiv
+: 5a76b44bb2ea34ea4b24a6e295fc0a234f5f0692 refs/heads/master go/piv-go go-piv/piv-go
+: f380bc1c902b4dcd2a134eadabdd2ecc5a38e211 refs/heads/dev pki/fpkilint gsa/fpkilint
+: 64bbb446efa71a64f5cc23a6be94e58b909a6681 refs/heads/main python/cryptography pyca/cryptography
+
+Available environment variables
+
+| ~REPO_PROJECT~   | unique name of the project                                                                    |
+| ~REPO_PATH~      | path relative to client root                                                                  |
+| ~REPO_OUTERPATH~ | sub manifest's root path relative to client root                                              |
+| ~REPO_INNERPATH~ | path relative to root of sub manifest                                                         |
+| ~REPO_REMOTE~    | name of the remote system from manifest.                                                      |
+| ~REPO_LREV~      | revision from the manifest, translated to a local tracking branch                             |
+| ~REPO_RREV~      | revision from the manifest, exactly as written in manifest.                                   |
+| ~REPO_COUNT~     | total number of projects being iterated.                                                      |
+| ~REPO_I~         | 1-based iteration count ~REPO_I / REPO_COUNT~ shows progress                                    |
+| ~REPO__*~        | extra environment variables, specified by the "annotation" element under any project element. |
+
++ use =REPO_LREV= if you need to pass the manifest revision to a locally executed
+  git command
++ =REPO__*= can be useful for differentiating trees based on user-specific
+  criteria, or simply annotating tree details
+
+**** Touch repo roots
+
+This will break as git & repo manipulate the repositories, but having remotely
+accurate mtimes helps to hone in on what's recent.
+
+#+name: repoTouchRoots
+#+begin_src shell :results output :var repoproject="crypto" :dir /data/ecto
+cd $repoproject
+repo forall -e -c 'touch -m -d $(git log -1 --format="%ad" --date=iso-strict) .'
+
+echo -n '' # idk. it just be like that sometimes
+#+end_src
+
+Doesn't print anything, but it seems to work. =touch= will also appear to change
+the =ctime=, which is apparently kinda hard to deal with (probably not but idk)
+
+***** TODO add to a Makefile (and also touch parent directories)
+probably needed one a long time ago.... dsakfdhskl. it doesn't run in a
+checkout.... and you can't =repo init= to a parent-directory. :(
+
+#+call: repoTouchRoots(repoproject="x.files")
+
 **** Maintain Manifests
 
 Now that deltas are minimal (and XML's are guaranteed to be sorted/uniq), things
