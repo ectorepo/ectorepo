@@ -1,7 +1,7 @@
 #+title:     Ectorepo: OASIS Open
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-#+PROPERTY: header-args :comments none
+#+PROPERTY: header-args+ :comments none
 
 OASIS is a great source of information on domain modeling and ontology.
 Sometimes there are diagrams and pictures.

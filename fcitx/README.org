@@ -1,7 +1,7 @@
 #+title:     Ectorepo: FCITX
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-#+PROPERTY: header-args :comments none
+#+PROPERTY: header-args+ :comments none
 
 When using =repo init -u $url -m $manifest= instead of the git submodule to
 checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
@@ -11,7 +11,7 @@ repository.
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
-  <include name="fcitx/fcitx5.xml"/>
+  <include name="fcitx/fcitx.xml"/>
 </manifest>
 #+end_src
 

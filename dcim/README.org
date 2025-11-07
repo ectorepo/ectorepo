@@ -1,7 +1,7 @@
 #+title:     Ectorepo: DCIM & IPAM
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-#+PROPERTY: header-args :comments none
+#+PROPERTY: header-args+ :comments none
 
 Network hacking/recon repositories
 

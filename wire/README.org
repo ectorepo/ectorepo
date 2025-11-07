@@ -2,7 +2,7 @@
 #+AUTHOR:    David Conner
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
-#+PROPERTY: header-args :comments none
+#+PROPERTY: header-args+ :comments none
 
 The main reason I'm adding this is to use tools like:
 

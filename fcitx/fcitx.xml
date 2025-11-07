@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!-- [[file:README.org::*Generate XML][Generate XML:1]] -->
 <manifest>
   <project name="fcitx/fcitx5" path="fcitx/fcitx5" revision="refs/heads/master" remote="github"/>
   <project name="fcitx/fcitx5-anthy" path="fcitx/fcitx5-anthy" revision="refs/heads/master" remote="github"/>
@@ -40,4 +39,3 @@
   <project name="fcitx/mozc-cmake" path="fcitx/mozc-cmake" revision="refs/heads/master" remote="github"/>
   <project name="fcitx/xcb-imdkit" path="fcitx/xcb-imdkit" revision="refs/heads/master" remote="github"/>
 </manifest>
-<!-- Generate XML:1 ends here -->

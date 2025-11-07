@@ -1,7 +1,7 @@
 #+title:     Ectorepo: FRC
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-#+PROPERTY: header-args :comments none
+#+PROPERTY: header-args+ :comments none
 
 A list of repositories related to the FRC robotics competitions.
 

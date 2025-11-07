@@ -1,7 +1,7 @@
 #+title:     Ectorepo: NixOS
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-#+PROPERTY: header-args :comments none
+#+PROPERTY: header-args+ :comments none
 
 When using =repo init -u $url -m $manifest= instead of the git submodule to
 checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root

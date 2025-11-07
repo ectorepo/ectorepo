@@ -1,7 +1,7 @@
 #+title:     Ectorepo: Astral
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-#+PROPERTY: header-args :comments none
+#+PROPERTY: header-args+ :comments none
 
 #+begin_quote
 High-performance developer tools for the Python ecosystem.

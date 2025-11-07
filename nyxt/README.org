@@ -2,7 +2,7 @@
 #+AUTHOR:    David Conner
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
-#+PROPERTY: header-args :comments none
+#+PROPERTY: header-args+ :comments none
 
 See [[https://github.com/atlas-engineer/nyxt/blob/master/build-scripts/nyxt.scm][Nyxt Build Script]] for info on building
 
