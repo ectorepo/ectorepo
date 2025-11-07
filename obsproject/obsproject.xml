@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="obsproject/bouf" path="obsproject/bouf" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/cef" path="obsproject/cef" revision="refs/heads/6533-fix-stutter-and-osr-extra-info" remote="github"/>
+  <project name="obsproject/design" path="obsproject/design" revision="refs/heads/main" remote="github"/>
+  <project name="obsproject/homebrew-tools" path="obsproject/homebrew-tools" revision="refs/heads/main" remote="github"/>
+  <project name="obsproject/libdshowcapture" path="obsproject/libdshowcapture" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/loganalyzer" path="obsproject/loganalyzer" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/obs-bot" path="obsproject/obs-bot" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/obs-browser" path="obsproject/obs-browser" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/obs-crowdin-sync" path="obsproject/obs-crowdin-sync" revision="refs/heads/main" remote="github"/>
+  <project name="obsproject/obs-deps" path="obsproject/obs-deps" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/obs-deps-buildstream" path="obsproject/obs-deps-buildstream" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/obs-oauth-cf" path="obsproject/obs-oauth-cf" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/obs-plugintemplate" path="obsproject/obs-plugintemplate" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/obs-studio" path="obsproject/obs-studio" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/obs-websocket" path="obsproject/obs-websocket" revision="refs/heads/master" remote="github"/>
+  <project name="obsproject/rfcs" path="obsproject/rfcs" revision="refs/heads/master" remote="github"/>
+</manifest>

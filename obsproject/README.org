@@ -1,0 +1,170 @@
+#+title:     Ectorepo: OBS Project
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="obsproject/obsproject.xml"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Setup
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+* Obsproject
+
+Clone bundle sizes
+
+#+name: fetchMetadata
+#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
+#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
+# User-Agent: dcunited001 # um okay that doesn't work
+# https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent
+
+GET :gh-url-base/:gh-url-path
+:headers
+#+end_src
+
+
+#+name: obsprojectMetadata
+#+call: fetchMetadata(gh-org="obsproject")
+
+#+RESULTS: obsprojectMetadata
+| obsproject | FFmpeg               | 284334 | master                              | false | 2025-10-26T09:56:24Z |
+| obsproject | obs-studio           |  78608 | master                              | false | 2025-11-07T01:03:26Z |
+| obsproject | bouf                 |  64035 | master                              | false | 2025-09-07T04:37:39Z |
+| obsproject | cef                  |  30133 | 6533-fix-stutter-and-osr-extra-info | false | 2025-08-15T16:04:36Z |
+| obsproject | obs-amd-encoder      |  14940 | master                              | true  | 2025-10-24T17:30:20Z |
+| obsproject | design               |   6086 | main                                | false | 2025-09-03T08:29:16Z |
+| obsproject | obs-websocket        |   3718 | master                              | false | 2025-11-06T04:57:31Z |
+| obsproject | obscommits           |   2351 | master                              | false | 2025-04-19T07:13:24Z |
+| obsproject | obs-deps             |   1126 | master                              | false | 2025-11-04T20:08:16Z |
+| obsproject | obs-crowdin-sync     |   1058 | main                                | false | 2025-10-29T01:45:43Z |
+| obsproject | obs-browser          |    992 | master                              | false | 2025-11-05T13:06:28Z |
+| obsproject | obs-vst              |    641 | master                              | true  | 2025-10-04T14:02:37Z |
+| obsproject | libdshowcapture      |    279 | master                              | false | 2025-10-29T13:10:11Z |
+| obsproject | obs-plugintemplate   |    277 | master                              | false | 2025-11-03T12:34:07Z |
+| obsproject | loganalyzer          |    230 | master                              | false | 2025-10-29T20:48:29Z |
+| obsproject | obs-bot              |    166 | master                              | false | 2025-03-30T14:50:50Z |
+| obsproject | obs-deps-buildstream |    115 | master                              | false | 2025-11-02T07:41:02Z |
+| obsproject | rfcs                 |    102 | master                              | false | 2025-09-17T06:08:49Z |
+| obsproject | .github              |     85 | master                              | false | 2025-10-29T23:13:59Z |
+| obsproject | homebrew-tools       |     31 | main                                | false | 2025-08-27T18:26:33Z |
+| obsproject | obs-oauth-cf         |     28 | master                              | false | 2025-08-27T18:26:25Z |
+
+
+Excluded Repositories
+
+#+NAME: obsprojectReposExclude
+| FFmpeg             |
+| obscommits         |
+| .github            |
+
+** Obsproject Repos
+
+#+name: obsprojectRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "obsproject"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isArchived)))))))
+#+end_src
+
+#+name: obsprojectReposXML
+#+begin_src emacs-lisp :var gqldata=obsprojectRepos repos-exclude=obsprojectReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "obsproject" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: obsprojectReposXML
+
+** Generate XML
+
+Generate =obsproject.xml=
+
+#+begin_src xml :tangle obsproject.xml :noweb yes
+<manifest>
+  <<obsprojectReposXML()>>
+</manifest>
+#+end_src
