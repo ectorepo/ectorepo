@@ -9,7 +9,7 @@
   <project name="ffmpeg/FFmpeg-Coverity" path="ffmpeg/ffmpeg-coverity" revision="refs/heads/master" remote="github"/>
   <project name="ffmpeg/nv-codec-headers" path="ffmpeg/nv-codec-headers" revision="refs/heads/master" remote="github"/>
   <project name="ffmpeg/ffmpeg-CI" path="ffmpeg/ffmpeg-ci" revision="refs/heads/master" remote="github"/>
-  <project name="ffmpeg/asm-lessons" path="asm-lessons" revision="refs/heads/master" remote="github"/>
+  <project name="ffmpeg/asm-lessons" path="asm-lessons" revision="refs/heads/main" remote="github"/>
   <project name="ffmpeg/web" path="web" revision="refs/heads/master" remote="github"/>
 
   <!-- tools -->
