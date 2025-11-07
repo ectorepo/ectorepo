@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="rse/obs-scripts" path="lua/obs-scripts" revision="refs/heads/master" remote="github"/>
+  <project name="blanksourcecode/obs-zoom-to-mouse" path="lua/obs-zoom-to-mouse" revision="refs/heads/main" remote="github"/>
+  <project name="spessoni/obs-timecode-text" path="lua/obs-timecode-text" revision="refs/heads/main" remote="github"/>
+  <project name="CoccodrillooXDS/OBS-Notifications" path="lua/obs-notifications" revision="refs/heads/main" remote="github"/>
+  <project name="insin/obs-bounce" path="lua/obs-bounce" revision="refs/heads/master" remote="github"/>
+  <project name="lhns/obs-autosplitter" path="lua/obs-autosplitter" revision="refs/heads/master" remote="github"/>
+</manifest>

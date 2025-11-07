@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="obs-websocket-community-projects/obs-websocket-js" path="plugin/obs-websocket-js" revision="refs/heads/master" remote="github"/>
+  <project name="obs-websocket-community-projects/obs-websocket-docker" path="plugin/obs-websocket-docker" revision="refs/heads/master" remote="github"/>
+  <project name="obs-websocket-community-projects/obs-websocket-java" path="plugin/obs-websocket-java" revision="refs/heads/develop" remote="github"/>
+  <project name="obs-websocket-community-projects/obs-websocket-proxy-client" path="plugin/obs-websocket-proxy-client" revision="refs/heads/master" remote="github"/>
+  <project name="Kounex/obs_blade" path="ws/obs_blade" revision="refs/heads/master" remote="github"/>
+  <project name="grigio/obs-cmd" path="ws/obs-cmd" revision="refs/heads/master" remote="github"/>
+  <project name="jshea2/osc-for-obs" path="ws/osc-for-obs" revision="refs/heads/master" remote="github"/>
+  <project name="aatikturk/obsws-python" path="ws/obsws-python" revision="refs/heads/main" remote="github"/>
+  <project name="you-win/obs-websocket-gd" path="ws/obs-websocket-gd" revision="refs/heads/main" remote="github"/>
+  <project name="filiphanes/web-overlays" path="ws/web-overlays" revision="refs/heads/main" remote="github"/>
+  <project name="ryzetech/cider4obs" path="ws/cider4obs" revision="refs/heads/main" remote="github"/>
+  <project name="onyx-and-iris/gobs-cli" path="ws/gobs-cli" revision="refs/heads/main" remote="github"/>
+  <project name="Vengarioth/midibase" path="ws/midibase" revision="refs/heads/main" remote="github"/>
+  <project name="onyx-and-iris/obsws-ruby" path="ws/obsws-ruby" revision="refs/heads/main" remote="github"/>
+  <project name="motemen/macos-obs-websocket-ocr" path="ws/macos-obs-websocket-ocr" revision="refs/heads/main" remote="github"/>
+  <project name="tyler-dodge/obs-dsl.el" path="ws/obs-dsl.el" revision="refs/heads/main" remote="github"/>
+  <project name="schwwaaa/drop-zone-ops" path="ws/drop-zone-ops" revision="refs/heads/main" remote="github"/>
+</manifest>

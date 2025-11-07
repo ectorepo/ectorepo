@@ -4,4 +4,6 @@
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="obsproject/obsproject.xml"/>
+  <include name="obsproject/lua.xml"/>
+  <include name="obsproject/ws.xml"/>
 </manifest>
