@@ -4,18 +4,44 @@
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <!-- main projects -->
-  <project name="ffmpeg/ffmpeg" path="ffmpeg/ffmpeg" revision="refs/heads/master" remote="github"/>
-  <project name="ffmpeg/gas-preprocessor" path="ffmpeg/gas-preprocessor" revision="refs/heads/master" remote="github"/>
-  <project name="ffmpeg/FFmpeg-Coverity" path="ffmpeg/ffmpeg-coverity" revision="refs/heads/master" remote="github"/>
-  <project name="ffmpeg/nv-codec-headers" path="ffmpeg/nv-codec-headers" revision="refs/heads/master" remote="github"/>
-  <project name="ffmpeg/ffmpeg-CI" path="ffmpeg/ffmpeg-ci" revision="refs/heads/master" remote="github"/>
-  <project name="ffmpeg/asm-lessons" path="asm-lessons" revision="refs/heads/main" remote="github"/>
-  <project name="ffmpeg/web" path="web" revision="refs/heads/master" remote="github"/>
-
-  <!-- tools -->
-  <project name="maruyamaworks/ffmpeg-completion" path="tools/ffmpeg-completion" revision="refs/heads/master" remote="github"/>
-  <project name="momo0853/ffmpeg-bash-completion" path="tools/ffmpeg-completion2" revision="refs/heads/main" remote="github"/>
-
-  <!-- apps -->
-  <project name="Draver93/ff-studio" path="apps/ff-studio" revision="refs/heads/main" remote="github"/>
+  <project name="pipewire/helvum" path="pw/helvum" revision="refs/heads/main" remote="freedesktop" groups="cpp gtk"/>
+  <project name="pipewire/media-session" path="pw/media-session" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
+  <project name="pipewire/pipewire" path="pw/pipewire" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
+  <project name="pipewire/pipewire-native-rs" path="pw/pipewire-native-rs" revision="refs/heads/main" remote="freedesktop" groups="rust"/>
+  <project name="pipewire/pipewire-org" path="pw/pipewire-org" revision="refs/heads/master" remote="freedesktop" groups="doc" groups="doc"/>
+  <project name="pipewire/pipewire-rs" path="pw/pipewire-rs" revision="refs/heads/main" remote="freedesktop" groups="rust"/>
+  <project name="pipewire/wireplumber" path="pw/wireplumber" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
+  <!-- lib -->
+  <project name="fftw/fftw3" path="lib/fftw3" revision="refs/heads/master" remote="github"/>
+  <!-- stream -->
+  <project name="mkckr0/audio-share" path="stream/audio-share" revision="refs/heads/main" remote="github"/>
+  <project name="jamulussoftware/jamulus" path="stream/jamulus" revision="refs/heads/main" remote="github" groups="cpp"/>
+  <!-- audio -->
+  <project name="wwmm/easyeffects" path="audio/easyeffects" revision="refs/heads/master" remote="github"/>
+  <project name="karlstav/cava" path="audio/cava" revision="refs/heads/master" remote="github"/>
+  <project name="Soundux/Soundux" path="audio/soundux" revision="refs/heads/master" remote="github" groups="cpp"/>
+  <project name="mijorus/whisper" path="audio/whisper" revision="refs/heads/master" remote="github" groups="python"/>
+  <project name="Audio4Linux/JDSP4Linux" path="audio/jdsp4linux" revision="refs/heads/master" remote="github" groups="cpp"/>
+  <project name="noisetorch/NoiseTorch" path="audio/noisetorch" revision="refs/heads/master" remote="github" groups="go"/>  
+  <!-- video -->
+  <project name="awawa-dev/HyperHDR" path="video/hyperhdr" revision="refs/heads/master" remote="github"/>
+  <!-- midi -->
+  <project name="supercollider/supercollider" path="midi/supercollider" revision="refs/heads/develop" remote="github" groups="cpp"/>
+  <project name="helio-fm/helio-sequencer" path="midi/helio-sequencer" revision="refs/heads/develop" remote="github" groups="cpp"/>
+  <project name="helio-fm/juce" path="midi/juce" revision="refs/heads/develop" remote="github" groups="cpp"/>
+  <!-- graph -->
+  <project name="mikeroyal/PipeWire-Guide" path="graph/pipewire-guide" revision="refs/heads/main" remote="github" groups="doc"/>
+  <project name="ouston4444/RaySession" path="graph/raysession" revision="refs/heads/master" remote="github" groups="python"/>
+  <project name="dimtpap/coppwr" path="graph/coppwr" revision="refs/heads/main" remote="github" groups="rust"/>
+  <!-- daw -->
+  <project name="sonosaurus/sonobus" path="daw/sonobus" revision="refs/heads/main" remote="github" groups="cpp"/>
+  <!-- daw/vst -->
+  <project name="robbert-vdh/yabridge" path="daw/vst/yabridge" revision="refs/heads/master" remote="github" groups="cpp"/>
+  <!-- daw/max -->
+  <project name="KronosGroup/OpenMAX-IL-CTS" path="daw/max/OpenMAX-IL-CTS" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KronosGroup/OpenMAX-IL-Registry" path="daw/max/OpenMAX-IL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KronosGroup/OpenMAX-AL-Registry" path="daw/max/OpenMAX-AL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KronosGroup/OpenMAX-DL-Registry" path="daw/max/OpenMAX-DL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <!-- daw/zr: a lot of projects here -->
+  <!-- <project name="zrhythm/zrhythm" path="daw/zr/zrhythm" revision="refs/heads/main" remote="zrhythm" groups="cpp qt"/> -->
 </manifest>
