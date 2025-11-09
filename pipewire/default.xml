@@ -8,7 +8,7 @@
   <project name="pipewire/media-session" path="pw/media-session" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
   <project name="pipewire/pipewire" path="pw/pipewire" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
   <project name="pipewire/pipewire-native-rs" path="pw/pipewire-native-rs" revision="refs/heads/main" remote="freedesktop" groups="rust"/>
-  <project name="pipewire/pipewire-org" path="pw/pipewire-org" revision="refs/heads/master" remote="freedesktop" groups="doc" groups="doc"/>
+  <project name="pipewire/pipewire-org" path="pw/pipewire-org" revision="refs/heads/master" remote="freedesktop" groups="doc"/>
   <project name="pipewire/pipewire-rs" path="pw/pipewire-rs" revision="refs/heads/main" remote="freedesktop" groups="rust"/>
   <project name="pipewire/wireplumber" path="pw/wireplumber" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
   <!-- lib -->
