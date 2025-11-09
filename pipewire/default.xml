@@ -28,7 +28,7 @@
   <!-- midi -->
   <project name="supercollider/supercollider" path="midi/supercollider" revision="refs/heads/develop" remote="github" groups="cpp"/>
   <project name="helio-fm/helio-sequencer" path="midi/helio-sequencer" revision="refs/heads/develop" remote="github" groups="cpp"/>
-  <project name="helio-fm/juce" path="midi/juce" revision="refs/heads/develop" remote="github" groups="cpp"/>
+  <project name="juce-framework/JUCE" path="midi/juce" revision="refs/heads/master" remote="github" groups="cpp"/>
   <!-- graph -->
   <project name="mikeroyal/PipeWire-Guide" path="graph/pipewire-guide" revision="refs/heads/main" remote="github" groups="doc"/>
   <project name="houston4444/RaySession" path="graph/raysession" revision="refs/heads/master" remote="github" groups="python"/>
