@@ -116,10 +116,10 @@ This is likely out-of-scope
   <!-- daw/vst -->
   <project name="robbert-vdh/yabridge" path="daw/vst/yabridge" revision="refs/heads/master" remote="github" groups="cpp"/>
   <!-- daw/max -->
-  <project name="KronosGroup/OpenMAX-IL-CTS" path="daw/max/OpenMAX-IL-CTS" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
-  <project name="KronosGroup/OpenMAX-IL-Registry" path="daw/max/OpenMAX-IL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
-  <project name="KronosGroup/OpenMAX-AL-Registry" path="daw/max/OpenMAX-AL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
-  <project name="KronosGroup/OpenMAX-DL-Registry" path="daw/max/OpenMAX-DL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KhronosGroup/OpenMAX-IL-CTS" path="daw/max/OpenMAX-IL-CTS" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KhronosGroup/OpenMAX-IL-Registry" path="daw/max/OpenMAX-IL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KhronosGroup/OpenMAX-AL-Registry" path="daw/max/OpenMAX-AL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KhronosGroup/OpenMAX-DL-Registry" path="daw/max/OpenMAX-DL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
   <!-- daw/zr: a lot of projects here -->
   <!-- <project name="zrhythm/zrhythm" path="daw/zr/zrhythm" revision="refs/heads/main" remote="zrhythm" groups="cpp qt"/> -->
 </manifest>
