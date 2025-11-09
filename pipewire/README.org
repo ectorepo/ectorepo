@@ -1,0 +1,137 @@
+#+title:     Ectorepo: FFMPEG
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args+ :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
++ KronosGroup using =tcl= lmao. it does pop up from time to time & where it does,
+  i'm sure there's a reason.
++ [[https://github.com/mikeroyal/PipeWire-Guide?tab=readme-ov-file][mikeroyal/pipewire-guide]] has everything linux audio.
+  
+* Goals
+
+Interested in a visual app for pipewire graph management
+
++ that interfaces with wireplumber
++ with a decent CLI but also a decent dbus interface
++ with _declarative_ configuration
+
+** Query Language
+
+App/tools, in particular, would offers a _graph_ query-language that:
+
++ offers composable query statements that can handle missing nodes
+  - like [[https://tree-sitter.github.io/tree-sitter/using-parsers/queries/1-syntax.html][tree-sitter queries]]
+  - has a simple way to filter out subgraphs (e.g. the nodes induced by a DAW)
++ allows naming query results within a scope (something _like_ a let block)
+  - can reason about these intermediate pipewire graphs as though they've been
+    instantiated, but perhaps without re-implementing validation that's only
+    discoverable at run-time
++ can detect induced loops (results of subqueries on a returned subgraph)
+  - expressive enough to allow specific loops
+  - can perform some other kinds of structural validation
++ can survive unpredictable graph transitions (e.g. plug/unplug devices)
++ compatible with a CLI/D-Bus interface that permits reflection across returned
+  results to transform them into a sequence of commands to run that will
+  manifest the transformed audio/video graph
+
+*** Alternatives
+
+Wireplumber has some of these capabilities and maybe LUA _is_ this this query
+language (or at least some subset of it)..... but if so, it is NOT immediately
+obvious/
+
+There is apparently =wpexec=, but i've never really seen mention of it.
+
++ across about 180 dotfiles repos, there's no mention of =wpexec=
++ [[https://github.com/mikeroyal/PipeWire-Guide?tab=readme-ov-file][mikeroyal/pipewire-guide]] doesn't mention =wpexec=
++ [[https://github.com/search?q=topic%3Apipewire+wpexec&type=repositories][topic:pipewire wpexec]] returns 9 issues and 4 pr's........
+
+GH Search for [[https://github.com/search?q=wpexec+language%3ALua&type=code&l=Lua][wpexec language:lua]] returns
+
++ a script with =#!/usr/bin/env wpexec= in kriansa/wmcompanion
+  [[https://github.com/kriansa/wmcompanion/blob/051f6b90dc367a94cb860c85590030d535ede1db/wmcompanion/events/libexec/wireplumber-volume-watcher.lua][./wmcompanion/events/libexec/wireplumber-volume-watcher.lua]]
++ some scripts in Drayux/Catalyst
+  - [[https://github.com/Drayux/Catalyst/tree/eca32af2cb6b8205be2379a74e775adb9dc04549/archive/Config-Audio/wireplumber][./archive/Config-Audio/wireplumber]] older scripts w/o =#!/usr/bin/env wpexec=
+  - [[https://github.com/Drayux/Catalyst/tree/eca32af2cb6b8205be2379a74e775adb9dc04549/dotfiles_ref/pipewire/scripts][./dotfiles_ref/pipewire/scripts]] some scripts with  =#!/usr/bin/env wpexec=
++ some scripts in redxtech/nixfiles
+  - [[https://github.com/redxtech/nixfiles/blob/1650070f21da95bef714e3b2b5af483a4cb749c9/modules/home-manager/desktop/wm/scripts/bar/pipewire-output-tail/pipewire-output-tail.lua#L4][pipewire-output-tail.lua]] "Live update of current sink's volume level,
+    muteness in polybar friendly format."
+  - [[https://github.com/redxtech/nixfiles/blob/1650070f21da95bef714e3b2b5af483a4cb749c9/modules/home-manager/desktop/wm/scripts/bar/pipewire/pipewire-control.sh#L2][pipewire-control.sh]] expedites control of pipewire/wireplumber for waybar
+
+
+** Network Discovery
+
+App/tools, may also handle network-discovery: nice-to-have, but almost certainly
+out-of-scope (in the domain of professional network-based AV tools)
+
+- e.g. roaming wifi (loljk), maybe changes in network address (switch from wifi
+  to LAN doesn't affect streams; more of a networking problem)
+- can deal with pipewire nodes discovered via mDNS (this is just a nice-to-have,
+  for me)
+
+This is likely out-of-scope
+
+* Manifest
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <!-- main projects -->
+  <project name="pipewire/helvum" path="pw/helvum" revision="refs/heads/main" remote="freedesktop" groups="cpp gtk"/>
+  <project name="pipewire/media-session" path="pw/media-session" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
+  <project name="pipewire/pipewire" path="pw/pipewire" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
+  <project name="pipewire/pipewire-native-rs" path="pw/pipewire-native-rs" revision="refs/heads/main" remote="freedesktop" groups="rust"/>
+  <project name="pipewire/pipewire-org" path="pw/pipewire-org" revision="refs/heads/master" remote="freedesktop" groups="doc" groups="doc"/>
+  <project name="pipewire/pipewire-rs" path="pw/pipewire-rs" revision="refs/heads/main" remote="freedesktop" groups="rust"/>
+  <project name="pipewire/wireplumber" path="pw/wireplumber" revision="refs/heads/master" remote="freedesktop" groups="cpp"/>
+
+  <!-- lib -->
+  <project name="fftw/fftw3" path="lib/fftw3" revision="refs/heads/master" remote="github"/>
+
+  <!-- stream -->
+  <project name="mkckr0/audio-share" path="stream/audio-share" revision="refs/heads/main" remote="github"/>
+  <project name="jamulussoftware/jamulus" path="stream/jamulus" revision="refs/heads/main" remote="github" groups="cpp"/>
+  
+  <!-- audio -->
+  <project name="wwmm/easyeffects" path="audio/easyeffects" revision="refs/heads/master" remote="github"/>
+  <project name="karlstav/cava" path="audio/cava" revision="refs/heads/master" remote="github"/>
+  <project name="Soundux/Soundux" path="audio/soundux" revision="refs/heads/master" remote="github" groups="cpp"/>
+  <project name="mijorus/whisper" path="audio/whisper" revision="refs/heads/master" remote="github" groups="python"/>
+  <project name="Audio4Linux/JDSP4Linux" path="audio/jdsp4linux" revision="refs/heads/master" remote="github" groups="cpp"/>
+  <project name="noisetorch/NoiseTorch" path="audio/noisetorch" revision="refs/heads/master" remote="github" groups="go"/>
+  
+  <!-- video -->
+  <project name="awawa-dev/HyperHDR" path="video/hyperhdr" revision="refs/heads/master" remote="github"/>
+  
+  <!-- midi -->
+  <project name="supercollider/supercollider" path="midi/supercollider" revision="refs/heads/develop" remote="github" groups="cpp"/>
+  <project name="helio-fm/helio-sequencer" path="midi/helio-sequencer" revision="refs/heads/develop" remote="github" groups="cpp"/>
+  <project name="helio-fm/juce" path="midi/juce" revision="refs/heads/develop" remote="github" groups="cpp"/>
+
+  <!-- graph -->
+  <project name="mikeroyal/PipeWire-Guide" path="graph/pipewire-guide" revision="refs/heads/main" remote="github" groups="doc"/>
+  <project name="ouston4444/RaySession" path="graph/raysession" revision="refs/heads/master" remote="github" groups="python"/>
+  <project name="dimtpap/coppwr" path="graph/coppwr" revision="refs/heads/main" remote="github" groups="rust"/>
+
+  <!-- daw -->
+  <project name="sonosaurus/sonobus" path="daw/sonobus" revision="refs/heads/main" remote="github" groups="cpp"/>
+
+  <!-- daw/vst -->
+  <project name="robbert-vdh/yabridge" path="daw/vst/yabridge" revision="refs/heads/master" remote="github" groups="cpp"/>
+  
+  <!-- daw/max -->
+  <project name="KronosGroup/OpenMAX-IL-CTS" path="daw/max/OpenMAX-IL-CTS" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KronosGroup/OpenMAX-IL-Registry" path="daw/max/OpenMAX-IL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KronosGroup/OpenMAX-AL-Registry" path="daw/max/OpenMAX-AL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+  <project name="KronosGroup/OpenMAX-DL-Registry" path="daw/max/OpenMAX-DL-Registry" revision="refs/heads/main" remote="github" groups="cpp tcl"/>
+
+  <!-- daw/zr: a lot of projects here -->
+  <!-- <project name="zrhythm/zrhythm" path="daw/zr/zrhythm" revision="refs/heads/main" remote="zrhythm" groups="cpp qt"/> -->
+</manifest>
+#+end_src
+
