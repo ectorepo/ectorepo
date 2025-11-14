@@ -15,6 +15,7 @@ repository.
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <project name="nmap/nmap" path="nmap" revision="refs/heads/master" remote="github"/>
   <include name="hacknet/tools.xml"/>
+  <include name="hacknet/tobits.xml"/>
   <include name="hacknet/nmapetc.xml"/>
   <include name="hacknet/scanners.xml"/>
   <include name="hacknet/orch.xml"/>
@@ -64,6 +65,21 @@ curl -L \
   <project name="mjschultz/py-radix" path="tools/ip/py-radix" revision="refs/heads/main" remote="github"/>
   <project name="jsommers/pytricia" path="tools/ip/pytricia" revision="refs/heads/master" remote="github"/>
   <project name="libp2p/go-cidranger" path="tools/ip/go-cidranger" revision="refs/heads/master" remote="github"/>
+</manifest>
+#+end_src
+
+* Trail of Bits
+
+#+begin_src xml :tangle tobits.xml :noweb yes
+<manifest>
+  <project name="trailofbits/semgrep" path="tobits/semgrep" revision="refs/heads/main" remote="github"/>
+  <project name="trailofbits/graphtage" path="tobits/graphtage" revision="refs/heads/master" remote="github"/>
+  <project name="trailofbits/testing-handbook" path="/tobits/testing-handbook" revision="refs/heads/main" remote="github"/>
+  <project name="trailofbits/publications" path="tobits/publications" revision="refs/heads/master" remote="github"/>
+  <project name="trailofbits/codeql-queries" path="tobits/codeql-queries" revision="refs/heads/main" remote="github"/>
+  <project name="trailofbits/polyfile" path="tobits/polyfile" revision="refs/heads/master" remote="github"/>
+  <project name="C2SP/C2SP" path="tobits/C2SP" revision="refs/heads/main" remote="github"/>
+  <project name="C2SP/x509-limbo" path="tobits/x509-limbo" revision="refs/heads/main" remote="github"/>
 </manifest>
 #+end_src
 
