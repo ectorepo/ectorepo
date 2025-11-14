@@ -72,7 +72,7 @@ curl -L \
 
 #+begin_src xml :tangle tobits.xml :noweb yes
 <manifest>
-  <project name="trailofbits/semgrep" path="tobits/semgrep" revision="refs/heads/main" remote="github"/>
+  <project name="trailofbits/semgrep-rules" path="tobits/semgrep-rules" revision="refs/heads/main" remote="github"/>
   <project name="trailofbits/graphtage" path="tobits/graphtage" revision="refs/heads/master" remote="github"/>
   <project name="trailofbits/testing-handbook" path="tobits/testing-handbook" revision="refs/heads/main" remote="github"/>
   <project name="trailofbits/publications" path="tobits/publications" revision="refs/heads/master" remote="github"/>
