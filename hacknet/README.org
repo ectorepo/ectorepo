@@ -74,7 +74,7 @@ curl -L \
 <manifest>
   <project name="trailofbits/semgrep" path="tobits/semgrep" revision="refs/heads/main" remote="github"/>
   <project name="trailofbits/graphtage" path="tobits/graphtage" revision="refs/heads/master" remote="github"/>
-  <project name="trailofbits/testing-handbook" path="/tobits/testing-handbook" revision="refs/heads/main" remote="github"/>
+  <project name="trailofbits/testing-handbook" path="tobits/testing-handbook" revision="refs/heads/main" remote="github"/>
   <project name="trailofbits/publications" path="tobits/publications" revision="refs/heads/master" remote="github"/>
   <project name="trailofbits/codeql-queries" path="tobits/codeql-queries" revision="refs/heads/main" remote="github"/>
   <project name="trailofbits/polyfile" path="tobits/polyfile" revision="refs/heads/master" remote="github"/>
