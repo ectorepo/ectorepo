@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- [[file:README.org::*Tools][Tools:1]] -->
+<manifest>
+  <project name="RANDCorporation/DFORC2" path="data/dforc2" revision="refs/heads/master" remote="github"/>
+</manifest>
+<!-- Tools:1 ends here -->

@@ -16,6 +16,7 @@
   <!-- stream -->
   <project name="mkckr0/audio-share" path="stream/audio-share" revision="refs/heads/main" remote="github"/>
   <project name="jamulussoftware/jamulus" path="stream/jamulus" revision="refs/heads/main" remote="github" groups="cpp"/>
+  <project name="IceDBorn/pipewire-screenaudio" path="stream/pipewire-screenaudio" revision="refs/heads/main" remote="github" groups="cpp"/>
   <!-- audio -->
   <project name="wwmm/easyeffects" path="audio/easyeffects" revision="refs/heads/master" remote="github"/>
   <project name="karlstav/cava" path="audio/cava" revision="refs/heads/master" remote="github"/>
