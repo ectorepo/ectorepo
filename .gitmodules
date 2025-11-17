@@ -10,9 +10,6 @@
 [submodule "sway"]
 	path = sway
 	url = git@github.com:ectorepo/sway
-[submodule "forensics"]
-	path = forensics
-	url = git@github.com:ectorepo/forensics
 [submodule "guix"]
 	path = guix
 	url = git@github.com:ectorepo/guix
