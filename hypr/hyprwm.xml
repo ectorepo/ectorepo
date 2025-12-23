@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest>
+  <project name="hyprwm/actions" path="hyprwm/actions" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/aquamarine" path="hyprwm/aquamarine" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/aur" path="hyprwm/aur" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/contrib" path="hyprwm/contrib" revision="refs/heads/main" remote="github"/>
@@ -9,12 +10,11 @@
   <project name="hyprwm/hyprgraphics" path="hyprwm/hyprgraphics" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hypridle" path="hyprwm/hypridle" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/Hyprland" path="hyprwm/Hyprland" revision="refs/heads/main" remote="github"/>
+  <project name="hyprwm/hyprland-guiutils" path="hyprwm/hyprland-guiutils" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-infra" path="hyprwm/hyprland-infra" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-plugins" path="hyprwm/hyprland-plugins" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-protocols" path="hyprwm/hyprland-protocols" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-qt-support" path="hyprwm/hyprland-qt-support" revision="refs/heads/main" remote="github"/>
-  <project name="hyprwm/hyprland-qtutils" path="hyprwm/hyprland-qtutils" revision="refs/heads/main" remote="github"/>
-  <project name="hyprwm/hyprland-welcome" path="hyprwm/hyprland-welcome" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprland-wiki" path="hyprwm/hyprland-wiki" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprlang" path="hyprwm/hyprlang" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprlauncher" path="hyprwm/hyprlauncher" revision="refs/heads/main" remote="github"/>
@@ -24,12 +24,15 @@
   <project name="hyprwm/hyprpolkitagent" path="hyprwm/hyprpolkitagent" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprpwcenter" path="hyprwm/hyprpwcenter" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprqt6engine" path="hyprwm/hyprqt6engine" revision="refs/heads/main" remote="github"/>
+  <project name="hyprwm/hyprshutdown" path="hyprwm/hyprshutdown" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprsunset" path="hyprwm/hyprsunset" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprsysteminfo" path="hyprwm/hyprsysteminfo" revision="refs/heads/main" remote="github"/>
+  <project name="hyprwm/hyprtavern" path="hyprwm/hyprtavern" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprtoolkit" path="hyprwm/hyprtoolkit" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprutils" path="hyprwm/hyprutils" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprwayland-scanner" path="hyprwm/hyprwayland-scanner" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprwire" path="hyprwm/hyprwire" revision="refs/heads/main" remote="github"/>
+  <project name="hyprwm/hyprwire-protocols" path="hyprwm/hyprwire-protocols" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/RFCs" path="hyprwm/RFCs" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/xdg-desktop-portal-hyprland" path="hyprwm/xdg-desktop-portal-hyprland" revision="refs/heads/master" remote="github"/>
 </manifest>

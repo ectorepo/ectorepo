@@ -88,6 +88,8 @@ To avoid confirmations
   <project name="mrVanDalo/flake-templates" path="flakes/snippets/flake-templates" revision="refs/heads/main" remote="github"/>
   <!-- flakes/lib -->
   <project name="Lunarnovaa/LunarsLib" path="flakes/lib/lunarslib" revision="refs/heads/main" remote="github"/>
+  <!-- flakes/lib -->
+  <project name="jmgilman/nix-cue" path="flakes/test/nix-cue" revision="refs/heads/master" remote="github"/>
   <!-- security -->
   <project name="cynicsketch/nix-mineral" path="sec/nix-mineral" revision="refs/heads/main" remote="github"/>
   <project name="schizofox/schizofox" path="sec/schizofox" revision="refs/heads/main" remote="github"/>

@@ -10,4 +10,5 @@
   <include name="frc/teams.xml"/>
   <include name="frc/bbFrc.xml"/>
   <include name="frc/ctre.xml"/>
+  <include name="frc/hardware.xml"/>
 </manifest>
