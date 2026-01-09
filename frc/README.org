@@ -107,7 +107,7 @@ Generate =wpilibsuite.xml=
 
 #+begin_src xml :tangle hardware.xml :noweb yes
 <manifest>
-  <project name="https://github.com/Team997Coders/TCS34725I2CRoboRio" path="hw/drivers/TCS34725I2CRoboRio" revision="refs/heads/master" />
+  <project name="Team997Coders/TCS34725I2CRoboRio" path="hw/drivers/TCS34725I2CRoboRio" revision="refs/heads/master" />
 </manifest>
 #+end_src
 
