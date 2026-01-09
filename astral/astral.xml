@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
+  <project name="astral-sh/ambient-id" path="ambient-id" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/archive-in-git-test" path="archive-in-git-test" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/astral-tl" path="astral-tl" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/async_http_range_reader" path="async_http_range_reader" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/attest-action" path="attest-action" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/docs" path="docs" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/docstring-adder" path="docstring-adder" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/ecosystem-analyzer" path="ecosystem-analyzer" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/lfs-cowsay" path="lfs-cowsay" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/lsp-types" path="lsp-types" revision="refs/heads/master" remote="github"/>
+  <project name="astral-sh/mirror" path="mirror" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/mypy_primer" path="mypy_primer" revision="refs/heads/master" remote="github"/>
   <project name="astral-sh/nginx_pypi_cache" path="nginx_pypi_cache" revision="refs/heads/master" remote="github"/>
   <project name="astral-sh/packse" path="packse" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/pubgrub" path="pubgrub" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/pypi-proxy" path="pypi-proxy" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/python-build-standalone" path="python-build-standalone" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/pyx-auth-action" path="pyx-auth-action" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/renovate-config" path="renovate-config" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/reqwest-middleware" path="reqwest-middleware" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/rs-async-zip" path="rs-async-zip" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/ruff" path="ruff" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/ruff-action" path="ruff-action" revision="refs/heads/main" remote="github"/>
-  <project name="astral-sh/ruff-lsp" path="ruff-lsp" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/ruff-pre-commit" path="ruff-pre-commit" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/ruff-vscode" path="ruff-vscode" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/rye" path="rye" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/sanitize-wheel-test" path="sanitize-wheel-test" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/setup-uv" path="setup-uv" revision="refs/heads/main" remote="github"/>
-  <project name="astral-sh/tl" path="tl" revision="refs/heads/master" remote="github"/>
+  <project name="astral-sh/sigstore-models" path="sigstore-models" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/test-lfs-repo" path="test-lfs-repo" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/tokio-tar" path="tokio-tar" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/trusted-publishing-examples" path="trusted-publishing-examples" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/ty" path="ty" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/ty-vscode" path="ty-vscode" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv" path="uv" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-aws-lambda-example" path="uv-aws-lambda-example" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-backwards-path-test" path="uv-backwards-path-test" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/uv-cloudflare-workers-example" path="uv-cloudflare-workers-example" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-docker-example" path="uv-docker-example" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-dynamic-metadata-test" path="uv-dynamic-metadata-test" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/uv-ecosystem-testing" path="uv-ecosystem-testing" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-fastapi-example" path="uv-fastapi-example" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-flask-example" path="uv-flask-example" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-path-dependency-test" path="uv-path-dependency-test" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-pre-commit" path="uv-pre-commit" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/uv-stale-egg-info-test" path="uv-stale-egg-info-test" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/uvx-dummy" path="uvx-dummy" revision="refs/heads/main" remote="github"/>
+  <project name="astral-sh/wiremock-rs" path="wiremock-rs" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/workspace-in-root-test" path="workspace-in-root-test" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/workspace-virtual-root-test" path="workspace-virtual-root-test" revision="refs/heads/main" remote="github"/>
   <project name="astral-sh/workspace-with-root-dependency-test" path="workspace-with-root-dependency-test" revision="refs/heads/main" remote="github"/>

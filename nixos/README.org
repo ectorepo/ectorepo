@@ -53,8 +53,6 @@ A lot of interesting devops/consulting-oriented repos:
     [[https://github.com/nats-io/nats.docs/blob/master/nats-concepts/jetstream/README.md][JetStream]] directly "for more advanced messaging patterns"
 + [[https://github.com/numtide/NixOS-Fleet-Update-Provider][numtide/NixOS-Fleet-Update-Provider​]]
 
-
-
 * Repo Setup
 ** Babel Setup
 

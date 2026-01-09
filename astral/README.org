@@ -1,7 +1,7 @@
 #+title:     Ectorepo: Astral
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-#+PROPERTY: header-args+ :comments none
+#+PROPERTY: header-args+ :comments none :var enable-restclient=(setq-local restclient-enable-eval "yes")
 
 #+begin_quote
 High-performance developer tools for the Python ecosystem.
@@ -92,36 +92,36 @@ GET :gh-url-base/:gh-url-path
 #+end_src
 
 #+RESULTS: astralMetadata
-| astral-sh | python-build-standalone     |   2310 | main   | false | 2025-02-25T16:51:40Z |
-| astral-sh | ruff                        |  66835 | main   | false | 2025-02-25T22:22:57Z |
-| astral-sh | RustPython                  |  62003 | main   | true  | 2025-01-29T00:24:32Z |
-| astral-sh | ruff-pre-commit             |    177 | main   | false | 2025-02-24T17:13:17Z |
-| astral-sh | ruff-vscode                 |   1447 | main   | false | 2025-02-25T11:04:56Z |
-| astral-sh | ruff-lsp                    |    601 | main   | false | 2025-02-22T23:28:09Z |
-| astral-sh | rye                         |   3332 | main   | false | 2025-02-25T17:04:13Z |
-| astral-sh | RustPython-Parser           |   5118 | main   | true  | 2024-05-17T16:54:52Z |
-| astral-sh | schemastore                 |  31868 | master | false | 2024-09-09T14:00:06Z |
-| astral-sh | transformers                | 158147 | main   | false | 2024-10-14T09:54:28Z |
-| astral-sh | uv                          |  88912 | main   | false | 2025-02-25T22:01:20Z |
-| astral-sh | pubgrub                     |   2230 | main   | false | 2025-02-17T05:49:46Z |
-| astral-sh | packse                      |   9066 | main   | false | 2025-02-21T15:23:46Z |
-| astral-sh | pypi-proxy                  |     10 | main   | false | 2025-01-29T22:12:31Z |
-| astral-sh | uv-pre-commit               |     73 | main   | false | 2025-02-25T00:20:28Z |
+| astral-sh | transformers                | 158147 | main   | false | 2025-06-04T08:09:20Z |
+| astral-sh | uv                          | 127102 | main   | false | 2026-01-09T00:49:01Z |
+| astral-sh | ruff                        | 115476 | main   | false | 2026-01-09T00:04:38Z |
+| astral-sh | RustPython                  |  62003 | main   | true  | 2025-09-10T00:49:16Z |
+| astral-sh | schemastore                 |  34178 | master | false | 2025-12-22T03:27:33Z |
+| astral-sh | docs                        |  30099 | main   | false | 2026-01-08T19:26:24Z |
+| astral-sh | setup-uv                    |  15686 | main   | false | 2026-01-08T19:14:02Z |
+| astral-sh | packse                      |  10211 | main   | false | 2025-12-31T13:46:14Z |
+| astral-sh | RustPython-Parser           |   5118 | main   | true  | 2025-08-27T06:53:01Z |
+| astral-sh | rye                         |   3535 | main   | false | 2026-01-08T23:50:35Z |
+| astral-sh | python-build-standalone     |   3488 | main   | false | 2026-01-08T22:08:13Z |
+| astral-sh | pubgrub                     |   2428 | main   | false | 2025-11-24T11:55:35Z |
+| astral-sh | ruff-action                 |   2344 | main   | false | 2026-01-05T08:51:07Z |
+| astral-sh | ruff-vscode                 |   2137 | main   | false | 2026-01-08T19:46:05Z |
+| astral-sh | rs-async-zip                |    803 | main   | false | 2025-11-29T19:12:43Z |
 | astral-sh | lsp-types                   |    709 | master | false | 2024-04-29T18:12:29Z |
-| astral-sh | reqwest-middleware          |    222 | main   | false | 2024-08-19T14:06:50Z |
-| astral-sh | docs                        |  15289 | main   | false | 2025-02-24T22:51:59Z |
-| astral-sh | nginx_pypi_cache            |     12 | master | false | 2024-08-02T02:28:53Z |
-| astral-sh | tl                          |    172 | master | false | 2024-12-21T15:29:02Z |
-| astral-sh | uv-fastapi-example          |     27 | main   | false | 2025-02-24T01:47:37Z |
-| astral-sh | setup-uv                    |   5053 | main   | false | 2025-02-25T22:31:13Z |
-| astral-sh | uv-docker-example           |     60 | main   | false | 2025-02-25T18:59:42Z |
-| astral-sh | uv-flask-example            |      4 | main   | false | 2024-12-11T05:51:05Z |
-| astral-sh | ruff-action                 |   1265 | main   | false | 2025-02-25T14:44:09Z |
-| astral-sh | trusted-publishing-examples |     30 | main   | false | 2025-02-17T22:34:54Z |
-| astral-sh | workspace-in-root-test      |      1 | main   | false | 2024-12-12T08:57:40Z |
-| astral-sh | workspace-virtual-root-test |      6 | main   | false | 2024-10-29T16:03:21Z |
-| astral-sh | sanitize-wheel-test         |      3 | main   | false | 2024-10-31T18:42:18Z |
-| astral-sh | .github                     |      0 | main   | false | 2024-11-22T16:11:29Z |
+| astral-sh | ruff-lsp                    |    634 | main   | true  | 2026-01-05T16:15:35Z |
+| astral-sh | reqwest-middleware          |    246 | main   | false | 2025-12-18T10:36:53Z |
+| astral-sh | ruff-pre-commit             |    205 | main   | false | 2026-01-08T19:21:12Z |
+| astral-sh | astral-tl                   |    201 | main   | false | 2026-01-02T19:08:09Z |
+| astral-sh | uv-docker-example           |    125 | main   | false | 2026-01-08T15:49:03Z |
+| astral-sh | uv-pre-commit               |     97 | main   | false | 2026-01-06T12:10:04Z |
+| astral-sh | trusted-publishing-examples |     34 | main   | false | 2025-12-17T08:57:38Z |
+| astral-sh | uv-fastapi-example          |     28 | main   | false | 2025-12-26T09:47:41Z |
+| astral-sh | nginx_pypi_cache            |     12 | master | false | 2025-04-04T03:50:29Z |
+| astral-sh | pypi-proxy                  |     10 | main   | false | 2025-09-09T15:40:47Z |
+| astral-sh | workspace-virtual-root-test |      6 | main   | false | 2025-04-04T03:50:32Z |
+| astral-sh | uv-flask-example            |      4 | main   | false | 2025-10-26T09:58:04Z |
+| astral-sh | sanitize-wheel-test         |      3 | main   | false | 2025-04-04T03:50:30Z |
+| astral-sh | workspace-in-root-test      |      1 | main   | false | 2025-04-04T03:50:32Z |
 
 
 #+NAME: astralReposExclude
@@ -149,7 +149,6 @@ GET :gh-url-base/:gh-url-path
                           updatedAt
                           isArchived)))))))
 #+end_src
-
 
 Filter the results, generate XML
 
@@ -194,6 +193,61 @@ Filter the results, generate XML
     (cl-sort 'string-lessp :key 'downcase)
     (string-join "\n")))
 #+end_src
+
+#+RESULTS: astralReposXML
+#+begin_export html
+<project name="astral-sh/ambient-id" path="ambient-id" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/archive-in-git-test" path="archive-in-git-test" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/astral-tl" path="astral-tl" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/async_http_range_reader" path="async_http_range_reader" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/attest-action" path="attest-action" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/docs" path="docs" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/docstring-adder" path="docstring-adder" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/ecosystem-analyzer" path="ecosystem-analyzer" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/lfs-cowsay" path="lfs-cowsay" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/lsp-types" path="lsp-types" revision="refs/heads/master" remote="github"/>
+<project name="astral-sh/mirror" path="mirror" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/mypy_primer" path="mypy_primer" revision="refs/heads/master" remote="github"/>
+<project name="astral-sh/nginx_pypi_cache" path="nginx_pypi_cache" revision="refs/heads/master" remote="github"/>
+<project name="astral-sh/packse" path="packse" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/pubgrub" path="pubgrub" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/pypi-proxy" path="pypi-proxy" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/python-build-standalone" path="python-build-standalone" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/pyx-auth-action" path="pyx-auth-action" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/renovate-config" path="renovate-config" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/reqwest-middleware" path="reqwest-middleware" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/rs-async-zip" path="rs-async-zip" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/ruff" path="ruff" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/ruff-action" path="ruff-action" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/ruff-pre-commit" path="ruff-pre-commit" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/ruff-vscode" path="ruff-vscode" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/rye" path="rye" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/sanitize-wheel-test" path="sanitize-wheel-test" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/setup-uv" path="setup-uv" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/sigstore-models" path="sigstore-models" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/test-lfs-repo" path="test-lfs-repo" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/tokio-tar" path="tokio-tar" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/trusted-publishing-examples" path="trusted-publishing-examples" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/ty" path="ty" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/ty-vscode" path="ty-vscode" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv" path="uv" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-aws-lambda-example" path="uv-aws-lambda-example" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-backwards-path-test" path="uv-backwards-path-test" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-cloudflare-workers-example" path="uv-cloudflare-workers-example" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-docker-example" path="uv-docker-example" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-dynamic-metadata-test" path="uv-dynamic-metadata-test" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-ecosystem-testing" path="uv-ecosystem-testing" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-fastapi-example" path="uv-fastapi-example" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-flask-example" path="uv-flask-example" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-path-dependency-test" path="uv-path-dependency-test" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-pre-commit" path="uv-pre-commit" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uv-stale-egg-info-test" path="uv-stale-egg-info-test" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/uvx-dummy" path="uvx-dummy" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/wiremock-rs" path="wiremock-rs" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/workspace-in-root-test" path="workspace-in-root-test" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/workspace-virtual-root-test" path="workspace-virtual-root-test" revision="refs/heads/main" remote="github"/>
+<project name="astral-sh/workspace-with-root-dependency-test" path="workspace-with-root-dependency-test" revision="refs/heads/main" remote="github"/>
+#+end_export
 
 
 ** Generate XML
