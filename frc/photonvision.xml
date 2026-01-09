@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest>
+  <project name="PhotonVision/2026Beta" path="photonvision/2026Beta" revision="refs/heads/main" remote="github"/>
   <project name="PhotonVision/ansible-playbooks" path="photonvision/ansible-playbooks" revision="refs/heads/main" remote="github"/>
-  <project name="PhotonVision/apriltag" path="photonvision/apriltag" revision="refs/heads/master" remote="github"/>
-  <project name="PhotonVision/aruconano-jni" path="photonvision/aruconano-jni" revision="refs/heads/master" remote="github"/>
   <project name="PhotonVision/build-tools" path="photonvision/build-tools" revision="refs/heads/master" remote="github"/>
-  <project name="PhotonVision/gloworm-docs" path="photonvision/gloworm-docs" revision="refs/heads/master" remote="github"/>
+  <project name="PhotonVision/hailo_jni" path="photonvision/hailo_jni" revision="refs/heads/main" remote="github"/>
   <project name="PhotonVision/mrcal-java" path="photonvision/mrcal-java" revision="refs/heads/main" remote="github"/>
   <project name="PhotonVision/opencv" path="photonvision/opencv" revision="refs/heads/4.x" remote="github"/>
-  <project name="PhotonVision/orangepi-builder" path="photonvision/orangepi-builder" revision="refs/heads/main" remote="github"/>
   <project name="PhotonVision/photon-image-modifier" path="photonvision/photon-image-modifier" revision="refs/heads/main" remote="github"/>
+  <project name="PhotonVision/photon-image-runner" path="photonvision/photon-image-runner" revision="refs/heads/main" remote="github"/>
   <project name="PhotonVision/photon-libcamera-gl-driver" path="photonvision/photon-libcamera-gl-driver" revision="refs/heads/master" remote="github"/>
-  <project name="PhotonVision/photon-pi-gen" path="photonvision/photon-pi-gen" revision="refs/heads/master" remote="github"/>
-  <project name="PhotonVision/photon-pi-os" path="photonvision/photon-pi-os" revision="refs/heads/devel" remote="github"/>
-  <project name="PhotonVision/photon-picam-driver" path="photonvision/photon-picam-driver" revision="refs/heads/master" remote="github"/>
   <project name="PhotonVision/photonvision" path="photonvision/photonvision" revision="refs/heads/main" remote="github"/>
   <project name="PhotonVision/rknn_jni" path="photonvision/rknn_jni" revision="refs/heads/main" remote="github"/>
+  <project name="PhotonVision/rubik_jni" path="photonvision/rubik_jni" revision="refs/heads/main" remote="github"/>
+  <project name="PhotonVision/tensorrt_jni" path="photonvision/tensorrt_jni" revision="refs/heads/main" remote="github"/>
   <project name="PhotonVision/thirdparty-opencv" path="photonvision/thirdparty-opencv" revision="refs/heads/main" remote="github"/>
+  <project name="PhotonVision/wpilib-tool-plugin" path="photonvision/wpilib-tool-plugin" revision="refs/heads/main" remote="github"/>
 </manifest>

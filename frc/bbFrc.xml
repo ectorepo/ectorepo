@@ -2,6 +2,7 @@
 
 <manifest>
   <project name="bb-frc-workshops/2021-Workshop-Docs" path="bbFrc/2021-Workshop-Docs" revision="refs/heads/main" remote="github"/>
+  <project name="bb-frc-workshops/allwpilib" path="bbFrc/allwpilib" revision="refs/heads/feature/websocket-extension" remote="github"/>
   <project name="bb-frc-workshops/arduino-pico" path="bbFrc/arduino-pico" revision="refs/heads/master" remote="github"/>
   <project name="bb-frc-workshops/ArduinoWebsockets" path="bbFrc/ArduinoWebsockets" revision="refs/heads/master" remote="github"/>
   <project name="bb-frc-workshops/controller-firmware" path="bbFrc/controller-firmware" revision="refs/heads/master" remote="github"/>

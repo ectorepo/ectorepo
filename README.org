@@ -467,8 +467,6 @@ classDiagram
 #+RESULTS: forgeMermaid
 [[file:img/forgeSchema.svg]]
 
-
-
 * Subcommands
 
 ** Forall

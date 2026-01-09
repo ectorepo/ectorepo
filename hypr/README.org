@@ -66,35 +66,35 @@ GET :gh-url-base/:gh-url-path
 #+call: fetchMetadata(gh-org="hyprwm")
 
 #+RESULTS: hyprwmMetadata
-| hyprwm | hyprland-website            | 208358 | main   | false | 2025-10-23T17:29:20Z |
-| hyprwm | Hyprland                    |  71975 | main   | false | 2025-10-28T17:24:04Z |
-| hyprwm | wlroots-hyprland            |  11202 | main   | true  | 2025-09-27T01:06:33Z |
+| hyprwm | hyprland-website            | 208358 | main   | false | 2025-12-19T14:16:47Z |
+| hyprwm | Hyprland                    |  73466 | main   | false | 2025-12-21T21:02:20Z |
+| hyprwm | wlroots-hyprland            |  11202 | main   | true  | 2025-12-12T18:17:43Z |
 | hyprwm | .github                     |   9455 | main   | false | 2025-09-22T12:26:02Z |
-| hyprwm | hyprland-wiki               |   2328 | main   | false | 2025-10-26T19:37:23Z |
-| hyprwm | hyprland-welcome            |   1368 | main   | false | 2025-09-10T10:56:41Z |
+| hyprwm | hyprland-wiki               |   2541 | main   | false | 2025-12-19T16:14:38Z |
+| hyprwm | hyprland-welcome            |   1424 | main   | true  | 2025-11-20T14:01:43Z |
 | hyprwm | aur                         |    886 | main   | false | 2025-09-10T10:56:38Z |
-| hyprwm | hyprlock                    |    702 | main   | false | 2025-10-26T15:57:37Z |
-| hyprwm | xdg-desktop-portal-hyprland |    558 | master | false | 2025-10-26T16:46:00Z |
-| hyprwm | hyprgraphics                |    499 | main   | false | 2025-10-16T03:03:48Z |
-| hyprwm | aquamarine                  |    444 | main   | false | 2025-10-27T16:17:46Z |
-| hyprwm | hyprsysteminfo              |    407 | main   | false | 2025-10-16T13:41:45Z |
-| hyprwm | hyprland-plugins            |    389 | main   | false | 2025-10-28T17:56:34Z |
-| hyprwm | Hypr                        |    361 | main   | false | 2025-10-27T16:00:54Z |
-| hyprwm | hyprpaper                   |    227 | main   | false | 2025-10-28T12:25:03Z |
-| hyprwm | hyprutils                   |    189 | main   | false | 2025-10-27T11:14:14Z |
-| hyprwm | hyprlang                    |    175 | main   | false | 2025-10-26T12:45:53Z |
-| hyprwm | contrib                     |    172 | main   | false | 2025-10-22T10:51:07Z |
-| hyprwm | hyprcursor                  |    167 | main   | false | 2025-10-27T15:32:41Z |
-| hyprwm | hyprpicker                  |    128 | main   | false | 2025-10-27T21:25:19Z |
+| hyprwm | hyprlock                    |    706 | main   | false | 2025-12-21T17:42:38Z |
+| hyprwm | xdg-desktop-portal-hyprland |    558 | master | false | 2025-12-17T00:32:02Z |
+| hyprwm | aquamarine                  |    505 | main   | false | 2025-12-21T19:41:04Z |
+| hyprwm | hyprgraphics                |    504 | main   | false | 2025-12-16T07:17:28Z |
+| hyprwm | hyprland-plugins            |    493 | main   | false | 2025-12-21T18:11:08Z |
+| hyprwm | hyprsysteminfo              |    407 | main   | false | 2025-12-18T04:07:53Z |
+| hyprwm | Hypr                        |    361 | main   | false | 2025-12-20T21:27:14Z |
+| hyprwm | hyprutils                   |    276 | main   | false | 2025-12-20T17:56:16Z |
+| hyprwm | hyprpaper                   |    233 | main   | false | 2025-12-20T21:27:15Z |
+| hyprwm | hyprlang                    |    220 | main   | false | 2025-12-21T13:23:33Z |
+| hyprwm | contrib                     |    186 | main   | false | 2025-12-19T21:44:08Z |
+| hyprwm | hyprcursor                  |    167 | main   | false | 2025-12-16T05:30:15Z |
+| hyprwm | hyprpicker                  |    131 | main   | false | 2025-12-20T21:27:18Z |
 | hyprwm | RFCs                        |     98 | main   | false | 2025-10-26T06:21:55Z |
-| hyprwm | hypridle                    |     92 | main   | false | 2025-10-26T13:28:02Z |
-| hyprwm | hyprsunset                  |     58 | main   | false | 2025-10-28T02:54:50Z |
-| hyprwm | hyprpolkitagent             |     56 | main   | false | 2025-10-22T20:39:13Z |
-| hyprwm | hyprland-qt-support         |     55 | main   | false | 2025-10-12T14:18:28Z |
-| hyprwm | hyprwayland-scanner         |     49 | main   | false | 2025-10-16T13:42:23Z |
-| hyprwm | hyprland-protocols          |     45 | main   | false | 2025-10-18T07:25:53Z |
+| hyprwm | hypridle                    |     95 | main   | false | 2025-12-20T11:31:43Z |
+| hyprwm | hyprpolkitagent             |     56 | main   | false | 2025-12-21T12:07:00Z |
+| hyprwm | hyprland-qt-support         |     55 | main   | false | 2025-12-16T05:33:33Z |
+| hyprwm | hyprwayland-scanner         |     51 | main   | false | 2025-12-20T09:08:35Z |
+| hyprwm | hyprsunset                  |     49 | main   | false | 2025-12-20T22:35:36Z |
+| hyprwm | hyprland-protocols          |     48 | main   | false | 2025-12-16T05:29:06Z |
 | hyprwm | hyprland-infra              |     40 | main   | false | 2025-09-21T17:48:31Z |
-| hyprwm | hyprland-qtutils            |     36 | main   | false | 2025-10-05T12:06:46Z |
+| hyprwm | hyprland-qtutils            |     37 | main   | true  | 2025-12-16T05:33:33Z |
 | hyprwm | standards                   |      8 | main   | false | 2025-09-10T10:57:20Z |
 
 Excluded Repositories

@@ -167,7 +167,7 @@ the =ctime=, which is apparently kinda hard to deal with (probably not but idk)
 probably needed one a long time ago.... dsakfdhskl. it doesn't run in a
 checkout.... and you can't =repo init= to a parent-directory. :(
 
-#+call: repoTouchRoots(repoproject="x.files")
+#+call: repoTouchRoots(repoproject="rocm")
 
 **** Maintain Manifests
 

@@ -3,11 +3,12 @@
 <manifest>
   <project name="wpilibsuite/.github" path="wpilibsuite/.github" revision="refs/heads/master" remote="github"/>
   <project name="wpilibsuite/2025Beta" path="wpilibsuite/2025Beta" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/Axon" path="wpilibsuite/Axon" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/2026Beta" path="wpilibsuite/2026Beta" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/allwpilib" path="wpilibsuite/allwpilib" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/apriltag" path="wpilibsuite/apriltag" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/branding" path="wpilibsuite/branding" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/build-tools" path="wpilibsuite/build-tools" revision="refs/heads/master" remote="github"/>
+  <project name="wpilibsuite/bzlmodRio-libssh" path="wpilibsuite/bzlmodRio-libssh" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/bzlmodRio-ni" path="wpilibsuite/bzlmodRio-ni" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/bzlmodRio-opencv" path="wpilibsuite/bzlmodRio-opencv" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/Control-System-Vectors" path="wpilibsuite/Control-System-Vectors" revision="refs/heads/main" remote="github"/>
@@ -22,7 +23,6 @@
   <project name="wpilibsuite/gnu-config" path="wpilibsuite/gnu-config" revision="refs/heads/master" remote="github"/>
   <project name="wpilibsuite/gradle-cpp-vscode" path="wpilibsuite/gradle-cpp-vscode" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/gradle-jni" path="wpilibsuite/gradle-jni" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/homebrew-wpilib" path="wpilibsuite/homebrew-wpilib" revision="refs/heads/master" remote="github"/>
   <project name="wpilibsuite/GradleRIO" path="wpilibsuite/GradleRIO" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/import-signing-certificate" path="wpilibsuite/import-signing-certificate" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/native-utils" path="wpilibsuite/native-utils" revision="refs/heads/main" remote="github"/>
@@ -48,18 +48,18 @@
   <project name="wpilibsuite/StandaloneAppSamples" path="wpilibsuite/StandaloneAppSamples" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/styleguide" path="wpilibsuite/styleguide" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/systemcore-blocks-interface" path="wpilibsuite/systemcore-blocks-interface" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/SystemcoreTesting" path="wpilibsuite/SystemcoreTesting" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-ceres" path="wpilibsuite/thirdparty-ceres" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-gtsam" path="wpilibsuite/thirdparty-gtsam" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/thirdparty-imgui" path="wpilibsuite/thirdparty-imgui" revision="refs/heads/main" remote="github"/>
+  <project name="wpilibsuite/thirdparty-libsdl" path="wpilibsuite/thirdparty-libsdl" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-libssh" path="wpilibsuite/thirdparty-libssh" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/thirdparty-opencv" path="wpilibsuite/thirdparty-opencv" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/vendor-json-repo" path="wpilibsuite/vendor-json-repo" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/vendor-template" path="wpilibsuite/vendor-template" revision="refs/heads/2025" remote="github"/>
+  <project name="wpilibsuite/vendor-template" path="wpilibsuite/vendor-template" revision="refs/heads/2026" remote="github"/>
   <project name="wpilibsuite/vscode-wpilib" path="wpilibsuite/vscode-wpilib" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/wpilib-repositories-plugin" path="wpilibsuite/wpilib-repositories-plugin" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/wpilib-tool-plugin" path="wpilibsuite/wpilib-tool-plugin" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/wpilib-version-plugin" path="wpilibsuite/wpilib-version-plugin" revision="refs/heads/main" remote="github"/>
-  <project name="wpilibsuite/wpilib-ws-robot" path="wpilibsuite/wpilib-ws-robot" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/wpilib-ws-robot-romi" path="wpilibsuite/wpilib-ws-robot-romi" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/WPILibInstaller-Avalonia" path="wpilibsuite/WPILibInstaller-Avalonia" revision="refs/heads/main" remote="github"/>
   <project name="wpilibsuite/WPILibPi" path="wpilibsuite/WPILibPi" revision="refs/heads/main" remote="github"/>
