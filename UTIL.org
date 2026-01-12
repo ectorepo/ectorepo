@@ -153,12 +153,14 @@ This will break as git & repo manipulate the repositories, but having remotely
 accurate mtimes helps to hone in on what's recent.
 
 #+name: repoTouchRoots
-#+begin_src shell :results output :var repoproject="crypto" :dir /data/ecto
+#+begin_src shell :results output :var repoproject="crypto" :dir /data/ecto :sync t
 cd $repoproject
 repo forall -e -c 'touch -m -d $(git log -1 --format="%ad" --date=iso-strict) .'
 
 echo -n '' # idk. it just be like that sometimes
 #+end_src
+
+#+RESULTS: repoTouchRoots
 
 Doesn't print anything, but it seems to work. =touch= will also appear to change
 the =ctime=, which is apparently kinda hard to deal with (probably not but idk)
@@ -167,7 +169,9 @@ the =ctime=, which is apparently kinda hard to deal with (probably not but idk)
 probably needed one a long time ago.... dsakfdhskl. it doesn't run in a
 checkout.... and you can't =repo init= to a parent-directory. :(
 
-#+call: repoTouchRoots(repoproject="rocm")
+#+call: repoTouchRoots(repoproject="tensorflow")
+
+#+RESULTS:
 
 **** Maintain Manifests
 
