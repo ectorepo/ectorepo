@@ -17,6 +17,7 @@
   <project name="Mechanical-Advantage/AdvantageKit" path="dash/advantage/AdvantageKit" revision="refs/heads/main" />
   <project name="Mechanical-Advantage/AdvantageScope" path="dash/advantage/AdvantageScope" revision="refs/heads/main" />
   <project name="Mechanical-Advantage/AdvantageScout" path="dash/advantage/AdvantageScout" revision="refs/heads/main" />
+  <project name="Mechanical-Advantage/XRPTrainingCode" path="dash/advantage/XRPTrainingCode" revision="refs/heads/main" />
   <!-- utils -->
   <project name="Boomaa23/open-ds" path="utils/open-ds" revision="refs/heads/master" />
 </manifest>
