@@ -78,6 +78,7 @@ Generate =wpilibsuite.xml=
   <project name="Mechanical-Advantage/XRPTrainingCode" path="dash/advantage/XRPTrainingCode" revision="refs/heads/main" />
   <!-- utils -->
   <project name="Boomaa23/open-ds" path="utils/open-ds" revision="refs/heads/master" />
+  <project name="StuyPulse/StuyLib" path="utils/stuylib" revision="refs/heads/main" />
 </manifest>
 #+end_src
 
@@ -89,6 +90,17 @@ Generate =wpilibsuite.xml=
   <project name="Mechanical-Advantage/RobotCode2025Public" path="teams/6238-mechadv/RobotCode2025Public" revision="refs/heads/main" />
   <project name="frc2052/2025-Reefscape" path="teams/2052-knightkrawler/2025-Reefscape" revision="refs/heads/main"/>
   <project name="BlueCheese1086/FRC-1086-Offseason-2025-Stringray" path="teams/1086-bluecheese/FRC-1086-Offseason-2025-Stringray" revision="refs/heads/Rewrite"/>
+  <project name="Team254/FRC-2025-public" path="teams/254-cheesy-poofs/FRC-2025-public" revision="refs/heads/main"/>
+  <project name="Team254/FRC-2024-public" path="teams/254-cheesy-poofs/FRC-2024-public" revision="refs/heads/main"/>
+  <project name="Team254/FRC-2023-public" path="teams/254-cheesy-poofs/FRC-2023-public" revision="refs/heads/main"/>
+  <project name="Team254/FRC-2022-public" path="teams/254-cheesy-poofs/FRC-2022-public" revision="refs/heads/main"/>
+  <project name="Team254/FRC-2020-public" path="teams/254-cheesy-poofs/FRC-2020-public" revision="refs/heads/master"/>
+  <project name="Team254/FRC-2019-public" path="teams/254-cheesy-poofs/FRC-2019-public" revision="refs/heads/master"/>
+  <project name="Team254/FRC-2018-public" path="teams/254-cheesy-poofs/FRC-2018-public" revision="refs/heads/master"/>
+  <project name="Team254/FRC-2017-public" path="teams/254-cheesy-poofs/FRC-2017-public" revision="refs/heads/master"/>
+  <project name="Team254/FRC-2016-public" path="teams/254-cheesy-poofs/FRC-2016-public" revision="refs/heads/master"/>
+  <project name="FRCTeam2910/2025CompetitionRobot-Public" path="teams/2910-jack-in-the-bot/2025CompetitionRobot-Public" revision="refs/heads/main"/>
+  <project name="frc6941/2025-competition-robot" path="teams/6941-jack-in-the-bot/2025-competition-robot" revision="refs/heads/main"/>
 </manifest>
 #+end_src
 
