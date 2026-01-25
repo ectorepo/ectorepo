@@ -116,6 +116,15 @@ Generate =wpilibsuite.xml=
 </manifest>
 #+end_src
 
+** Lumyn Labs
+
+https://github.com/Lumyn-Labs/Examples/tree/main/LumynLabsExampleJava
+
+#+begin_src xml :tangle lumyn.xml :noweb yes
+<manifest>
+  <project name="Lumyn-Labs/Examples" path="lumyn/examples" revision="refs/heads/main" />
+</manifest>
+#+end_src
 ** Hardware
 
 #+begin_src xml :tangle hardware.xml :noweb yes
