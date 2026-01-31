@@ -101,6 +101,9 @@ Generate =wpilibsuite.xml=
   <project name="Team254/FRC-2016-public" path="teams/254-cheesy-poofs/FRC-2016-public" revision="refs/heads/master"/>
   <project name="FRCTeam2910/2025CompetitionRobot-Public" path="teams/2910-jack-in-the-bot/2025CompetitionRobot-Public" revision="refs/heads/main"/>
   <project name="frc6941/2025-competition-robot" path="teams/6941-jack-in-the-bot/2025-competition-robot" revision="refs/heads/main"/>
+  <project name="team401/2026-Robot-Code" path="teams/401/2026-Robot-Code" revision="refs/heads/main"/>
+  <project name="team401/2025-Robot-Code" path="teams/401/2025-Robot-Code" revision="refs/heads/main"/>
+  <project name="team401/coppercore" path="teams/401/coppercore" revision="refs/heads/main"/>
 </manifest>
 #+end_src
 
