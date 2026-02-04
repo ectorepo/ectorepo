@@ -19,4 +19,6 @@
   <project name="team401/2026-Robot-Code" path="teams/401-copperhead/2026-Robot-Code" revision="refs/heads/main"/>
   <project name="team401/2025-Robot-Code" path="teams/401-copperhead/2025-Robot-Code" revision="refs/heads/main"/>
   <project name="team401/coppercore" path="teams/401-copperhead/coppercore" revision="refs/heads/main"/>
+  <project name="hammerheads5000/2025Reefscape" path="teams/5000-hammerheads/2025Reefscape" revision="refs/heads/main"/>
+  <project name="hammerheads5000/2026Rebuilt" path="teams/5000-hammerheads/2026Rebuilt" revision="refs/heads/main"/>
 </manifest>
