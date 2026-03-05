@@ -13,7 +13,7 @@
   <project name="nix-community/crate2nix" path="nix-community/crate2nix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/disko" path="nix-community/disko" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/disko-templates" path="nix-community/disko-templates" revision="refs/heads/main" remote="github"/>
-  <project name="nix-community/docker-nixpkgs" path="nix-community/docker-nixpkgs" revision="refs/heads/master" remote="github"/>
+  <project name="nix-community/docker-nixpkgs" path="nix-community/docker-nixpkgs" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/dream2nix" path="nix-community/dream2nix" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/emacs-overlay" path="nix-community/emacs-overlay" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/ethereum.nix" path="nix-community/ethereum.nix" revision="refs/heads/main" remote="github"/>
