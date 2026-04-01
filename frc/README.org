@@ -59,9 +59,9 @@ Generate =wpilibsuite.xml=
 
 #+begin_src xml :tangle frcmisc.xml :noweb yes
 <manifest>
-  <!-- pathplanner -->
+  <!-- ./pathplanner -->
   <project name="mjansen4857/pathplanner" path="pathplanner" revision="refs/heads/main" remote="github"/>
-  <!-- texts -->
+  <!-- ./texts -->
   <project name="krishauser/RoboticSystemsBook" path="text/RoboticSystemsBook" revision="refs/heads/master" remote="github"/>
   <project name="krishauser/Klampt" path="text/Klampt" revision="refs/heads/master" remote="github"/>
   <project name="krishauser/Klampt-jupyter-extension" path="text/Klampt-jupyter-extension" revision="refs/heads/master" remote="github"/>
@@ -76,14 +76,16 @@ Generate =wpilibsuite.xml=
   <project name="Mechanical-Advantage/AdvantageScope" path="dash/advantage/AdvantageScope" revision="refs/heads/main" />
   <project name="Mechanical-Advantage/AdvantageScout" path="dash/advantage/AdvantageScout" revision="refs/heads/main" />
   <project name="Mechanical-Advantage/XRPTrainingCode" path="dash/advantage/XRPTrainingCode" revision="refs/heads/main" />
-  <!-- utils -->
+  <!-- ./utils -->
   <project name="Boomaa23/open-ds" path="utils/open-ds" revision="refs/heads/master" />
   <project name="StuyPulse/StuyLib" path="utils/stuylib" revision="refs/heads/main" />
+  <project name="tervay/recalc" path="utils/recalc" revision="refs/heads/main" />
+  <project name="jonahsnider/frc.sh" path="utils/frc.sh" revision="refs/heads/main" />
+  <project name="shueja/apriltag-svgs" path="utils/apriltag-svgs" revision="refs/heads/main" />
 </manifest>
 #+end_src
 
 ** Teams
-
 
 #+begin_src xml :tangle teams.xml :noweb yes
 <manifest>
@@ -131,6 +133,7 @@ https://github.com/Lumyn-Labs/Examples/tree/main/LumynLabsExampleJava
   <project name="Lumyn-Labs/Examples" path="lumyn/examples" revision="refs/heads/main" />
 </manifest>
 #+end_src
+
 ** Hardware
 
 #+begin_src xml :tangle hardware.xml :noweb yes
