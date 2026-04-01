@@ -82,6 +82,9 @@ Generate =wpilibsuite.xml=
   <project name="tervay/recalc" path="utils/recalc" revision="refs/heads/main" />
   <project name="jonahsnider/frc.sh" path="utils/frc.sh" revision="refs/heads/main" />
   <project name="shueja/apriltag-svgs" path="utils/apriltag-svgs" revision="refs/heads/main" />
+  <!-- ./AprilRobotics -->
+  <project name="AprilRobotics/apriltag" path="AprilRobotics/apriltag" revision="refs/heads/master" />
+  <project name="AprilRobotics/apriltag-imgs" path="AprilRobotics/apriltag-imgs" revision="refs/heads/master" />
 </manifest>
 #+end_src
 
