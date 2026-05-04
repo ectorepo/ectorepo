@@ -58,6 +58,7 @@
   <project name="srl-labs/sros-anysec-macsec-lab" path="srl-labs/sros-anysec-macsec-lab" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/srxnam2022-cicd-demo" path="srl-labs/srxnam2022-cicd-demo" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/uptime-cli-plugin" path="srl-labs/uptime-cli-plugin" revision="refs/heads/main" remote="github"/>
+  <project name="srl-labs/vrnetlab" path="srl-labs/vrnetlab" revision="refs/heads/master" remote="github"/>
   <project name="srl-labs/vscode-containerlab" path="srl-labs/vscode-containerlab" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/wsl-containerlab" path="srl-labs/wsl-containerlab" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/yang-browser" path="srl-labs/yang-browser" revision="refs/heads/master" remote="github"/>
