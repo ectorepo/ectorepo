@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="ipspace/cloud-labs" path="ipspace/cloud-labs" revision="refs/heads/main" remote="github"/>
+  <project name="ipspace/dc-labs" path="ipspace/dc-labs" revision="refs/heads/main" remote="github"/>
+  <project name="ipspace/netlab" path="ipspace/netlab" revision="refs/heads/dev" remote="github"/>
+  <project name="ipspace/netops-labs" path="ipspace/netops-labs" revision="refs/heads/main" remote="github"/>
+  <project name="ipspace/netlab-examples" path="ipspace/netlab-examples" revision="refs/heads/master" remote="github"/>
+  <project name="ipspace/NetOpsWorkshop" path="ipspace/NetOpsWorkshop" revision="refs/heads/master" remote="github"/>
+  <project name="ipspace/SR-workshop" path="ipspace/SR-workshop" revision="refs/heads/main" remote="github"/>
+</manifest>
