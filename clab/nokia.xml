@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <manifest>
   <project name="nokia/srlinux-ndk-protobufs" path="nokia/srlinux-ndk-protobufs" revision="refs/heads/protos" remote="github"/>
   <project name="nokia/srlinux-ndk-go" path="nokia/srlinux-ndk-go" revision="refs/heads/main" remote="github"/>

@@ -26,7 +26,6 @@
   <project name="srl-labs/ndk-proto-doc" path="srl-labs/ndk-proto-doc" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/ndk-sshx" path="srl-labs/ndk-sshx" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/netbox-nrx-clab" path="srl-labs/netbox-nrx-clab" revision="refs/heads/main" remote="github"/>
-  <project name="srl-labs/netlab" path="srl-labs/netlab" revision="refs/heads/dev" remote="github"/>
   <project name="srl-labs/network-multitool" path="srl-labs/network-multitool" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/nokia-basic-dci-lab" path="srl-labs/nokia-basic-dci-lab" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/nokia-evpn-lab" path="srl-labs/nokia-evpn-lab" revision="refs/heads/main" remote="github"/>

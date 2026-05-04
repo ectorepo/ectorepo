@@ -1,7 +1,7 @@
 #+title:     Ectorepo: Container Lab
 #+author:    David Conner
 #+email:     noreply@te.xel.io
-#+PROPERTY: header-args+ :comments none
+#+PROPERTY: header-args+ :comments none :var enable-restclient=(setq-local restclient-enable-eval "yes")
 
 Network hacking/recon repositories
 
@@ -55,6 +55,16 @@ To avoid confirmations
 </manifest>
 #+end_src
 
+* IP Space
+
+Clone bundle sizes
+
+#+begin_src xml :tangle ipspace.xml :noweb yes
+<manifest>
+  <project name="ipspace/netlab" path="ipspace/netlab" revision="refs/heads/dev" remote="github"/>
+</manifest>
+#+end_src
+
 * Misc Networking
 
 These could move somewhere else idk
@@ -78,7 +88,6 @@ Clone bundle sizes
 :gh-graphql-url = https://api.github.com/graphql
 :gh-url-base = https://api.github.com
 :gh-url-path = orgs/:gh-org/repos
-:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
 
 :headers = <<
 Accept: application/vnd.github+json
@@ -92,47 +101,45 @@ GET :gh-url-base/:gh-url-path
 :headers
 #+end_src
 
-#+RESULTS: fetchMetadata
-
 #+name: srllabsMetadata
 #+call: fetchMetadata(gh-org="srl-labs")
 
 #+RESULTS: srllabsMetadata
-| srl-labs | containerlab              | 52335 | main   | false | 2025-06-12T16:54:33Z |
-| srl-labs | srl-sros-telemetry-lab    | 49212 | main   | false | 2025-04-24T00:38:46Z |
-| srl-labs | yang-browser              | 41885 | master | false | 2025-05-14T07:02:57Z |
-| srl-labs | srl-telemetry-lab         | 17153 | main   | false | 2025-06-04T15:02:46Z |
-| srl-labs | learn-srlinux             | 15053 | main   | false | 2025-05-26T03:28:06Z |
-| srl-labs | ygotsrl                   | 10033 | main   | false | 2023-08-09T19:48:38Z |
-| srl-labs | nokia-segment-routing-lab |  8976 | master | false | 2025-05-02T11:16:02Z |
-| srl-labs | nornir-srl                |  4948 | main   | false | 2025-06-11T23:56:39Z |
-| srl-labs | srl-elk-lab               |  4407 | main   | false | 2025-04-29T15:10:59Z |
-| srl-labs | sros-anysec-lab           |  4382 | main   | false | 2025-02-18T14:13:45Z |
-| srl-labs | gnxi-browser              |  1478 | main   | false | 2025-05-02T11:15:28Z |
-| srl-labs | nokia-evpn-lab            |  1298 | main   | false | 2025-04-11T14:57:13Z |
-| srl-labs | srl-k8s-anycast-lab       |  1288 | main   | false | 2024-09-10T14:27:49Z |
-| srl-labs | srl-features-lab          |   605 | main   | false | 2025-04-11T14:57:12Z |
-| srl-labs | intent-based-ansible-lab  |   565 | main   | false | 2025-06-10T19:19:43Z |
-| srl-labs | srl-controller            |   418 | main   | false | 2024-07-01T15:45:36Z |
-| srl-labs | srl-splunk-lab            |   297 | main   | false | 2025-04-11T14:56:26Z |
-| srl-labs | multivendor-evpn-lab      |   222 | master | false | 2025-06-10T08:22:06Z |
-| srl-labs | ndk-dev-environment       |    73 | main   | false | 2023-08-09T19:48:25Z |
-| srl-labs | srlinux-gnmi-go           |    66 | main   | false | 2024-07-26T11:47:34Z |
-| srl-labs | srlinux-scrapli           |    42 | master | false | 2022-12-20T12:07:14Z |
-| srl-labs | network-multitool         |    42 | main   | false | 2025-06-11T14:55:26Z |
-| srl-labs | srxnam2022-cicd-demo      |    27 | main   | false | 2024-05-07T19:28:06Z |
-| srl-labs | opergroup-lab             |    26 | main   | false | 2025-02-25T10:05:19Z |
-| srl-labs | jsonrpc-ansible           |    18 | main   | false | 2025-05-02T11:15:44Z |
-| srl-labs | protoc-container          |    17 | main   | false | 2025-05-02T11:16:57Z |
-| srl-labs | srlinux-pygments          |    11 | main   | false | 2023-12-14T15:50:32Z |
-| srl-labs | irrd-container            |     8 | main   | false | 2023-06-05T09:21:50Z |
-| srl-labs | bird-container            |     7 | main   | false | 2025-05-18T22:22:43Z |
-| srl-labs | containerlab-border0.com  |     1 | main   | false | 2025-05-02T11:15:38Z |
+| srl-labs | containerlab              | 121470 | main   | false | 2026-05-04T02:07:22Z |
+| srl-labs | srl-sros-telemetry-lab    |  52113 | main   | false | 2026-03-20T06:21:41Z |
+| srl-labs | yang-browser              |  44305 | master | false | 2026-04-09T06:06:33Z |
+| srl-labs | learn-srlinux             |  15198 | main   | false | 2026-03-27T16:28:32Z |
+| srl-labs | srl-telemetry-lab         |  12936 | main   | false | 2026-04-28T14:04:27Z |
+| srl-labs | ygotsrl                   |  10033 | main   | false | 2023-08-09T19:48:38Z |
+| srl-labs | nokia-segment-routing-lab |   8976 | master | false | 2026-02-10T17:31:17Z |
+| srl-labs | srl-elk-lab               |   5391 | main   | false | 2026-04-10T16:25:53Z |
+| srl-labs | nornir-srl                |   5222 | main   | false | 2026-04-14T09:57:56Z |
+| srl-labs | sros-anysec-lab           |   4382 | main   | false | 2025-09-15T23:12:13Z |
+| srl-labs | vrnetlab                  |   4168 | master | false | 2026-04-30T12:56:37Z |
+| srl-labs | gnxi-browser              |   1478 | main   | false | 2025-05-02T11:15:28Z |
+| srl-labs | nokia-evpn-lab            |   1298 | main   | false | 2025-09-09T11:44:02Z |
+| srl-labs | intent-based-ansible-lab  |    656 | main   | false | 2025-11-21T10:14:00Z |
+| srl-labs | srl-features-lab          |    605 | main   | false | 2025-04-11T14:57:12Z |
+| srl-labs | srl-controller            |    405 | main   | false | 2026-01-27T16:04:49Z |
+| srl-labs | srl-splunk-lab            |    297 | main   | false | 2025-04-11T14:56:26Z |
+| srl-labs | multivendor-evpn-lab      |    222 | master | false | 2026-04-25T23:20:57Z |
+| srl-labs | ndk-dev-environment       |     73 | main   | false | 2023-08-09T19:48:25Z |
+| srl-labs | srlinux-gnmi-go           |     66 | main   | false | 2024-07-26T11:47:34Z |
+| srl-labs | network-multitool         |     51 | main   | false | 2026-04-05T11:08:38Z |
+| srl-labs | srlinux-scrapli           |     42 | master | false | 2022-12-20T12:07:14Z |
+| srl-labs | srxnam2022-cicd-demo      |     27 | main   | false | 2024-05-07T19:28:06Z |
+| srl-labs | opergroup-lab             |     26 | main   | false | 2025-09-15T13:22:27Z |
+| srl-labs | jsonrpc-ansible           |     18 | main   | false | 2025-05-02T11:15:44Z |
+| srl-labs | protoc-container          |     17 | main   | false | 2025-05-02T11:16:57Z |
+| srl-labs | srlinux-pygments          |     11 | main   | false | 2023-12-14T15:50:32Z |
+| srl-labs | irrd-container            |      8 | main   | false | 2023-06-05T09:21:50Z |
+| srl-labs | bird-container            |      7 | main   | false | 2025-05-18T22:22:43Z |
+| srl-labs | containerlab-border0.com  |      1 | main   | false | 2025-05-02T11:15:38Z |
 
 Excluded Repositories
 
 #+NAME: srllabsReposExclude
-|  |
+| netlab |
 
 
 ** SRL Labs Repos
