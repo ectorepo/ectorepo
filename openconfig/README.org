@@ -2,7 +2,7 @@
 #+AUTHOR:    David Conner
 #+EMAIL:     aionfork@gmail.com
 #+DESCRIPTION: notes
-#+PROPERTY: header-args+ :comments none
+#+PROPERTY: header-args+ :comments none :var enable-restclient=(setq-local restclient-enable-eval "yes")
 
 I'm hoping that OpenConfig will give me some good ideas for how to model data
 structures for network automation.
@@ -74,8 +74,61 @@ avoid confirmations
 (setq-local org-confirm-babel-evaluate nil)
 #+end_src
 
-
 * Open Config Repos
+
+Clone bundle sizes
+
+#+name: ocReposMetadata
+#+begin_src restclient :jq "map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv" :results table :jq-args "--raw-output"
+:gh-graphql-url = https://api.github.com/graphql
+:gh-url-base = https://api.github.com
+:gh-org = openconfig
+:gh-url-path = orgs/:gh-org/repos
+:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
+
+:headers = <<
+Accept: application/vnd.github+json
+Authorization: Bearer :gh-token
+X-GitHub-Api-Version: 2022-11-28
+User-Agent: Emacs
+#
+
+GET :gh-url-base/:gh-url-path
+:headers
+#+end_src
+
+#+RESULTS: ocReposMetadata
+| openconfig | yang                |   5948 | master  | true  | 2024-12-18T01:25:50Z |
+| openconfig | goyang              |    685 | master  | false | 2026-05-01T20:27:54Z |
+| openconfig | reference           |   1699 | master  | false | 2026-05-01T20:30:07Z |
+| openconfig | public              |   4188 | master  | false | 2026-05-01T03:25:13Z |
+| openconfig | oc-pyang            |    355 | master  | false | 2026-05-01T20:30:18Z |
+| openconfig | models-ci           |    552 | master  | false | 2026-05-01T20:31:35Z |
+| openconfig | gnmi                |   1243 | master  | false | 2026-05-01T20:27:44Z |
+| openconfig | ygot                | 136690 | master  | false | 2026-05-01T20:24:44Z |
+| openconfig | gnoi                |   2027 | main    | false | 2026-05-01T20:31:23Z |
+| openconfig | gribi               |   8353 | master  | false | 2026-03-27T19:50:49Z |
+| openconfig | hercules            |    469 | master  | true  | 2026-04-19T12:05:40Z |
+| openconfig | gnmitest            |   5173 | master  | true  | 2026-05-01T20:32:20Z |
+| openconfig | lsdbparse           |   1487 | master  | true  | 2026-04-19T12:05:52Z |
+| openconfig | gnmi-gateway        |    460 | release | false | 2026-04-07T17:48:23Z |
+| openconfig | grpctunnel          |    716 | main    | false | 2026-05-01T20:31:55Z |
+| openconfig | pattern-regex-tests |    106 | main    | false | 2026-05-01T20:31:50Z |
+| openconfig | kne                 |  44384 | main    | false | 2026-05-01T20:29:22Z |
+| openconfig | gribigo             |   2969 | main    | false | 2026-04-07T17:48:22Z |
+| openconfig | ondatra             | 356805 | main    | false | 2026-04-10T21:00:35Z |
+| openconfig | gnsi                |    989 | main    | false | 2026-04-07T17:48:17Z |
+| openconfig | catalog-server      |    242 | main    | true  | 2025-03-21T18:30:36Z |
+| openconfig | featureprofiles     |  43088 | main    | false | 2026-05-04T01:14:22Z |
+| openconfig | gnpsi               |     93 | main    | false | 2026-04-07T17:48:17Z |
+| openconfig | lemming             |  90486 | main    | false | 2026-05-01T20:29:44Z |
+| openconfig | gocloser            |     18 | main    | false | 2026-04-07T17:48:16Z |
+| openconfig | testt               |     16 | main    | false | 2026-04-07T17:48:15Z |
+| openconfig | ygnmi               |   1720 | main    | false | 2026-03-31T18:52:54Z |
+| openconfig | common-ci           |    109 | main    | false | 2026-05-01T20:31:39Z |
+| openconfig | gnmic               |   9811 | main    | false | 2026-04-29T05:57:44Z |
+| openconfig | magna               |   2744 | main    | false | 2026-04-08T00:26:37Z |
+
 
 These repos are excluded
 
