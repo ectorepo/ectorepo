@@ -213,6 +213,8 @@ Excluded Repositories
                           (defaultBranchRef prefix name)
                           url
                           updatedAt
+                          diskUsage
+                          isFork
                           isArchived)))))))
 #+end_src
 

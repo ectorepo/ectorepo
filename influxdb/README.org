@@ -1,0 +1,257 @@
+#+title:     Ectorepo: InfluxDB
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args+ :comments none
+
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="influxdata.xml"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Babel Setup
+
+Get the core repositories. These should go into =/data/ecto/ROCmSoftwarePlatform/rocm=.
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+For some reason =:var nrepos=200= doesn't properly substitute here, so =:noweb
+yes= is required. However, 100 is the max on sorted results anyways.
+
+* influxdata
+
+
+Clone bundle sizes
+
+#+name: influxdataBundles
+#+begin_src emacs-lisp :var nrepos=100 :results value table :exports code :noweb yes :eval query
+(setq -gql-data
+      (ghub-graphql
+       (graphql-query ((organization
+                        :arguments ((login . "influxdata"))
+                        (repositories
+                         :arguments ((first . 100)
+                                     (orderBy . ((field . UPDATED_AT)
+                                                 (direction . DESC))))
+                         (edges
+                          (node (owner login)
+                                name
+                                (defaultBranchRef prefix name)
+                                url
+                                updatedAt
+                                diskUsage
+                                isFork
+                                isArchived))))))))
+
+(thread-first
+  (thread-last
+    (a-get* (nthcdr 0 -gql-data) 'data 'organization 'repositories 'edges)
+    (mapcar (lambda (el) (a-get* el 'node)))
+
+    ;; filter archived repos
+    (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+    (mapcar (lambda (el)
+              (flatten-list
+               (list
+                (a-get* el 'diskUsage)
+                (a-get* el 'owner 'login)
+                (a-get* el 'defaultBranchRef 'prefix)
+                (a-get* el 'defaultBranchRef 'name)
+                (mapcar (lambda (repo-keys)
+                          (a-get* el repo-keys))
+                        '(name
+                          updatedAt
+                          isFork
+                          isArchived
+                          url))))))))
+#+end_src
+
+#+RESULTS: influxdataBundles
+|     82641 | influxdata | refs/heads/ | master | telegraf                                      | 2026-05-06T16:41:30Z | https://github.com/influxdata/telegraf                                      |
+|    209535 | influxdata | refs/heads/ | main   | influxdb                                      | 2026-05-06T15:36:36Z | https://github.com/influxdata/influxdb                                      |
+|      1427 | influxdata | refs/heads/ | master | influxdata-docker                             | 2026-05-06T15:36:32Z | https://github.com/influxdata/influxdata-docker                             |
+|    224987 | influxdata | refs/heads/ | master | docs-v2                                       | 2026-05-06T15:32:23Z | https://github.com/influxdata/docs-v2                                       |
+|    166406 | influxdata | refs/heads/ | master | influxdb-client-java                          | 2026-05-06T11:49:27Z | https://github.com/influxdata/influxdb-client-java                          |
+|      5611 | influxdata | refs/heads/ | master | influxdb-client-csharp                        | 2026-05-06T11:08:49Z | https://github.com/influxdata/influxdb-client-csharp                        |
+|      1800 | influxdata | refs/heads/ | main   | datafusion-udf-wasm                           | 2026-05-06T09:29:21Z | https://github.com/influxdata/datafusion-udf-wasm                           |
+|      2573 | influxdata | refs/heads/ | main   | influxdb3_plugins                             | 2026-05-06T07:31:03Z | https://github.com/influxdata/influxdb3_plugins                             |
+|     98850 | influxdata | refs/heads/ | master | chronograf                                    | 2026-05-06T04:11:59Z | https://github.com/influxdata/chronograf                                    |
+|     22353 | influxdata | refs/heads/ | master | kapacitor                                     | 2026-05-06T04:03:46Z | https://github.com/influxdata/kapacitor                                     |
+| 101183947 | influxdata | refs/heads/ | master | influxdb2-sample-data                         | 2026-05-06T02:02:25Z | https://github.com/influxdata/influxdb2-sample-data                         |
+|   1400458 | influxdata | refs/heads/ | main   | influxdb-university                           | 2026-05-06T00:59:45Z | https://github.com/influxdata/influxdb-university                           |
+|      1144 | influxdata | refs/heads/ | master | helm-charts                                   | 2026-05-05T12:50:06Z | https://github.com/influxdata/helm-charts                                   |
+|       937 | influxdata | refs/heads/ | main   | rskafka                                       | 2026-05-04T15:18:53Z | https://github.com/influxdata/rskafka                                       |
+|        87 | influxdata | refs/heads/ | master | influxdb1-client                              | 2026-05-03T03:27:41Z | https://github.com/influxdata/influxdb1-client                              |
+|      1621 | influxdata | refs/heads/ | master | influxdb-java                                 | 2026-04-30T21:57:44Z | https://github.com/influxdata/influxdb-java                                 |
+|     62157 | influxdata | refs/heads/ | master | ui                                            | 2026-04-30T14:09:59Z | https://github.com/influxdata/ui                                            |
+|      3708 | influxdata | refs/heads/ | master | influxdb-client-python                        | 2026-04-29T18:12:53Z | https://github.com/influxdata/influxdb-client-python                        |
+|       841 | influxdata | refs/heads/ | main   | iot-api-ui                                    | 2026-04-28T21:45:25Z | https://github.com/influxdata/iot-api-ui                                    |
+|       237 | influxdata | refs/heads/ | main   | iot-api-js                                    | 2026-04-28T21:42:34Z | https://github.com/influxdata/iot-api-js                                    |
+|     10188 | influxdata | refs/heads/ | master | influxdb-client-js                            | 2026-04-27T08:45:34Z | https://github.com/influxdata/influxdb-client-js                            |
+|       200 | influxdata | refs/heads/ | main   | influxdb3-reference-architectures             | 2026-04-26T23:25:07Z | https://github.com/influxdata/influxdb3-reference-architectures             |
+|       218 | influxdata | refs/heads/ | main   | influxdb3-ref-network-telemetry               | 2026-04-26T23:20:01Z | https://github.com/influxdata/influxdb3-ref-network-telemetry               |
+|       177 | influxdata | refs/heads/ | main   | influxdb3-ref-iiot                            | 2026-04-26T21:06:35Z | https://github.com/influxdata/influxdb3-ref-iiot                            |
+|       183 | influxdata | refs/heads/ | main   | influxdb3-ref-bess                            | 2026-04-26T18:43:57Z | https://github.com/influxdata/influxdb3-ref-bess                            |
+|      1093 | influxdata | refs/heads/ | master | influxql                                      | 2026-04-26T14:19:50Z | https://github.com/influxdata/influxql                                      |
+|        88 | influxdata | refs/heads/ | master | influxdb-relay                                | 2026-04-24T09:39:47Z | https://github.com/influxdata/influxdb-relay                                |
+|       581 | influxdata | refs/heads/ | main   | sinker                                        | 2026-04-23T20:29:00Z | https://github.com/influxdata/sinker                                        |
+|        88 | influxdata | refs/heads/ | main   | parquet-bloom-filter-analysis                 | 2026-04-23T15:39:38Z | https://github.com/influxdata/parquet-bloom-filter-analysis                 |
+|       305 | influxdata | refs/heads/ | main   | influxdb3_mcp_server                          | 2026-04-23T14:21:20Z | https://github.com/influxdata/influxdb3_mcp_server                          |
+|       501 | influxdata | refs/heads/ | master | influxdb-templates                            | 2026-04-23T13:25:37Z | https://github.com/influxdata/influxdb-templates                            |
+|     75459 | influxdata | refs/heads/ | master | flux                                          | 2026-04-23T06:19:55Z | https://github.com/influxdata/flux                                          |
+|      1761 | influxdata | refs/heads/ | main   | influx-cli                                    | 2026-04-22T18:55:17Z | https://github.com/influxdata/influx-cli                                    |
+|       119 | influxdata | refs/heads/ | master | changelog                                     | 2026-04-22T15:29:41Z | https://github.com/influxdata/changelog                                     |
+|     44427 | influxdata | refs/heads/ | master | community-templates                           | 2026-04-18T09:49:13Z | https://github.com/influxdata/community-templates                           |
+|        27 | influxdata | refs/heads/ | main   | python-wasm-wheels                            | 2026-04-17T13:02:17Z | https://github.com/influxdata/python-wasm-wheels                            |
+|      1384 | influxdata | refs/heads/ | master | influxdb-client-go                            | 2026-04-17T08:43:50Z | https://github.com/influxdata/influxdb-client-go                            |
+|      2282 | influxdata | refs/heads/ | master | inch                                          | 2026-04-16T22:43:05Z | https://github.com/influxdata/inch                                          |
+|       243 | influxdata | refs/heads/ | main   | pbjson                                        | 2026-04-13T17:39:25Z | https://github.com/influxdata/pbjson                                        |
+|       454 | influxdata | refs/heads/ | master | oats                                          | 2026-04-09T12:48:05Z | https://github.com/influxdata/oats                                          |
+|     18255 | influxdata | refs/heads/ | master | clockface                                     | 2026-04-09T11:47:35Z | https://github.com/influxdata/clockface                                     |
+|        45 | influxdata | refs/heads/ | master | tdigest                                       | 2026-04-06T18:34:25Z | https://github.com/influxdata/tdigest                                       |
+|      6707 | influxdata | refs/heads/ | main   | iot-center-flutter                            | 2026-04-05T07:12:50Z | https://github.com/influxdata/iot-center-flutter                            |
+|       217 | influxdata | refs/heads/ | master | nodejs-samples                                | 2026-04-03T18:23:01Z | https://github.com/influxdata/nodejs-samples                                |
+|    142231 | influxdata | refs/heads/ | master | docs.influxdata.com-ARCHIVE                   | 2026-03-27T16:26:24Z | https://github.com/influxdata/docs.influxdata.com-ARCHIVE                   |
+|      1336 | influxdata | refs/heads/ | main   | sedg                                          | 2026-03-27T11:29:52Z | https://github.com/influxdata/sedg                                          |
+|     15624 | influxdata | refs/heads/ | master | giraffe                                       | 2026-03-26T22:33:12Z | https://github.com/influxdata/giraffe                                       |
+|        17 | influxdata | refs/heads/ | main   | validate-semantic-github-messages             | 2026-03-26T17:32:35Z | https://github.com/influxdata/validate-semantic-github-messages             |
+|      5778 | influxdata | refs/heads/ | master | openapi                                       | 2026-03-24T17:19:07Z | https://github.com/influxdata/openapi                                       |
+|       275 | influxdata | refs/heads/ | master | google-deployment-manager-influxdb-enterprise | 2026-03-17T17:51:16Z | https://github.com/influxdata/google-deployment-manager-influxdb-enterprise |
+|       467 | influxdata | refs/heads/ | main   | influxdb-client-dart                          | 2026-03-11T05:54:55Z | https://github.com/influxdata/influxdb-client-dart                          |
+|       763 | influxdata | refs/heads/ | master | influxdb-client-ruby                          | 2026-03-11T05:54:55Z | https://github.com/influxdata/influxdb-client-ruby                          |
+|    132805 | influxdata | refs/heads/ | master | tensorflow-influxdb                           | 2026-03-10T21:02:06Z | https://github.com/influxdata/tensorflow-influxdb                           |
+|         3 | influxdata | refs/heads/ | master | community                                     | 2026-02-26T17:03:56Z | https://github.com/influxdata/community                                     |
+|      2534 | influxdata | refs/heads/ | master | kapacitor-course                              | 2026-02-16T12:36:14Z | https://github.com/influxdata/kapacitor-course                              |
+|        85 | influxdata | refs/heads/ | master | qprof                                         | 2026-02-15T19:27:54Z | https://github.com/influxdata/qprof                                         |
+|      4630 | influxdata | refs/heads/ | master | influxdb-client-php                           | 2026-02-13T22:41:03Z | https://github.com/influxdata/influxdb-client-php                           |
+|       101 | influxdata | refs/heads/ | main   | iot-api-python                                | 2026-02-08T03:14:13Z | https://github.com/influxdata/iot-api-python                                |
+|       266 | influxdata | refs/heads/ | master | cron                                          | 2026-01-25T08:28:42Z | https://github.com/influxdata/cron                                          |
+|      2798 | influxdata | refs/heads/ | main   | influxdb-observability                        | 2026-01-20T15:43:46Z | https://github.com/influxdata/influxdb-observability                        |
+|      9815 | influxdata | refs/heads/ | master | wirey                                         | 2026-01-18T10:12:57Z | https://github.com/influxdata/wirey                                         |
+|      2356 | influxdata | refs/heads/ | master | influxdb-gds-connector                        | 2026-01-08T01:18:01Z | https://github.com/influxdata/influxdb-gds-connector                        |
+|        73 | influxdata | refs/heads/ | master | nginx-influxdb-module                         | 2026-01-05T08:14:49Z | https://github.com/influxdata/nginx-influxdb-module                         |
+|      3416 | influxdata | refs/heads/ | master | influxdb-client-swift                         | 2025-12-17T06:27:55Z | https://github.com/influxdata/influxdb-client-swift                         |
+|        22 | influxdata | refs/heads/ | master | homebrew-tap                                  | 2025-12-09T16:37:01Z | https://github.com/influxdata/homebrew-tap                                  |
+|      7346 | influxdata | refs/heads/ | master | sandbox                                       | 2025-12-03T18:33:32Z | https://github.com/influxdata/sandbox                                       |
+|     18701 | influxdata | refs/heads/ | master | influxdb-comparisons                          | 2025-11-06T12:06:53Z | https://github.com/influxdata/influxdb-comparisons                          |
+|       646 | influxdata | refs/heads/ | master | kube-influxdb                                 | 2025-11-05T07:27:36Z | https://github.com/influxdata/kube-influxdb                                 |
+|     31547 | influxdata | refs/heads/ | master | branding                                      | 2025-11-05T02:01:15Z | https://github.com/influxdata/branding                                      |
+|        29 | influxdata | refs/heads/ | master | terraform-aws-influxdb                        | 2025-10-30T09:10:58Z | https://github.com/influxdata/terraform-aws-influxdb                        |
+|     58767 | influxdata | refs/heads/ | main   | awesome                                       | 2025-10-23T15:41:57Z | https://github.com/influxdata/awesome                                       |
+|      5121 | influxdata | refs/heads/ | v2     | line-protocol                                 | 2025-10-16T04:59:57Z | https://github.com/influxdata/line-protocol                                 |
+|         6 | influxdata | refs/heads/ | master | catslack                                      | 2025-10-04T22:46:36Z | https://github.com/influxdata/catslack                                      |
+
+#+name: influxdataBundlesTotal
+#+begin_src emacs-lisp :var tbl=influxdataBundles[,0] :eval no
+;; naively, this would be 105 GB!!
+(apply #'+ tbl)
+#+end_src
+
+#+RESULTS: influxdataBundlesTotal
+: 104083880
+
+Excluded Repositories
+
+#+NAME: influxdataReposExclude
+|   .github |
+| 101183947 |
+
+** IVRE Repos
+
+#+name: influxdataRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "influxdata"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isFork
+                          isArchived)))))))
+#+end_src
+
+Filter the results, generate XML
+
+#+name: influxdataReposXML
+#+begin_src emacs-lisp :var gqldata=influxdataRepos repos-exclude=influxdataReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "influxdata" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+** Generate XML
+
+Generate =influxdata.xml=
+
+#+begin_src xml :tangle ivre.xml :noweb yes
+<manifest>
+  <<influxdataReposXML()>>
+</manifest>
+#+end_src
