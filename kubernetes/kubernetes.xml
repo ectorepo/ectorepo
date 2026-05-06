@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="kubernetes/api" path="kubernetes/api" revision="refs/heads/master" remote="github"/>
+  <project name="kubernetes/apimachinery" path="kubernetes/apimachinery" revision="refs/heads/master" remote="github"/>
+  <project name="kubernetes/cli-runtime" path="kubernetes/cli-runtime" revision="refs/heads/master" remote="github"/>
+  <project name="kubernetes/cri-api" path="kubernetes/cri-api" revision="refs/heads/master" remote="github"/>
+  <project name="kubernetes/cri-client" path="kubernetes/cri-client" revision="refs/heads/master" remote="github"/>
+  <project name="kubernetes/cri-streaming" path="kubernetes/cri-streaming" revision="refs/heads/master" remote="github"/>
+  <project name="kubernetes/examples" path="kubernetes/examples" revision="refs/heads/master" remote="github"/>
+</manifest>

@@ -1,0 +1,268 @@
+#+title:     Ectorepo: Kubernetes
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args+ :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="kubernetes.xml"/>
+</manifest>
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(ghub-graphql-rate-limit)
+#+end_src
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+* Babel Setup
+
+Get the core repositories. These should go into =/data/ecto/ROCmSoftwarePlatform/rocm=.
+
+#+name: nrepos
+#+begin_src emacs-lisp
+100
+#+end_src
+
+#+RESULTS: nrepos
+: 100
+
+For some reason =:var nrepos=200= doesn't properly substitute here, so =:noweb
+yes= is required. However, 100 is the max on sorted results anyways.
+
+* kubernetes
+
+
+Clone bundle sizes
+
+#+name: kubernetesBundles
+#+begin_src emacs-lisp :var nrepos=100 :results value table :exports code :noweb yes :eval query
+(setq -gql-data
+      (ghub-graphql
+       (graphql-query ((organization
+                        :arguments ((login . "kubernetes"))
+                        (repositories
+                         :arguments ((first . 100)
+                                     (orderBy . ((field . UPDATED_AT)
+                                                 (direction . DESC))))
+                         (edges
+                          (node (owner login)
+                                name
+                                (defaultBranchRef prefix name)
+                                url
+                                updatedAt
+                                diskUsage
+                                isFork
+                                isArchived))))))))
+
+(thread-first
+  (thread-last
+    (a-get* (nthcdr 0 -gql-data) 'data 'organization 'repositories 'edges)
+    (mapcar (lambda (el) (a-get* el 'node)))
+
+    ;; filter archived repos
+    (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+    (mapcar (lambda (el)
+              (flatten-list
+               (list
+                (a-get* el 'diskUsage)
+                (a-get* el 'owner 'login)
+                (a-get* el 'defaultBranchRef 'prefix)
+                (a-get* el 'defaultBranchRef 'name)
+                (mapcar (lambda (repo-keys)
+                          (a-get* el repo-keys))
+                        '(name
+                          updatedAt
+                          isFork
+                          isArchived
+                          url))))))))
+#+end_src
+
+#+RESULTS: kubernetesBundles
+| 1518613 | kubernetes | refs/heads/ | main   | k8s.io                       | 2026-05-06T17:34:28Z | https://github.com/kubernetes/k8s.io                       |
+| 1468306 | kubernetes | refs/heads/ | master | kubernetes                   | 2026-05-06T17:17:20Z | https://github.com/kubernetes/kubernetes                   |
+|  553133 | kubernetes | refs/heads/ | main   | website                      | 2026-05-06T17:22:01Z | https://github.com/kubernetes/website                      |
+|  478345 | kubernetes | refs/heads/ | master | kops                         | 2026-05-06T15:52:33Z | https://github.com/kubernetes/kops                         |
+|  290635 | kubernetes | refs/heads/ | master | minikube                     | 2026-05-06T05:34:19Z | https://github.com/kubernetes/minikube                     |
+|  264123 | kubernetes | refs/heads/ | master | autoscaler                   | 2026-05-06T13:31:45Z | https://github.com/kubernetes/autoscaler                   |
+|  248789 | kubernetes | refs/heads/ | master | test-infra                   | 2026-05-06T16:54:26Z | https://github.com/kubernetes/test-infra                   |
+|  179021 | kubernetes | refs/heads/ | master | cloud-provider-gcp           | 2026-05-05T17:42:28Z | https://github.com/kubernetes/cloud-provider-gcp           |
+|  128384 | kubernetes | refs/heads/ | master | ingress-gce                  | 2026-05-06T15:02:52Z | https://github.com/kubernetes/ingress-gce                  |
+|  114197 | kubernetes | refs/heads/ | master | perf-tests                   | 2026-05-06T05:28:10Z | https://github.com/kubernetes/perf-tests                   |
+|   99450 | kubernetes | refs/heads/ | master | cloud-provider-alibaba-cloud | 2026-04-10T10:20:26Z | https://github.com/kubernetes/cloud-provider-alibaba-cloud |
+|   99439 | kubernetes | refs/heads/ | main   | community                    | 2026-05-06T14:07:49Z | https://github.com/kubernetes/community                    |
+|   82969 | kubernetes | refs/heads/ | master | api                          | 2026-05-06T02:09:49Z | https://github.com/kubernetes/api                          |
+|   78410 | kubernetes | refs/heads/ | master | cloud-provider-vsphere       | 2026-04-23T08:40:51Z | https://github.com/kubernetes/cloud-provider-vsphere       |
+|   66009 | kubernetes | refs/heads/ | master | sig-release                  | 2026-05-05T02:28:58Z | https://github.com/kubernetes/sig-release                  |
+|   56430 | kubernetes | refs/heads/ | master | enhancements                 | 2026-05-05T20:31:27Z | https://github.com/kubernetes/enhancements                 |
+|   54303 | kubernetes | refs/heads/ | master | dns                          | 2026-05-06T02:10:13Z | https://github.com/kubernetes/dns                          |
+|   45210 | kubernetes | refs/heads/ | main   | kompose                      | 2026-05-06T05:34:20Z | https://github.com/kubernetes/kompose                      |
+|   44024 | kubernetes | refs/heads/ | master | kubectl                      | 2026-05-06T14:21:21Z | https://github.com/kubernetes/kubectl                      |
+|   38378 | kubernetes | refs/heads/ | master | contributor-site             | 2026-05-02T16:33:28Z | https://github.com/kubernetes/contributor-site             |
+|   37671 | kubernetes | refs/heads/ | master | node-problem-detector        | 2026-05-06T13:08:58Z | https://github.com/kubernetes/node-problem-detector        |
+|   31589 | kubernetes | refs/heads/ | master | client-go                    | 2026-05-06T11:19:49Z | https://github.com/kubernetes/client-go                    |
+|   28990 | kubernetes | refs/heads/ | master | apiextensions-apiserver      | 2026-05-06T14:11:41Z | https://github.com/kubernetes/apiextensions-apiserver      |
+|   28641 | kubernetes | refs/heads/ | master | apiserver                    | 2026-05-06T14:10:14Z | https://github.com/kubernetes/apiserver                    |
+|   25581 | kubernetes | refs/heads/ | main   | kube-state-metrics           | 2026-05-06T05:06:49Z | https://github.com/kubernetes/kube-state-metrics           |
+|   24719 | kubernetes | refs/heads/ | master | kube-aggregator              | 2026-05-06T14:10:25Z | https://github.com/kubernetes/kube-aggregator              |
+|   23669 | kubernetes | refs/heads/ | master | sample-apiserver             | 2026-05-06T14:11:26Z | https://github.com/kubernetes/sample-apiserver             |
+|   22965 | kubernetes | refs/heads/ | master | release                      | 2026-05-05T06:06:28Z | https://github.com/kubernetes/release                      |
+|   17462 | kubernetes | refs/heads/ | master | examples                     | 2026-05-06T02:47:41Z | https://github.com/kubernetes/examples                     |
+|   16095 | kubernetes | refs/heads/ | main   | sig-security                 | 2026-05-01T15:46:53Z | https://github.com/kubernetes/sig-security                 |
+|   15129 | kubernetes | refs/heads/ | main   | org                          | 2026-05-06T17:34:28Z | https://github.com/kubernetes/org                          |
+|   14724 | kubernetes | refs/heads/ | master | cloud-provider-aws           | 2026-05-05T20:02:30Z | https://github.com/kubernetes/cloud-provider-aws           |
+|   13176 | kubernetes | refs/heads/ | master | publishing-bot               | 2026-04-17T17:37:10Z | https://github.com/kubernetes/publishing-bot               |
+|   12932 | kubernetes | refs/heads/ | master | code-generator               | 2026-05-06T02:10:02Z | https://github.com/kubernetes/code-generator               |
+|   12221 | kubernetes | refs/heads/ | master | git-sync                     | 2026-05-05T13:17:03Z | https://github.com/kubernetes/git-sync                     |
+|   11539 | kubernetes | refs/heads/ | master | sample-controller            | 2026-05-06T02:10:47Z | https://github.com/kubernetes/sample-controller            |
+|   11327 | kubernetes | refs/heads/ | main   | cel-admission-webhook        | 2026-01-12T13:22:03Z | https://github.com/kubernetes/cel-admission-webhook        |
+|    8481 | kubernetes | refs/heads/ | master | apimachinery                 | 2026-05-06T02:09:43Z | https://github.com/kubernetes/apimachinery                 |
+|    7521 | kubernetes | refs/heads/ | master | kube-openapi                 | 2026-05-05T16:38:28Z | https://github.com/kubernetes/kube-openapi                 |
+|    7213 | kubernetes | refs/heads/ | master | cloud-provider-openstack     | 2026-05-06T15:26:26Z | https://github.com/kubernetes/cloud-provider-openstack     |
+|    6948 | kubernetes | refs/heads/ | master | metrics                      | 2026-05-06T02:10:58Z | https://github.com/kubernetes/metrics                      |
+|    6799 | kubernetes | refs/heads/ | master | sample-cli-plugin            | 2026-05-06T02:11:10Z | https://github.com/kubernetes/sample-cli-plugin            |
+|    6604 | kubernetes | refs/heads/ | main   | kubeadm                      | 2026-05-04T07:21:49Z | https://github.com/kubernetes/kubeadm                      |
+|    6425 | kubernetes | refs/heads/ | master | legacy-cloud-providers       | 2026-01-14T20:56:35Z | https://github.com/kubernetes/legacy-cloud-providers       |
+|    6050 | kubernetes | refs/heads/ | master | cloud-provider               | 2026-05-06T14:11:56Z | https://github.com/kubernetes/cloud-provider               |
+|    5976 | kubernetes | refs/heads/ | master | cli-runtime                  | 2026-05-06T02:11:04Z | https://github.com/kubernetes/cli-runtime                  |
+|    4505 | kubernetes | refs/heads/ | master | component-base               | 2026-05-06T14:09:14Z | https://github.com/kubernetes/component-base               |
+|    3982 | kubernetes | refs/heads/ | master | kubelet                      | 2026-05-06T14:16:19Z | https://github.com/kubernetes/kubelet                      |
+|    3544 | kubernetes | refs/heads/ | master | kube-scheduler               | 2026-05-06T14:14:13Z | https://github.com/kubernetes/kube-scheduler               |
+|    3107 | kubernetes | refs/heads/ | master | pod-security-admission       | 2026-05-06T14:12:28Z | https://github.com/kubernetes/pod-security-admission       |
+|    3089 | kubernetes | refs/heads/ | master | controller-manager           | 2026-05-06T14:11:33Z | https://github.com/kubernetes/controller-manager           |
+|    3044 | kubernetes | refs/heads/ | master | kube-controller-manager      | 2026-05-06T14:13:08Z | https://github.com/kubernetes/kube-controller-manager      |
+|    2910 | kubernetes | refs/heads/ | master | cri-api                      | 2026-05-06T14:10:54Z | https://github.com/kubernetes/cri-api                      |
+|    2715 | kubernetes | refs/heads/ | master | dynamic-resource-allocation  | 2026-05-06T14:21:42Z | https://github.com/kubernetes/dynamic-resource-allocation  |
+|    2661 | kubernetes | refs/heads/ | master | kube-proxy                   | 2026-05-06T14:11:55Z | https://github.com/kubernetes/kube-proxy                   |
+|    2397 | kubernetes | refs/heads/ | master | csi-translation-lib          | 2026-05-06T02:12:06Z | https://github.com/kubernetes/csi-translation-lib          |
+|    2039 | kubernetes | refs/heads/ | master | cluster-bootstrap            | 2026-05-06T02:12:00Z | https://github.com/kubernetes/cluster-bootstrap            |
+|    2034 | kubernetes | refs/heads/ | master | node-api                     | 2026-01-12T13:18:43Z | https://github.com/kubernetes/node-api                     |
+|    1795 | kubernetes | refs/heads/ | main   | registry.k8s.io              | 2026-05-02T03:09:02Z | https://github.com/kubernetes/registry.k8s.io              |
+|    1580 | kubernetes | refs/heads/ | master | component-helpers            | 2026-05-06T02:10:14Z | https://github.com/kubernetes/component-helpers            |
+|    1568 | kubernetes | refs/heads/ | master | gengo                        | 2026-04-08T19:25:40Z | https://github.com/kubernetes/gengo                        |
+|    1260 | kubernetes | refs/heads/ | master | utils                        | 2026-04-25T20:50:14Z | https://github.com/kubernetes/utils                        |
+|    1253 | kubernetes | refs/heads/ | master | endpointslice                | 2026-05-06T14:15:48Z | https://github.com/kubernetes/endpointslice                |
+|     996 | kubernetes | refs/heads/ | master | repo-infra                   | 2026-04-27T06:38:54Z | https://github.com/kubernetes/repo-infra                   |
+|     879 | kubernetes | refs/heads/ | master | cri-client                   | 2026-05-06T14:10:33Z | https://github.com/kubernetes/cri-client                   |
+|     802 | kubernetes | refs/heads/ | main   | committee-security-response  | 2026-04-27T12:18:54Z | https://github.com/kubernetes/committee-security-response  |
+|     545 | kubernetes | refs/heads/ | master | kms                          | 2026-05-06T14:09:02Z | https://github.com/kubernetes/kms                          |
+|     460 | kubernetes | refs/heads/ | master | mount-utils                  | 2026-05-04T09:27:17Z | https://github.com/kubernetes/mount-utils                  |
+|     260 | kubernetes | refs/heads/ | main   | steering                     | 2026-04-14T21:16:42Z | https://github.com/kubernetes/steering                     |
+|     144 | kubernetes | refs/heads/ | master | externaljwt                  | 2026-05-06T14:16:57Z | https://github.com/kubernetes/externaljwt                  |
+|     127 | kubernetes | refs/heads/ | main   | system-validators            | 2026-02-28T11:36:11Z | https://github.com/kubernetes/system-validators            |
+|     112 | kubernetes | refs/heads/ | master | cri-streaming                | 2026-05-06T14:12:50Z | https://github.com/kubernetes/cri-streaming                |
+|      74 | kubernetes | refs/heads/ | master | streaming                    | 2026-04-24T12:35:42Z | https://github.com/kubernetes/streaming                    |
+|      51 | kubernetes | refs/heads/ | main   | kubernetes-template-project  | 2026-03-29T00:54:09Z | https://github.com/kubernetes/kubernetes-template-project  |
+|      11 | kubernetes | refs/heads/ | master | cloud-provider-sample        | 2025-11-02T03:34:35Z | https://github.com/kubernetes/cloud-provider-sample        |
+|       9 | kubernetes | refs/heads/ | master | .github                      | 2025-02-11T04:26:10Z | https://github.com/kubernetes/.github                      |
+|       8 | kubernetes | refs/heads/ | master | sig-testing                  | 2026-03-22T15:47:22Z | https://github.com/kubernetes/sig-testing                  |
+
+#+name: kubernetesBundlesTotal
+#+begin_src emacs-lisp :var tbl=kubernetesBundles[,0] :eval query
+;; naively, this would be 105 GB!!
+(apply #'+ tbl)
+#+end_src
+
+#+RESULTS: kubernetesBundlesTotal
+: 6366576
+
+Excluded Repositories
+
+#+NAME: kubernetesReposExclude
+| .github                      |
+| k8s.io                       |
+| website                      |
+| kops                         |
+| minikube                     |
+| autoscaler                   |
+| test-infra                   |
+| cloud-provider-gcp           |
+| cloud-provider-alibaba-cloud |
+| cloud-provider-vsphere       |
+
+** kubernetes Repos
+
+#+name: kubernetesRepos
+#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
+(ghub-graphql
+ (graphql-query ((organization
+                  :arguments ((login . "kubernetes"))
+                  (repositories
+                   :arguments ((first . <<nrepos()>>)
+                               (orderBy . ((field . UPDATED_AT)
+                                           (direction . DESC))))
+                   (edges
+                    (node (owner login)
+                          name
+                          (defaultBranchRef prefix name)
+                          url
+                          updatedAt
+                          isFork
+                          isArchived)))))))
+#+end_src
+
+Filter the results, generate XML
+
+#+name: kubernetesReposXML
+#+begin_src emacs-lisp :var gqldata=kubernetesRepos repos-exclude=kubernetesReposExclude :results value html
+(setq -gql-data gqldata)
+
+;; no repos-core variable
+;; (repos-core (flatten-list repos- core))
+
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
+      (mapcar (lambda (el) (a-get* el 'node)))
+
+      ;; filter archived repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+      ;; filter repos in reposExclude list
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+
+                       ;; (repo-core? (member raw-name repos-core))
+
+                       (path-dirs (list "kubernetes" raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+** Generate XML
+
+Generate =kubernetes.xml=
+
+#+begin_src xml :tangle kubernetes.xml :noweb yes
+<manifest>
+  <<kubernetesReposXML()>>
+</manifest>
+#+end_src
