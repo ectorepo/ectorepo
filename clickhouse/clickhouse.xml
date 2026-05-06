@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="ClickHouse/click-ui" path="clickhouse/click-ui" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/clickhouse-academy" path="clickhouse/clickhouse-academy" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/clickhouse-grafana-datasource" path="clickhouse/clickhouse-grafana-datasource" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/clickhousectl" path="clickhouse/clickhousectl" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/docker-library" path="clickhouse/docker-library" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/examples" path="clickhouse/examples" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/pg_clickhouse" path="clickhouse/pg_clickhouse" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/pg_re2" path="clickhouse/pg_re2" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/pg_stat_ch" path="clickhouse/pg_stat_ch" revision="refs/heads/main" remote="github"/>
+  <project name="ClickHouse/pgmigrator" path="clickhouse/pgmigrator" revision="refs/heads/main" remote="github"/>
+</manifest>
