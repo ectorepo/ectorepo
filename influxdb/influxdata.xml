@@ -2,52 +2,20 @@
 
 <!-- [[file:README.org::*Generate XML][Generate XML:1]] -->
 <manifest>
-  <project name="influxdata/ansible-collection-molecule" path="influxdata/ansible-collection-molecule" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/arrow-datafusion" path="influxdata/arrow-datafusion" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/athenadriver" path="influxdata/athenadriver" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/awesome" path="influxdata/awesome" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/awx-ee" path="influxdata/awx-ee" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/branding" path="influxdata/branding" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/catslack" path="influxdata/catslack" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/changelog" path="influxdata/changelog" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/chronograf" path="influxdata/chronograf" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/clockface" path="influxdata/clockface" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/community" path="influxdata/community" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/community-templates" path="influxdata/community-templates" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/cpython-wasi-build" path="influxdata/cpython-wasi-build" revision="refs/heads/release/3.14" remote="github"/>
-  <project name="influxdata/cron" path="influxdata/cron" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/datafusion-udf-wasm" path="influxdata/datafusion-udf-wasm" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/docs-v2" path="influxdata/docs-v2" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/docs.influxdata.com-ARCHIVE" path="influxdata/docs.influxdata.com-ARCHIVE" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/flux" path="influxdata/flux" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/giraffe" path="influxdata/giraffe" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/google-deployment-manager-influxdb-enterprise" path="influxdata/google-deployment-manager-influxdb-enterprise" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/gosnowflake" path="influxdata/gosnowflake" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/helm-charts" path="influxdata/helm-charts" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/homebrew-core" path="influxdata/homebrew-core" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/homebrew-tap" path="influxdata/homebrew-tap" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/inch" path="influxdata/inch" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/influx-cli" path="influxdata/influx-cli" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/influxdata-docker" path="influxdata/influxdata-docker" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/influxdb" path="influxdata/influxdb" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/influxdb-client-csharp" path="influxdata/influxdb-client-csharp" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb-client-dart" path="influxdata/influxdb-client-dart" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/influxdb-client-go" path="influxdata/influxdb-client-go" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb-client-java" path="influxdata/influxdb-client-java" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb-client-js" path="influxdata/influxdb-client-js" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb-client-php" path="influxdata/influxdb-client-php" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb-client-python" path="influxdata/influxdb-client-python" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb-client-ruby" path="influxdata/influxdb-client-ruby" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb-client-swift" path="influxdata/influxdb-client-swift" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/influxdb-comparisons" path="influxdata/influxdb-comparisons" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/influxdb-gds-connector" path="influxdata/influxdb-gds-connector" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/influxdb-java" path="influxdata/influxdb-java" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/influxdb-observability" path="influxdata/influxdb-observability" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/influxdb-relay" path="influxdata/influxdb-relay" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/influxdb-templates" path="influxdata/influxdb-templates" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb-university" path="influxdata/influxdb-university" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/influxdb1-client" path="influxdata/influxdb1-client" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/influxdb2-sample-data" path="influxdata/influxdb2-sample-data" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/influxdb3-ref-bess" path="influxdata/influxdb3-ref-bess" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/influxdb3-ref-iiot" path="influxdata/influxdb3-ref-iiot" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/influxdb3-ref-network-telemetry" path="influxdata/influxdb3-ref-network-telemetry" revision="refs/heads/main" remote="github"/>
@@ -58,32 +26,16 @@
   <project name="influxdata/iot-api-js" path="influxdata/iot-api-js" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/iot-api-python" path="influxdata/iot-api-python" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/iot-api-ui" path="influxdata/iot-api-ui" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/iot-center-flutter" path="influxdata/iot-center-flutter" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/kapacitor" path="influxdata/kapacitor" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/kapacitor-course" path="influxdata/kapacitor-course" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/kube-influxdb" path="influxdata/kube-influxdb" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/line-protocol" path="influxdata/line-protocol" revision="refs/heads/v2" remote="github"/>
-  <project name="influxdata/nginx-influxdb-module" path="influxdata/nginx-influxdb-module" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/nodejs-samples" path="influxdata/nodejs-samples" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/oats" path="influxdata/oats" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/official-images" path="influxdata/official-images" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/openapi" path="influxdata/openapi" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/parquet-bloom-filter-analysis" path="influxdata/parquet-bloom-filter-analysis" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/pbjson" path="influxdata/pbjson" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/python-wasm-wheels" path="influxdata/python-wasm-wheels" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/qprof" path="influxdata/qprof" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/rskafka" path="influxdata/rskafka" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/sandbox" path="influxdata/sandbox" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/sedg" path="influxdata/sedg" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/sinker" path="influxdata/sinker" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/tdigest" path="influxdata/tdigest" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/telegraf" path="influxdata/telegraf" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/tensorflow-influxdb" path="influxdata/tensorflow-influxdb" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/terraform-aws-influxdb" path="influxdata/terraform-aws-influxdb" revision="refs/heads/master" remote="github"/>
   <project name="influxdata/ui" path="influxdata/ui" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/urllib3" path="influxdata/urllib3" revision="refs/heads/main" remote="github"/>
-  <project name="influxdata/validate-semantic-github-messages" path="influxdata/validate-semantic-github-messages" revision="refs/heads/main" remote="github"/>
   <project name="influxdata/vertica-sql-go" path="influxdata/vertica-sql-go" revision="refs/heads/master" remote="github"/>
-  <project name="influxdata/wirey" path="influxdata/wirey" revision="refs/heads/master" remote="github"/>
 </manifest>
 <!-- Generate XML:1 ends here -->

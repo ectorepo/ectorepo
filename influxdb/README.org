@@ -179,8 +179,8 @@ Clone bundle sizes
 Excluded Repositories
 
 #+NAME: influxdataReposExclude
-|   .github |
-| 101183947 |
+| .github               |
+| influxdb2-sample-data |
 
 ** IVRE Repos
 
@@ -250,7 +250,7 @@ Filter the results, generate XML
 
 Generate =influxdata.xml=
 
-#+begin_src xml :tangle ivre.xml :noweb yes
+#+begin_src xml :tangle influxdata.xml :noweb yes
 <manifest>
   <<influxdataReposXML()>>
 </manifest>
