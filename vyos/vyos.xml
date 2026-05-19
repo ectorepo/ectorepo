@@ -5,9 +5,7 @@
   <project name="vyos/amplify-build-status" path="vyos/amplify-build-status" revision="refs/heads/master" remote="github"/>
   <project name="vyos/community.vyos.net" path="vyos/community.vyos.net" revision="refs/heads/main" remote="github"/>
   <project name="vyos/efi-boot-shim" path="vyos/efi-boot-shim" revision="refs/heads/vyos/current" remote="github"/>
-  <project name="vyos/gh-action-test-vyos-1x" path="vyos/gh-action-test-vyos-1x" revision="refs/heads/current" remote="github"/>
   <project name="vyos/hvinfo" path="vyos/hvinfo" revision="refs/heads/current" remote="github"/>
-  <project name="vyos/infinitytier" path="vyos/infinitytier" revision="refs/heads/main" remote="github"/>
   <project name="vyos/ipaddrcheck" path="vyos/ipaddrcheck" revision="refs/heads/current" remote="github"/>
   <project name="vyos/libnss-mapuser" path="vyos/libnss-mapuser" revision="refs/heads/current" remote="github"/>
   <project name="vyos/libnss-tacplus" path="vyos/libnss-tacplus" revision="refs/heads/master" remote="github"/>
@@ -15,10 +13,9 @@
   <project name="vyos/libpam-tacplus" path="vyos/libpam-tacplus" revision="refs/heads/master" remote="github"/>
   <project name="vyos/libtacplus-map" path="vyos/libtacplus-map" revision="refs/heads/master" remote="github"/>
   <project name="vyos/live-boot" path="vyos/live-boot" revision="refs/heads/current" remote="github"/>
-  <project name="vyos/MAC-Telnet" path="vyos/MAC-Telnet" revision="refs/heads/master" remote="github"/>
-  <project name="vyos/public-images" path="vyos/public-images" revision="refs/heads/main" remote="github"/>
+  <project name="vyos/mergify" path="vyos/mergify" revision="refs/heads/production" remote="github"/>
+  <project name="vyos/rest.vyos" path="vyos/rest.vyos" revision="refs/heads/main" remote="github"/>
   <project name="vyos/shim-review" path="vyos/shim-review" revision="refs/heads/main" remote="github"/>
-  <project name="vyos/udp-broadcast-relay" path="vyos/udp-broadcast-relay" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyatta-bash" path="vyos/vyatta-bash" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyatta-biosdevname" path="vyos/vyatta-biosdevname" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyatta-cfg" path="vyos/vyatta-cfg" revision="refs/heads/current" remote="github"/>
@@ -29,19 +26,14 @@
   <project name="vyos/vyos-build" path="vyos/vyos-build" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos-cla-signatures" path="vyos/vyos-cla-signatures" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos-cloud-init" path="vyos/vyos-cloud-init" revision="refs/heads/current" remote="github"/>
-  <project name="vyos/vyos-community-flavors" path="vyos/vyos-community-flavors" revision="refs/heads/main" remote="github"/>
-  <project name="vyos/vyos-documentation" path="vyos/vyos-documentation" revision="refs/heads/current" remote="github"/>
+  <project name="vyos/vyos-documentation" path="vyos/vyos-documentation" revision="refs/heads/rolling" remote="github"/>
   <project name="vyos/vyos-github-actions" path="vyos/vyos-github-actions" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos-http-api-tools" path="vyos/vyos-http-api-tools" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos-infrastructure" path="vyos/vyos-infrastructure" revision="refs/heads/main" remote="github"/>
   <project name="vyos/vyos-live-build" path="vyos/vyos-live-build" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos-nightly-build" path="vyos/vyos-nightly-build" revision="refs/heads/current" remote="github"/>
-  <project name="vyos/vyos-user-utils" path="vyos/vyos-user-utils" revision="refs/heads/current" remote="github"/>
-  <project name="vyos/vyos-utils" path="vyos/vyos-utils" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos-utils-misc" path="vyos/vyos-utils-misc" revision="refs/heads/master" remote="github"/>
   <project name="vyos/vyos-vpp-patches" path="vyos/vyos-vpp-patches" revision="refs/heads/current" remote="github"/>
-  <project name="vyos/vyos-workflow-test-temp" path="vyos/vyos-workflow-test-temp" revision="refs/heads/current" remote="github"/>
-  <project name="vyos/vyos-workflow-testing" path="vyos/vyos-workflow-testing" revision="refs/heads/current" remote="github"/>
   <project name="vyos/vyos.vyos" path="vyos/vyos.vyos" revision="refs/heads/main" remote="github"/>
   <project name="vyos/vyos1x-config" path="vyos/vyos1x-config" revision="refs/heads/current" remote="github"/>
 </manifest>

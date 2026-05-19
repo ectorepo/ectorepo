@@ -152,7 +152,7 @@ Clone Bundle Total
 Excluded Repositories
 
 #+NAME: vyosReposExclude
-|   |
+| coderabbit |
 
 ** VyOS Repos
 
