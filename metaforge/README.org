@@ -1,0 +1,334 @@
+#+title:     Ectorepo: Metaforge
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args+ :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+* Resources
++ [[https://nesbitt.io/2026/02/05/git-magic-files.html][Git's Magic Files]]
++ [[https://nesbitt.io/2026/03/13/forge.html][Forge CLI]] (=gh= with many forge implementations)
+
+Libraries.io
+
++ https://github.com/orgs/librariesio/repositories
++ https://libraries.io/api
+
+Ecosyste.ms
+
++ ecosyste.ms APIs are used by [[https://socket.dev/blog/famous-chollima-targets-php-developers-through-compromised-packagist-package][socket.dev]]
++ [[https://github.com/ecosyste-ms/oss-taxonomy][ecosyste-ms/oss-taxonomy]]: lots of yaml with metadata
++ [[https://github.com/ecosyste-ms/bibliothecary][ecosyste-ms/bibliothecary]]: descriptions & metadata (manifests) on package
+  managers for dozens of languages
++ [[https://github.com/andrew/purl/blob/main/purl-types.json][andrew/purl ./purl-types.json]] metadata on dozens of pkg managers
++ =purl= is a CLI for [[https://github.com/package-url/purl-spec][package-url/purl-spec]]
+  - [[https://github.com/package-url/purl-spec/tree/main/schemas][./schemas]]: schemas for PURL standard
+  - [[https://github.com/package-url/purl-spec/tree/main/types][./types]] and [[https://github.com/package-url/purl-spec/tree/main/types-doc][./types-doc]]: schema definitions for pkg providers (and docs)
+
+* Manifest
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="ecosyste-ms.xml"/>
+</manifest>
+#+end_src
+
+** Babel Setup
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+Check rates:
+
+#+begin_src emacs-lisp :results value code :exports code
+(let-alist 
+    (cdr (ghub-query '(query (rateLimit limit cost remaining resetAt)) nil :synchronous t))
+  .rateLimit.remaining)
+#+end_src
+
+#+RESULTS:
+#+begin_src emacs-lisp
+4991
+#+end_src
+
+* ecosyste-ms
+
+#+name: ecosyste-msLogin
+#+begin_src emacs-lisp
+"ecosyste-ms"
+#+end_src
+
+Excluded Repositories
+
+#+name: ecosyste-msReposExclude
+| .github                  |
+| clickhouse-presentations |
+| clickhouse-docs          |
+| mintlify-docs-dev        |
+| rust_vendor              |
+| adsb.exposed             |
+| grpc                     |
+
+#+name: ecosyste-msRepos
+#+begin_src emacs-lisp :var login=ecosyste-msLogin nrepos=(identity 100) :results vector value :exports code
+(let* ((q '(query
+            [($login String!)
+             ($first Int!)
+             ($orderBy RepositoryOrder!)]
+            (organization
+             [(login $login)]
+             (repositories
+              [(first $first)
+               (orderBy $orderBy)]
+              (edges
+               (node
+                (owner login)
+                name
+                (defaultBranchRef prefix name)
+                url
+                updatedAt
+                diskUsage
+                isFork
+                isArchived))))))
+       (vars `((login . ,login)
+               (first . ,nrepos)
+               (orderBy . ((field . "UPDATED_AT")
+                           (direction . "DESC")))))
+       (response (cdr (ghub-query q vars
+                   :paginate 100
+                   :synchronous t))))
+  ;; (setq gql-response response)
+  (let-alist response .organization.repositories))
+#+end_src
+
+Clone bundle sizes
+
+#+name: ecosyste-msBundles
+#+begin_src emacs-lisp :var repos=ecosyste-msRepos :results value table :exports code :noweb yes :eval query
+(thread-first
+  (thread-last
+    repos
+    ;; (a-get* (nthcdr 0 ) 'data 'organization 'repositories 'edges)
+    ;; (mapcar (lambda (el) (a-get* el 'node)))
+
+    ;; filter archived repos
+    (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+    (mapcar (lambda (el)
+              (list (a-get* el 'diskUsage)
+                    (a-get* el 'owner 'login)
+                    (a-get* el 'defaultBranchRef 'prefix)
+                    (a-get* el 'defaultBranchRef 'name)
+                    (a-get* el 'name)
+                    (a-get* el 'updatedAt)
+                    (a-get* el 'isFork)
+                    (a-get* el 'isArchived)
+                    (a-get* el 'url))))))
+#+end_src
+
+#+RESULTS: ecosyste-msBundles
+|  1133 | ecosyste-ms | refs/heads/ | main   | dependabot                        | 2026-06-03T11:48:30Z | nil | nil | https://github.com/ecosyste-ms/dependabot                        |
+|  1166 | ecosyste-ms | refs/heads/ | main   | summary                           | 2026-06-03T11:46:20Z | nil | nil | https://github.com/ecosyste-ms/summary                           |
+|   908 | ecosyste-ms | refs/heads/ | main   | ruby                              | 2026-06-03T11:43:29Z | nil | nil | https://github.com/ecosyste-ms/ruby                              |
+|  1269 | ecosyste-ms | refs/heads/ | main   | awesome                           | 2026-06-03T11:40:50Z | nil | nil | https://github.com/ecosyste-ms/awesome                           |
+|  1556 | ecosyste-ms | refs/heads/ | main   | issues                            | 2026-06-03T11:37:35Z | nil | nil | https://github.com/ecosyste-ms/issues                            |
+|  1443 | ecosyste-ms | refs/heads/ | main   | timeline                          | 2026-06-03T11:33:36Z | nil | nil | https://github.com/ecosyste-ms/timeline                          |
+|   376 | ecosyste-ms | refs/heads/ | main   | conda-api                         | 2026-06-03T11:31:53Z | nil | nil | https://github.com/ecosyste-ms/conda-api                         |
+|  2581 | ecosyste-ms | refs/heads/ | main   | funds                             | 2026-06-03T11:28:33Z | nil | nil | https://github.com/ecosyste-ms/funds                             |
+|   563 | ecosyste-ms | refs/heads/ | main   | radar                             | 2026-06-03T11:28:27Z | nil | nil | https://github.com/ecosyste-ms/radar                             |
+|  1430 | ecosyste-ms | refs/heads/ | main   | ost                               | 2026-06-03T11:25:40Z | nil | nil | https://github.com/ecosyste-ms/ost                               |
+| 31409 | ecosyste-ms | refs/heads/ | main   | packages                          | 2026-06-03T11:19:05Z | nil | nil | https://github.com/ecosyste-ms/packages                          |
+|   294 | ecosyste-ms | refs/heads/ | main   | oss-taxonomy                      | 2026-06-03T11:16:30Z | nil | nil | https://github.com/ecosyste-ms/oss-taxonomy                      |
+| 12463 | ecosyste-ms | refs/heads/ | main   | dashboards                        | 2026-06-03T11:16:14Z | nil | nil | https://github.com/ecosyste-ms/dashboards                        |
+|   867 | ecosyste-ms | refs/heads/ | main   | sponsors                          | 2026-06-03T11:13:09Z | nil | nil | https://github.com/ecosyste-ms/sponsors                          |
+|  1485 | ecosyste-ms | refs/heads/ | main   | parser                            | 2026-06-03T11:09:28Z | nil | nil | https://github.com/ecosyste-ms/parser                            |
+|   489 | ecosyste-ms | refs/heads/ | main   | digest                            | 2026-06-03T11:06:55Z | nil | nil | https://github.com/ecosyste-ms/digest                            |
+|  1322 | ecosyste-ms | refs/heads/ | main   | diff                              | 2026-06-03T11:06:31Z | nil | nil | https://github.com/ecosyste-ms/diff                              |
+|    20 | ecosyste-ms | refs/heads/ | main   | package-managers-opml             | 2026-06-03T11:06:22Z | nil | nil | https://github.com/ecosyste-ms/package-managers-opml             |
+|  1150 | ecosyste-ms | refs/heads/ | main   | science                           | 2026-06-03T11:03:40Z | nil | nil | https://github.com/ecosyste-ms/science                           |
+|  2415 | ecosyste-ms | refs/heads/ | main   | advisories                        | 2026-06-03T11:00:05Z | nil | nil | https://github.com/ecosyste-ms/advisories                        |
+|   964 | ecosyste-ms | refs/heads/ | main   | sbom                              | 2026-06-03T10:57:06Z | nil | nil | https://github.com/ecosyste-ms/sbom                              |
+|  1292 | ecosyste-ms | refs/heads/ | main   | opencollective                    | 2026-06-03T10:54:38Z | nil | nil | https://github.com/ecosyste-ms/opencollective                    |
+|  1436 | ecosyste-ms | refs/heads/ | main   | licenses                          | 2026-06-03T10:52:10Z | nil | nil | https://github.com/ecosyste-ms/licenses                          |
+|  1053 | ecosyste-ms | refs/heads/ | main   | papers                            | 2026-06-03T10:49:36Z | nil | nil | https://github.com/ecosyste-ms/papers                            |
+|  1347 | ecosyste-ms | refs/heads/ | main   | resolve                           | 2026-06-03T10:48:55Z | nil | nil | https://github.com/ecosyste-ms/resolve                           |
+|   737 | ecosyste-ms | refs/heads/ | main   | dotfiles                          | 2026-06-03T10:48:48Z | nil | nil | https://github.com/ecosyste-ms/dotfiles                          |
+|  1446 | ecosyste-ms | refs/heads/ | main   | docker                            | 2026-06-03T10:45:10Z | nil | nil | https://github.com/ecosyste-ms/docker                            |
+|  4967 | ecosyste-ms | refs/heads/ | main   | repos                             | 2026-06-03T10:41:39Z | nil | nil | https://github.com/ecosyste-ms/repos                             |
+|  2853 | ecosyste-ms | refs/heads/ | main   | home                              | 2026-06-03T10:38:59Z | nil | nil | https://github.com/ecosyste-ms/home                              |
+|  1469 | ecosyste-ms | refs/heads/ | main   | commits                           | 2026-06-03T10:35:15Z | nil | nil | https://github.com/ecosyste-ms/commits                           |
+|    12 | ecosyste-ms | refs/heads/ | main   | typosquatting-dataset             | 2026-05-31T11:18:04Z | nil | nil | https://github.com/ecosyste-ms/typosquatting-dataset             |
+|   331 | ecosyste-ms | refs/heads/ | main   | blog                              | 2026-05-29T23:26:35Z | nil | nil | https://github.com/ecosyste-ms/blog                              |
+|    64 | ecosyste-ms | refs/heads/ | main   | .github                           | 2026-05-29T16:19:15Z | nil | nil | https://github.com/ecosyste-ms/.github                           |
+|   745 | ecosyste-ms | refs/heads/ | main   | ecosyste_ms_cli                   | 2026-05-29T08:36:12Z | nil | nil | https://github.com/ecosyste-ms/ecosyste_ms_cli                   |
+|  1926 | ecosyste-ms | refs/heads/ | main   | threat_models                     | 2026-05-29T07:46:46Z | nil | nil | https://github.com/ecosyste-ms/threat_models                     |
+|   319 | ecosyste-ms | refs/heads/ | main   | mcp-server                        | 2026-05-29T07:45:32Z | nil | nil | https://github.com/ecosyste-ms/mcp-server                        |
+|   174 | ecosyste-ms | refs/heads/ | main   | mcp                               | 2026-05-27T08:18:11Z | nil | nil | https://github.com/ecosyste-ms/mcp                               |
+|    52 | ecosyste-ms | refs/heads/ | main   | package-manager-resolvers         | 2026-05-25T14:36:58Z | nil | nil | https://github.com/ecosyste-ms/package-manager-resolvers         |
+|  1385 | ecosyste-ms | refs/heads/ | main   | docs                              | 2026-05-23T14:26:18Z | nil | nil | https://github.com/ecosyste-ms/docs                              |
+|  1771 | ecosyste-ms | refs/heads/ | main   | archives                          | 2026-05-22T16:28:46Z | nil | nil | https://github.com/ecosyste-ms/archives                          |
+|    42 | ecosyste-ms | refs/heads/ | main   | octorule                          | 2026-05-22T12:55:47Z | nil | nil | https://github.com/ecosyste-ms/octorule                          |
+|   223 | ecosyste-ms | refs/heads/ | main   | nexus                             | 2026-05-22T10:04:38Z | nil | nil | https://github.com/ecosyste-ms/nexus                             |
+|    68 | ecosyste-ms | refs/heads/ | main   | ecosystems-go                     | 2026-05-22T03:03:16Z | nil | nil | https://github.com/ecosyste-ms/ecosystems-go                     |
+|   290 | ecosyste-ms | refs/heads/ | master | npm-update-stream                 | 2026-05-22T02:48:08Z | nil | nil | https://github.com/ecosyste-ms/npm-update-stream                 |
+|    78 | ecosyste-ms | refs/heads/ | main   | critical                          | 2026-05-14T11:44:24Z | nil | nil | https://github.com/ecosyste-ms/critical                          |
+|    12 | ecosyste-ms | refs/heads/ | main   | skills                            | 2026-05-05T17:09:08Z | nil | nil | https://github.com/ecosyste-ms/skills                            |
+|    39 | ecosyste-ms | refs/heads/ | main   | stats-middleware                  | 2026-04-27T10:05:10Z | nil | nil | https://github.com/ecosyste-ms/stats-middleware                  |
+|   185 | ecosyste-ms | refs/heads/ | main   | package-manager-commands          | 2026-04-13T17:39:24Z | nil | nil | https://github.com/ecosyste-ms/package-manager-commands          |
+|  5298 | ecosyste-ms | refs/heads/ | main   | resolve-cli                       | 2026-04-13T10:10:44Z | nil | nil | https://github.com/ecosyste-ms/resolve-cli                       |
+|   252 | ecosyste-ms | refs/heads/ | main   | package-manager-manifest-examples | 2026-03-11T05:56:12Z | nil | nil | https://github.com/ecosyste-ms/package-manager-manifest-examples |
+|    35 | ecosyste-ms | refs/heads/ | main   | export                            | 2026-02-09T20:34:12Z | nil | nil | https://github.com/ecosyste-ms/export                            |
+|    15 | ecosyste-ms | refs/heads/ | main   | package-manager-hooks             | 2025-12-31T17:04:28Z | nil | nil | https://github.com/ecosyste-ms/package-manager-hooks             |
+|    94 | ecosyste-ms | refs/heads/ | main   | package-manager-openapi-schemas   | 2025-12-14T09:49:30Z | nil | nil | https://github.com/ecosyste-ms/package-manager-openapi-schemas   |
+|    18 | ecosyste-ms | refs/heads/ | main   | package-manager-archives          | 2025-12-14T09:48:34Z | nil | nil | https://github.com/ecosyste-ms/package-manager-archives          |
+|    87 | ecosyste-ms | refs/heads/ | main   | conditional-rate-limit.lua        | 2025-12-12T18:45:48Z | nil | nil | https://github.com/ecosyste-ms/conditional-rate-limit.lua        |
+|    86 | ecosyste-ms | refs/heads/ | main   | infrastructure                    | 2025-11-18T07:27:29Z | nil | nil | https://github.com/ecosyste-ms/infrastructure                    |
+|    35 | ecosyste-ms | refs/heads/ | main   | roadmap                           | 2025-11-18T07:25:09Z | nil | nil | https://github.com/ecosyste-ms/roadmap                           |
+|   341 | ecosyste-ms | refs/heads/ | main   | extension                         | 2025-11-12T15:34:46Z | nil | nil | https://github.com/ecosyste-ms/extension                         |
+|     6 | ecosyste-ms | refs/heads/ | main   | omniauth-opencollective           | 2025-11-12T15:34:45Z | nil | nil | https://github.com/ecosyste-ms/omniauth-opencollective           |
+
+#+name: ecosyste-msBundlesTotal
+#+begin_src emacs-lisp :var tbl=ecosyste-msBundles[,0] :eval query
+;; naively, this would be 105 GB!!
+(apply #'+ tbl)
+#+end_src
+
+#+RESULTS: ecosyste-msBundlesTotal
+: 95886
+
+** ecosyste.ms Repos XML
+
+Filter the results, generate XML
+
+#+name: ecosyste-msReposXML
+#+begin_src emacs-lisp :var repos=ecosyste-msRepos repos-exclude=ecosyste-msReposExclude login=ecosyste-msLogin :results value html
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+      (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+                       (path-dirs (list login raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: ecosyste-msReposXML
+#+begin_export html
+<project name="ClickHouse/adbc_clickhouse" path="clickhouse/adbc_clickhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/agent-skills" path="clickhouse/agent-skills" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/agentic-data-stack" path="clickhouse/agentic-data-stack" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ai-sdk-cpp" path="clickhouse/ai-sdk-cpp" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/alexeyprompts" path="clickhouse/alexeyprompts" revision="refs/heads/master" remote="github"/>
+<project name="ClickHouse/aspire-clickhouse-gateway-analytics-demo" path="clickhouse/aspire-clickhouse-gateway-analytics-demo" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/aws_vpc_logs_demo" path="clickhouse/aws_vpc_logs_demo" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/byoc-tools" path="clickhouse/byoc-tools" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ch-go" path="clickhouse/ch-go" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ch-migrator-example" path="clickhouse/ch-migrator-example" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ch2rs" path="clickhouse/ch2rs" revision="refs/heads/master" remote="github"/>
+<project name="ClickHouse/click-ui" path="clickhouse/click-ui" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickBench" path="clickhouse/ClickBench" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickBOM" path="clickhouse/ClickBOM" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickCannon" path="clickhouse/ClickCannon" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickHouse" path="clickhouse/ClickHouse" revision="refs/heads/master" remote="github"/>
+<project name="ClickHouse/clickhouse-academy" path="clickhouse/clickhouse-academy" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-analyzer" path="clickhouse/clickhouse-analyzer" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-c" path="clickhouse/clickhouse-c" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-claude-code-plugin" path="clickhouse/clickhouse-claude-code-plugin" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-connect" path="clickhouse/clickhouse-connect" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-cpp" path="clickhouse/clickhouse-cpp" revision="refs/heads/master" remote="github"/>
+<project name="ClickHouse/clickhouse-cs" path="clickhouse/clickhouse-cs" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-cursor-plugin" path="clickhouse/clickhouse-cursor-plugin" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-fivetran-destination" path="clickhouse/clickhouse-fivetran-destination" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-go" path="clickhouse/clickhouse-go" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-go-linter" path="clickhouse/clickhouse-go-linter" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-java" path="clickhouse/clickhouse-java" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-js" path="clickhouse/clickhouse-js" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-kafka-connect" path="clickhouse/clickhouse-kafka-connect" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-kiro-power" path="clickhouse/clickhouse-kiro-power" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-odbc" path="clickhouse/clickhouse-odbc" revision="refs/heads/master" remote="github"/>
+<project name="ClickHouse/clickhouse-operator" path="clickhouse/clickhouse-operator" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-rs" path="clickhouse/clickhouse-rs" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-serilog-demo" path="clickhouse/clickhouse-serilog-demo" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse-wasm-udf-rs" path="clickhouse/clickhouse-wasm-udf-rs" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickHouse.Aspire" path="clickhouse/ClickHouse.Aspire" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse.build" path="clickhouse/clickhouse.build" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickHouse.EntityFrameworkCore" path="clickhouse/ClickHouse.EntityFrameworkCore" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickHouse.SemanticKernel" path="clickhouse/ClickHouse.SemanticKernel" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickHouse_Demos" path="clickhouse/ClickHouse_Demos" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickhouse_exporter" path="clickhouse/clickhouse_exporter" revision="refs/heads/master" remote="github"/>
+<project name="ClickHouse/clickhousectl" path="clickhouse/clickhousectl" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickpy" path="clickhouse/clickpy" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickStack" path="clickhouse/ClickStack" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/clickstack-demo-subscription-app" path="clickhouse/clickstack-demo-subscription-app" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/ClickStack-helm-charts" path="clickhouse/ClickStack-helm-charts" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/CostBench" path="clickhouse/CostBench" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/dbt-clickhouse" path="clickhouse/dbt-clickhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/docker-library" path="clickhouse/docker-library" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/dotnet-otel-clickstack-demo" path="clickhouse/dotnet-otel-clickstack-demo" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/examples" path="clickhouse/examples" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/flink-connector-clickhouse" path="clickhouse/flink-connector-clickhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/github-explorer" path="clickhouse/github-explorer" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/gitTrends" path="clickhouse/gitTrends" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/hn-news-analyzer" path="clickhouse/hn-news-analyzer" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/HouseClick" path="clickhouse/HouseClick" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/houseofagents" path="clickhouse/houseofagents" revision="refs/heads/master" remote="github"/>
+<project name="ClickHouse/integrations-shared-workflows" path="clickhouse/integrations-shared-workflows" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/JSONBench" path="clickhouse/JSONBench" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/kubenetmon" path="clickhouse/kubenetmon" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/libgsasl" path="clickhouse/libgsasl" revision="refs/heads/master" remote="github"/>
+<project name="ClickHouse/librechat-admin-panel" path="clickhouse/librechat-admin-panel" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/mcp-clickhouse" path="clickhouse/mcp-clickhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/multiagent-terminal" path="clickhouse/multiagent-terminal" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/nerve" path="clickhouse/nerve" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/NoiSQL" path="clickhouse/NoiSQL" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/pg_clickhouse" path="clickhouse/pg_clickhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/pg_re2" path="clickhouse/pg_re2" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/pg_stat_ch" path="clickhouse/pg_stat_ch" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/PostgresBench" path="clickhouse/PostgresBench" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/power-bi-clickhouse" path="clickhouse/power-bi-clickhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/Serilog.Sinks.ClickHouse" path="clickhouse/Serilog.Sinks.ClickHouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/silk" path="clickhouse/silk" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/spark-clickhouse-connector" path="clickhouse/spark-clickhouse-connector" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/stock-anomaly-udf" path="clickhouse/stock-anomaly-udf" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/stockhouse" path="clickhouse/stockhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/tachikoma" path="clickhouse/tachikoma" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/terraform-provider-clickhouse" path="clickhouse/terraform-provider-clickhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/terraform-provider-clickhousedbops" path="clickhouse/terraform-provider-clickhousedbops" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/tpc-h-openhouse" path="clickhouse/tpc-h-openhouse" revision="refs/heads/main" remote="github"/>
+<project name="ClickHouse/velocity" path="clickhouse/velocity" revision="refs/heads/master" remote="github"/>
+#+end_export
+
+** Generate XML
+
+Generate =ecosyste-ms.xml=
+
+#+begin_src xml :tangle ecosyste-ms.xml :noweb yes
+<manifest>
+  <<ecosyste-msReposXML()>>
+</manifest>
+#+end_src
