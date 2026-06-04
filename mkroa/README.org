@@ -17,6 +17,7 @@ repository.
   <project path="web/makeroanoke.org" name="MAKEroanoke/makeroanoke.org" groups="web" revision="refs/heads/main" />
   <project path="web/theme" name="MAKEroanoke/jekyll-theme-basically-make-roanoke" groups="web" revision="refs/heads/master" />
   <project path="membermatters" name="membermatters/membermatters" groups="membermatters" revision="refs/heads/dev" />
+  <project path="mmdev" name="MakersOfSweden/membermatters" groups="membermatters" revision="refs/heads/dev" />
 </manifest>
 #+end_src
 
