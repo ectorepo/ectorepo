@@ -33,7 +33,7 @@ Ecosyste.ms
 <manifest>
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
-  <include name="ecosyste-ms.xml"/>
+  <include name="metaforge/ecosyste-ms.xml"/>
 </manifest>
 #+end_src
 
@@ -48,6 +48,7 @@ To avoid confirmations
 load blocks
 
 #+begin_src emacs-lisp
+;; untested
 (org-babel-lob-ingest "../babel.org")
 #+end_src
 
@@ -239,92 +240,6 @@ Filter the results, generate XML
     (cl-sort 'string-lessp :key 'downcase)
     (string-join "\n")))
 #+end_src
-
-#+RESULTS: ecosyste-msReposXML
-#+begin_export html
-<project name="ClickHouse/adbc_clickhouse" path="clickhouse/adbc_clickhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/agent-skills" path="clickhouse/agent-skills" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/agentic-data-stack" path="clickhouse/agentic-data-stack" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ai-sdk-cpp" path="clickhouse/ai-sdk-cpp" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/alexeyprompts" path="clickhouse/alexeyprompts" revision="refs/heads/master" remote="github"/>
-<project name="ClickHouse/aspire-clickhouse-gateway-analytics-demo" path="clickhouse/aspire-clickhouse-gateway-analytics-demo" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/aws_vpc_logs_demo" path="clickhouse/aws_vpc_logs_demo" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/byoc-tools" path="clickhouse/byoc-tools" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ch-go" path="clickhouse/ch-go" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ch-migrator-example" path="clickhouse/ch-migrator-example" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ch2rs" path="clickhouse/ch2rs" revision="refs/heads/master" remote="github"/>
-<project name="ClickHouse/click-ui" path="clickhouse/click-ui" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickBench" path="clickhouse/ClickBench" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickBOM" path="clickhouse/ClickBOM" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickCannon" path="clickhouse/ClickCannon" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickHouse" path="clickhouse/ClickHouse" revision="refs/heads/master" remote="github"/>
-<project name="ClickHouse/clickhouse-academy" path="clickhouse/clickhouse-academy" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-analyzer" path="clickhouse/clickhouse-analyzer" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-c" path="clickhouse/clickhouse-c" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-claude-code-plugin" path="clickhouse/clickhouse-claude-code-plugin" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-connect" path="clickhouse/clickhouse-connect" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-cpp" path="clickhouse/clickhouse-cpp" revision="refs/heads/master" remote="github"/>
-<project name="ClickHouse/clickhouse-cs" path="clickhouse/clickhouse-cs" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-cursor-plugin" path="clickhouse/clickhouse-cursor-plugin" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-fivetran-destination" path="clickhouse/clickhouse-fivetran-destination" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-go" path="clickhouse/clickhouse-go" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-go-linter" path="clickhouse/clickhouse-go-linter" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-java" path="clickhouse/clickhouse-java" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-js" path="clickhouse/clickhouse-js" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-kafka-connect" path="clickhouse/clickhouse-kafka-connect" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-kiro-power" path="clickhouse/clickhouse-kiro-power" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-odbc" path="clickhouse/clickhouse-odbc" revision="refs/heads/master" remote="github"/>
-<project name="ClickHouse/clickhouse-operator" path="clickhouse/clickhouse-operator" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-rs" path="clickhouse/clickhouse-rs" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-serilog-demo" path="clickhouse/clickhouse-serilog-demo" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse-wasm-udf-rs" path="clickhouse/clickhouse-wasm-udf-rs" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickHouse.Aspire" path="clickhouse/ClickHouse.Aspire" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse.build" path="clickhouse/clickhouse.build" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickHouse.EntityFrameworkCore" path="clickhouse/ClickHouse.EntityFrameworkCore" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickHouse.SemanticKernel" path="clickhouse/ClickHouse.SemanticKernel" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickHouse_Demos" path="clickhouse/ClickHouse_Demos" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickhouse_exporter" path="clickhouse/clickhouse_exporter" revision="refs/heads/master" remote="github"/>
-<project name="ClickHouse/clickhousectl" path="clickhouse/clickhousectl" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickpy" path="clickhouse/clickpy" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickStack" path="clickhouse/ClickStack" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/clickstack-demo-subscription-app" path="clickhouse/clickstack-demo-subscription-app" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/ClickStack-helm-charts" path="clickhouse/ClickStack-helm-charts" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/CostBench" path="clickhouse/CostBench" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/dbt-clickhouse" path="clickhouse/dbt-clickhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/docker-library" path="clickhouse/docker-library" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/dotnet-otel-clickstack-demo" path="clickhouse/dotnet-otel-clickstack-demo" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/examples" path="clickhouse/examples" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/flink-connector-clickhouse" path="clickhouse/flink-connector-clickhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/github-explorer" path="clickhouse/github-explorer" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/gitTrends" path="clickhouse/gitTrends" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/hn-news-analyzer" path="clickhouse/hn-news-analyzer" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/HouseClick" path="clickhouse/HouseClick" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/houseofagents" path="clickhouse/houseofagents" revision="refs/heads/master" remote="github"/>
-<project name="ClickHouse/integrations-shared-workflows" path="clickhouse/integrations-shared-workflows" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/JSONBench" path="clickhouse/JSONBench" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/kubenetmon" path="clickhouse/kubenetmon" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/libgsasl" path="clickhouse/libgsasl" revision="refs/heads/master" remote="github"/>
-<project name="ClickHouse/librechat-admin-panel" path="clickhouse/librechat-admin-panel" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/mcp-clickhouse" path="clickhouse/mcp-clickhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/multiagent-terminal" path="clickhouse/multiagent-terminal" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/nerve" path="clickhouse/nerve" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/NoiSQL" path="clickhouse/NoiSQL" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/pg_clickhouse" path="clickhouse/pg_clickhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/pg_re2" path="clickhouse/pg_re2" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/pg_stat_ch" path="clickhouse/pg_stat_ch" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/PostgresBench" path="clickhouse/PostgresBench" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/power-bi-clickhouse" path="clickhouse/power-bi-clickhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/Serilog.Sinks.ClickHouse" path="clickhouse/Serilog.Sinks.ClickHouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/silk" path="clickhouse/silk" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/spark-clickhouse-connector" path="clickhouse/spark-clickhouse-connector" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/stock-anomaly-udf" path="clickhouse/stock-anomaly-udf" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/stockhouse" path="clickhouse/stockhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/tachikoma" path="clickhouse/tachikoma" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/terraform-provider-clickhouse" path="clickhouse/terraform-provider-clickhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/terraform-provider-clickhousedbops" path="clickhouse/terraform-provider-clickhousedbops" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/tpc-h-openhouse" path="clickhouse/tpc-h-openhouse" revision="refs/heads/main" remote="github"/>
-<project name="ClickHouse/velocity" path="clickhouse/velocity" revision="refs/heads/master" remote="github"/>
-#+end_export
 
 ** Generate XML
 
