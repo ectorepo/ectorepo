@@ -1,0 +1,134 @@
+#+title: Library of Babel
+
+Testing this out, but unsure. What's nice about copy & paste: not only is there
+no =semver=, but actually nothing needs anything -- you can always throw it away
+without needing to plan apriori. And obsidian zettelkastens are amorphous.
+
+I haven't really used library of babel before, but i may try soon.
+
++ Some properties on =#+call= are difficult to override.
++ For similar reasons, scoping is complicated
++ Expecting things to "just work" when using =:noweb= templates can be optimistic.
+  It's possible that the XML block just doesn't work.
+  
+* Blocks
+
+** ghub
+
+#+name: ghubCheckRates
+#+begin_src emacs-lisp :results value code :exports code
+(let-alist 
+    (cdr (ghub-query '(query (rateLimit limit cost remaining resetAt)) nil :synchronous t))
+  .rateLimit.remaining)
+#+end_src
+
+*** ghubReposFetch
+
+call with ~#+call: ghubReposFetch(login="someorg")~ and =nrepos=100= is default
+
+#+name: ghubReposFetch
+#+begin_src emacs-lisp :var login="dcunited001" nrepos=(identity 100) :results vector value :exports code
+(let* ((q '(query
+            [($login String!)
+             ($first Int!)
+             ($orderBy RepositoryOrder!)]
+            (organization
+             [(login $login)]
+             (repositories
+              [(first $first)
+               (orderBy $orderBy)]
+              (edges
+               (node
+                (owner login)
+                name
+                (defaultBranchRef prefix name)
+                url
+                updatedAt
+                diskUsage
+                isFork
+                isArchived))))))
+       (vars `((login . ,login)
+               (first . ,nrepos)
+               (orderBy . ((field . "UPDATED_AT")
+                           (direction . "DESC")))))
+       (response (cdr (ghub-query q vars
+                   :paginate 100
+                   :synchronous t))))
+  ;; (setq gql-response response)
+  (let-alist response .organization.repositories))
+#+end_src
+
+*** ghubReposBundles
+
+expects =repos=ghubReposFetchResult= to exactly match that result.
+
+it will dump a table that can be simple/difficult to work with from other
+blocks, depending on the language.
+
+#+name: ghubReposBundles
+#+begin_src emacs-lisp :var repos=ghubReposFetch :results value table :exports code :noweb yes :eval query
+(thread-first
+  (thread-last
+    repos
+    
+    ;; filter archived repos
+    (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+    (mapcar (lambda (el)
+              (list (a-get* el 'diskUsage)
+                    (a-get* el 'owner 'login)
+                    (a-get* el 'defaultBranchRef 'prefix)
+                    (a-get* el 'defaultBranchRef 'name)
+                    (a-get* el 'name)
+                    (a-get* el 'updatedAt)
+                    (a-get* el 'isFork)
+                    (a-get* el 'isArchived)
+                    (a-get* el 'url))))))
+#+end_src
+
+expects =tbl=ghubReposBundlesResult[,0]= from an earlier call.
+ 
+#+name: ghubReposBundlesTotal
+#+begin_src emacs-lisp :var tbl=ghubReposBundlesResult[,0] :eval query
+;; naively, this would be 105 GB!!
+(apply #'+ tbl)
+#+end_src
+
+*** ghubReposXML
+
+This has three parameters:
+
++ repos=ghubReposFetchResult :: exactly =ghubReposFetch()= result
++ repos-exclude=ghubReposExclude :: a single column table with strings to blacklist
++ login=login :: clone these repos into "./login/reponame"
+  - sets path in the XML tags
+
+#+name: ghubReposXML
+#+begin_src emacs-lisp :var repos=ghubReposFetch repos-exclude=ghubReposExclude login="dcunited001" :results value html
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+      (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+                       (path-dirs (list login raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src

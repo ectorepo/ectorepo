@@ -45,17 +45,22 @@ To avoid confirmations
 (setq-local org-confirm-babel-evaluate nil)
 #+end_src
 
-Check rates:
+load blocks
 
-#+begin_src emacs-lisp :results value code :exports code
-(let-alist 
-    (cdr (ghub-query '(query (rateLimit limit cost remaining resetAt)) nil :synchronous t))
-  .rateLimit.remaining)
+#+begin_src emacs-lisp
+(org-babel-lob-ingest "../babel.org")
 #+end_src
 
 #+RESULTS:
+: 1
+
+Check rates with =ghubCheckRates()=
+
+#+call: ghubCheckRates()
+
+#+RESULTS:
 #+begin_src emacs-lisp
-4991
+5000
 #+end_src
 
 * ecosyste-ms
@@ -115,8 +120,6 @@ Clone bundle sizes
 (thread-first
   (thread-last
     repos
-    ;; (a-get* (nthcdr 0 ) 'data 'organization 'repositories 'edges)
-    ;; (mapcar (lambda (el) (a-get* el 'node)))
 
     ;; filter archived repos
     (seq-filter (lambda (el) (not (a-get* el 'isFork))))
