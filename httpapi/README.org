@@ -1,0 +1,188 @@
+#+title:     Ectorepo: httpapi
+#+author:    David Conner
+#+email:     noreply@te.xel.io
+#+PROPERTY: header-args+ :comments none
+
+When using =repo init -u $url -m $manifest= instead of the git submodule to
+checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
+repository.
+
+* Resources
+
+* Manifest
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="httpapi/apis-guru.xml"/>
+</manifest>
+#+end_src
+
+** Babel Setup
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+load blocks
+
+#+begin_src emacs-lisp
+;; untested
+(org-babel-lob-ingest "../babel.org")
+#+end_src
+
+#+RESULTS:
+: 1
+
+Check rates with =ghubCheckRates()=
+
+#+call: ghubCheckRates()
+
+#+RESULTS:
+#+begin_src emacs-lisp
+5000
+#+end_src
+
+* apis-guru
+
+#+name: apis-guruLogin
+#+begin_src emacs-lisp
+"apis-guru"
+#+end_src
+
+Excluded Repositories
+
+#+name: apis-guruReposExclude
+| .github                     |
+| google-discovery-to-swagger |
+| graphql-lodash              |
+| APIs-guru.github.io         |
+| unofficial_openapi_specs    |
+| api-registry                |
+| gc-hacks                    |
+| simple-ui                   |
+| petstore_extended           |
+| branding                    |
+
+
+#+name: apis-guruRepos
+#+begin_src emacs-lisp :var login=apis-guruLogin nrepos=(identity 100) :results vector value :exports code
+(let* ((q '(query
+            [($login String!)
+             ($first Int!)
+             ($orderBy RepositoryOrder!)]
+            (organization
+             [(login $login)]
+             (repositories
+              [(first $first)
+               (orderBy $orderBy)]
+              (edges
+               (node
+                (owner login)
+                name
+                (defaultBranchRef prefix name)
+                url
+                updatedAt
+                diskUsage
+                isFork
+                isArchived))))))
+       (vars `((login . ,login)
+               (first . ,nrepos)
+               (orderBy . ((field . "UPDATED_AT")
+                           (direction . "DESC")))))
+       (response (cdr (ghub-query q vars
+                   :paginate 100
+                   :synchronous t))))
+  ;; (setq gql-response response)
+  (let-alist response .organization.repositories))
+#+end_src
+
+Clone bundle sizes
+
+#+name: apis-guruBundles
+#+begin_src emacs-lisp :var repos=apis-guruRepos :results value table :exports code :noweb yes :eval query
+(thread-first
+  (thread-last
+    repos
+
+    ;; filter archived repos
+    (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+
+    (mapcar (lambda (el)
+              (list (a-get* el 'diskUsage)
+                    (a-get* el 'owner 'login)
+                    (a-get* el 'defaultBranchRef 'prefix)
+                    (a-get* el 'defaultBranchRef 'name)
+                    (a-get* el 'name)
+                    (a-get* el 'updatedAt)
+                    (a-get* el 'isFork)
+                    (a-get* el 'isArchived)
+                    (a-get* el 'url))))))
+#+end_src
+
+#+RESULTS: apis-guruBundles
+|  14503 | APIs-guru | refs/heads/ | master   | awesome-openapi3   | 2026-06-05T00:21:58Z | nil | nil | https://github.com/APIs-guru/awesome-openapi3            |
+|  56627 | APIs-guru | refs/heads/ | main     | graphql-voyager    | 2026-06-04T23:34:48Z | nil | nil | https://github.com/APIs-guru/graphql-voyager             |
+|   6693 | APIs-guru | refs/heads/ | main     | dotviz             | 2026-06-04T22:31:54Z | nil | nil | https://github.com/APIs-guru/dotviz                      |
+| 784141 | APIs-guru | refs/heads/ | main     | openapi-directory  | 2026-06-03T15:54:44Z | nil | nil | https://github.com/APIs-guru/openapi-directory           |
+|   2898 | APIs-guru | refs/heads/ | main     | asyncapi-directory | 2026-06-01T00:15:19Z | nil | nil | https://github.com/APIs-guru/asyncapi-directory          |
+|   3697 | APIs-guru | refs/heads/ | main     | graphql-faker      | 2026-05-29T12:52:49Z | nil | nil | https://github.com/APIs-guru/graphql-faker               |
+|    185 | APIs-guru | refs/heads/ | master   | graphql-apis       | 2026-06-01T22:28:12Z | nil | nil | https://github.com/APIs-guru/graphql-apis                |
+|    246 | APIs-guru | refs/heads/ | main     | aws2openapi        | 2026-04-02T06:07:11Z | nil | nil | https://github.com/APIs-guru/aws2openapi                 |
+|   5912 | APIs-guru | refs/heads/ | master   | graphql-coverage   | 2025-08-23T22:16:02Z | nil | nil | https://github.com/APIs-guru/graphql-coverage            |
+
+
+#+name: apis-guruBundlesTotal
+#+begin_src emacs-lisp :var tbl=apis-guruBundles[,0] :eval query
+(apply #'+ tbl)
+#+end_src
+
+#+RESULTS: apis-guruBundlesTotal
+: 900723
+
+** APIs.guru Repos XML
+
+Filter the results, generate XML
+
+#+name: apis-guruReposXML
+#+begin_src emacs-lisp :var repos=apis-guruRepos repos-exclude=apis-guruReposExclude login=apis-guruLogin :results value html
+(let* ((repos-exclude (flatten-list repos-exclude)))
+  (thread-first
+    (thread-last
+      repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+      (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+                       (path-dirs (list login raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+** Generate XML
+
+Generate =apis-guru.xml=
+
+#+begin_src xml :tangle apis-guru.xml :noweb yes
+<manifest>
+  <<apis-guruReposXML()>>
+</manifest>
+#+end_src

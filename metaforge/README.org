@@ -74,13 +74,8 @@ Check rates with =ghubCheckRates()=
 Excluded Repositories
 
 #+name: ecosyste-msReposExclude
-| .github                  |
-| clickhouse-presentations |
-| clickhouse-docs          |
-| mintlify-docs-dev        |
-| rust_vendor              |
-| adsb.exposed             |
-| grpc                     |
+| .github |
+|         |
 
 #+name: ecosyste-msRepos
 #+begin_src emacs-lisp :var login=ecosyste-msLogin nrepos=(identity 100) :results vector value :exports code

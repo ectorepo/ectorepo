@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="APIs-guru/asyncapi-directory" path="apis-guru/asyncapi-directory" revision="refs/heads/main" remote="github"/>
+  <project name="APIs-guru/awesome-openapi3" path="apis-guru/awesome-openapi3" revision="refs/heads/master" remote="github"/>
+  <project name="APIs-guru/aws2openapi" path="apis-guru/aws2openapi" revision="refs/heads/main" remote="github"/>
+  <project name="APIs-guru/dotviz" path="apis-guru/dotviz" revision="refs/heads/main" remote="github"/>
+  <project name="APIs-guru/graphql-apis" path="apis-guru/graphql-apis" revision="refs/heads/master" remote="github"/>
+  <project name="APIs-guru/graphql-coverage" path="apis-guru/graphql-coverage" revision="refs/heads/master" remote="github"/>
+  <project name="APIs-guru/graphql-faker" path="apis-guru/graphql-faker" revision="refs/heads/main" remote="github"/>
+  <project name="APIs-guru/graphql-voyager" path="apis-guru/graphql-voyager" revision="refs/heads/main" remote="github"/>
+  <project name="APIs-guru/openapi-directory" path="apis-guru/openapi-directory" revision="refs/heads/main" remote="github"/>
+</manifest>
