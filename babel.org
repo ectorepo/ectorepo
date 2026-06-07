@@ -10,7 +10,7 @@ I haven't really used library of babel before, but i may try soon.
 + For similar reasons, scoping is complicated
 + Expecting things to "just work" when using =:noweb= templates can be optimistic.
   It's possible that the XML block just doesn't work.
-  
+
 * Blocks
 
 ** ghub
@@ -21,6 +21,9 @@ I haven't really used library of babel before, but i may try soon.
     (cdr (ghub-query '(query (rateLimit limit cost remaining resetAt)) nil :synchronous t))
   .rateLimit.remaining)
 #+end_src
+
+#+NAME: ghubReposExclude
+| .github    |
 
 *** ghubReposFetch
 
@@ -100,19 +103,19 @@ expects =tbl=ghubReposBundlesResult[,0]= from an earlier call.
 This has three parameters:
 
 + repos=ghubReposFetchResult :: exactly =ghubReposFetch()= result
-+ repos-exclude=ghubReposExclude :: a single column table with strings to blacklist
++ reposExclude=ghubReposExclude :: a single column table with strings to blacklist
 + login=login :: clone these repos into "./login/reponame"
   - sets path in the XML tags
 
 #+name: ghubReposXML
-#+begin_src emacs-lisp :var repos=ghubReposFetch repos-exclude=ghubReposExclude login="dcunited001" :results value html
-(let* ((repos-exclude (flatten-list repos-exclude)))
+#+begin_src emacs-lisp :var repos=ghubReposFetch reposExclude=ghubReposExclude login="dcunited001" :results value html
+(let* ((reposExclude (flatten-list reposExclude)))
   (thread-first
     (thread-last
       repos
       (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
       (seq-filter (lambda (el) (not (a-get* el 'isFork))))
-      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) reposExclude))))
       (mapcar (lambda (el)
                 (let* ((raw-name (a-get* el 'name))
                        (path-dirs (list login raw-name))

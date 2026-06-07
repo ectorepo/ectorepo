@@ -186,3 +186,238 @@ Generate =apis-guru.xml=
   <<apis-guruReposXML()>>
 </manifest>
 #+end_src
+
+* APIs Guru
+
+** Anchors
+
+=$ref= matches: full paths with versions where those are.
+
+=1136896= results
+
+#+begin_src shell
+grep -re '$ref' --include="*.yaml" apis-guru/openapi-directory/ \
+      | sed -E "s/: +[-]? +\\$//g" | sed -E 's/ref: //g' | tr -d '"' >  /data/repo/httpapi/entityPaths.1
+#+end_src
+
+=253387= results
+
+#+begin_src shell
+grep -re '$ref' --include="*.yaml" apis-guru/openapi-directory/ \
+      | sed -E "s/: +[-]? +\\$//g" | sed -E 's/ref: //g' | tr -d '"' \
+      | sort | uniq >  /data/repo/httpapi/entityPaths.2
+#+end_src
+
+Just the anchor links, =1136896= results again
+
+#+begin_src shell
+grep -re '$ref' --include="*.yaml" apis-guru/openapi-directory/ \
+      | sed -E "s/: +[-]? +\\$//g" | sed -E 's/ref: //g' | tr -d '"' \
+      | tr '#' "	" | cut -f2 -d"	"
+#+end_src
+
+=139021= unique anchors
+
+#+begin_src shell
+grep -re '$ref' --include="*.yaml" apis-guru/openapi-directory/ \
+      | sed -E "s/: +[-]? +\\$//g" | sed -E 's/ref: //g' | tr -d '"' \
+      |  tr '#' "	" | cut -f2 -d"	" \
+      | sort | uniq | wc -l
+#+end_src
+
+/kind of/ a multigraph, esp with the =$definition='s as nodes
+
+#+begin_src shell
+grep -re '$ref' --include="*.yaml" apis-guru/openapi-directory/ \
+    | sed -E "s/: +[-]? +\\$//g" | sed -E 's/ref: //g' | tr -d '"' \
+    | tr '#' '      ' | cut -f2 -d' ' \
+    | sort | uniq | tree --fromfile . > /data/repo/httpapi/entityPaths.tree
+#+end_src
+
+So this "where you flip the script". Iterate through each uniq =$ref= for
+references to the same semantic identifier in other APIs (esp. the entities:
+components/defs/schemas)
+
+These are /probably/ different representations of the same thing. or not, which is
+probably more interesting. The effort that's gone into URI and API Route design,
+-- along with the evident consensus i.e. they were successful bc people used
+them -- should make the data interesting idk.
+
+IDK how frequently the API Gurus repo added commits, but i'm sure there are
+better sources to replay the changes over time.
+
+** Storage
+
+#+begin_src shell
+du -s apis-guru/openapi-directory/APIs/* | sort -nk1 | tac # | sed
+#+end_src
+
+| 151496 | https://apis.guru/apis/azure.com                             |
+|  99844 | https://apis.guru/apis/amazonaws.com                         |
+|  91916 | https://apis.guru/apis/github.com                            |
+|  84992 | https://apis.guru/apis/microsoft.com                         |
+|  78104 | https://apis.guru/apis/googleapis.com                        |
+|  19436 | https://apis.guru/apis/adyen.com                             |
+|  11164 | https://apis.guru/apis/loket.nl                              |
+|  10036 | https://apis.guru/apis/mailchimp.com                         |
+|   8272 | https://apis.guru/apis/apisetu.gov.in                        |
+|   7664 | https://apis.guru/apis/kubernetes.io                         |
+|   6624 | https://apis.guru/apis/zuora.com                             |
+|   5868 | https://apis.guru/apis/vtex.local                            |
+|   5320 | https://apis.guru/apis/chaingateway.io                       |
+|   5260 | https://apis.guru/apis/windows.net                           |
+|   4932 | https://apis.guru/apis/twilio.com                            |
+|   4928 | https://apis.guru/apis/zoom.us                               |
+|   4400 | https://apis.guru/apis/unicourt.com                          |
+|   4000 | https://apis.guru/apis/autotask.net                          |
+|   3648 | https://apis.guru/apis/stripe.com                            |
+|   3516 | https://apis.guru/apis/mist.com                              |
+|   3228 | https://apis.guru/apis/docusign.net                          |
+|   3196 | https://apis.guru/apis/here.com                              |
+|   3048 | https://apis.guru/apis/meraki.com                            |
+|   2820 | https://apis.guru/apis/visma.net                             |
+|   2720 | https://apis.guru/apis/apideck.com                           |
+|   2648 | https://apis.guru/apis/codat.io                              |
+|   2440 | https://apis.guru/apis/dracoon.team                          |
+|   2268 | https://apis.guru/apis/appcenter.ms                          |
+|   2192 | https://apis.guru/apis/ebay.com                              |
+|   2180 | https://apis.guru/apis/amadeus.com                           |
+|   2088 | https://apis.guru/apis/atlassian.com                         |
+|   2076 | https://apis.guru/apis/epa.gov                               |
+|   2048 | https://apis.guru/apis/alertersystem.com                     |
+|   1848 | https://apis.guru/apis/sportsdata.io                         |
+|   1756 | https://apis.guru/apis/netbox.dev                            |
+|   1548 | https://apis.guru/apis/digitalocean.com                      |
+|   1544 | https://apis.guru/apis/rubrikinc.github.io                   |
+|   1508 | https://apis.guru/apis/plaid.com                             |
+|   1484 | https://apis.guru/apis/openbanking.org.uk                    |
+|   1476 | https://apis.guru/apis/bunq.com                              |
+|   1468 | https://apis.guru/apis/akeneo.com                            |
+|   1348 | https://apis.guru/apis/evetech.net                           |
+|   1340 | https://apis.guru/apis/squareup.com                          |
+|   1336 | https://apis.guru/apis/bungie.net                            |
+|   1312 | https://apis.guru/apis/increase.com                          |
+|   1296 | https://apis.guru/apis/gsmtasks.com                          |
+|   1284 | https://apis.guru/apis/osf.io                                |
+|   1268 | https://apis.guru/apis/jellyfin.local                        |
+|   1248 | https://apis.guru/apis/wmata.com                             |
+|   1204 | https://apis.guru/apis/box.com                               |
+|   1176 | https://apis.guru/apis/netboxdemo.com                        |
+|   1164 | https://apis.guru/apis/telnyx.com                            |
+|   1164 | https://apis.guru/apis/sendgrid.com                          |
+|   1132 | https://apis.guru/apis/magento.com                           |
+|   1124 | https://apis.guru/apis/hetzner.cloud                         |
+|   1100 | https://apis.guru/apis/xero.com                              |
+|   1072 | https://apis.guru/apis/visma.com                             |
+|   1068 | https://apis.guru/apis/fec.gov                               |
+|   1024 | https://apis.guru/apis/pandascore.co                         |
+|   1004 | https://apis.guru/apis/snyk.io                               |
+|   1004 | https://apis.guru/apis/bitbucket.org                         |
+|    972 | https://apis.guru/apis/viator.com                            |
+|    960 | https://apis.guru/apis/linode.com                            |
+|    952 | https://apis.guru/apis/stackexchange.com                     |
+|    940 | https://apis.guru/apis/payrun.io                             |
+|    936 | https://apis.guru/apis/hsbc.com                              |
+|    920 | https://apis.guru/apis/files.com                             |
+|    916 | https://apis.guru/apis/vercel.com                            |
+|    908 | https://apis.guru/apis/geodesystems.com                      |
+|    896 | https://apis.guru/apis/mastercard.com                        |
+|    880 | https://apis.guru/apis/truora.com                            |
+|    872 | https://apis.guru/apis/apple.com                             |
+|    860 | https://apis.guru/apis/rebilly.com                           |
+|    856 | https://apis.guru/apis/haloapi.com                           |
+|    852 | https://apis.guru/apis/just-eat.co.uk                        |
+|    840 | https://apis.guru/apis/osisoft.com                           |
+|    808 | https://apis.guru/apis/nexmo.com                             |
+|    800 | https://apis.guru/apis/spoonacular.com                       |
+|    788 | https://apis.guru/apis/drchrono.com                          |
+|    760 | https://apis.guru/apis/data2crm.com                          |
+|    732 | https://apis.guru/apis/slack.com                             |
+|    728 | https://apis.guru/apis/vimeo.com                             |
+|    692 | https://apis.guru/apis/shutterstock.com                      |
+|    680 | https://apis.guru/apis/trakt.tv                              |
+|    672 | https://apis.guru/apis/beezup.com                            |
+|    668 | https://apis.guru/apis/ote-godaddy.com                       |
+|    664 | https://apis.guru/apis/velopayments.com                      |
+|    604 | https://apis.guru/apis/ndhm.gov.in                           |
+|    604 | https://apis.guru/apis/goog.io                               |
+|    600 | https://apis.guru/apis/clicksend.com                         |
+|    584 | https://apis.guru/apis/spotify.com                           |
+|    572 | https://apis.guru/apis/wowza.com                             |
+|    556 | https://apis.guru/apis/stream-io-api.com                     |
+|    556 | https://apis.guru/apis/linqr.app                             |
+|    556 | https://apis.guru/apis/agco-ats.com                          |
+|    548 | https://apis.guru/apis/trello.com                            |
+|    536 | https://apis.guru/apis/noosh.com                             |
+|    524 | https://apis.guru/apis/rapidapi.com                          |
+|    524 | https://apis.guru/apis/docker.com                            |
+|    492 | https://apis.guru/apis/ix-api.net                            |
+|    488 | https://apis.guru/apis/gerermesaffaires.com                  |
+|    480 | https://apis.guru/apis/gov.bc.ca                             |
+|    472 | https://apis.guru/apis/openbankingproject.ch                 |
+|    468 | https://apis.guru/apis/asana.com                             |
+|    460 | https://apis.guru/apis/telegram.org                          |
+|    456 | https://apis.guru/apis/callfire.com                          |
+|    452 | https://apis.guru/apis/gitea.io                              |
+|    448 | https://apis.guru/apis/yodlee.com                            |
+|    444 | https://apis.guru/apis/orthanc-server.com                    |
+|    444 | https://apis.guru/apis/e-conomic.com                         |
+|    440 | https://apis.guru/apis/rudder.example.local                  |
+|    440 | https://apis.guru/apis/portfoliooptimizer.io                 |
+|    440 | https://apis.guru/apis/api2cart.com                          |
+|    436 | https://apis.guru/apis/naviplancentral.com                   |
+|    436 | https://apis.guru/apis/ljaero.com                            |
+|    432 | https://apis.guru/apis/onsched.com                           |
+|    432 | https://apis.guru/apis/nbg.gr                                |
+|    420 | https://apis.guru/apis/twitter.com                           |
+|    420 | https://apis.guru/apis/parliament.uk                         |
+|    404 | https://apis.guru/apis/monarchinitiative.org                 |
+|    404 | https://apis.guru/apis/discourse.local                       |
+|    400 | https://apis.guru/apis/gitlab.com                            |
+|    392 | https://apis.guru/apis/webflow.com                           |
+|    392 | https://apis.guru/apis/britbox.co.uk                         |
+|    384 | https://apis.guru/apis/shipengine.com                        |
+|    384 | https://apis.guru/apis/exavault.com                          |
+|    380 | https://apis.guru/apis/hubapi.com                            |
+|    376 | https://apis.guru/apis/salesloft.com                         |
+|    376 | https://apis.guru/apis/apigee.net                            |
+|    372 | https://apis.guru/apis/notion.com                            |
+|    372 | https://apis.guru/apis/apacta.com                            |
+|    368 | https://apis.guru/apis/id4i.de                               |
+|    364 | https://apis.guru/apis/walletobjects.googleapis.com          |
+|    360 | https://apis.guru/apis/svix.com                              |
+|    356 | https://apis.guru/apis/xtrf.eu                               |
+|    356 | https://apis.guru/apis/presalytics.io                        |
+|    348 | https://apis.guru/apis/influxdata.com                        |
+|    340 | https://apis.guru/apis/threatjammer.com                      |
+|    340 | https://apis.guru/apis/gettyimages.com                       |
+|    340 | https://apis.guru/apis/appwrite.io                           |
+|    336 | https://apis.guru/apis/motaword.com                          |
+|    332 | https://apis.guru/apis/theracingapi.com                      |
+|    332 | https://apis.guru/apis/impala.travel                         |
+|    332 | https://apis.guru/apis/biapi.pro                             |
+|    328 | https://apis.guru/apis/sinao.app                             |
+|    324 | https://apis.guru/apis/gambitcomm.local                      |
+|    320 | https://apis.guru/apis/letmc.com                             |
+|    304 | https://apis.guru/apis/clearblade.com                        |
+|    296 | https://apis.guru/apis/fire.com                              |
+|    292 | https://apis.guru/apis/superset.apache.local                 |
+|    288 | https://apis.guru/apis/signl4.com                            |
+|    288 | https://apis.guru/apis/frankiefinancial.io                   |
+|    288 | https://apis.guru/apis/figshare.com                          |
+|    288 | https://apis.guru/apis/credas.co.uk                          |
+|    284 | https://apis.guru/apis/hetras-certification.net              |
+|    276 | https://apis.guru/apis/storecove.com                         |
+|    276 | https://apis.guru/apis/mux.com                               |
+|    272 | https://apis.guru/apis/cpy.re                                |
+|    268 | https://apis.guru/apis/ably.net                              |
+|    260 | https://apis.guru/apis/fungenerators.com                     |
+|    260 | https://apis.guru/apis/circuitsandbox.net                    |
+|    256 | https://apis.guru/apis/visualstudio.com                      |
+|    256 | https://apis.guru/apis/nytimes.com                           |
+|    244 | https://apis.guru/apis/whapi.com                             |
+|    244 | https://apis.guru/apis/vmware.local                          |
+|    244 | https://apis.guru/apis/interzoid.com                         |
+|    236 | https://apis.guru/apis/ideal-postcodes.co.uk                 |
+|    236 | https://apis.guru/apis/art19.com                             |
+|    232 | https://apis.guru/apis/twinehealth.com                       |

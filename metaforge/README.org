@@ -45,7 +45,7 @@ To avoid confirmations
 (setq-local org-confirm-babel-evaluate nil)
 #+end_src
 
-load blocks
+Load blocks
 
 #+begin_src emacs-lisp
 ;; untested

@@ -9,6 +9,8 @@ When using =repo init -u $url -m $manifest= instead of the git submodule to
 checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
 repository.
 
+* Manifest
+
 #+begin_src xml :tangle default.xml
 <manifest>
   <include name="_remotes.xml"/>
@@ -20,11 +22,7 @@ repository.
 </manifest>
 #+end_src
 
-Check rates:
-
-#+begin_src emacs-lisp :results value code :exports code
-(ghub-graphql-rate-limit)
-#+end_src
+** Babel Setup
 
 To avoid confirmations
 
@@ -32,24 +30,23 @@ To avoid confirmations
 (setq-local org-confirm-babel-evaluate nil)
 #+end_src
 
-* Setup
+Load blocks
 
-#+name: nrepos
 #+begin_src emacs-lisp
-100
+;; untested
+(org-babel-lob-ingest "../babel.org")
 #+end_src
 
-#+RESULTS: nrepos
-: 100
+#+RESULTS:
+: 1
 
-#+begin_src restclient
-curl -L \
-  -X POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer <YOUR-TOKEN>" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/repos/OWNER/REPO/dispatches \
-  -d '{"event_type":"on-demand-test","client_payload":{"unit":false,"integration":true}}'
+Check rates with =ghubCheckRates()=
+
+#+call: ghubCheckRates()
+
+#+RESULTS:
+#+begin_src emacs-lisp
+5000
 #+end_src
 
 * Misc
@@ -78,222 +75,72 @@ curl -L \
 </manifest>
 #+end_src
 
-
-
-
 * VyOS
 
-Clone bundle sizes
-
-#+name: fetchMetadata
-#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
-#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
-:gh-graphql-url = https://api.github.com/graphql
-:gh-url-base = https://api.github.com
-:gh-url-path = orgs/:gh-org/repos
-:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
-
-:headers = <<
-Accept: application/vnd.github+json
-Authorization: Bearer :gh-token
-X-GitHub-Api-Version: 2022-11-28
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
-# User-Agent: dcunited001 # um okay that doesn't work
-# https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent
-
-GET :gh-url-base/:gh-url-path
-:headers
+#+name: vyosLogin
+#+begin_src emacs-lisp
+"vyos"
 #+end_src
 
-#+name: vyosMetadata
-#+call: fetchMetadata(gh-org="vyos")
-
-#+RESULTS: vyosMetadata
-| vyos | vyos-documentation  | 77495 | current | false | 2025-09-15T10:36:55Z |
-| vyos | infinitytier        | 69751 | main    | false | 2025-07-15T14:53:29Z |
-| vyos | vyos-1x             | 27158 | current | false | 2025-09-17T10:44:10Z |
-| vyos | vyos-cloud-init     | 22715 | current | false | 2025-08-19T15:01:33Z |
-| vyos | vyos-live-build     | 15253 | current | false | 2025-07-27T20:47:50Z |
-| vyos | vyos-build          |  9735 | current | false | 2025-09-17T10:44:06Z |
-| vyos | vyatta-bash         |  6617 | current | false | 2025-09-10T07:45:42Z |
-| vyos | vyatta-cfg-system   |  3673 | current | false | 2025-07-15T14:40:23Z |
-| vyos | vyos.vyos           |  2398 | main    | false | 2025-09-17T10:44:09Z |
-| vyos | vyatta-cfg          |  2149 | current | false | 2025-09-15T14:42:02Z |
-| vyos | live-boot           |  1523 | current | false | 2025-07-27T20:47:39Z |
-| vyos | MAC-Telnet          |   544 | master  | false | 2021-04-28T07:06:48Z |
-| vyos | vyos-nightly-build  |   518 | current | false | 2025-09-17T08:34:36Z |
-| vyos | community.vyos.net  |   450 | main    | false | 2025-07-28T20:37:37Z |
-| vyos | libpam-radius-auth  |   444 | current | false | 2025-07-28T11:59:00Z |
-| vyos | vyos-automation     |   422 | main    | false | 2025-09-04T02:22:21Z |
-| vyos | vyconf              |   416 | current | false | 2025-08-19T14:44:23Z |
-| vyos | .github             |   209 | current | false | 2025-09-13T07:16:57Z |
-| vyos | vyatta-biosdevname  |   203 | current | false | 2025-07-15T14:45:49Z |
-| vyos | ipaddrcheck         |   165 | current | false | 2025-07-26T13:01:15Z |
-| vyos | libpam-tacplus      |   104 | master  | false | 2025-07-15T14:49:39Z |
-| vyos | vyos1x-config       |   100 | current | false | 2025-08-19T13:49:03Z |
-| vyos | vyos-utils          |    95 | current | false | 2025-08-28T17:09:40Z |
-| vyos | libnss-mapuser      |    85 | current | false | 2025-07-28T11:59:25Z |
-| vyos | hvinfo              |    81 | current | false | 2025-07-15T14:46:57Z |
-| vyos | vyos-http-api-tools |    49 | current | false | 2025-07-28T10:42:23Z |
-| vyos | vyos-user-utils     |    45 | current | false | 2025-07-28T10:40:37Z |
-| vyos | udp-broadcast-relay |    44 | current | false | 2025-07-15T14:44:06Z |
-| vyos | libtacplus-map      |    38 | master  | false | 2025-07-15T14:45:30Z |
-| vyos | vyos-utils-misc     |    28 | master  | false | 2025-07-15T14:47:35Z |
-
-Clone Bundle Total
-
-#+begin_src emacs-lisp :var tbl=vyosMetadata[,2] :eval no
-(apply #'+ tbl)
-#+end_src
-
-#+RESULTS:
-: 36961
-
-Excluded Repositories
 
 #+NAME: vyosReposExclude
+| .github    |
 | coderabbit |
 
-** VyOS Repos
+#+name: vyosReposFetch
+#+call: ghubReposFetch(login=vyosLogin)
 
-#+name: vyosRepos
-#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
-(ghub-graphql
- (graphql-query ((organization
-                  :arguments ((login . "vyos"))
-                  (repositories
-                   :arguments ((first . <<nrepos()>>)
-                               (orderBy . ((field . UPDATED_AT)
-                                           (direction . DESC))))
-                   (edges
-                    (node (owner login)
-                          name
-                          (defaultBranchRef prefix name)
-                          url
-                          updatedAt
-                          isArchived)))))))
-#+end_src
+#+name: vyosReposBundles
+#+call: ghubReposBundles(repos=vyosReposFetch)
 
+#+name: vyosReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=vyosReposBundles[,0])
 
-Filter the results, generate XML
+#+RESULTS: vyosReposBundlesTotal
+: 226459
+
+** Vyos Repos
 
 #+name: vyosReposXML
-#+begin_src emacs-lisp :var gqldata=vyosRepos repos-exclude=vyosReposExclude :results value html
-(setq -gql-data gqldata)
-
-;; no repos-core variable
-;; (repos-core (flatten-list repos- core))
-
-(let* ((repos-exclude (flatten-list repos-exclude)))
-  (thread-first
-    (thread-last
-      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-      (mapcar (lambda (el) (a-get* el 'node)))
-
-      ;; filter archived repos
-      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
-
-      ;; filter repos in reposExclude list
-      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
-      (mapcar (lambda (el)
-                (let* ((raw-name (a-get* el 'name))
-
-                       ;; (repo-core? (member raw-name repos-core))
-
-                       (path-dirs (list "vyos" raw-name))
-
-                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
-                       ;;                 (t (list "misc" raw-name))))
-
-                       (path (string-join path-dirs "/"))
-                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                    (a-get* el 'defaultBranchRef 'name)))
-                       (name (string-join (list (a-get* el 'owner 'login)
-                                                (a-get* el 'name)) "/")))
-                  (concat "<project"
-                          " name=\"" name
-                          "\" path=\"" path
-                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
-    (cl-sort 'string-lessp :key 'downcase)
-    (string-join "\n")))
-#+end_src
+#+call: ghubReposXML(repos=vyosReposFetch, reposExclude=vyosReposExclude, login=vyosLogin)
 
 #+RESULTS: vyosReposXML
 #+begin_export html
-<project name="vyos/.github" path="vyos/.github" revision="refs/heads/current" remote="github"/>
-<project name="vyos/amplify-build-status" path="vyos/amplify-build-status" revision="refs/heads/master" remote="github"/>
-<project name="vyos/community.vyos.net" path="vyos/community.vyos.net" revision="refs/heads/main" remote="github"/>
-<project name="vyos/conntrack-tools" path="vyos/conntrack-tools" revision="refs/heads/current" remote="github"/>
-<project name="vyos/gh-action-test-vyos-1x" path="vyos/gh-action-test-vyos-1x" revision="refs/heads/current" remote="github"/>
-<project name="vyos/hvinfo" path="vyos/hvinfo" revision="refs/heads/current" remote="github"/>
-<project name="vyos/infinitytier" path="vyos/infinitytier" revision="refs/heads/main" remote="github"/>
-<project name="vyos/initramfs-tools" path="vyos/initramfs-tools" revision="refs/heads/lithium" remote="github"/>
-<project name="vyos/ipaddrcheck" path="vyos/ipaddrcheck" revision="refs/heads/current" remote="github"/>
-<project name="vyos/libmnl" path="vyos/libmnl" revision="refs/heads/lithium" remote="github"/>
-<project name="vyos/libnss-mapuser" path="vyos/libnss-mapuser" revision="refs/heads/current" remote="github"/>
-<project name="vyos/libnss-tacplus" path="vyos/libnss-tacplus" revision="refs/heads/master" remote="github"/>
-<project name="vyos/libpam-radius-auth" path="vyos/libpam-radius-auth" revision="refs/heads/current" remote="github"/>
-<project name="vyos/libpam-tacplus" path="vyos/libpam-tacplus" revision="refs/heads/master" remote="github"/>
-<project name="vyos/libtacplus-map" path="vyos/libtacplus-map" revision="refs/heads/master" remote="github"/>
-<project name="vyos/libvyosconfig" path="vyos/libvyosconfig" revision="refs/heads/current" remote="github"/>
-<project name="vyos/live-boot" path="vyos/live-boot" revision="refs/heads/current" remote="github"/>
-<project name="vyos/MAC-Telnet" path="vyos/MAC-Telnet" revision="refs/heads/master" remote="github"/>
-<project name="vyos/mdns-repeater" path="vyos/mdns-repeater" revision="refs/heads/master" remote="github"/>
-<project name="vyos/openvpn-duo-plugin" path="vyos/openvpn-duo-plugin" revision="refs/heads/master" remote="github"/>
-<project name="vyos/pam_tacplus" path="vyos/pam_tacplus" revision="refs/heads/master" remote="github"/>
-<project name="vyos/tacplusd" path="vyos/tacplusd" revision="refs/heads/master" remote="github"/>
-<project name="vyos/ticket-app" path="vyos/ticket-app" revision="refs/heads/main" remote="github"/>
-<project name="vyos/udp-broadcast-relay" path="vyos/udp-broadcast-relay" revision="refs/heads/current" remote="github"/>
-<project name="vyos/uncron" path="vyos/uncron" revision="refs/heads/main" remote="github"/>
-<project name="vyos/vyatta-bash" path="vyos/vyatta-bash" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-biosdevname" path="vyos/vyatta-biosdevname" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-cfg" path="vyos/vyatta-cfg" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-cfg-firewall" path="vyos/vyatta-cfg-firewall" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-cfg-qos" path="vyos/vyatta-cfg-qos" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-cfg-quagga" path="vyos/vyatta-cfg-quagga" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-cfg-system" path="vyos/vyatta-cfg-system" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-cfg-vpn" path="vyos/vyatta-cfg-vpn" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-cluster" path="vyos/vyatta-cluster" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-config-mgmt" path="vyos/vyatta-config-mgmt" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-conntrack" path="vyos/vyatta-conntrack" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-nat" path="vyos/vyatta-nat" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-op" path="vyos/vyatta-op" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-op-firewall" path="vyos/vyatta-op-firewall" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-op-qos" path="vyos/vyatta-op-qos" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-op-vpn" path="vyos/vyatta-op-vpn" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-wanloadbalance" path="vyos/vyatta-wanloadbalance" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyatta-zone" path="vyos/vyatta-zone" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyconf" path="vyos/vyconf" revision="refs/heads/master" remote="github"/>
-<project name="vyos/vyos" path="vyos/vyos" revision="refs/heads/master" remote="github"/>
-<project name="vyos/vyos-1x" path="vyos/vyos-1x" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-automation" path="vyos/vyos-automation" revision="refs/heads/main" remote="github"/>
-<project name="vyos/vyos-build" path="vyos/vyos-build" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-cloud-init" path="vyos/vyos-cloud-init" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-community-flavors" path="vyos/vyos-community-flavors" revision="refs/heads/main" remote="github"/>
-<project name="vyos/vyos-community-process" path="vyos/vyos-community-process" revision="refs/heads/main" remote="github"/>
-<project name="vyos/vyos-documentation" path="vyos/vyos-documentation" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-github-actions" path="vyos/vyos-github-actions" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-http-api-tools" path="vyos/vyos-http-api-tools" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-infrastructure" path="vyos/vyos-infrastructure" revision="refs/heads/main" remote="github"/>
-<project name="vyos/vyos-live-build" path="vyos/vyos-live-build" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-nhrp" path="vyos/vyos-nhrp" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-nightly-build" path="vyos/vyos-nightly-build" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-opennhrp" path="vyos/vyos-opennhrp" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-salt-minion" path="vyos/vyos-salt-minion" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-sdk" path="vyos/vyos-sdk" revision="refs/heads/master" remote="github"/>
-<project name="vyos/vyos-strongswan" path="vyos/vyos-strongswan" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-user-utils" path="vyos/vyos-user-utils" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-utils" path="vyos/vyos-utils" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-utils-misc" path="vyos/vyos-utils-misc" revision="refs/heads/master" remote="github"/>
-<project name="vyos/vyos-vpp" path="vyos/vyos-vpp" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-vpp-patches" path="vyos/vyos-vpp-patches" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-walinuxagent" path="vyos/vyos-walinuxagent" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-workflow-test-temp" path="vyos/vyos-workflow-test-temp" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-workflow-testing" path="vyos/vyos-workflow-testing" revision="refs/heads/main" remote="github"/>
-<project name="vyos/vyos-world" path="vyos/vyos-world" revision="refs/heads/current" remote="github"/>
-<project name="vyos/vyos-xe-guest-utilities" path="vyos/vyos-xe-guest-utilities" revision="refs/heads/current" remote="github"/>
+<project name="vyos/community.vyos.net" path="vyos/community.vyos.net" revision="refs/heads/production" remote="github"/>
+<project name="vyos/efi-boot-shim" path="vyos/efi-boot-shim" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/gh-action-test" path="vyos/gh-action-test" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/hvinfo" path="vyos/hvinfo" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/ipaddrcheck" path="vyos/ipaddrcheck" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/libnss-mapuser" path="vyos/libnss-mapuser" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/libpam-radius-auth" path="vyos/libpam-radius-auth" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/libpam-tacplus" path="vyos/libpam-tacplus" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/libtacplus-map" path="vyos/libtacplus-map" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/live-boot" path="vyos/live-boot" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/mergify" path="vyos/mergify" revision="refs/heads/production" remote="github"/>
+<project name="vyos/mirror-canary" path="vyos/mirror-canary" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/phorge-elasticsearch-modern" path="vyos/phorge-elasticsearch-modern" revision="refs/heads/production" remote="github"/>
+<project name="vyos/rest.vyos" path="vyos/rest.vyos" revision="refs/heads/main" remote="github"/>
+<project name="vyos/shim-signed" path="vyos/shim-signed" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyatta-bash" path="vyos/vyatta-bash" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyatta-biosdevname" path="vyos/vyatta-biosdevname" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyatta-cfg" path="vyos/vyatta-cfg" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyatta-cfg-system" path="vyos/vyatta-cfg-system" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyconf" path="vyos/vyconf" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-1x" path="vyos/vyos-1x" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-automation" path="vyos/vyos-automation" revision="refs/heads/production" remote="github"/>
+<project name="vyos/vyos-build" path="vyos/vyos-build" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-cla-signatures" path="vyos/vyos-cla-signatures" revision="refs/heads/production" remote="github"/>
+<project name="vyos/vyos-cloud-init" path="vyos/vyos-cloud-init" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-documentation" path="vyos/vyos-documentation" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-github-actions" path="vyos/vyos-github-actions" revision="refs/heads/production" remote="github"/>
+<project name="vyos/vyos-http-api-tools" path="vyos/vyos-http-api-tools" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-infrastructure" path="vyos/vyos-infrastructure" revision="refs/heads/production" remote="github"/>
+<project name="vyos/vyos-live-build" path="vyos/vyos-live-build" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-nightly-build" path="vyos/vyos-nightly-build" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-utils-misc" path="vyos/vyos-utils-misc" revision="refs/heads/rolling" remote="github"/>
+<project name="vyos/vyos-vpp-patches" path="vyos/vyos-vpp-patches" revision="refs/heads/rolling" remote="github"/>
 <project name="vyos/vyos.vyos" path="vyos/vyos.vyos" revision="refs/heads/main" remote="github"/>
-<project name="vyos/vyos1x-config" path="vyos/vyos1x-config" revision="refs/heads/current" remote="github"/>
+<project name="vyos/vyos1x-config" path="vyos/vyos1x-config" revision="refs/heads/rolling" remote="github"/>
 #+end_export
 
 ** Generate XML
