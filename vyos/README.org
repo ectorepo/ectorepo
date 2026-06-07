@@ -90,8 +90,12 @@ Check rates with =ghubCheckRates()=
 #+name: vyosReposFetch
 #+call: ghubReposFetch(login=vyosLogin)
 
+Clone bundle sizes
+
 #+name: vyosReposBundles
 #+call: ghubReposBundles(repos=vyosReposFetch)
+
+Clone bundles total
 
 #+name: vyosReposBundlesTotal
 #+call: ghubReposBundlesTotal(tbl=vyosReposBundles[,0])
@@ -100,6 +104,8 @@ Check rates with =ghubCheckRates()=
 : 226459
 
 ** Vyos Repos
+
+Filter the results, generate XML
 
 #+name: vyosReposXML
 #+call: ghubReposXML(repos=vyosReposFetch, reposExclude=vyosReposExclude, login=vyosLogin)

@@ -1,0 +1,80 @@
+
+
+* Manifest
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="vyos/vyos.xml"/>
+</manifest>
+#+end_src
+
+** Babel Setup
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+Load blocks
+
+#+begin_src emacs-lisp
+;; untested
+(org-babel-lob-ingest "../babel.org")
+#+end_src
+
+#+RESULTS:
+: 1
+
+Check rates with =ghubCheckRates()=
+
+#+call: ghubCheckRates()
+
+#+RESULTS:
+#+begin_src emacs-lisp
+5000
+#+end_src
+
+* VyOS
+
+#+name: vyosLogin
+#+begin_src emacs-lisp
+"vyos"
+#+end_src
+
+Excluded Repositories
+
+#+NAME: vyosReposExclude
+| .github |
+
+#+name: vyosReposFetch
+#+call: ghubReposFetch(login=vyosLogin)
+
+Clone bundle sizes
+
+#+name: vyosReposBundles
+#+call: ghubReposBundles(repos=vyosReposFetch)
+
+Clone bundles total
+
+#+name: vyosReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=vyosReposBundles[,0])
+
+Filter the results, generate XML
+
+** VyOS Repos
+
+#+name: vyosReposXML
+#+call: ghubReposXML(repos=vyosReposFetch, reposExclude=vyosReposExclude, login=vyosLogin)
+
+** Generate XML
+
+Generate =vyos.xml=
+
+#+begin_src xml :tangle vyos.xml :noweb yes
+<manifest>
+  <<vyosReposXML()>>
+</manifest>
+#+end_src
