@@ -62,9 +62,9 @@ Clone bundles total
 #+name: vyosReposBundlesTotal
 #+call: ghubReposBundlesTotal(tbl=vyosReposBundles[,0])
 
-Filter the results, generate XML
-
 ** VyOS Repos
+
+Filter the results, generate XML
 
 #+name: vyosReposXML
 #+call: ghubReposXML(repos=vyosReposFetch, reposExclude=vyosReposExclude, login=vyosLogin)
