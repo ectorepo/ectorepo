@@ -82,6 +82,7 @@ Check rates with =ghubCheckRates()=
 "vyos"
 #+end_src
 
+Excluded Repositories
 
 #+NAME: vyosReposExclude
 | .github    |

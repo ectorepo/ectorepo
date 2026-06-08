@@ -5,6 +5,8 @@
   <project name="mrVanDalo/flake-templates" path="flakes/snippets/flake-templates" revision="refs/heads/main" remote="github"/>
   <!-- flakes/lib -->
   <project name="Lunarnovaa/LunarsLib" path="flakes/lib/lunarslib" revision="refs/heads/main" remote="github"/>
+  <!-- flakes/lib -->
+  <project name="jmgilman/nix-cue" path="flakes/test/nix-cue" revision="refs/heads/master" remote="github"/>
   <!-- security -->
   <project name="cynicsketch/nix-mineral" path="sec/nix-mineral" revision="refs/heads/main" remote="github"/>
   <project name="schizofox/schizofox" path="sec/schizofox" revision="refs/heads/main" remote="github"/>
@@ -33,6 +35,7 @@
   <project name="gnull/nixos-rk3588" path="iot/rockchip/nixos-rk3588" groups="nixos" revision="refs/heads/main"/>
   <project name="ryan4yin/nixos-config-sbc" path="iot/rockchip/nixos-config-sbc" groups="nixos" revision="refs/heads/main"/>
   <project name="phaitonican/orangepi5b-flake" path="iot/rockchip/orangepi5b-flake" groups="nixos" revision="refs/heads/main"/>
+  <project name="mirrexagon/nixpkgs-esp-dev" path="iot/embedded/nixpkgs-esp-dev" groups="nixos" revision="refs/heads/master"/>
   <!-- boot -->
   <project name="Tow-Boot/Tow-Boot" path="boot/Tow-Boot" revision="refs/heads/development" remote="github"/>
   <!-- networking -->

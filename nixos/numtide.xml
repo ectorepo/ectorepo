@@ -5,51 +5,59 @@
   <project name="numtide/activate" path="numtide/activate" revision="refs/heads/main" remote="github"/>
   <project name="numtide/banner-generator" path="numtide/banner-generator" revision="refs/heads/main" remote="github"/>
   <project name="numtide/blueprint" path="numtide/blueprint" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/bob" path="numtide/bob" revision="refs/heads/main" remote="github"/>
   <project name="numtide/build-go-cache" path="numtide/build-go-cache" revision="refs/heads/main" remote="github"/>
   <project name="numtide/cert-wizard" path="numtide/cert-wizard" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/buildbot-renovate" path="numtide/buildbot-renovate" revision="refs/heads/master" remote="github"/>
+  <project name="numtide/claudebox" path="numtide/claudebox" revision="refs/heads/main" remote="github"/>
   <project name="numtide/clean-git-action" path="numtide/clean-git-action" revision="refs/heads/main" remote="github"/>
   <project name="numtide/configure-nix-action" path="numtide/configure-nix-action" revision="refs/heads/main" remote="github"/>
   <project name="numtide/deploykit" path="numtide/deploykit" revision="refs/heads/main" remote="github"/>
   <project name="numtide/devshell" path="numtide/devshell" revision="refs/heads/main" remote="github"/>
   <project name="numtide/docker-host-forwarder" path="numtide/docker-host-forwarder" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/disko-zfs" path="numtide/disko-zfs" revision="refs/heads/main" remote="github"/>
   <project name="numtide/flake-utils" path="numtide/flake-utils" revision="refs/heads/main" remote="github"/>
   <project name="numtide/freelancer-toolbox" path="numtide/freelancer-toolbox" revision="refs/heads/main" remote="github"/>
   <project name="numtide/generate-terraform-provider-shim" path="numtide/generate-terraform-provider-shim" revision="refs/heads/main" remote="github"/>
   <project name="numtide/gh-v6.com" path="numtide/gh-v6.com" revision="refs/heads/main" remote="github"/>
   <project name="numtide/github-deploy" path="numtide/github-deploy" revision="refs/heads/main" remote="github"/>
   <project name="numtide/go-nix" path="numtide/go-nix" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/go2nix" path="numtide/go2nix" revision="refs/heads/main" remote="github"/>
   <project name="numtide/godoc" path="numtide/godoc" revision="refs/heads/main" remote="github"/>
   <project name="numtide/gradle2nix" path="numtide/gradle2nix" revision="refs/heads/master" remote="github"/>
   <project name="numtide/hwinfo" path="numtide/hwinfo" revision="refs/heads/master" remote="github"/>
+  <project name="numtide/google-compute-image" path="numtide/google-compute-image" revision="refs/heads/main" remote="github"/>
   <project name="numtide/kartusche" path="numtide/kartusche" revision="refs/heads/main" remote="github"/>
   <project name="numtide/linux-lkl" path="numtide/linux-lkl" revision="refs/heads/master" remote="github"/>
   <project name="numtide/matterircd" path="numtide/matterircd" revision="refs/heads/master" remote="github"/>
+  <project name="numtide/llm-agents.nix" path="numtide/llm-agents.nix" revision="refs/heads/main" remote="github"/>
   <project name="numtide/mkdocs-numtide" path="numtide/mkdocs-numtide" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nar-serve" path="numtide/nar-serve" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/narwal" path="numtide/narwal" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nits" path="numtide/nits" revision="refs/heads/main" remote="github"/>
-  <project name="numtide/nix-ai-tools" path="numtide/nix-ai-tools" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nix-auth" path="numtide/nix-auth" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nix-eval-cache" path="numtide/nix-eval-cache" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nix-filter" path="numtide/nix-filter" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/nix-fleet" path="numtide/nix-fleet" revision="refs/heads/develop" remote="github"/>
   <project name="numtide/nix-gl-host" path="numtide/nix-gl-host" revision="refs/heads/main" remote="github"/>
-  <project name="numtide/nix-stdlib" path="numtide/nix-stdlib" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/nix-relay" path="numtide/nix-relay" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nix-vm-test" path="numtide/nix-vm-test" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nix-vm-test-demo" path="numtide/nix-vm-test-demo" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/nix-wire" path="numtide/nix-wire" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nixionary.org" path="numtide/nixionary.org" revision="refs/heads/main" remote="github"/>
-  <project name="numtide/nixmodules" path="numtide/nixmodules" revision="refs/heads/main" remote="github"/>
   <project name="numtide/NixOS-Fleet-Update-Provider" path="numtide/NixOS-Fleet-Update-Provider" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nixos-passthru-cache" path="numtide/nixos-passthru-cache" revision="refs/heads/main" remote="github"/>
-  <project name="numtide/nixos-passthru-cache-demo" path="numtide/nixos-passthru-cache-demo" revision="refs/heads/main" remote="github"/>
   <project name="numtide/nixos-rke2" path="numtide/nixos-rke2" revision="refs/heads/main" remote="github"/>
-  <project name="numtide/nixpkgs" path="numtide/nixpkgs" revision="refs/heads/master" remote="github"/>
   <project name="numtide/nixpkgs-unfree" path="numtide/nixpkgs-unfree" revision="refs/heads/main" remote="github"/>
-  <project name="numtide/numtide.github.io" path="numtide/numtide.github.io" revision="refs/heads/main" remote="github"/>
-  <project name="numtide/OpenGen.nix" path="numtide/OpenGen.nix" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/numcraft" path="numtide/numcraft" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/planetnix-hackathon" path="numtide/planetnix-hackathon" revision="refs/heads/main" remote="github"/>
   <project name="numtide/prj-spec" path="numtide/prj-spec" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/rolling-datasets" path="numtide/rolling-datasets" revision="refs/heads/master" remote="github"/>
   <project name="numtide/serve-go" path="numtide/serve-go" revision="refs/heads/main" remote="github"/>
   <project name="numtide/software-consulting-documents" path="numtide/software-consulting-documents" revision="refs/heads/main" remote="github"/>
   <project name="numtide/solana.nix" path="numtide/solana.nix" revision="refs/heads/master" remote="github"/>
   <project name="numtide/system-manager" path="numtide/system-manager" revision="refs/heads/main" remote="github"/>
+  <project name="numtide/system-manager-test" path="numtide/system-manager-test" revision="refs/heads/main" remote="github"/>
   <project name="numtide/systemd-vaultd" path="numtide/systemd-vaultd" revision="refs/heads/main" remote="github"/>
   <project name="numtide/terraform-deploy-nixos-flakes" path="numtide/terraform-deploy-nixos-flakes" revision="refs/heads/main" remote="github"/>
   <project name="numtide/terraform-linuxbox-monitorpack" path="numtide/terraform-linuxbox-monitorpack" revision="refs/heads/main" remote="github"/>

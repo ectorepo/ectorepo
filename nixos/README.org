@@ -7,6 +7,8 @@ When using =repo init -u $url -m $manifest= instead of the git submodule to
 checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
 repository.
 
+* Manifest
+
 #+begin_src xml :tangle default.xml
 <manifest>
   <include name="_remotes.xml"/>
@@ -16,6 +18,33 @@ repository.
   <include name="nixos/numtide.xml"/>
   <include name="nixos/flakes.xml"/>
 </manifest>
+#+end_src
+
+** Babel Setup
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+Load blocks
+
+#+begin_src emacs-lisp
+;; untested
+(org-babel-lob-ingest "../babel.org")
+#+end_src
+
+#+RESULTS:
+: 1
+
+Check rates with =ghubCheckRates()=
+
+#+call: ghubCheckRates()
+
+#+RESULTS:
+#+begin_src emacs-lisp
+5000
 #+end_src
 
 * NixOS Repos
@@ -54,29 +83,6 @@ A lot of interesting devops/consulting-oriented repos:
 + [[https://github.com/numtide/NixOS-Fleet-Update-Provider][numtide/NixOS-Fleet-Update-Provider​]]
 
 * Repo Setup
-** Babel Setup
-
-Check rates:
-
-#+begin_src emacs-lisp :results value code :exports code
-(ghub-graphql-rate-limit)
-#+end_src
-
-To avoid confirmations
-
-#+begin_src emacs-lisp
-(setq-local org-confirm-babel-evaluate nil
-            org-table-convert-region-max-lines 9999)
-#+end_src
-
-
-#+name: nrepos
-#+begin_src emacs-lisp
-100
-#+end_src
-
-#+RESULTS: nrepos
-: 100
 
 ** Flakes
 
@@ -116,6 +122,7 @@ To avoid confirmations
   <project name="gnull/nixos-rk3588" path="iot/rockchip/nixos-rk3588" groups="nixos" revision="refs/heads/main"/>
   <project name="ryan4yin/nixos-config-sbc" path="iot/rockchip/nixos-config-sbc" groups="nixos" revision="refs/heads/main"/>
   <project name="phaitonican/orangepi5b-flake" path="iot/rockchip/orangepi5b-flake" groups="nixos" revision="refs/heads/main"/>
+  <project name="mirrexagon/nixpkgs-esp-dev" path="iot/embedded/nixpkgs-esp-dev" groups="nixos" revision="refs/heads/master"/>
   <!-- boot -->
   <project name="Tow-Boot/Tow-Boot" path="boot/Tow-Boot" revision="refs/heads/development" remote="github"/>
   <!-- networking -->
@@ -141,64 +148,10 @@ To avoid confirmations
 
 ** Nixos
 
-Clone bundle sizes
-
-#+name: fetchMetadata
-#+headers: :var gh-org="FreeCAD" :jq-args "--raw-output" :eval query :results table
-#+begin_src restclient :jq "sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv"
-:gh-graphql-url = https://api.github.com/graphql
-:gh-url-base = https://api.github.com
-:gh-url-path = orgs/:gh-org/repos
-:gh-token := (auth-source-pass-get 'secret "api.github.com/dcunited001^ghub")
-
-:headers = <<
-Accept: application/vnd.github+json
-Authorization: Bearer :gh-token
-X-GitHub-Api-Version: 2022-11-28
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0
-# User-Agent: dcunited001 # um okay that doesn't work
-# https://docs.github.com/en/rest/using-the-rest-api/getting-started-with-the-rest-api?apiVersion=2022-11-28#user-agent
-
-GET :gh-url-base/:gh-url-path
-:headers
+#+name: nixosLogin
+#+begin_src emacs-lisp
+"nixos"
 #+end_src
-
-#+RESULTS: fetchMetadata
-
-#+name: nixosMetadata
-#+call: fetchMetadata(gh-org="nixos")
-
-#+RESULTS: nixosMetadata
-| NixOS | cabal2nix             |    3380 | master         | false | 2025-08-04T17:50:56Z |
-| NixOS | distribution-nixpkgs  |     103 | moved          | true  | 2024-02-27T09:35:22Z |
-| NixOS | foundation            |    2782 | master         | false | 2025-08-06T11:07:01Z |
-| NixOS | hackage-db            |     106 | moved          | true  | 2024-02-27T09:35:25Z |
-| NixOS | hydra                 |   16613 | master         | false | 2025-08-07T15:30:02Z |
-| NixOS | hydra-ant-logger      |    1456 | master         | true  | 2024-02-27T09:34:46Z |
-| NixOS | hydra-provisioner     |      15 | master         | true  | 2025-01-10T10:11:16Z |
-| NixOS | infra                 |    7586 | main           | false | 2025-08-08T14:42:11Z |
-| NixOS | jailbreak-cabal       |      47 | master         | false | 2025-07-17T16:11:33Z |
-| NixOS | language-nix          |      95 | moved          | true  | 2024-02-27T09:35:30Z |
-| NixOS | mvn2nix-maven-plugin  |     181 | master         | true  | 2024-11-25T11:31:28Z |
-| NixOS | nix                   |  124094 | master         | false | 2025-08-08T23:48:30Z |
-| NixOS | nix.dev               |    2084 | master         | false | 2025-08-08T23:08:10Z |
-| NixOS | nix-eclipse           |   16600 | master         | true  | 2024-08-22T13:40:53Z |
-| NixOS | nix-mode              |     561 | master         | false | 2025-08-05T16:04:44Z |
-| NixOS | nixops                |    7013 | master         | false | 2025-08-08T05:49:57Z |
-| NixOS | nixops-dashboard      |       0 | master         | false | 2023-02-16T19:24:11Z |
-| NixOS | nixos                 |   14670 | master         | true  | 2025-06-08T20:06:59Z |
-| NixOS | nixos-artwork         |  616120 | master         | true  | 2025-08-05T12:25:15Z |
-| NixOS | nixos-channel-scripts |     246 | master         | false | 2025-07-21T14:48:11Z |
-| NixOS | nixos-hardware        |    2431 | master         | false | 2025-08-07T14:14:07Z |
-| NixOS | nixos-homepage        |   35294 | main           | false | 2025-08-08T18:20:51Z |
-| NixOS | nixos-weekly          |    1231 | master         | true  | 2024-12-29T00:36:28Z |
-| NixOS | nixpart               |     104 | master         | true  | 2025-07-06T02:50:13Z |
-| NixOS | nixpkgs               | 5490317 | master         | false | 2025-08-08T23:44:38Z |
-| NixOS | nixpkgs-channels      |  786893 | nixos-unstable | true  | 2025-06-05T18:07:17Z |
-| NixOS | npm2nix               |     150 | master         | true  | 2024-08-09T19:36:19Z |
-| NixOS | package-list          |      37 | master         | true  | 2024-02-27T09:35:15Z |
-| NixOS | patchelf              |    1245 | master         | false | 2025-08-07T08:04:59Z |
-| NixOS | systemd               |  123696 | nixos-v230     | true  | 2023-02-16T19:23:49Z |
 
 Excluded Repositories
 
@@ -226,69 +179,150 @@ Excluded Repositories
 | teams-collaboration            |
 | whats-new-in-nix               |
 
+#+name: nixosReposFetch
+#+call: ghubReposFetch(login=nixosLogin)
+
+Clone bundle sizes
+
+#+name: nixosReposBundles
+#+call: ghubReposBundles(repos=nixosReposFetch)
+
+#+RESULTS: nixosReposBundles
+| 3173224 | NixOS | refs/heads/ | master   | nixpkgs                   | 2026-06-08T23:05:01Z | nil | nil | https://github.com/NixOS/nixpkgs                   |
+|  135527 | NixOS | refs/heads/ | master   | nix                       | 2026-06-08T21:52:54Z | nil | nil | https://github.com/NixOS/nix                       |
+|   37308 | NixOS | refs/heads/ | main     | nixos-homepage            | 2026-06-08T12:48:53Z | nil | nil | https://github.com/NixOS/nixos-homepage            |
+|   19708 | NixOS | refs/heads/ | main     | reproducible.nixos.org    | 2026-05-10T10:45:20Z | nil | nil | https://github.com/NixOS/reproducible.nixos.org    |
+|   17951 | NixOS | refs/heads/ | master   | hydra                     | 2026-06-08T22:26:42Z | nil | nil | https://github.com/NixOS/hydra                     |
+|   13175 | NixOS | refs/heads/ | main     | ghsa-67f2-674w-6g63-audit | 2026-04-27T06:06:56Z | nil | nil | https://github.com/NixOS/ghsa-67f2-674w-6g63-audit |
+|    8560 | NixOS | refs/heads/ | main     | infra                     | 2026-06-08T22:14:58Z | nil | nil | https://github.com/NixOS/infra                     |
+|    7015 | NixOS | refs/heads/ | master   | nixops                    | 2026-06-02T10:36:10Z | nil | nil | https://github.com/NixOS/nixops                    |
+|    4204 | NixOS | refs/heads/ | main     | nixos-common-styles       | 2024-02-06T07:51:48Z | nil | nil | https://github.com/NixOS/nixos-common-styles       |
+|    3615 | NixOS | refs/heads/ | master   | nixops-aws                | 2026-05-05T21:52:31Z | nil | nil | https://github.com/NixOS/nixops-aws                |
+|    3572 | NixOS | refs/heads/ | main     | nix-installer             | 2026-06-08T07:17:20Z | nil | nil | https://github.com/NixOS/nix-installer             |
+|    3470 | NixOS | refs/heads/ | master   | cabal2nix                 | 2026-06-06T15:48:28Z | nil | nil | https://github.com/NixOS/cabal2nix                 |
+|    3097 | NixOS | refs/heads/ | main     | nix-security-tracker      | 2026-06-08T11:24:35Z | nil | nil | https://github.com/NixOS/nix-security-tracker      |
+|    3062 | NixOS | refs/heads/ | master   | nixos-hardware            | 2026-06-08T19:24:23Z | nil | nil | https://github.com/NixOS/nixos-hardware            |
+|    2793 | NixOS | refs/heads/ | master   | foundation                | 2026-06-03T13:57:41Z | nil | nil | https://github.com/NixOS/foundation                |
+|    2663 | NixOS | refs/heads/ | released | ofborg                    | 2026-06-08T05:46:49Z | nil | nil | https://github.com/NixOS/ofborg                    |
+|    2310 | NixOS | refs/heads/ | master   | nix.dev                   | 2026-06-08T22:34:23Z | nil | nil | https://github.com/NixOS/nix.dev                   |
+|    2262 | NixOS | refs/heads/ | master   | nixops-hetzner            | 2025-07-24T07:54:27Z | nil | nil | https://github.com/NixOS/nixops-hetzner            |
+|    2133 | NixOS | refs/heads/ | main     | nixos-metrics             | 2026-05-10T07:57:15Z | nil | nil | https://github.com/NixOS/nixos-metrics             |
+|    2034 | NixOS | refs/heads/ | main     | branding                  | 2026-06-05T23:00:34Z | nil | nil | https://github.com/NixOS/branding                  |
+|    1997 | NixOS | refs/heads/ | main     | nixos-search              | 2026-06-08T09:53:04Z | nil | nil | https://github.com/NixOS/nixos-search              |
+|    1966 | NixOS | refs/heads/ | main     | marketing                 | 2026-06-08T05:46:56Z | nil | nil | https://github.com/NixOS/marketing                 |
+|    1930 | NixOS | refs/heads/ | master   | release-wiki              | 2026-05-27T08:08:52Z | nil | nil | https://github.com/NixOS/release-wiki              |
+|    1723 | NixOS | refs/heads/ | master   | mobile-nixos-website      | 2026-04-27T15:39:29Z | nil | nil | https://github.com/NixOS/mobile-nixos-website      |
+|    1670 | NixOS | refs/heads/ | main     | SC-election-2025          | 2026-01-14T19:42:44Z | nil | nil | https://github.com/NixOS/SC-election-2025          |
+|    1356 | NixOS | refs/heads/ | main     | flake-regressions-data    | 2026-03-27T11:30:45Z | nil | nil | https://github.com/NixOS/flake-regressions-data    |
+|    1312 | NixOS | refs/heads/ | main     | darwin-stubs              | 2025-10-06T09:08:39Z | nil | nil | https://github.com/NixOS/darwin-stubs              |
+|    1295 | NixOS | refs/heads/ | master   | patchelf                  | 2026-06-08T10:08:02Z | nil | nil | https://github.com/NixOS/patchelf                  |
+|    1267 | NixOS | refs/heads/ | master   | nixfmt                    | 2026-06-08T09:53:29Z | nil | nil | https://github.com/NixOS/nixfmt                    |
+|    1157 | NixOS | refs/heads/ | master   | nix-idea                  | 2026-06-07T13:51:49Z | nil | nil | https://github.com/NixOS/nix-idea                  |
+|    1110 | NixOS | refs/heads/ | main     | rfc39-record              | 2026-06-08T19:35:09Z | nil | nil | https://github.com/NixOS/rfc39-record              |
+|     776 | NixOS | refs/heads/ | main     | nixpkgs-vet               | 2026-06-08T21:15:37Z | nil | nil | https://github.com/NixOS/nixpkgs-vet               |
+|     729 | NixOS | refs/heads/ | main     | nix-eval-jobs             | 2026-06-08T05:47:09Z | nil | nil | https://github.com/NixOS/nix-eval-jobs             |
+|     677 | NixOS | refs/heads/ | master   | nix-pills                 | 2026-06-02T12:38:14Z | nil | nil | https://github.com/NixOS/nix-pills                 |
+|     582 | NixOS | refs/heads/ | main     | nixos-wiki-infra          | 2026-06-08T05:46:08Z | nil | nil | https://github.com/NixOS/nixos-wiki-infra          |
+|     561 | NixOS | refs/heads/ | master   | nix-mode                  | 2026-06-05T18:30:55Z | nil | nil | https://github.com/NixOS/nix-mode                  |
+|     542 | NixOS | refs/heads/ | main     | amis                      | 2026-05-31T13:30:33Z | nil | nil | https://github.com/NixOS/amis                      |
+|     528 | NixOS | refs/heads/ | master   | rfc39                     | 2025-08-16T23:07:22Z | nil | nil | https://github.com/NixOS/rfc39                     |
+|     427 | NixOS | refs/heads/ | main     | surveys                   | 2026-03-03T23:08:54Z | nil | nil | https://github.com/NixOS/surveys                   |
+|     343 | NixOS | refs/heads/ | master   | rfcs                      | 2026-06-08T16:10:12Z | nil | nil | https://github.com/NixOS/rfcs                      |
+|     328 | NixOS | refs/heads/ | main     | org                       | 2026-06-08T18:14:30Z | nil | nil | https://github.com/NixOS/org                       |
+|     293 | NixOS | refs/heads/ | main     | nixos-status              | 2026-01-20T05:14:04Z | nil | nil | https://github.com/NixOS/nixos-status              |
+|     273 | NixOS | refs/heads/ | main     | nixos-channel-scripts     | 2026-06-08T05:46:23Z | nil | nil | https://github.com/NixOS/nixos-channel-scripts     |
+|     181 | NixOS | refs/heads/ | master   | ofborg-viewer             | 2025-11-19T14:04:33Z | nil | nil | https://github.com/NixOS/ofborg-viewer             |
+|     159 | NixOS | refs/heads/ | master   | templates                 | 2026-05-30T06:20:49Z | nil | nil | https://github.com/NixOS/templates                 |
+|     116 | NixOS | refs/heads/ | main     | nixpkgs-committers        | 2026-05-31T18:02:43Z | nil | nil | https://github.com/NixOS/nixpkgs-committers        |
+|      87 | NixOS | refs/heads/ | main     | GSoC                      | 2026-05-30T16:33:29Z | nil | nil | https://github.com/NixOS/GSoC                      |
+|      83 | NixOS | refs/heads/ | main     | steering-committee        | 2026-06-08T05:47:00Z | nil | nil | https://github.com/NixOS/steering-committee        |
+|      79 | NixOS | refs/heads/ | main     | moderation                | 2026-02-06T22:47:55Z | nil | nil | https://github.com/NixOS/moderation                |
+|      66 | NixOS | refs/heads/ | master   | flake-compat              | 2026-06-04T19:26:30Z | nil | nil | https://github.com/NixOS/flake-compat              |
+|      61 | NixOS | refs/heads/ | main     | nix-installer-action      | 2026-05-30T22:39:26Z | nil | nil | https://github.com/NixOS/nix-installer-action      |
+|      53 | NixOS | refs/heads/ | master   | flake-registry            | 2026-05-28T18:08:52Z | nil | nil | https://github.com/NixOS/flake-registry            |
+|      49 | NixOS | refs/heads/ | master   | jailbreak-cabal           | 2026-06-08T05:47:06Z | nil | nil | https://github.com/NixOS/jailbreak-cabal           |
+|      41 | NixOS | refs/heads/ | master   | rfc-steering-committee    | 2025-04-14T03:46:37Z | nil | nil | https://github.com/NixOS/rfc-steering-committee    |
+|      39 | NixOS | refs/heads/ | master   | bundlers                  | 2026-06-08T05:46:33Z | nil | nil | https://github.com/NixOS/bundlers                  |
+|      25 | NixOS | refs/heads/ | main     | flake-regressions         | 2026-05-18T14:18:26Z | nil | nil | https://github.com/NixOS/flake-regressions         |
+|      24 | NixOS | refs/heads/ | main     | teams-collaboration       | 2025-03-18T21:49:02Z | nil | nil | https://github.com/NixOS/teams-collaboration       |
+|      22 | NixOS | refs/heads/ | master   | .github                   | 2026-03-14T08:19:06Z | nil | nil | https://github.com/NixOS/.github                   |
+|      15 | NixOS | refs/heads/ | main     | whats-new-in-nix          | 2024-06-05T02:08:49Z | nil | nil | https://github.com/NixOS/whats-new-in-nix          |
+|       0 | NixOS | nil         | nil      | images                    | 2025-06-19T19:37:33Z | nil | nil | https://github.com/NixOS/images                    |
+|       0 | NixOS | nil         | nil      | nixops-dashboard          | 2023-02-16T19:24:11Z | nil | nil | https://github.com/NixOS/nixops-dashboard          |
+|       0 | NixOS | nil         | nil      | nixos-cache-experiments   | 2026-04-22T14:06:56Z | nil | nil | https://github.com/NixOS/nixos-cache-experiments   |
+
+Clone bundles total
+
+#+name: nixosReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=nixosReposBundles[,0])
+
+#+RESULTS: nixosReposBundlesTotal
+: 3471625
 
 ** Nixos Repos
 
-#+name: nixosRepos
-#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
-(ghub-graphql
- (graphql-query ((organization
-                  :arguments ((login . "nixos"))
-                  (repositories
-                   :arguments ((first . <<nrepos()>>)
-                               (orderBy . ((field . UPDATED_AT)
-                                           (direction . DESC))))
-                   (edges
-                    (node (owner login)
-                          name
-                          (defaultBranchRef prefix name)
-                          url
-                          updatedAt
-                          isArchived)))))))
-#+end_src
+Filter the results, generate XML
 
 #+name: nixosReposXML
-#+begin_src emacs-lisp :var gqldata=nixosRepos repos-exclude=nixosReposExclude :results value html
-(setq -gql-data gqldata)
-
-;; no repos-core variable
-;; (repos-core (flatten-list repos- core))
-
-(let* ((repos-exclude (flatten-list repos-exclude)))
-  (thread-first
-    (thread-last
-      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-      (mapcar (lambda (el) (a-get* el 'node)))
-
-      ;; filter archived repos
-      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
-
-      ;; filter repos in reposExclude list
-      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
-      (mapcar (lambda (el)
-                (let* ((raw-name (a-get* el 'name))
-
-                       ;; (repo-core? (member raw-name repos-core))
-
-                       (path-dirs (list "nixos" raw-name))
-
-                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
-                       ;;                 (t (list "misc" raw-name))))
-
-                       (path (string-join path-dirs "/"))
-                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                    (a-get* el 'defaultBranchRef 'name)))
-                       (name (string-join (list (a-get* el 'owner 'login)
-                                                (a-get* el 'name)) "/")))
-                  (concat "<project"
-                          " name=\"" name
-                          "\" path=\"" path
-                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
-    (cl-sort 'string-lessp :key 'downcase)
-    (string-join "\n")))
-#+end_src
+#+call: ghubReposXML(repos=nixosReposFetch, reposExclude=nixosReposExclude, login=nixosLogin)
 
 #+RESULTS: nixosReposXML
+#+begin_export html
+<project name="NixOS/amis" path="nixos/amis" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/branding" path="nixos/branding" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/bundlers" path="nixos/bundlers" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/cabal2nix" path="nixos/cabal2nix" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/darwin-stubs" path="nixos/darwin-stubs" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/flake-compat" path="nixos/flake-compat" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/flake-registry" path="nixos/flake-registry" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/flake-regressions" path="nixos/flake-regressions" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/flake-regressions-data" path="nixos/flake-regressions-data" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/foundation" path="nixos/foundation" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/ghsa-67f2-674w-6g63-audit" path="nixos/ghsa-67f2-674w-6g63-audit" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/GSoC" path="nixos/GSoC" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/hydra" path="nixos/hydra" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/infra" path="nixos/infra" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/jailbreak-cabal" path="nixos/jailbreak-cabal" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/marketing" path="nixos/marketing" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/mobile-nixos-website" path="nixos/mobile-nixos-website" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nix" path="nixos/nix" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nix-eval-jobs" path="nixos/nix-eval-jobs" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nix-idea" path="nixos/nix-idea" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nix-installer" path="nixos/nix-installer" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nix-installer-action" path="nixos/nix-installer-action" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nix-mode" path="nixos/nix-mode" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nix-pills" path="nixos/nix-pills" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nix-security-tracker" path="nixos/nix-security-tracker" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nix.dev" path="nixos/nix.dev" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nixfmt" path="nixos/nixfmt" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nixops" path="nixos/nixops" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nixops-aws" path="nixos/nixops-aws" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nixops-hetzner" path="nixos/nixops-hetzner" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nixos-cache-experiments" path="nixos/nixos-cache-experiments" revision="" remote="github"/>
+<project name="NixOS/nixos-channel-scripts" path="nixos/nixos-channel-scripts" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nixos-common-styles" path="nixos/nixos-common-styles" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nixos-hardware" path="nixos/nixos-hardware" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nixos-homepage" path="nixos/nixos-homepage" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nixos-metrics" path="nixos/nixos-metrics" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nixos-search" path="nixos/nixos-search" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nixos-status" path="nixos/nixos-status" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nixos-wiki-infra" path="nixos/nixos-wiki-infra" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nixpkgs" path="nixos/nixpkgs" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/nixpkgs-committers" path="nixos/nixpkgs-committers" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/nixpkgs-vet" path="nixos/nixpkgs-vet" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/ofborg" path="nixos/ofborg" revision="refs/heads/released" remote="github"/>
+<project name="NixOS/ofborg-viewer" path="nixos/ofborg-viewer" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/org" path="nixos/org" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/patchelf" path="nixos/patchelf" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/release-wiki" path="nixos/release-wiki" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/reproducible.nixos.org" path="nixos/reproducible.nixos.org" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/rfc39" path="nixos/rfc39" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/rfc39-record" path="nixos/rfc39-record" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/rfcs" path="nixos/rfcs" revision="refs/heads/master" remote="github"/>
+<project name="NixOS/SC-election-2025" path="nixos/SC-election-2025" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/steering-committee" path="nixos/steering-committee" revision="refs/heads/main" remote="github"/>
+<project name="NixOS/templates" path="nixos/templates" revision="refs/heads/master" remote="github"/>
+#+end_export
 
 *** Generate XML
 
@@ -299,111 +333,239 @@ Generate =nixos.xml=
   <<nixosReposXML()>>
 </manifest>
 #+end_src
-** nix-community
 
-#+name: nixcommunityMetadata
-#+call: fetchMetadata(gh-org="nix-community")
+* nix-community 
 
-#+RESULTS: nixcommunityMetadata
-| nix-community | NUR                   | 162654 | main   | false | 2025-08-08T21:54:14Z |
-| nix-community | home-manager          | 109413 | master | false | 2025-08-08T23:37:49Z |
-| nix-community | pypi2nix              |  33671 | master | true  | 2025-06-05T18:07:08Z |
-| nix-community | luarocks-nix          |  12588 | master | false | 2025-04-09T03:52:26Z |
-| nix-community | todomvc-nix           |  10130 | master | false | 2025-07-16T21:02:18Z |
-| nix-community | vulnix                |   4050 | master | false | 2025-08-08T17:02:38Z |
-| nix-community | nixbox                |   1668 | master | false | 2025-07-25T14:01:11Z |
-| nix-community | nix-bundle            |   1478 | master | false | 2025-08-08T06:01:07Z |
-| nix-community | emacs2nix             |   1251 | master | false | 2025-04-05T16:15:40Z |
-| nix-community | nix-emacs             |    986 | master | false | 2025-06-27T17:12:51Z |
-| nix-community | nixpkgs-update        |    941 | main   | false | 2025-08-07T14:14:03Z |
-| nix-community | yarn2nix              |    814 | master | true  | 2025-08-03T04:49:47Z |
-| nix-community | nix-index             |    510 | master | false | 2025-08-08T18:57:54Z |
-| nix-community | builtwithnix.org      |    438 | master | false | 2025-07-08T21:11:35Z |
-| nix-community | nixos-generators      |    333 | master | false | 2025-08-08T19:16:26Z |
-| nix-community | pip2nix               |    320 | master | false | 2025-08-06T04:47:44Z |
-| nix-community | setup.nix             |    319 | master | true  | 2023-06-25T18:32:53Z |
-| nix-community | bundix                |    313 | master | false | 2025-08-01T23:33:03Z |
-| nix-community | pnpm2nix              |    295 | master | false | 2025-07-26T08:43:30Z |
-| nix-community | nix-zsh-completions   |    202 | master | false | 2025-08-05T21:06:20Z |
-| nix-community | nur-packages-template |    162 | main   | false | 2025-08-01T18:03:23Z |
-| nix-community | nixGL                 |    122 | main   | false | 2025-08-08T23:48:13Z |
-| nix-community | mavenix               |    120 | master | false | 2025-05-03T14:55:21Z |
-| nix-community | acpi_call             |    112 | master | false | 2025-08-03T07:09:46Z |
-| nix-community | linuxkit-nix          |     91 | master | true  | 2025-02-16T06:26:55Z |
-| nix-community | nur-update            |     65 | main   | false | 2025-07-28T20:45:59Z |
-| nix-community | vagrant-nixos-plugin  |     50 | master | false | 2025-02-21T23:00:57Z |
-| nix-community | docker-nix            |     40 | master | true  | 2024-12-12T08:14:38Z |
-| nix-community | google-summer-of-code |     29 | master | true  | 2024-02-12T04:12:26Z |
-| nix-community | wiki                  |     11 | master | true  | 2025-06-15T17:51:28Z |
+#+name: nixCommunityLogin
+#+begin_src emacs-lisp
+"nix-community"
+#+end_src
 
 Excluded Repositories
 
-#+NAME: nixcommunityReposExclude
+#+NAME: nixCommunityReposExclude
 | .github                    |
 | all-cabal-json             |
 | bundix                     |
 | composer-local-repo-plugin |
 | dream2nix-auto-test        |
 | eask2nix                   |
+| nur-search                 |
+| nur-combined               |
+|                            |
 
-#+name: nixcommunityRepos
-#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
-(ghub-graphql
- (graphql-query ((organization
-                  :arguments ((login . "nix-community"))
-                  (repositories
-                   :arguments ((first . <<nrepos()>>)
-                               (orderBy . ((field . UPDATED_AT)
-                                           (direction . DESC))))
-                   (edges
-                    (node (owner login)
-                          name
-                          (defaultBranchRef prefix name)
-                          url
-                          updatedAt
-                          isArchived)))))))
-#+end_src
+#+name: nixCommunityReposFetch
+#+call: ghubReposFetch(login=nixCommunityLogin)
 
-#+name: nixcommunityReposXML
-#+begin_src emacs-lisp :var gqldata=nixcommunityRepos repos-exclude=nixcommunityReposExclude :results value html
-(setq -gql-data gqldata)
+Clone bundle sizes
 
-;; no repos-core variable
-;; (repos-core (flatten-list repos- core))
+#+name: nixCommunityReposBundles
+#+call: ghubReposBundles(repos=nixCommunityReposFetch)
 
-(let* ((repos-exclude (flatten-list repos-exclude)))
-  (thread-first
-    (thread-last
-      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-      (mapcar (lambda (el) (a-get* el 'node)))
+#+RESULTS: nixCommunityReposBundles
+|     923 | nix-community | refs/heads/ | main   | authentik-nix                   | 2026-06-05T09:59:54Z | nil | nil | https://github.com/nix-community/authentik-nix                   |
+|     323 | nix-community | refs/heads/ | main   | awesome-nix                     | 2026-06-08T22:13:54Z | nil | nil | https://github.com/nix-community/awesome-nix                     |
+|     305 | nix-community | refs/heads/ | main   | browser-previews                | 2026-06-08T21:18:57Z | nil | nil | https://github.com/nix-community/browser-previews                |
+|   73877 | nix-community | refs/heads/ | main   | buildbot-nix                    | 2026-06-08T10:00:00Z | nil | nil | https://github.com/nix-community/buildbot-nix                    |
+|     883 | nix-community | refs/heads/ | master | bun2nix                         | 2026-06-07T03:21:51Z | nil | nil | https://github.com/nix-community/bun2nix                         |
+|     177 | nix-community | refs/heads/ | master | comma                           | 2026-06-08T14:37:57Z | nil | nil | https://github.com/nix-community/comma                           |
+|    3314 | nix-community | refs/heads/ | master | crate2nix                       | 2026-06-06T15:48:29Z | nil | nil | https://github.com/nix-community/crate2nix                       |
+|     368 | nix-community | refs/heads/ | master | dconf2nix                       | 2026-06-04T23:39:12Z | nil | nil | https://github.com/nix-community/dconf2nix                       |
+|    1774 | nix-community | refs/heads/ | master | disko                           | 2026-06-08T19:25:32Z | nil | nil | https://github.com/nix-community/disko                           |
+|     123 | nix-community | refs/heads/ | master | dns.nix                         | 2026-06-05T04:08:33Z | nil | nil | https://github.com/nix-community/dns.nix                         |
+|     180 | nix-community | refs/heads/ | main   | docker-nixpkgs                  | 2026-06-06T08:26:44Z | nil | nil | https://github.com/nix-community/docker-nixpkgs                  |
+|   28822 | nix-community | refs/heads/ | main   | dream2nix                       | 2026-06-07T15:00:29Z | nil | nil | https://github.com/nix-community/dream2nix                       |
+|  302134 | nix-community | refs/heads/ | master | emacs-overlay                   | 2026-06-08T19:16:28Z | nil | nil | https://github.com/nix-community/emacs-overlay                   |
+|    8485 | nix-community | refs/heads/ | main   | ethereum.nix                    | 2026-06-05T16:42:12Z | nil | nil | https://github.com/nix-community/ethereum.nix                    |
+|   92076 | nix-community | refs/heads/ | main   | fenix                           | 2026-06-07T09:50:14Z | nil | nil | https://github.com/nix-community/fenix                           |
+|    3579 | nix-community | refs/heads/ | master | flake-firefox-nightly           | 2026-06-08T20:12:01Z | nil | nil | https://github.com/nix-community/flake-firefox-nightly           |
+|     213 | nix-community | refs/heads/ | master | flakelight                      | 2026-06-08T16:02:36Z | nil | nil | https://github.com/nix-community/flakelight                      |
+|     397 | nix-community | refs/heads/ | master | gomod2nix                       | 2026-06-05T22:19:55Z | nil | nil | https://github.com/nix-community/gomod2nix                       |
+|    2912 | nix-community | refs/heads/ | main   | go-nix                          | 2026-06-08T14:56:43Z | nil | nil | https://github.com/nix-community/go-nix                          |
+|    4153 | nix-community | refs/heads/ | main   | harmonia                        | 2026-06-08T16:00:42Z | nil | nil | https://github.com/nix-community/harmonia                        |
+|     127 | nix-community | refs/heads/ | main   | haumea                          | 2026-06-06T13:32:45Z | nil | nil | https://github.com/nix-community/haumea                          |
+|  179826 | nix-community | refs/heads/ | master | home-manager                    | 2026-06-08T18:35:48Z | nil | nil | https://github.com/nix-community/home-manager                    |
+|     350 | nix-community | refs/heads/ | master | hydra-check                     | 2026-06-08T05:44:55Z | nil | nil | https://github.com/nix-community/hydra-check                     |
+|     225 | nix-community | refs/heads/ | master | impermanence                    | 2026-06-08T14:11:58Z | nil | nil | https://github.com/nix-community/impermanence                    |
+|    3628 | nix-community | refs/heads/ | master | infra                           | 2026-06-06T00:43:15Z | nil | nil | https://github.com/nix-community/infra                           |
+|    1635 | nix-community | refs/heads/ | master | lanzaboote                      | 2026-06-08T22:29:04Z | nil | nil | https://github.com/nix-community/lanzaboote                      |
+|     133 | nix-community | refs/heads/ | master | lib-aggregate                   | 2026-06-07T14:01:24Z | nil | nil | https://github.com/nix-community/lib-aggregate                   |
+|    3094 | nix-community | refs/heads/ | canon  | lorri                           | 2026-06-06T15:45:06Z | nil | nil | https://github.com/nix-community/lorri                           |
+|     828 | nix-community | refs/heads/ | main   | mineflake                       | 2026-06-04T19:27:55Z | nil | nil | https://github.com/nix-community/mineflake                       |
+|     451 | nix-community | refs/heads/ | master | naersk                          | 2026-06-08T15:35:45Z | nil | nil | https://github.com/nix-community/naersk                          |
+|     510 | nix-community | refs/heads/ | main   | namaka                          | 2026-06-07T20:12:42Z | nil | nil | https://github.com/nix-community/namaka                          |
+|    1433 | nix-community | refs/heads/ | master | neovim-nightly-overlay          | 2026-06-07T00:04:45Z | nil | nil | https://github.com/nix-community/neovim-nightly-overlay          |
+|    2300 | nix-community | refs/heads/ | master | nh                              | 2026-06-08T19:31:47Z | nil | nil | https://github.com/nix-community/nh                              |
+|     445 | nix-community | refs/heads/ | main   | nix4nvchad                      | 2026-06-07T07:17:07Z | nil | nil | https://github.com/nix-community/nix4nvchad                      |
+| 1203106 | nix-community | refs/heads/ | master | nix4vscode                      | 2026-06-08T10:17:24Z | nil | nil | https://github.com/nix-community/nix4vscode                      |
+|    1489 | nix-community | refs/heads/ | master | nix-bundle                      | 2026-06-08T14:03:46Z | nil | nil | https://github.com/nix-community/nix-bundle                      |
+|    5633 | nix-community | refs/heads/ | main   | nixd                            | 2026-06-08T04:39:08Z | nil | nil | https://github.com/nix-community/nixd                            |
+|     922 | nix-community | refs/heads/ | master | nix-direnv                      | 2026-06-08T19:19:25Z | nil | nil | https://github.com/nix-community/nix-direnv                      |
+|     979 | nix-community | refs/heads/ | master | nix-emacs                       | 2026-06-06T15:29:09Z | nil | nil | https://github.com/nix-community/nix-emacs                       |
+|     166 | nix-community | refs/heads/ | master | nix-environments                | 2026-06-06T15:44:54Z | nil | nil | https://github.com/nix-community/nix-environments                |
+|     120 | nix-community | refs/heads/ | main   | nixGL                           | 2026-06-07T16:34:22Z | nil | nil | https://github.com/nix-community/nixGL                           |
+|    2984 | nix-community | refs/heads/ | master | nixhelm                         | 2026-06-08T03:55:51Z | nil | nil | https://github.com/nix-community/nixhelm                         |
+|     590 | nix-community | refs/heads/ | master | nix-index                       | 2026-06-05T22:10:55Z | nil | nil | https://github.com/nix-community/nix-index                       |
+|     405 | nix-community | refs/heads/ | main   | nix-index-database              | 2026-06-07T11:58:46Z | nil | nil | https://github.com/nix-community/nix-index-database              |
+|    1890 | nix-community | refs/heads/ | main   | nix-init                        | 2026-06-08T14:02:40Z | nil | nil | https://github.com/nix-community/nix-init                        |
+|      95 | nix-community | refs/heads/ | master | nix-installers                  | 2026-06-08T03:28:20Z | nil | nil | https://github.com/nix-community/nix-installers                  |
+|   20012 | nix-community | refs/heads/ | main   | nix-jetbrains-plugins           | 2026-06-06T08:25:30Z | nil | nil | https://github.com/nix-community/nix-jetbrains-plugins           |
+|     775 | nix-community | refs/heads/ | main   | nix-ld                          | 2026-06-08T08:52:38Z | nil | nil | https://github.com/nix-community/nix-ld                          |
+|     521 | nix-community | refs/heads/ | main   | nix-melt                        | 2026-06-04T23:47:04Z | nil | nil | https://github.com/nix-community/nix-melt                        |
+|     566 | nix-community | refs/heads/ | master | nix-on-droid                    | 2026-06-08T20:47:16Z | nil | nil | https://github.com/nix-community/nix-on-droid                    |
+|    2620 | nix-community | refs/heads/ | main   | nixos-anywhere                  | 2026-06-08T22:00:31Z | nil | nil | https://github.com/nix-community/nixos-anywhere                  |
+|     808 | nix-community | refs/heads/ | main   | nixos-apple-silicon             | 2026-06-08T10:27:19Z | nil | nil | https://github.com/nix-community/nixos-apple-silicon             |
+|     171 | nix-community | refs/heads/ | trunk  | nixos-avf                       | 2026-06-08T20:46:52Z | nil | nil | https://github.com/nix-community/nixos-avf                       |
+|    5553 | nix-community | refs/heads/ | trunk  | nixos-avf-image-app             | 2026-06-06T03:34:53Z | nil | nil | https://github.com/nix-community/nixos-avf-image-app             |
+|    1410 | nix-community | refs/heads/ | main   | nixos-cli                       | 2026-06-07T05:50:52Z | nil | nil | https://github.com/nix-community/nixos-cli                       |
+|    7504 | nix-community | refs/heads/ | main   | nixos-facter                    | 2026-06-08T06:44:04Z | nil | nil | https://github.com/nix-community/nixos-facter                    |
+|     527 | nix-community | refs/heads/ | main   | nixos-images                    | 2026-06-06T10:49:28Z | nil | nil | https://github.com/nix-community/nixos-images                    |
+|    1266 | nix-community | refs/heads/ | main   | NixOS-WSL                       | 2026-06-08T10:10:03Z | nil | nil | https://github.com/nix-community/NixOS-WSL                       |
+|    6417 | nix-community | refs/heads/ | master | nixpkgs.lib                     | 2026-06-07T02:51:00Z | nil | nil | https://github.com/nix-community/nixpkgs.lib                     |
+|    4756 | nix-community | refs/heads/ | master | nixpkgs-swh                     | 2026-06-05T11:58:10Z | nil | nil | https://github.com/nix-community/nixpkgs-swh                     |
+|    6559 | nix-community | refs/heads/ | master | nixpkgs-terraform-providers-bin | 2026-06-08T22:14:18Z | nil | nil | https://github.com/nix-community/nixpkgs-terraform-providers-bin |
+|    1007 | nix-community | refs/heads/ | main   | nixpkgs-update                  | 2026-06-07T08:19:18Z | nil | nil | https://github.com/nix-community/nixpkgs-update                  |
+|    7887 | nix-community | refs/heads/ | master | nixpkgs-wayland                 | 2026-06-08T18:20:02Z | nil | nil | https://github.com/nix-community/nixpkgs-wayland                 |
+|    2373 | nix-community | refs/heads/ | main   | nixpkgs-xr                      | 2026-06-08T04:08:53Z | nil | nil | https://github.com/nix-community/nixpkgs-xr                      |
+|     192 | nix-community | refs/heads/ | trunk  | nix-ts-mode                     | 2026-06-07T12:05:41Z | nil | nil | https://github.com/nix-community/nix-ts-mode                     |
+|     236 | nix-community | refs/heads/ | master | nix-user-chroot                 | 2026-06-08T07:07:54Z | nil | nil | https://github.com/nix-community/nix-user-chroot                 |
+|    9257 | nix-community | refs/heads/ | main   | nixvim                          | 2026-06-08T23:11:34Z | nil | nil | https://github.com/nix-community/nixvim                          |
+|  640096 | nix-community | refs/heads/ | master | nix-vscode-extensions           | 2026-06-08T04:28:57Z | nil | nil | https://github.com/nix-community/nix-vscode-extensions           |
+|     205 | nix-community | refs/heads/ | master | nix-zsh-completions             | 2026-06-05T22:10:59Z | nil | nil | https://github.com/nix-community/nix-zsh-completions             |
+|    3890 | nix-community | refs/heads/ | main   | noogle                          | 2026-06-08T20:08:17Z | nil | nil | https://github.com/nix-community/noogle                          |
+|   24512 | nix-community | refs/heads/ | main   | NUR                             | 2026-06-08T22:56:10Z | nil | nil | https://github.com/nix-community/NUR                             |
+| 1397499 | nix-community | refs/heads/ | main   | nur-combined                    | 2026-06-08T22:59:20Z | nil | nil | https://github.com/nix-community/nur-combined                    |
+|     172 | nix-community | refs/heads/ | main   | nur-packages-template           | 2026-06-06T06:38:03Z | nil | nil | https://github.com/nix-community/nur-packages-template           |
+| 1863474 | nix-community | refs/heads/ | main   | nur-search                      | 2026-06-08T22:48:21Z | nil | nil | https://github.com/nix-community/nur-search                      |
+|     280 | nix-community | refs/heads/ | main   | patsh                           | 2026-06-06T13:32:53Z | nil | nil | https://github.com/nix-community/patsh                           |
+|     334 | nix-community | refs/heads/ | master | pip2nix                         | 2026-06-08T13:54:58Z | nil | nil | https://github.com/nix-community/pip2nix                         |
+|     890 | nix-community | refs/heads/ | trunk  | plasma-manager                  | 2026-06-08T03:05:31Z | nil | nil | https://github.com/nix-community/plasma-manager                  |
+|    1270 | nix-community | refs/heads/ | main   | preservation                    | 2026-06-07T15:44:04Z | nil | nil | https://github.com/nix-community/preservation                    |
+|     151 | nix-community | refs/heads/ | master | queued-build-hook               | 2026-06-08T04:59:42Z | nil | nil | https://github.com/nix-community/queued-build-hook               |
+|      34 | nix-community | refs/heads/ | main   | rfc39-record                    | 2026-06-08T15:03:00Z | nil | nil | https://github.com/nix-community/rfc39-record                    |
+|    1109 | nix-community | refs/heads/ | master | rnix-parser                     | 2026-06-05T22:10:33Z | nil | nil | https://github.com/nix-community/rnix-parser                     |
+|   32333 | nix-community | refs/heads/ | master | robotnix                        | 2026-06-08T14:12:01Z | nil | nil | https://github.com/nix-community/robotnix                        |
+|     558 | nix-community | refs/heads/ | main   | rustowl-flake                   | 2026-06-08T03:32:29Z | nil | nil | https://github.com/nix-community/rustowl-flake                   |
+|    4308 | nix-community | refs/heads/ | main   | srvos                           | 2026-06-08T14:23:30Z | nil | nil | https://github.com/nix-community/srvos                           |
+|    4684 | nix-community | refs/heads/ | master | stylix                          | 2026-06-07T23:01:46Z | nil | nil | https://github.com/nix-community/stylix                          |
+|      60 | nix-community | refs/heads/ | main   | templates                       | 2026-06-05T15:04:56Z | nil | nil | https://github.com/nix-community/templates                       |
+|   10130 | nix-community | refs/heads/ | master | todomvc-nix                     | 2026-06-05T22:27:00Z | nil | nil | https://github.com/nix-community/todomvc-nix                     |
+|     689 | nix-community | refs/heads/ | master | tree-sitter-nix                 | 2026-06-06T13:58:18Z | nil | nil | https://github.com/nix-community/tree-sitter-nix                 |
+|    4682 | nix-community | refs/heads/ | master | trustix                         | 2026-06-04T19:28:22Z | nil | nil | https://github.com/nix-community/trustix                         |
+|    1610 | nix-community | refs/heads/ | main   | vscode-nix-ide                  | 2026-06-07T18:14:44Z | nil | nil | https://github.com/nix-community/vscode-nix-ide                  |
+|    4059 | nix-community | refs/heads/ | master | vulnix                          | 2026-06-08T16:26:27Z | nil | nil | https://github.com/nix-community/vulnix                          |
+|     105 | nix-community | refs/heads/ | main   | zon2nix                         | 2026-06-08T07:28:04Z | nil | nil | https://github.com/nix-community/zon2nix                         |
 
-      ;; filter archived repos
-      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+Clone bundles total
 
-      ;; filter repos in reposExclude list
-      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
-      (mapcar (lambda (el)
-                (let* ((raw-name (a-get* el 'name))
+#+name: nixCommunityReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=nixCommunityReposBundles[,0])
 
-                       ;; (repo-core? (member raw-name repos-core))
+#+RESULTS: nixCommunityReposBundlesTotal
+: 6015942
 
-                       (path-dirs (list "nix-community" raw-name))
+** NixCommunity Repos
 
-                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
-                       ;;                 (t (list "misc" raw-name))))
+Filter the results, generate XML
 
-                       (path (string-join path-dirs "/"))
-                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                    (a-get* el 'defaultBranchRef 'name)))
-                       (name (string-join (list (a-get* el 'owner 'login)
-                                                (a-get* el 'name)) "/")))
-                  (concat "<project"
-                          " name=\"" name
-                          "\" path=\"" path
-                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
-    (cl-sort 'string-lessp :key 'downcase)
-    (string-join "\n")))
-#+end_src
+#+name: nixCommunityReposXML
+#+call: ghubReposXML(repos=nixCommunityReposFetch, reposExclude=nixCommunityReposExclude, login=nixCommunityLogin)
+
+#+RESULTS: nixCommunityReposXML
+#+begin_export html
+<project name="nix-community/authentik-nix" path="nix-community/authentik-nix" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/awesome-nix" path="nix-community/awesome-nix" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/browser-previews" path="nix-community/browser-previews" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/buildbot-nix" path="nix-community/buildbot-nix" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/bun2nix" path="nix-community/bun2nix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/comma" path="nix-community/comma" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/crate2nix" path="nix-community/crate2nix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/dconf2nix" path="nix-community/dconf2nix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/disko" path="nix-community/disko" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/dns.nix" path="nix-community/dns.nix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/docker-nixpkgs" path="nix-community/docker-nixpkgs" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/dream2nix" path="nix-community/dream2nix" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/emacs-overlay" path="nix-community/emacs-overlay" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/ethereum.nix" path="nix-community/ethereum.nix" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/fenix" path="nix-community/fenix" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/flake-firefox-nightly" path="nix-community/flake-firefox-nightly" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/flakelight" path="nix-community/flakelight" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/go-nix" path="nix-community/go-nix" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/gomod2nix" path="nix-community/gomod2nix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/harmonia" path="nix-community/harmonia" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/haumea" path="nix-community/haumea" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/home-manager" path="nix-community/home-manager" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/hydra-check" path="nix-community/hydra-check" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/impermanence" path="nix-community/impermanence" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/infra" path="nix-community/infra" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/lanzaboote" path="nix-community/lanzaboote" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/lib-aggregate" path="nix-community/lib-aggregate" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/lorri" path="nix-community/lorri" revision="refs/heads/canon" remote="github"/>
+<project name="nix-community/mineflake" path="nix-community/mineflake" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/naersk" path="nix-community/naersk" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/namaka" path="nix-community/namaka" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/neovim-nightly-overlay" path="nix-community/neovim-nightly-overlay" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nh" path="nix-community/nh" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-bundle" path="nix-community/nix-bundle" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-direnv" path="nix-community/nix-direnv" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-emacs" path="nix-community/nix-emacs" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-environments" path="nix-community/nix-environments" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-index" path="nix-community/nix-index" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-index-database" path="nix-community/nix-index-database" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nix-init" path="nix-community/nix-init" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nix-installers" path="nix-community/nix-installers" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-jetbrains-plugins" path="nix-community/nix-jetbrains-plugins" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nix-ld" path="nix-community/nix-ld" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nix-melt" path="nix-community/nix-melt" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nix-on-droid" path="nix-community/nix-on-droid" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-ts-mode" path="nix-community/nix-ts-mode" revision="refs/heads/trunk" remote="github"/>
+<project name="nix-community/nix-user-chroot" path="nix-community/nix-user-chroot" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-vscode-extensions" path="nix-community/nix-vscode-extensions" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix-zsh-completions" path="nix-community/nix-zsh-completions" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nix4nvchad" path="nix-community/nix4nvchad" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nix4vscode" path="nix-community/nix4vscode" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nixd" path="nix-community/nixd" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixGL" path="nix-community/nixGL" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixhelm" path="nix-community/nixhelm" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nixos-anywhere" path="nix-community/nixos-anywhere" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixos-apple-silicon" path="nix-community/nixos-apple-silicon" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixos-avf" path="nix-community/nixos-avf" revision="refs/heads/trunk" remote="github"/>
+<project name="nix-community/nixos-avf-image-app" path="nix-community/nixos-avf-image-app" revision="refs/heads/trunk" remote="github"/>
+<project name="nix-community/nixos-cli" path="nix-community/nixos-cli" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixos-facter" path="nix-community/nixos-facter" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixos-images" path="nix-community/nixos-images" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/NixOS-WSL" path="nix-community/NixOS-WSL" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixpkgs-swh" path="nix-community/nixpkgs-swh" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nixpkgs-terraform-providers-bin" path="nix-community/nixpkgs-terraform-providers-bin" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nixpkgs-update" path="nix-community/nixpkgs-update" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixpkgs-wayland" path="nix-community/nixpkgs-wayland" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nixpkgs-xr" path="nix-community/nixpkgs-xr" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nixpkgs.lib" path="nix-community/nixpkgs.lib" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/nixvim" path="nix-community/nixvim" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/noogle" path="nix-community/noogle" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/NUR" path="nix-community/NUR" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nur-combined" path="nix-community/nur-combined" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nur-packages-template" path="nix-community/nur-packages-template" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/nur-search" path="nix-community/nur-search" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/patsh" path="nix-community/patsh" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/pip2nix" path="nix-community/pip2nix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/plasma-manager" path="nix-community/plasma-manager" revision="refs/heads/trunk" remote="github"/>
+<project name="nix-community/preservation" path="nix-community/preservation" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/queued-build-hook" path="nix-community/queued-build-hook" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/rfc39-record" path="nix-community/rfc39-record" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/rnix-parser" path="nix-community/rnix-parser" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/robotnix" path="nix-community/robotnix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/rustowl-flake" path="nix-community/rustowl-flake" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/srvos" path="nix-community/srvos" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/stylix" path="nix-community/stylix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/templates" path="nix-community/templates" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/todomvc-nix" path="nix-community/todomvc-nix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/tree-sitter-nix" path="nix-community/tree-sitter-nix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/trustix" path="nix-community/trustix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/vscode-nix-ide" path="nix-community/vscode-nix-ide" revision="refs/heads/main" remote="github"/>
+<project name="nix-community/vulnix" path="nix-community/vulnix" revision="refs/heads/master" remote="github"/>
+<project name="nix-community/zon2nix" path="nix-community/zon2nix" revision="refs/heads/main" remote="github"/>
+#+end_export
 
 *** Generate XML
 
@@ -411,46 +573,16 @@ Generate =nixcommunity.xml=
 
 #+begin_src xml :tangle nixcommunity.xml :noweb yes
 <manifest>
-  <<nixcommunityReposXML()>>
+  <<nixCommunityReposXML()>>
 </manifest>
 #+end_src
 
 ** Numtide
 
-#+name: numtideMetadata
-#+call: fetchMetadata(gh-org="numtide")
-
-#+RESULTS: numtideMetadata
-| numtide | action-cli                       |      52 | main   | false | 2025-02-01T18:56:50Z |
-| numtide | cert-wizard                      |      39 | main   | false | 2025-06-19T19:36:55Z |
-| numtide | clean-git-action                 |      55 | main   | false | 2025-06-19T19:37:29Z |
-| numtide | devshell                         |    1532 | main   | false | 2025-08-10T08:44:09Z |
-| numtide | docker-host-forwarder            |       3 | main   | false | 2024-07-26T18:05:57Z |
-| numtide | flake-utils                      |     113 | main   | false | 2025-08-06T21:28:37Z |
-| numtide | freelancer-toolbox               |     318 | main   | false | 2025-07-16T21:26:42Z |
-| numtide | generate-terraform-provider-shim |      50 | main   | false | 2025-06-18T02:10:35Z |
-| numtide | .github                          |      17 | main   | false | 2025-03-18T21:49:03Z |
-| numtide | github-deploy                    |    7072 | main   | false | 2025-03-18T17:31:02Z |
-| numtide | kuta                             |    2151 | master | true  | 2023-01-28T05:06:21Z |
-| numtide | nar-serve                        |     393 | main   | false | 2025-05-03T06:14:01Z |
-| numtide | nix-eval-cache                   |      24 | main   | false | 2025-04-24T16:02:28Z |
-| numtide | nix-filter                       |      63 | main   | false | 2025-08-06T13:42:24Z |
-| numtide | nix-gitignore                    |       8 | master | true  | 2023-03-02T04:15:10Z |
-| numtide | nix-parallel-test-case           |      50 | master | true  | 2023-01-28T15:55:52Z |
-| numtide | nixpkgs                          | 3783551 | master | false | 2024-06-17T07:01:00Z |
-| numtide | nixpkgs-unfree                   |     379 | main   | false | 2025-07-28T18:15:44Z |
-| numtide | numtide.github.io                |       4 | main   | false | 2024-06-17T06:58:31Z |
-| numtide | serve-go                         |      48 | main   | false | 2025-03-18T17:31:02Z |
-| numtide | software-consulting-documents    |      45 | main   | false | 2023-07-07T13:19:09Z |
-| numtide | terraform-deploy-nixos-flakes    |      10 | main   | false | 2025-03-18T17:31:02Z |
-| numtide | terraform-linuxbox-monitorpack   |      37 | main   | false | 2025-03-18T17:31:02Z |
-| numtide | terraform-linuxbox-traefik       |       6 | main   | false | 2025-03-18T17:31:02Z |
-| numtide | terraform-nix-build              |       3 | main   | false | 2024-06-17T06:58:30Z |
-| numtide | terraform-nixos-amis             |      14 | main   | false | 2025-03-18T21:49:02Z |
-| numtide | terraform-provider-linuxbox      |     301 | main   | false | 2025-04-01T01:51:46Z |
-| numtide | terraform-provider-secret        |    8273 | main   | false | 2023-07-01T17:03:48Z |
-| numtide | treefmt                          |    3703 | main   | false | 2025-08-11T08:05:26Z |
-| numtide | yarnlock2json                    |      13 | master | true  | 2023-01-28T18:27:03Z |
+#+name: numtideLogin
+#+begin_src emacs-lisp
+"numtide"
+#+end_src
 
 Excluded Repositories
 
@@ -473,64 +605,161 @@ Excluded Repositories
 | terraform-provider-secret |
 | terraform-upload-ami      |
 
-#+name: numtideRepos
-#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
-(ghub-graphql
- (graphql-query ((organization
-                  :arguments ((login . "numtide"))
-                  (repositories
-                   :arguments ((first . <<nrepos()>>)
-                               (orderBy . ((field . UPDATED_AT)
-                                           (direction . DESC))))
-                   (edges
-                    (node (owner login)
-                          name
-                          (defaultBranchRef prefix name)
-                          url
-                          updatedAt
-                          isArchived)))))))
-#+end_src
+#+name: numtideReposFetch
+#+call: ghubReposFetch(login=numtideLogin)
+
+Clone bundle sizes
+
+#+name: numtideReposBundles
+#+call: ghubReposBundles(repos=numtideReposFetch)
+
+#+RESULTS: numtideReposBundles
+| 17929 | numtide | refs/heads/ | main    | llm-agents.nix                   | 2026-06-08T21:58:29Z | nil | nil | https://github.com/numtide/llm-agents.nix                   |
+| 17167 | numtide | refs/heads/ | main    | nits                             | 2026-05-21T23:18:03Z | nil | nil | https://github.com/numtide/nits                             |
+|  8736 | numtide | refs/heads/ | main    | banner-generator                 | 2026-04-29T12:22:09Z | nil | nil | https://github.com/numtide/banner-generator                 |
+|  7072 | numtide | refs/heads/ | main    | github-deploy                    | 2025-03-18T17:31:02Z | nil | nil | https://github.com/numtide/github-deploy                    |
+|  4272 | numtide | refs/heads/ | main    | treefmt                          | 2026-06-04T23:59:03Z | nil | nil | https://github.com/numtide/treefmt                          |
+|  4000 | numtide | refs/heads/ | main    | system-manager                   | 2026-06-08T10:28:10Z | nil | nil | https://github.com/numtide/system-manager                   |
+|  3109 | numtide | refs/heads/ | main    | nix-auth                         | 2026-06-07T15:26:54Z | nil | nil | https://github.com/numtide/nix-auth                         |
+|  2050 | numtide | refs/heads/ | main    | go2nix                           | 2026-06-02T14:28:48Z | nil | nil | https://github.com/numtide/go2nix                           |
+|  1506 | numtide | refs/heads/ | main    | devshell                         | 2026-06-08T22:37:13Z | nil | nil | https://github.com/numtide/devshell                         |
+|   894 | numtide | refs/heads/ | main    | mkdocs-numtide                   | 2026-01-24T18:13:44Z | nil | nil | https://github.com/numtide/mkdocs-numtide                   |
+|   882 | numtide | refs/heads/ | main    | blueprint                        | 2026-06-08T07:35:30Z | nil | nil | https://github.com/numtide/blueprint                        |
+|   870 | numtide | refs/heads/ | main    | freelancer-toolbox               | 2026-05-27T14:06:06Z | nil | nil | https://github.com/numtide/freelancer-toolbox               |
+|   845 | numtide | refs/heads/ | main    | narwal                           | 2026-04-06T06:14:55Z | nil | nil | https://github.com/numtide/narwal                           |
+|   604 | numtide | refs/heads/ | main    | treefmt-nix                      | 2026-06-08T19:32:58Z | nil | nil | https://github.com/numtide/treefmt-nix                      |
+|   482 | numtide | refs/heads/ | main    | nixpkgs-unfree                   | 2026-06-01T02:29:11Z | nil | nil | https://github.com/numtide/nixpkgs-unfree                   |
+|   479 | numtide | refs/heads/ | main    | numcraft                         | 2026-05-16T04:29:36Z | nil | nil | https://github.com/numtide/numcraft                         |
+|   399 | numtide | refs/heads/ | main    | nar-serve                        | 2026-05-19T22:04:56Z | nil | nil | https://github.com/numtide/nar-serve                        |
+|   391 | numtide | refs/heads/ | main    | nix-vm-test                      | 2026-06-01T02:29:49Z | nil | nil | https://github.com/numtide/nix-vm-test                      |
+|   301 | numtide | refs/heads/ | main    | terraform-provider-linuxbox      | 2026-05-05T22:05:24Z | nil | nil | https://github.com/numtide/terraform-provider-linuxbox      |
+|   278 | numtide | refs/heads/ | main    | bob                              | 2026-05-19T21:55:45Z | nil | nil | https://github.com/numtide/bob                              |
+|   256 | numtide | refs/heads/ | develop | nix-fleet                        | 2026-06-03T13:01:33Z | nil | nil | https://github.com/numtide/nix-fleet                        |
+|   241 | numtide | refs/heads/ | main    | software-consulting-documents    | 2026-05-31T01:20:30Z | nil | nil | https://github.com/numtide/software-consulting-documents    |
+|   228 | numtide | refs/heads/ | main    | nixionary.org                    | 2024-06-17T07:24:06Z | nil | nil | https://github.com/numtide/nixionary.org                    |
+|   186 | numtide | refs/heads/ | main    | kartusche                        | 2025-06-19T19:36:55Z | nil | nil | https://github.com/numtide/kartusche                        |
+|   145 | numtide | refs/heads/ | main    | treefmt-docs                     | 2026-02-20T01:41:39Z | nil | nil | https://github.com/numtide/treefmt-docs                     |
+|   131 | numtide | refs/heads/ | main    | systemd-vaultd                   | 2026-06-01T09:12:02Z | nil | nil | https://github.com/numtide/systemd-vaultd                   |
+|   128 | numtide | refs/heads/ | main    | nix-wire                         | 2026-05-19T21:59:53Z | nil | nil | https://github.com/numtide/nix-wire                         |
+|   113 | numtide | refs/heads/ | main    | flake-utils                      | 2026-06-08T13:10:57Z | nil | nil | https://github.com/numtide/flake-utils                      |
+|    87 | numtide | refs/heads/ | main    | deploykit                        | 2026-05-05T22:11:05Z | nil | nil | https://github.com/numtide/deploykit                        |
+|    81 | numtide | refs/heads/ | main    | disko-zfs                        | 2026-06-06T18:31:34Z | nil | nil | https://github.com/numtide/disko-zfs                        |
+|    74 | numtide | refs/heads/ | main    | nix-gl-host                      | 2026-06-01T19:27:55Z | nil | nil | https://github.com/numtide/nix-gl-host                      |
+|    73 | numtide | refs/heads/ | main    | nix-relay                        | 2026-06-04T03:11:39Z | nil | nil | https://github.com/numtide/nix-relay                        |
+|    66 | numtide | refs/heads/ | main    | nix-filter                       | 2026-05-23T14:33:03Z | nil | nil | https://github.com/numtide/nix-filter                       |
+|    55 | numtide | refs/heads/ | main    | clean-git-action                 | 2025-06-19T19:37:29Z | nil | nil | https://github.com/numtide/clean-git-action                 |
+|    52 | numtide | refs/heads/ | main    | action-cli                       | 2025-08-17T20:16:52Z | nil | nil | https://github.com/numtide/action-cli                       |
+|    51 | numtide | refs/heads/ | main    | serve-go                         | 2026-05-10T21:11:45Z | nil | nil | https://github.com/numtide/serve-go                         |
+|    50 | numtide | refs/heads/ | main    | generate-terraform-provider-shim | 2025-06-18T02:10:35Z | nil | nil | https://github.com/numtide/generate-terraform-provider-shim |
+|    39 | numtide | refs/heads/ | main    | cert-wizard                      | 2025-06-19T19:36:55Z | nil | nil | https://github.com/numtide/cert-wizard                      |
+|    37 | numtide | refs/heads/ | main    | nixos-passthru-cache             | 2026-06-02T08:41:27Z | nil | nil | https://github.com/numtide/nixos-passthru-cache             |
+|    37 | numtide | refs/heads/ | main    | terraform-linuxbox-monitorpack   | 2025-03-18T17:31:02Z | nil | nil | https://github.com/numtide/terraform-linuxbox-monitorpack   |
+|    28 | numtide | refs/heads/ | main    | planetnix-hackathon              | 2026-04-28T19:01:48Z | nil | nil | https://github.com/numtide/planetnix-hackathon              |
+|    26 | numtide | refs/heads/ | main    | prj-spec                         | 2026-04-21T18:05:49Z | nil | nil | https://github.com/numtide/prj-spec                         |
+|    25 | numtide | refs/heads/ | main    | godoc                            | 2026-05-05T21:42:11Z | nil | nil | https://github.com/numtide/godoc                            |
+|    24 | numtide | refs/heads/ | main    | nix-eval-cache                   | 2026-03-11T18:19:02Z | nil | nil | https://github.com/numtide/nix-eval-cache                   |
+|    24 | numtide | refs/heads/ | main    | build-go-cache                   | 2026-03-04T07:04:27Z | nil | nil | https://github.com/numtide/build-go-cache                   |
+|    19 | numtide | refs/heads/ | main    | claudebox                        | 2026-05-27T13:17:34Z | nil | nil | https://github.com/numtide/claudebox                        |
+|    19 | numtide | refs/heads/ | main    | google-compute-image             | 2025-12-01T08:38:01Z | nil | nil | https://github.com/numtide/google-compute-image             |
+|    17 | numtide | refs/heads/ | main    | configure-nix-action             | 2026-01-13T04:05:52Z | nil | nil | https://github.com/numtide/configure-nix-action             |
+|    17 | numtide | refs/heads/ | main    | .github                          | 2025-03-18T21:49:03Z | nil | nil | https://github.com/numtide/.github                          |
+|    14 | numtide | refs/heads/ | main    | gh-v6.com                        | 2026-03-19T17:11:38Z | nil | nil | https://github.com/numtide/gh-v6.com                        |
+|    14 | numtide | refs/heads/ | main    | zero-to-odoo                     | 2026-02-22T09:05:36Z | nil | nil | https://github.com/numtide/zero-to-odoo                     |
+|    14 | numtide | refs/heads/ | main    | terraform-nixos-amis             | 2025-03-18T21:49:02Z | nil | nil | https://github.com/numtide/terraform-nixos-amis             |
+|    13 | numtide | refs/heads/ | main    | nixos-rke2                       | 2026-05-13T17:56:59Z | nil | nil | https://github.com/numtide/nixos-rke2                       |
+|    11 | numtide | refs/heads/ | main    | nix-stdlib                       | 2026-05-03T03:19:56Z | nil | nil | https://github.com/numtide/nix-stdlib                       |
+|    10 | numtide | refs/heads/ | main    | terraform-deploy-nixos-flakes    | 2025-03-18T17:31:02Z | nil | nil | https://github.com/numtide/terraform-deploy-nixos-flakes    |
+|     9 | numtide | refs/heads/ | main    | activate                         | 2025-03-18T21:49:03Z | nil | nil | https://github.com/numtide/activate                         |
+|     7 | numtide | refs/heads/ | master  | rolling-datasets                 | 2026-05-29T22:10:15Z | nil | nil | https://github.com/numtide/rolling-datasets                 |
+|     6 | numtide | refs/heads/ | master  | solana.nix                       | 2026-04-19T15:44:48Z | nil | nil | https://github.com/numtide/solana.nix                       |
+|     6 | numtide | refs/heads/ | master  | buildbot-renovate                | 2026-03-11T18:49:37Z | nil | nil | https://github.com/numtide/buildbot-renovate                |
+|     6 | numtide | refs/heads/ | main    | terraform-linuxbox-traefik       | 2025-03-18T17:31:02Z | nil | nil | https://github.com/numtide/terraform-linuxbox-traefik       |
+|     5 | numtide | refs/heads/ | main    | NixOS-Fleet-Update-Provider      | 2024-08-02T15:31:28Z | nil | nil | https://github.com/numtide/NixOS-Fleet-Update-Provider      |
+|     4 | numtide | refs/heads/ | main    | system-manager-test              | 2026-03-26T17:32:33Z | nil | nil | https://github.com/numtide/system-manager-test              |
+|     4 | numtide | refs/heads/ | main    | numtide.github.io                | 2025-12-12T12:45:31Z | nil | nil | https://github.com/numtide/numtide.github.io                |
+|     4 | numtide | refs/heads/ | main    | terraform-upload-ami             | 2025-04-17T22:18:51Z | nil | nil | https://github.com/numtide/terraform-upload-ami             |
+|     3 | numtide | refs/heads/ | main    | docker-host-forwarder            | 2025-11-25T16:47:57Z | nil | nil | https://github.com/numtide/docker-host-forwarder            |
+|     3 | numtide | refs/heads/ | main    | terraform-nix-build              | 2024-06-17T06:58:30Z | nil | nil | https://github.com/numtide/terraform-nix-build              |
+|     2 | numtide | refs/heads/ | main    | nix-vm-test-demo                 | 2026-02-14T10:56:32Z | nil | nil | https://github.com/numtide/nix-vm-test-demo                 |
+
+Clone bundles total
+
+#+name: numtideReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=numtideReposBundles[,0])
+
+#+RESULTS: numtideReposBundlesTotal
+: 74730
+
+** Numtide Repos
+
+Filter the results, generate XML
 
 #+name: numtideReposXML
-#+begin_src emacs-lisp :var gqldata=numtideRepos repos-exclude=numtideReposExclude :results value html
-(setq -gql-data gqldata)
+#+call: ghubReposXML(repos=numtideReposFetch, reposExclude=numtideReposExclude, login=numtideLogin)
 
-;; no repos-core variable
-;; (repos-core (flatten-list repos- core))
+#+RESULTS: numtideReposXML
+#+begin_export html
+<project name="numtide/action-cli" path="numtide/action-cli" revision="refs/heads/main" remote="github"/>
+<project name="numtide/banner-generator" path="numtide/banner-generator" revision="refs/heads/main" remote="github"/>
+<project name="numtide/blueprint" path="numtide/blueprint" revision="refs/heads/main" remote="github"/>
+<project name="numtide/bob" path="numtide/bob" revision="refs/heads/main" remote="github"/>
+<project name="numtide/build-go-cache" path="numtide/build-go-cache" revision="refs/heads/main" remote="github"/>
+<project name="numtide/buildbot-renovate" path="numtide/buildbot-renovate" revision="refs/heads/master" remote="github"/>
+<project name="numtide/claudebox" path="numtide/claudebox" revision="refs/heads/main" remote="github"/>
+<project name="numtide/clean-git-action" path="numtide/clean-git-action" revision="refs/heads/main" remote="github"/>
+<project name="numtide/configure-nix-action" path="numtide/configure-nix-action" revision="refs/heads/main" remote="github"/>
+<project name="numtide/deploykit" path="numtide/deploykit" revision="refs/heads/main" remote="github"/>
+<project name="numtide/devshell" path="numtide/devshell" revision="refs/heads/main" remote="github"/>
+<project name="numtide/disko-zfs" path="numtide/disko-zfs" revision="refs/heads/main" remote="github"/>
+<project name="numtide/flake-utils" path="numtide/flake-utils" revision="refs/heads/main" remote="github"/>
+<project name="numtide/freelancer-toolbox" path="numtide/freelancer-toolbox" revision="refs/heads/main" remote="github"/>
+<project name="numtide/generate-terraform-provider-shim" path="numtide/generate-terraform-provider-shim" revision="refs/heads/main" remote="github"/>
+<project name="numtide/gh-v6.com" path="numtide/gh-v6.com" revision="refs/heads/main" remote="github"/>
+<project name="numtide/github-deploy" path="numtide/github-deploy" revision="refs/heads/main" remote="github"/>
+<project name="numtide/go2nix" path="numtide/go2nix" revision="refs/heads/main" remote="github"/>
+<project name="numtide/godoc" path="numtide/godoc" revision="refs/heads/main" remote="github"/>
+<project name="numtide/google-compute-image" path="numtide/google-compute-image" revision="refs/heads/main" remote="github"/>
+<project name="numtide/kartusche" path="numtide/kartusche" revision="refs/heads/main" remote="github"/>
+<project name="numtide/llm-agents.nix" path="numtide/llm-agents.nix" revision="refs/heads/main" remote="github"/>
+<project name="numtide/mkdocs-numtide" path="numtide/mkdocs-numtide" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nar-serve" path="numtide/nar-serve" revision="refs/heads/main" remote="github"/>
+<project name="numtide/narwal" path="numtide/narwal" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nits" path="numtide/nits" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nix-auth" path="numtide/nix-auth" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nix-eval-cache" path="numtide/nix-eval-cache" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nix-filter" path="numtide/nix-filter" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nix-fleet" path="numtide/nix-fleet" revision="refs/heads/develop" remote="github"/>
+<project name="numtide/nix-gl-host" path="numtide/nix-gl-host" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nix-relay" path="numtide/nix-relay" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nix-vm-test" path="numtide/nix-vm-test" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nix-vm-test-demo" path="numtide/nix-vm-test-demo" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nix-wire" path="numtide/nix-wire" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nixionary.org" path="numtide/nixionary.org" revision="refs/heads/main" remote="github"/>
+<project name="numtide/NixOS-Fleet-Update-Provider" path="numtide/NixOS-Fleet-Update-Provider" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nixos-passthru-cache" path="numtide/nixos-passthru-cache" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nixos-rke2" path="numtide/nixos-rke2" revision="refs/heads/main" remote="github"/>
+<project name="numtide/nixpkgs-unfree" path="numtide/nixpkgs-unfree" revision="refs/heads/main" remote="github"/>
+<project name="numtide/numcraft" path="numtide/numcraft" revision="refs/heads/main" remote="github"/>
+<project name="numtide/planetnix-hackathon" path="numtide/planetnix-hackathon" revision="refs/heads/main" remote="github"/>
+<project name="numtide/prj-spec" path="numtide/prj-spec" revision="refs/heads/main" remote="github"/>
+<project name="numtide/rolling-datasets" path="numtide/rolling-datasets" revision="refs/heads/master" remote="github"/>
+<project name="numtide/serve-go" path="numtide/serve-go" revision="refs/heads/main" remote="github"/>
+<project name="numtide/software-consulting-documents" path="numtide/software-consulting-documents" revision="refs/heads/main" remote="github"/>
+<project name="numtide/solana.nix" path="numtide/solana.nix" revision="refs/heads/master" remote="github"/>
+<project name="numtide/system-manager" path="numtide/system-manager" revision="refs/heads/main" remote="github"/>
+<project name="numtide/system-manager-test" path="numtide/system-manager-test" revision="refs/heads/main" remote="github"/>
+<project name="numtide/systemd-vaultd" path="numtide/systemd-vaultd" revision="refs/heads/main" remote="github"/>
+<project name="numtide/terraform-deploy-nixos-flakes" path="numtide/terraform-deploy-nixos-flakes" revision="refs/heads/main" remote="github"/>
+<project name="numtide/terraform-linuxbox-monitorpack" path="numtide/terraform-linuxbox-monitorpack" revision="refs/heads/main" remote="github"/>
+<project name="numtide/terraform-linuxbox-traefik" path="numtide/terraform-linuxbox-traefik" revision="refs/heads/main" remote="github"/>
+<project name="numtide/terraform-nixos-amis" path="numtide/terraform-nixos-amis" revision="refs/heads/main" remote="github"/>
+<project name="numtide/terraform-provider-linuxbox" path="numtide/terraform-provider-linuxbox" revision="refs/heads/main" remote="github"/>
+<project name="numtide/treefmt" path="numtide/treefmt" revision="refs/heads/main" remote="github"/>
+<project name="numtide/treefmt-docs" path="numtide/treefmt-docs" revision="refs/heads/main" remote="github"/>
+<project name="numtide/treefmt-nix" path="numtide/treefmt-nix" revision="refs/heads/main" remote="github"/>
+<project name="numtide/zero-to-odoo" path="numtide/zero-to-odoo" revision="refs/heads/main" remote="github"/>
+#+end_export
 
-(let* ((repos-exclude (flatten-list repos-exclude)))
-  (thread-first
-    (thread-last
-      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-      (mapcar (lambda (el) (a-get* el 'node)))
-
-      ;; filter archived repos
-      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
-
-      ;; filter repos in reposExclude list
-      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
-      (mapcar (lambda (el)
-                (let* ((raw-name (a-get* el 'name))
-
-                       ;; (repo-core? (member raw-name repos-core))
-
-                       (path-dirs (list "numtide" raw-name))
-
-                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
-                       ;;                 (t (list "misc" raw-name))))
-
-                       (path (string-join path-dirs "/"))
-                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                    (a-get* el 'defaultBranchRef 'name)))
-                       (name (string-join (list (a-get* el 'owner 'login)
-                                                (a-get* el 'name)) "/")))
-                  (concat "<project"
-                          " name=\"" name
-                          "\" path=\"" path
-                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
-    (cl-sort 'string-lessp :key 'downcase)
-    (string-join "\n")))
-#+end_src
 
 *** Generate XML
 
