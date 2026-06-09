@@ -118,8 +118,24 @@ repo forall -c 'git gc --aggressive --prune=now'
 
 ***** Diff
 
-For a repo that gets sync'd frequently, this could save between 50-85% storage
-(depending on code churn)
+For repo's that get sync'd frequently, this could save between 50-75% storage,
+depending on code churn. It could be much higher with branches.
+
+#+begin_quote
+Run three of these with =repo forall= and watch in amazement as your tabs crash...
+
+Three was maxing out I/O, CPU and RAM for me. I had to kill chromium to ward off
+the OOM killer, since I don't swap.
+#+end_quote
+
+Running on =clab, vyos, tensorflow, frc, x.files=
+
+#+begin_quote
+Before: =/dev/mapper/vgcrypt-data   443G  335G   86G  80% /data=
+After: =/dev/mapper/vgcrypt-data   443G  327G   94G  78% /data=
+#+end_quote
+
+It's not a particularly fun way to save space though.
 
 ****** Between =.repo/project-objects= & Checkouts
 
