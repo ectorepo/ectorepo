@@ -108,6 +108,825 @@ For example, the org-babel header =:python (expand-file-name "bin/python3"
 emacs. Other ways to addess include =.env= scripts, which aren't necessarily
 portable.
 
+*** Repo Checkout Maintainence
+**** Prune git indices
+
+#+begin_src shell :results output :var repoproject="vyos" :dir /data/ecto
+# could be dangerous if processes are writing to objects in .git
+repo forall -c 'git gc --aggressive --prune=now'
+#+end_src
+
+***** Diff
+
+For a repo that gets sync'd frequently, this could save between 50-85% storage
+(depending on code churn)
+
+****** Between =.repo/project-objects= & Checkouts
+
+Differences between =.repo/project-objects= & checkouts
+
+#+name: vyosDuDiff
+#+begin_src shell :results output table :var checkoutDu=vyosDu repoDu=vyosRepoDu :dir /data/ecto
+paste <(echo "${checkoutDu[@]}") <(echo "${repoDu[@]}") 
+#+end_src
+
+#+RESULTS: vyosDuDiff
+| 299628 | vyos/vyos-documentation              | 236812 | .repo/project-objects/frrouting/frr.git                      |
+| 223000 | yang/yangsuite                       | 141616 | .repo/project-objects/vyos/vyos-documentation.git            |
+| 120564 | vyos/vyos-1x                         | 137752 | .repo/project-objects/srl-labs/containerlab.git              |
+|  51992 | frr/tests                            |  79852 | .repo/project-objects/CiscoDevNet/yangsuite.git              |
+|  48396 | vyos/vyos-build                      |  70876 | .repo/project-objects/vyos/infinitytier.git                  |
+|  21560 | vyos/vyatta-bash                     |  61844 | .repo/project-objects/CESNET/libyang.git                     |
+|  18644 | vyos/zbackup_vyos-workflow-test-temp |  42848 | .repo/project-objects/vyos/vyos-1x.git                       |
+|  15316 | vyos/efi-boot-shim                   |  33856 | .repo/project-objects/vyos/gh-action-test-vyos-1x.git        |
+|  13952 | yang/pyang                           |  25164 | .repo/project-objects/vyos/vyos-cloud-init.git               |
+|  11360 | yang/libyang                         |  25128 | .repo/project-objects/vyos/vyos-strongswan.git               |
+|   9444 | srl-labs/containerlab                |  18424 | .repo/project-objects/vyos/vyos-live-build.git               |
+|   8588 | vyos/vyos.vyos                       |  17432 | .repo/project-objects/vyos/efi-boot-shim.git                 |
+|   7892 | vyos/vyos-cloud-init                 |  14064 | .repo/project-objects/vyos/vyos-build.git                    |
+|   6792 | frr/bgpd                             |  10380 | .repo/project-objects/mbj4668/pyang.git                      |
+|   6228 | frr/doc                              |   8664 | .repo/project-objects/vyos/shim-signed.git                   |
+|   4404 | frr/lib                              |   7196 | .repo/project-objects/vyos/vyatta-bash.git                   |
+|   4140 | vyos/shim-signed                     |   6372 | .repo/project-objects/vyos/vyos.vyos.git                     |
+|   3900 | frr/zebra                            |   5164 | .repo/project-objects/vyos/vyatta-cfg-system.git             |
+|   2796 | vyos/vyos-live-build                 |   5040 | .repo/project-objects/vyos/vyatta-cfg-quagga.git             |
+|   2492 | frr/pimd                             |   4592 | .repo/project-objects/vyos/vyatta-cfg.git                    |
+|   2256 | frr/ospfd                            |   3816 | .repo/project-objects/vyos/vyos-walinuxagent.git             |
+|   1904 | frr/isisd                            |   3112 | .repo/project-objects/vyos/vyconf.git                        |
+|   1304 | vyos/vyos-automation                 |   3044 | .repo/project-objects/vyos/vyos-workflow-test-temp.git       |
+|   1264 | frr/tools                            |   2900 | .repo/project-objects/vyos/live-boot.git                     |
+|   1240 | vyos/rest.vyos                       |   2696 | .repo/project-objects/vyos/vyos-vpp-patches.git              |
+|   1224 | vyos/vyatta-cfg                      |   2620 | .repo/project-objects/vyos/vyos-nightly-build.git            |
+|   1188 | frr/ospf6d                           |   2476 | .repo/project-objects/vyos/vyos1x-config.git                 |
+|   1044 | frr/pceplib                          |   2444 | .repo/project-objects/vyos/conntrack-tools.git               |
+|    908 | frr/yang                             |   2108 | .repo/project-objects/vyos/community.vyos.net.git            |
+|    852 | vyos/live-boot                       |   2036 | .repo/project-objects/huihuimoe/vyos-arm64-build.git         |
+|    720 | frr/ldpd                             |   1956 | .repo/project-objects/vyos/libpam-radius-auth.git            |
+|    688 | vyos/vyatta-cfg-system               |   1948 | .repo/project-objects/vyos/vyatta-op.git                     |
+|    656 | vyos/vyconf                          |   1804 | .repo/project-objects/vyos/vyos-workflow-testing.git         |
+|    616 | vyos/community.vyos.net              |   1616 | .repo/project-objects/vyos/vyos-cla-signatures.git           |
+|    580 | frr/pathd                            |   1564 | .repo/project-objects/vyos/ipaddrcheck.git                   |
+|    536 | vyos/vyatta-biosdevname              |   1536 | .repo/project-objects/vyos/vyos-utils.git                    |
+|    532 | frr/eigrpd                           |   1452 | .repo/project-objects/vyos/vyos-automation.git               |
+|    512 | frr/bfdd                             |   1396 | .repo/project-objects/vyos/vyos-vpp.git                      |
+|    492 | vyos/libpam-tacplus                  |   1364 | .repo/project-objects/vyos/libvyosconfig.git                 |
+|    444 | vyos/vyos-vpp-patches                |   1360 | .repo/project-objects/vyos/vyos-http-api-tools.git           |
+|    428 | vyos/libpam-radius-auth              |   1176 | .repo/project-objects/vyos/vyos-utils-misc.git               |
+|    376 | frr/ripd                             |   1164 | .repo/project-objects/vyos/libtacplus-map.git                |
+|    356 | frr/staticd                          |   1144 | .repo/project-objects/vyos/vyos-infrastructure.git           |
+|    336 | vyos/vyos1x-config                   |   1128 | .repo/project-objects/budimanjojo/vyos-config.git            |
+|    332 | frr/nhrpd                            |   1124 | .repo/project-objects/vyos/vyatta-cfg-firewall.git           |
+|    332 | frr/mgmtd                            |   1104 | .repo/project-objects/vyos/vyatta-biosdevname.git            |
+|    316 | frr/babeld                           |   1044 | .repo/project-objects/vyos/libnss-mapuser.git                |
+|    300 | misc/budimanjojo                     |   1028 | .repo/project-objects/vyos/hvinfo.git                        |
+|    284 | vyos/vyos-nightly-build              |    996 | .repo/project-objects/vyos/vyatta-cfg-vpn.git                |
+|    280 | vyos/ipaddrcheck                     |    956 | .repo/project-objects/vyos/libpam-tacplus.git                |
+|    276 | misc/huihuimoe                       |    940 | .repo/project-objects/vyos/mergify.git                       |
+|    264 | frr/ripngd                           |    928 | .repo/project-objects/vyos/vyatta-cfg-qos.git                |
+|    252 | frr/debian                           |    888 | .repo/project-objects/vyos/shim-review.git                   |
+|    236 | frr/vtysh                            |    880 | .repo/project-objects/vyos/vyos-github-actions.git           |
+|    220 | frr/vrrpd                            |    872 | .repo/project-objects/vyos/libnss-tacplus.git                |
+|    216 | frr/include                          |    792 | .repo/project-objects/vyos/vyatta-wanloadbalance.git         |
+|    208 | frr/pbrd                             |    764 | .repo/project-objects/vyos/initramfs-tools.git               |
+|    200 | misc/mu-ruU1                         |    608 | .repo/project-objects/mbj4668/yang-mode.git                  |
+|    188 | vyos/libnss-mapuser                  |    576 | .repo/project-objects/vyos/tacplusd.git                      |
+|    188 | frr/snapcraft                        |    552 | .repo/project-objects/vyos/uncron.git                        |
+|    180 | vyos/libtacplus-map                  |    536 | .repo/project-objects/vyos/vyatta-op-vpn.git                 |
+|    164 | vyos/hvinfo                          |    476 | .repo/project-objects/vyos/MAC-Telnet.git                    |
+|    164 | frr/docker                           |    460 | .repo/project-objects/vyos/pam_tacplus.git                   |
+|    148 | frr/python                           |    440 | .repo/project-objects/vyos/libmnl.git                        |
+|    136 | frr/sharpd                           |    436 | .repo/project-objects/srl-labs/network-multitool.git         |
+|    128 | vyos/phorge-elasticsearch-modern     |    408 | .repo/project-objects/vyos/vyatta-nat.git                    |
+|    124 | vyos/vyos-utils-misc                 |    400 | .repo/project-objects/vyos/vyos-user-utils.git               |
+|    124 | frr/m4                               |    384 | .repo/project-objects/vyos/rest.vyos.git                     |
+|    112 | frr/ospfclient                       |    376 | .repo/project-objects/vyos/vyatta-conntrack.git              |
+|    100 | vyos/vyos-github-actions             |    336 | .repo/project-objects/vyos/udp-broadcast-relay.git           |
+|    100 | vyos/mirror-canary                   |    328 | .repo/project-objects/vyos/vyos-opennhrp.git                 |
+|     92 | frr/redhat                           |    328 | .repo/project-objects/vyos/amplify-build-status.git          |
+|     92 | frr/configure.ac                     |    320 | .repo/project-objects/yunzheng/vyos-arm64-iso.git            |
+|     88 | vyos/vyos-http-api-tools             |    300 | .repo/project-objects/vyos/ticket-app.git                    |
+|     84 | vyos/vyos-infrastructure             |    284 | .repo/project-objects/vyos/vyatta-op-firewall.git            |
+|     80 | frr/watchfrr                         |    276 | .repo/project-objects/vyos/vyos-salt-minion.git              |
+|     72 | vyos/vyos-cla-signatures             |    216 | .repo/project-objects/vyos/vyos-world.git                    |
+|     60 | srl-labs/network-multitool           |    216 | .repo/project-objects/vyos/public-images.git                 |
+|     56 | misc/yunzheng                        |    212 | .repo/project-objects/vyos/vyatta-op-qos.git                 |
+|     52 | frr/gdb                              |    212 | .repo/project-objects/vyos/vyatta-cluster.git                |
+|     44 | vyos/mergify                         |    208 | .repo/project-objects/vyos/vyos.git                          |
+|     44 | frr/qpb                              |    204 | .repo/project-objects/vyos/vyos-community-flavors.git        |
+|     44 | frr/pkgsrc                           |    204 | .repo/project-objects/vyos/vyatta-config-mgmt.git            |
+|     44 | frr/fpm                              |    192 | .repo/project-objects/mu-ruU1/vyos-build-container-image.git |
+|     28 | frr/grpc                             |    184 | .repo/project-objects/vyos/vyos-xe-guest-utilities.git       |
+|     24 | yang/yang-mode                       |    152 | .repo/project-objects/vyos/vyos-nhrp.git                     |
+|     24 | frr/alpine                           |    148 | .repo/project-objects/vyos/vyatta-zone.git                   |
+|     20 | frr/mlag                             |    144 | .repo/project-objects/vyos/phorge-elasticsearch-modern.git   |
+|     12 | frr/Makefile.am                      |    144 | .repo/project-objects/vyos/openvpn-duo-plugin.git            |
+|      8 | vyos/gh-action-test                  |    140 | .repo/project-objects/vyos/vyos-sdk.git                      |
+|      4 | frr/version.h                        |    120 | .repo/project-objects/vyos/vyos-community-process.git        |
+|      4 | frr/stamp-h.in                       |    116 | .repo/project-objects/vyos/mirror-canary.git                 |
+|      4 | frr/README.md                        |    112 | .repo/project-objects/vyos/mdns-repeater.git                 |
+|      4 | frr/COPYING                          |     80 | .repo/project-objects/vyos/gh-action-test.git                |
+|      4 | frr/config.version.in                |        |                                                              |
+|      4 | frr/buildtest.sh                     |        |                                                              |
+|      4 | frr/bootstrap.sh                     |        |                                                              |
+|        |                                      |        |                                                              |
+
+And after =git-gc --aggressive --prune=now=:
+
+#+name: vyosDuDiffAfter
+#+call: vyosDuDiff(checkoutDu=vyosDuAfter, repoDu=vyosRepoDuAfter)
+
+#+RESULTS: vyosDuDiffAfter
+| 299628 | vyos/vyos-documentation              | 89072 | .repo/project-objects/vyos/vyos-documentation.git            |
+| 223000 | yang/yangsuite                       | 82924 | .repo/project-objects/frrouting/frr.git                      |
+| 120564 | vyos/vyos-1x                         | 81788 | .repo/project-objects/srl-labs/containerlab.git              |
+|  51992 | frr/tests                            | 79432 | .repo/project-objects/CiscoDevNet/yangsuite.git              |
+|  48396 | vyos/vyos-build                      | 70876 | .repo/project-objects/vyos/infinitytier.git                  |
+|  21560 | vyos/vyatta-bash                     | 33856 | .repo/project-objects/vyos/gh-action-test-vyos-1x.git        |
+|  18644 | vyos/zbackup_vyos-workflow-test-temp | 25128 | .repo/project-objects/vyos/vyos-strongswan.git               |
+|  15316 | vyos/efi-boot-shim                   | 23520 | .repo/project-objects/vyos/vyos-1x.git                       |
+|  13952 | yang/pyang                           | 23404 | .repo/project-objects/CESNET/libyang.git                     |
+|  11360 | yang/libyang                         | 17912 | .repo/project-objects/vyos/vyos-live-build.git               |
+|   9444 | srl-labs/containerlab                | 12064 | .repo/project-objects/vyos/efi-boot-shim.git                 |
+|   8588 | vyos/vyos.vyos                       | 10376 | .repo/project-objects/vyos/vyos-build.git                    |
+|   7892 | vyos/vyos-cloud-init                 |  9160 | .repo/project-objects/vyos/vyos-cloud-init.git               |
+|   6792 | frr/bgpd                             |  8292 | .repo/project-objects/mbj4668/pyang.git                      |
+|   6228 | frr/doc                              |  7924 | .repo/project-objects/vyos/shim-signed.git                   |
+|   4404 | frr/lib                              |  5636 | .repo/project-objects/vyos/vyatta-bash.git                   |
+|   4140 | vyos/shim-signed                     |  5040 | .repo/project-objects/vyos/vyatta-cfg-quagga.git             |
+|   3900 | frr/zebra                            |  4124 | .repo/project-objects/vyos/vyatta-cfg-system.git             |
+|   2796 | vyos/vyos-live-build                 |  3816 | .repo/project-objects/vyos/vyos-walinuxagent.git             |
+|   2492 | frr/pimd                             |  3044 | .repo/project-objects/vyos/vyos-workflow-test-temp.git       |
+|   2256 | frr/ospfd                            |  2536 | .repo/project-objects/vyos/vyatta-cfg.git                    |
+|   1904 | frr/isisd                            |  2444 | .repo/project-objects/vyos/conntrack-tools.git               |
+|   1304 | vyos/vyos-automation                 |  2340 | .repo/project-objects/vyos/vyos.vyos.git                     |
+|   1264 | frr/tools                            |  2036 | .repo/project-objects/vyos/live-boot.git                     |
+|   1240 | vyos/rest.vyos                       |  1948 | .repo/project-objects/vyos/vyatta-op.git                     |
+|   1224 | vyos/vyatta-cfg                      |  1804 | .repo/project-objects/vyos/vyos-workflow-testing.git         |
+|   1188 | frr/ospf6d                           |  1536 | .repo/project-objects/vyos/vyos-utils.git                    |
+|   1044 | frr/pceplib                          |  1396 | .repo/project-objects/vyos/vyos-vpp.git                      |
+|    908 | frr/yang                             |  1364 | .repo/project-objects/vyos/libvyosconfig.git                 |
+|    852 | vyos/live-boot                       |  1124 | .repo/project-objects/vyos/vyatta-cfg-firewall.git           |
+|    720 | frr/ldpd                             |   996 | .repo/project-objects/vyos/vyatta-cfg-vpn.git                |
+|    688 | vyos/vyatta-cfg-system               |   928 | .repo/project-objects/vyos/vyatta-cfg-qos.git                |
+|    656 | vyos/vyconf                          |   888 | .repo/project-objects/vyos/shim-review.git                   |
+|    616 | vyos/community.vyos.net              |   872 | .repo/project-objects/vyos/libnss-tacplus.git                |
+|    580 | frr/pathd                            |   792 | .repo/project-objects/vyos/vyatta-wanloadbalance.git         |
+|    536 | vyos/vyatta-biosdevname              |   764 | .repo/project-objects/vyos/initramfs-tools.git               |
+|    532 | frr/eigrpd                           |   756 | .repo/project-objects/vyos/vyos-nightly-build.git            |
+|    512 | frr/bfdd                             |   628 | .repo/project-objects/vyos/community.vyos.net.git            |
+|    492 | vyos/libpam-tacplus                  |   592 | .repo/project-objects/vyos/vyconf.git                        |
+|    444 | vyos/vyos-vpp-patches                |   576 | .repo/project-objects/vyos/tacplusd.git                      |
+|    428 | vyos/libpam-radius-auth              |   552 | .repo/project-objects/vyos/uncron.git                        |
+|    376 | frr/ripd                             |   536 | .repo/project-objects/vyos/vyatta-op-vpn.git                 |
+|    356 | frr/staticd                          |   516 | .repo/project-objects/vyos/vyos-automation.git               |
+|    336 | vyos/vyos1x-config                   |   476 | .repo/project-objects/vyos/MAC-Telnet.git                    |
+|    332 | frr/nhrpd                            |   464 | .repo/project-objects/vyos/libpam-radius-auth.git            |
+|    332 | frr/mgmtd                            |   460 | .repo/project-objects/vyos/pam_tacplus.git                   |
+|    316 | frr/babeld                           |   440 | .repo/project-objects/vyos/libmnl.git                        |
+|    300 | misc/budimanjojo                     |   408 | .repo/project-objects/vyos/vyatta-nat.git                    |
+|    284 | vyos/vyos-nightly-build              |   400 | .repo/project-objects/vyos/vyos-user-utils.git               |
+|    280 | vyos/ipaddrcheck                     |   376 | .repo/project-objects/vyos/vyatta-conntrack.git              |
+|    276 | misc/huihuimoe                       |   360 | .repo/project-objects/huihuimoe/vyos-arm64-build.git         |
+|    264 | frr/ripngd                           |   336 | .repo/project-objects/vyos/udp-broadcast-relay.git           |
+|    252 | frr/debian                           |   328 | .repo/project-objects/vyos/vyos-opennhrp.git                 |
+|    236 | frr/vtysh                            |   328 | .repo/project-objects/vyos/amplify-build-status.git          |
+|    220 | frr/vrrpd                            |   320 | .repo/project-objects/vyos/vyos1x-config.git                 |
+|    216 | frr/include                          |   320 | .repo/project-objects/vyos/vyatta-biosdevname.git            |
+|    208 | frr/pbrd                             |   316 | .repo/project-objects/vyos/rest.vyos.git                     |
+|    200 | misc/mu-ruU1                         |   308 | .repo/project-objects/vyos/vyos-vpp-patches.git              |
+|    188 | vyos/libnss-mapuser                  |   300 | .repo/project-objects/vyos/ticket-app.git                    |
+|    188 | frr/snapcraft                        |   284 | .repo/project-objects/vyos/vyatta-op-firewall.git            |
+|    180 | vyos/libtacplus-map                  |   280 | .repo/project-objects/vyos/ipaddrcheck.git                   |
+|    164 | vyos/hvinfo                          |   276 | .repo/project-objects/vyos/vyos-salt-minion.git              |
+|    164 | frr/docker                           |   256 | .repo/project-objects/budimanjojo/vyos-config.git            |
+|    148 | frr/python                           |   216 | .repo/project-objects/vyos/vyos-world.git                    |
+|    136 | frr/sharpd                           |   216 | .repo/project-objects/vyos/public-images.git                 |
+|    128 | vyos/phorge-elasticsearch-modern     |   212 | .repo/project-objects/vyos/vyatta-op-qos.git                 |
+|    124 | vyos/vyos-utils-misc                 |   212 | .repo/project-objects/vyos/vyatta-cluster.git                |
+|    124 | frr/m4                               |   208 | .repo/project-objects/vyos/vyos.git                          |
+|    112 | frr/ospfclient                       |   204 | .repo/project-objects/vyos/vyos-community-flavors.git        |
+|    100 | vyos/vyos-github-actions             |   204 | .repo/project-objects/vyos/vyatta-config-mgmt.git            |
+|    100 | vyos/mirror-canary                   |   204 | .repo/project-objects/vyos/libpam-tacplus.git                |
+|     92 | frr/redhat                           |   200 | .repo/project-objects/mu-ruU1/vyos-build-container-image.git |
+|     92 | frr/configure.ac                     |   188 | .repo/project-objects/vyos/libnss-mapuser.git                |
+|     88 | vyos/vyos-http-api-tools             |   188 | .repo/project-objects/vyos/hvinfo.git                        |
+|     84 | vyos/vyos-infrastructure             |   184 | .repo/project-objects/vyos/vyos-xe-guest-utilities.git       |
+|     80 | frr/watchfrr                         |   176 | .repo/project-objects/vyos/vyos-http-api-tools.git           |
+|     72 | vyos/vyos-cla-signatures             |   172 | .repo/project-objects/vyos/vyos-cla-signatures.git           |
+|     60 | srl-labs/network-multitool           |   152 | .repo/project-objects/vyos/vyos-nhrp.git                     |
+|     56 | misc/yunzheng                        |   148 | .repo/project-objects/vyos/vyatta-zone.git                   |
+|     52 | frr/gdb                              |   144 | .repo/project-objects/vyos/phorge-elasticsearch-modern.git   |
+|     44 | vyos/mergify                         |   144 | .repo/project-objects/vyos/openvpn-duo-plugin.git            |
+|     44 | frr/qpb                              |   140 | .repo/project-objects/vyos/vyos-sdk.git                      |
+|     44 | frr/pkgsrc                           |   140 | .repo/project-objects/vyos/libtacplus-map.git                |
+|     44 | frr/fpm                              |   128 | .repo/project-objects/vyos/mirror-canary.git                 |
+|     28 | frr/grpc                             |   124 | .repo/project-objects/vyos/vyos-infrastructure.git           |
+|     24 | yang/yang-mode                       |   124 | .repo/project-objects/vyos/vyos-github-actions.git           |
+|     24 | frr/alpine                           |   124 | .repo/project-objects/vyos/mergify.git                       |
+|     20 | frr/mlag                             |   120 | .repo/project-objects/vyos/vyos-utils-misc.git               |
+|     12 | frr/Makefile.am                      |   120 | .repo/project-objects/vyos/vyos-community-process.git        |
+|      8 | vyos/gh-action-test                  |   120 | .repo/project-objects/srl-labs/network-multitool.git         |
+|      4 | frr/version.h                        |   112 | .repo/project-objects/vyos/mdns-repeater.git                 |
+|      4 | frr/stamp-h.in                       |    88 | .repo/project-objects/mbj4668/yang-mode.git                  |
+|      4 | frr/README.md                        |    80 | .repo/project-objects/yunzheng/vyos-arm64-iso.git            |
+|      4 | frr/COPYING                          |    76 | .repo/project-objects/vyos/gh-action-test.git                |
+|      4 | frr/config.version.in                |       |                                                              |
+|      4 | frr/buildtest.sh                     |       |                                                              |
+|      4 | frr/bootstrap.sh                     |       |                                                              |
+|        |                                      |       |                                                              |
+
+****** Comparing each type (checkout, objects), before/after
+
+Differences in checkouts, before/after (almost none)
+
+#+name: vyosDuDiffProjects
+#+begin_src shell :results output code :wrap example diff :var checkoutDu=vyosDu repoDu=vyosDuAfter :dir /data/ecto
+diff <(echo "${checkoutDu[@]}") <(echo "${repoDu[@]}")
+# exactly none
+#+end_src
+
+#+RESULTS: vyosDuDiffProjects
+#+begin_example diff
+#+end_example
+
+Differences in =.repo/project-objects=, before/after (significant)
+
+#+name: vyosDuDiffObjects
+#+begin_src shell :results output code :wrap example diff :var checkoutDu=vyosRepoDu repoDu=vyosRepoDuAfter :dir /data/ecto
+diff <(echo "${checkoutDu[@]}" | sort -k2) <(echo "${repoDu[@]}" | sort -k2)
+# exactly none
+#+end_src
+
+#+call: vyosDuDiff(checkoutDu=vyosRepoDu, repoDu=vyosRepoDuAfter)
+
+#+RESULTS: vyosDuDiffObjects
+#+begin_example diff
+2,11c2,11
+< 1128	.repo/project-objects/budimanjojo/vyos-config.git
+< 61844	.repo/project-objects/CESNET/libyang.git
+< 79852	.repo/project-objects/CiscoDevNet/yangsuite.git
+< 236812	.repo/project-objects/frrouting/frr.git
+< 2036	.repo/project-objects/huihuimoe/vyos-arm64-build.git
+< 10380	.repo/project-objects/mbj4668/pyang.git
+< 608	.repo/project-objects/mbj4668/yang-mode.git
+< 192	.repo/project-objects/mu-ruU1/vyos-build-container-image.git
+< 137752	.repo/project-objects/srl-labs/containerlab.git
+< 436	.repo/project-objects/srl-labs/network-multitool.git
+---
+> 256	.repo/project-objects/budimanjojo/vyos-config.git
+> 23404	.repo/project-objects/CESNET/libyang.git
+> 79432	.repo/project-objects/CiscoDevNet/yangsuite.git
+> 82924	.repo/project-objects/frrouting/frr.git
+> 360	.repo/project-objects/huihuimoe/vyos-arm64-build.git
+> 8292	.repo/project-objects/mbj4668/pyang.git
+> 88	.repo/project-objects/mbj4668/yang-mode.git
+> 200	.repo/project-objects/mu-ruU1/vyos-build-container-image.git
+> 81788	.repo/project-objects/srl-labs/containerlab.git
+> 120	.repo/project-objects/srl-labs/network-multitool.git
+13c13
+< 2108	.repo/project-objects/vyos/community.vyos.net.git
+---
+> 628	.repo/project-objects/vyos/community.vyos.net.git
+15,16c15,16
+< 17432	.repo/project-objects/vyos/efi-boot-shim.git
+< 80	.repo/project-objects/vyos/gh-action-test.git
+---
+> 12064	.repo/project-objects/vyos/efi-boot-shim.git
+> 76	.repo/project-objects/vyos/gh-action-test.git
+18c18
+< 1028	.repo/project-objects/vyos/hvinfo.git
+---
+> 188	.repo/project-objects/vyos/hvinfo.git
+21c21
+< 1564	.repo/project-objects/vyos/ipaddrcheck.git
+---
+> 280	.repo/project-objects/vyos/ipaddrcheck.git
+23c23
+< 1044	.repo/project-objects/vyos/libnss-mapuser.git
+---
+> 188	.repo/project-objects/vyos/libnss-mapuser.git
+25,27c25,27
+< 1956	.repo/project-objects/vyos/libpam-radius-auth.git
+< 956	.repo/project-objects/vyos/libpam-tacplus.git
+< 1164	.repo/project-objects/vyos/libtacplus-map.git
+---
+> 464	.repo/project-objects/vyos/libpam-radius-auth.git
+> 204	.repo/project-objects/vyos/libpam-tacplus.git
+> 140	.repo/project-objects/vyos/libtacplus-map.git
+29c29
+< 2900	.repo/project-objects/vyos/live-boot.git
+---
+> 2036	.repo/project-objects/vyos/live-boot.git
+32,33c32,33
+< 940	.repo/project-objects/vyos/mergify.git
+< 116	.repo/project-objects/vyos/mirror-canary.git
+---
+> 124	.repo/project-objects/vyos/mergify.git
+> 128	.repo/project-objects/vyos/mirror-canary.git
+38c38
+< 384	.repo/project-objects/vyos/rest.vyos.git
+---
+> 316	.repo/project-objects/vyos/rest.vyos.git
+40c40
+< 8664	.repo/project-objects/vyos/shim-signed.git
+---
+> 7924	.repo/project-objects/vyos/shim-signed.git
+45,46c45,46
+< 7196	.repo/project-objects/vyos/vyatta-bash.git
+< 1104	.repo/project-objects/vyos/vyatta-biosdevname.git
+---
+> 5636	.repo/project-objects/vyos/vyatta-bash.git
+> 320	.repo/project-objects/vyos/vyatta-biosdevname.git
+48c48
+< 4592	.repo/project-objects/vyos/vyatta-cfg.git
+---
+> 2536	.repo/project-objects/vyos/vyatta-cfg.git
+51c51
+< 5164	.repo/project-objects/vyos/vyatta-cfg-system.git
+---
+> 4124	.repo/project-objects/vyos/vyatta-cfg-system.git
+63,69c63,69
+< 3112	.repo/project-objects/vyos/vyconf.git
+< 2476	.repo/project-objects/vyos/vyos1x-config.git
+< 42848	.repo/project-objects/vyos/vyos-1x.git
+< 1452	.repo/project-objects/vyos/vyos-automation.git
+< 14064	.repo/project-objects/vyos/vyos-build.git
+< 1616	.repo/project-objects/vyos/vyos-cla-signatures.git
+< 25164	.repo/project-objects/vyos/vyos-cloud-init.git
+---
+> 592	.repo/project-objects/vyos/vyconf.git
+> 320	.repo/project-objects/vyos/vyos1x-config.git
+> 23520	.repo/project-objects/vyos/vyos-1x.git
+> 516	.repo/project-objects/vyos/vyos-automation.git
+> 10376	.repo/project-objects/vyos/vyos-build.git
+> 172	.repo/project-objects/vyos/vyos-cla-signatures.git
+> 9160	.repo/project-objects/vyos/vyos-cloud-init.git
+72c72
+< 141616	.repo/project-objects/vyos/vyos-documentation.git
+---
+> 89072	.repo/project-objects/vyos/vyos-documentation.git
+74,77c74,77
+< 880	.repo/project-objects/vyos/vyos-github-actions.git
+< 1360	.repo/project-objects/vyos/vyos-http-api-tools.git
+< 1144	.repo/project-objects/vyos/vyos-infrastructure.git
+< 18424	.repo/project-objects/vyos/vyos-live-build.git
+---
+> 124	.repo/project-objects/vyos/vyos-github-actions.git
+> 176	.repo/project-objects/vyos/vyos-http-api-tools.git
+> 124	.repo/project-objects/vyos/vyos-infrastructure.git
+> 17912	.repo/project-objects/vyos/vyos-live-build.git
+79c79
+< 2620	.repo/project-objects/vyos/vyos-nightly-build.git
+---
+> 756	.repo/project-objects/vyos/vyos-nightly-build.git
+86c86
+< 1176	.repo/project-objects/vyos/vyos-utils-misc.git
+---
+> 120	.repo/project-objects/vyos/vyos-utils-misc.git
+88,89c88,89
+< 2696	.repo/project-objects/vyos/vyos-vpp-patches.git
+< 6372	.repo/project-objects/vyos/vyos.vyos.git
+---
+> 308	.repo/project-objects/vyos/vyos-vpp-patches.git
+> 2340	.repo/project-objects/vyos/vyos.vyos.git
+95c95
+< 320	.repo/project-objects/yunzheng/vyos-arm64-iso.git
+---
+> 80	.repo/project-objects/yunzheng/vyos-arm64-iso.git
+#+end_example
+
+***** Before
+
+#+name: vyosDu
+#+begin_src shell :results output :var repoproject="vyos" :dir /data/ecto :cache yes
+cd $repoproject
+du -s **/* | sort -nr
+#+end_src
+
+#+RESULTS[6e8d8d9a69cc76927fcd3fc8639f67f20ef74785]: vyosDu
+#+begin_example
+299628	vyos/vyos-documentation
+223000	yang/yangsuite
+120564	vyos/vyos-1x
+51992	frr/tests
+48396	vyos/vyos-build
+21560	vyos/vyatta-bash
+18644	vyos/zbackup_vyos-workflow-test-temp
+15316	vyos/efi-boot-shim
+13952	yang/pyang
+11360	yang/libyang
+9444	srl-labs/containerlab
+8588	vyos/vyos.vyos
+7892	vyos/vyos-cloud-init
+6792	frr/bgpd
+6228	frr/doc
+4404	frr/lib
+4140	vyos/shim-signed
+3900	frr/zebra
+2796	vyos/vyos-live-build
+2492	frr/pimd
+2256	frr/ospfd
+1904	frr/isisd
+1304	vyos/vyos-automation
+1264	frr/tools
+1240	vyos/rest.vyos
+1224	vyos/vyatta-cfg
+1188	frr/ospf6d
+1044	frr/pceplib
+908	frr/yang
+852	vyos/live-boot
+720	frr/ldpd
+688	vyos/vyatta-cfg-system
+656	vyos/vyconf
+616	vyos/community.vyos.net
+580	frr/pathd
+536	vyos/vyatta-biosdevname
+532	frr/eigrpd
+512	frr/bfdd
+492	vyos/libpam-tacplus
+444	vyos/vyos-vpp-patches
+428	vyos/libpam-radius-auth
+376	frr/ripd
+356	frr/staticd
+336	vyos/vyos1x-config
+332	frr/nhrpd
+332	frr/mgmtd
+316	frr/babeld
+300	misc/budimanjojo
+284	vyos/vyos-nightly-build
+280	vyos/ipaddrcheck
+276	misc/huihuimoe
+264	frr/ripngd
+252	frr/debian
+236	frr/vtysh
+220	frr/vrrpd
+216	frr/include
+208	frr/pbrd
+200	misc/mu-ruU1
+188	vyos/libnss-mapuser
+188	frr/snapcraft
+180	vyos/libtacplus-map
+164	vyos/hvinfo
+164	frr/docker
+148	frr/python
+136	frr/sharpd
+128	vyos/phorge-elasticsearch-modern
+124	vyos/vyos-utils-misc
+124	frr/m4
+112	frr/ospfclient
+100	vyos/vyos-github-actions
+100	vyos/mirror-canary
+92	frr/redhat
+92	frr/configure.ac
+88	vyos/vyos-http-api-tools
+84	vyos/vyos-infrastructure
+80	frr/watchfrr
+72	vyos/vyos-cla-signatures
+60	srl-labs/network-multitool
+56	misc/yunzheng
+52	frr/gdb
+44	vyos/mergify
+44	frr/qpb
+44	frr/pkgsrc
+44	frr/fpm
+28	frr/grpc
+24	yang/yang-mode
+24	frr/alpine
+20	frr/mlag
+12	frr/Makefile.am
+8	vyos/gh-action-test
+4	frr/version.h
+4	frr/stamp-h.in
+4	frr/README.md
+4	frr/COPYING
+4	frr/config.version.in
+4	frr/buildtest.sh
+4	frr/bootstrap.sh
+#+end_example
+
+#+name: vyosRepoDu
+#+begin_src shell :results output :var repoproject="vyos" :dir /data/ecto :cache yes
+cd $repoproject
+du -s .repo/project-objects/**/* | sort -nr
+#+end_src
+
+#+RESULTS[a64a8f78c42659781377f03ca1ac1f3efcbeb43a]: vyosRepoDu
+#+begin_example
+236812	.repo/project-objects/frrouting/frr.git
+141616	.repo/project-objects/vyos/vyos-documentation.git
+137752	.repo/project-objects/srl-labs/containerlab.git
+79852	.repo/project-objects/CiscoDevNet/yangsuite.git
+70876	.repo/project-objects/vyos/infinitytier.git
+61844	.repo/project-objects/CESNET/libyang.git
+42848	.repo/project-objects/vyos/vyos-1x.git
+33856	.repo/project-objects/vyos/gh-action-test-vyos-1x.git
+25164	.repo/project-objects/vyos/vyos-cloud-init.git
+25128	.repo/project-objects/vyos/vyos-strongswan.git
+18424	.repo/project-objects/vyos/vyos-live-build.git
+17432	.repo/project-objects/vyos/efi-boot-shim.git
+14064	.repo/project-objects/vyos/vyos-build.git
+10380	.repo/project-objects/mbj4668/pyang.git
+8664	.repo/project-objects/vyos/shim-signed.git
+7196	.repo/project-objects/vyos/vyatta-bash.git
+6372	.repo/project-objects/vyos/vyos.vyos.git
+5164	.repo/project-objects/vyos/vyatta-cfg-system.git
+5040	.repo/project-objects/vyos/vyatta-cfg-quagga.git
+4592	.repo/project-objects/vyos/vyatta-cfg.git
+3816	.repo/project-objects/vyos/vyos-walinuxagent.git
+3112	.repo/project-objects/vyos/vyconf.git
+3044	.repo/project-objects/vyos/vyos-workflow-test-temp.git
+2900	.repo/project-objects/vyos/live-boot.git
+2696	.repo/project-objects/vyos/vyos-vpp-patches.git
+2620	.repo/project-objects/vyos/vyos-nightly-build.git
+2476	.repo/project-objects/vyos/vyos1x-config.git
+2444	.repo/project-objects/vyos/conntrack-tools.git
+2108	.repo/project-objects/vyos/community.vyos.net.git
+2036	.repo/project-objects/huihuimoe/vyos-arm64-build.git
+1956	.repo/project-objects/vyos/libpam-radius-auth.git
+1948	.repo/project-objects/vyos/vyatta-op.git
+1804	.repo/project-objects/vyos/vyos-workflow-testing.git
+1616	.repo/project-objects/vyos/vyos-cla-signatures.git
+1564	.repo/project-objects/vyos/ipaddrcheck.git
+1536	.repo/project-objects/vyos/vyos-utils.git
+1452	.repo/project-objects/vyos/vyos-automation.git
+1396	.repo/project-objects/vyos/vyos-vpp.git
+1364	.repo/project-objects/vyos/libvyosconfig.git
+1360	.repo/project-objects/vyos/vyos-http-api-tools.git
+1176	.repo/project-objects/vyos/vyos-utils-misc.git
+1164	.repo/project-objects/vyos/libtacplus-map.git
+1144	.repo/project-objects/vyos/vyos-infrastructure.git
+1128	.repo/project-objects/budimanjojo/vyos-config.git
+1124	.repo/project-objects/vyos/vyatta-cfg-firewall.git
+1104	.repo/project-objects/vyos/vyatta-biosdevname.git
+1044	.repo/project-objects/vyos/libnss-mapuser.git
+1028	.repo/project-objects/vyos/hvinfo.git
+996	.repo/project-objects/vyos/vyatta-cfg-vpn.git
+956	.repo/project-objects/vyos/libpam-tacplus.git
+940	.repo/project-objects/vyos/mergify.git
+928	.repo/project-objects/vyos/vyatta-cfg-qos.git
+888	.repo/project-objects/vyos/shim-review.git
+880	.repo/project-objects/vyos/vyos-github-actions.git
+872	.repo/project-objects/vyos/libnss-tacplus.git
+792	.repo/project-objects/vyos/vyatta-wanloadbalance.git
+764	.repo/project-objects/vyos/initramfs-tools.git
+608	.repo/project-objects/mbj4668/yang-mode.git
+576	.repo/project-objects/vyos/tacplusd.git
+552	.repo/project-objects/vyos/uncron.git
+536	.repo/project-objects/vyos/vyatta-op-vpn.git
+476	.repo/project-objects/vyos/MAC-Telnet.git
+460	.repo/project-objects/vyos/pam_tacplus.git
+440	.repo/project-objects/vyos/libmnl.git
+436	.repo/project-objects/srl-labs/network-multitool.git
+408	.repo/project-objects/vyos/vyatta-nat.git
+400	.repo/project-objects/vyos/vyos-user-utils.git
+384	.repo/project-objects/vyos/rest.vyos.git
+376	.repo/project-objects/vyos/vyatta-conntrack.git
+336	.repo/project-objects/vyos/udp-broadcast-relay.git
+328	.repo/project-objects/vyos/vyos-opennhrp.git
+328	.repo/project-objects/vyos/amplify-build-status.git
+320	.repo/project-objects/yunzheng/vyos-arm64-iso.git
+300	.repo/project-objects/vyos/ticket-app.git
+284	.repo/project-objects/vyos/vyatta-op-firewall.git
+276	.repo/project-objects/vyos/vyos-salt-minion.git
+216	.repo/project-objects/vyos/vyos-world.git
+216	.repo/project-objects/vyos/public-images.git
+212	.repo/project-objects/vyos/vyatta-op-qos.git
+212	.repo/project-objects/vyos/vyatta-cluster.git
+208	.repo/project-objects/vyos/vyos.git
+204	.repo/project-objects/vyos/vyos-community-flavors.git
+204	.repo/project-objects/vyos/vyatta-config-mgmt.git
+192	.repo/project-objects/mu-ruU1/vyos-build-container-image.git
+184	.repo/project-objects/vyos/vyos-xe-guest-utilities.git
+152	.repo/project-objects/vyos/vyos-nhrp.git
+148	.repo/project-objects/vyos/vyatta-zone.git
+144	.repo/project-objects/vyos/phorge-elasticsearch-modern.git
+144	.repo/project-objects/vyos/openvpn-duo-plugin.git
+140	.repo/project-objects/vyos/vyos-sdk.git
+120	.repo/project-objects/vyos/vyos-community-process.git
+116	.repo/project-objects/vyos/mirror-canary.git
+112	.repo/project-objects/vyos/mdns-repeater.git
+80	.repo/project-objects/vyos/gh-action-test.git
+#+end_example
+
+#+begin_src shell :results output :var repoproject="vyos" :dir /data/ecto
+# could be dangerous if processes are writing to this
+repo forall -c 'git gc --prune-now'
+#+end_src
+
+***** After
+
+#+name: vyosDuAfter
+#+begin_src shell :results output :var repoproject="vyos" :dir /data/ecto :cache yes
+cd $repoproject
+du -s **/* | sort -nr
+#+end_src
+
+#+RESULTS[6e8d8d9a69cc76927fcd3fc8639f67f20ef74785]: vyosDuAfter
+#+begin_example
+299628	vyos/vyos-documentation
+223000	yang/yangsuite
+120564	vyos/vyos-1x
+51992	frr/tests
+48396	vyos/vyos-build
+21560	vyos/vyatta-bash
+18644	vyos/zbackup_vyos-workflow-test-temp
+15316	vyos/efi-boot-shim
+13952	yang/pyang
+11360	yang/libyang
+9444	srl-labs/containerlab
+8588	vyos/vyos.vyos
+7892	vyos/vyos-cloud-init
+6792	frr/bgpd
+6228	frr/doc
+4404	frr/lib
+4140	vyos/shim-signed
+3900	frr/zebra
+2796	vyos/vyos-live-build
+2492	frr/pimd
+2256	frr/ospfd
+1904	frr/isisd
+1304	vyos/vyos-automation
+1264	frr/tools
+1240	vyos/rest.vyos
+1224	vyos/vyatta-cfg
+1188	frr/ospf6d
+1044	frr/pceplib
+908	frr/yang
+852	vyos/live-boot
+720	frr/ldpd
+688	vyos/vyatta-cfg-system
+656	vyos/vyconf
+616	vyos/community.vyos.net
+580	frr/pathd
+536	vyos/vyatta-biosdevname
+532	frr/eigrpd
+512	frr/bfdd
+492	vyos/libpam-tacplus
+444	vyos/vyos-vpp-patches
+428	vyos/libpam-radius-auth
+376	frr/ripd
+356	frr/staticd
+336	vyos/vyos1x-config
+332	frr/nhrpd
+332	frr/mgmtd
+316	frr/babeld
+300	misc/budimanjojo
+284	vyos/vyos-nightly-build
+280	vyos/ipaddrcheck
+276	misc/huihuimoe
+264	frr/ripngd
+252	frr/debian
+236	frr/vtysh
+220	frr/vrrpd
+216	frr/include
+208	frr/pbrd
+200	misc/mu-ruU1
+188	vyos/libnss-mapuser
+188	frr/snapcraft
+180	vyos/libtacplus-map
+164	vyos/hvinfo
+164	frr/docker
+148	frr/python
+136	frr/sharpd
+128	vyos/phorge-elasticsearch-modern
+124	vyos/vyos-utils-misc
+124	frr/m4
+112	frr/ospfclient
+100	vyos/vyos-github-actions
+100	vyos/mirror-canary
+92	frr/redhat
+92	frr/configure.ac
+88	vyos/vyos-http-api-tools
+84	vyos/vyos-infrastructure
+80	frr/watchfrr
+72	vyos/vyos-cla-signatures
+60	srl-labs/network-multitool
+56	misc/yunzheng
+52	frr/gdb
+44	vyos/mergify
+44	frr/qpb
+44	frr/pkgsrc
+44	frr/fpm
+28	frr/grpc
+24	yang/yang-mode
+24	frr/alpine
+20	frr/mlag
+12	frr/Makefile.am
+8	vyos/gh-action-test
+4	frr/version.h
+4	frr/stamp-h.in
+4	frr/README.md
+4	frr/COPYING
+4	frr/config.version.in
+4	frr/buildtest.sh
+4	frr/bootstrap.sh
+#+end_example
+
+#+name: vyosRepoDuAfter
+#+begin_src shell :results output :var repoproject="vyos" :dir /data/ecto :cache yes
+cd $repoproject
+du -s .repo/project-objects/**/* | sort -nr
+#+end_src
+
+#+RESULTS[a64a8f78c42659781377f03ca1ac1f3efcbeb43a]: vyosRepoDuAfter
+#+begin_example
+89072	.repo/project-objects/vyos/vyos-documentation.git
+82924	.repo/project-objects/frrouting/frr.git
+81788	.repo/project-objects/srl-labs/containerlab.git
+79432	.repo/project-objects/CiscoDevNet/yangsuite.git
+70876	.repo/project-objects/vyos/infinitytier.git
+33856	.repo/project-objects/vyos/gh-action-test-vyos-1x.git
+25128	.repo/project-objects/vyos/vyos-strongswan.git
+23520	.repo/project-objects/vyos/vyos-1x.git
+23404	.repo/project-objects/CESNET/libyang.git
+17912	.repo/project-objects/vyos/vyos-live-build.git
+12064	.repo/project-objects/vyos/efi-boot-shim.git
+10376	.repo/project-objects/vyos/vyos-build.git
+9160	.repo/project-objects/vyos/vyos-cloud-init.git
+8292	.repo/project-objects/mbj4668/pyang.git
+7924	.repo/project-objects/vyos/shim-signed.git
+5636	.repo/project-objects/vyos/vyatta-bash.git
+5040	.repo/project-objects/vyos/vyatta-cfg-quagga.git
+4124	.repo/project-objects/vyos/vyatta-cfg-system.git
+3816	.repo/project-objects/vyos/vyos-walinuxagent.git
+3044	.repo/project-objects/vyos/vyos-workflow-test-temp.git
+2536	.repo/project-objects/vyos/vyatta-cfg.git
+2444	.repo/project-objects/vyos/conntrack-tools.git
+2340	.repo/project-objects/vyos/vyos.vyos.git
+2036	.repo/project-objects/vyos/live-boot.git
+1948	.repo/project-objects/vyos/vyatta-op.git
+1804	.repo/project-objects/vyos/vyos-workflow-testing.git
+1536	.repo/project-objects/vyos/vyos-utils.git
+1396	.repo/project-objects/vyos/vyos-vpp.git
+1364	.repo/project-objects/vyos/libvyosconfig.git
+1124	.repo/project-objects/vyos/vyatta-cfg-firewall.git
+996	.repo/project-objects/vyos/vyatta-cfg-vpn.git
+928	.repo/project-objects/vyos/vyatta-cfg-qos.git
+888	.repo/project-objects/vyos/shim-review.git
+872	.repo/project-objects/vyos/libnss-tacplus.git
+792	.repo/project-objects/vyos/vyatta-wanloadbalance.git
+764	.repo/project-objects/vyos/initramfs-tools.git
+756	.repo/project-objects/vyos/vyos-nightly-build.git
+628	.repo/project-objects/vyos/community.vyos.net.git
+592	.repo/project-objects/vyos/vyconf.git
+576	.repo/project-objects/vyos/tacplusd.git
+552	.repo/project-objects/vyos/uncron.git
+536	.repo/project-objects/vyos/vyatta-op-vpn.git
+516	.repo/project-objects/vyos/vyos-automation.git
+476	.repo/project-objects/vyos/MAC-Telnet.git
+464	.repo/project-objects/vyos/libpam-radius-auth.git
+460	.repo/project-objects/vyos/pam_tacplus.git
+440	.repo/project-objects/vyos/libmnl.git
+408	.repo/project-objects/vyos/vyatta-nat.git
+400	.repo/project-objects/vyos/vyos-user-utils.git
+376	.repo/project-objects/vyos/vyatta-conntrack.git
+360	.repo/project-objects/huihuimoe/vyos-arm64-build.git
+336	.repo/project-objects/vyos/udp-broadcast-relay.git
+328	.repo/project-objects/vyos/vyos-opennhrp.git
+328	.repo/project-objects/vyos/amplify-build-status.git
+320	.repo/project-objects/vyos/vyos1x-config.git
+320	.repo/project-objects/vyos/vyatta-biosdevname.git
+316	.repo/project-objects/vyos/rest.vyos.git
+308	.repo/project-objects/vyos/vyos-vpp-patches.git
+300	.repo/project-objects/vyos/ticket-app.git
+284	.repo/project-objects/vyos/vyatta-op-firewall.git
+280	.repo/project-objects/vyos/ipaddrcheck.git
+276	.repo/project-objects/vyos/vyos-salt-minion.git
+256	.repo/project-objects/budimanjojo/vyos-config.git
+216	.repo/project-objects/vyos/vyos-world.git
+216	.repo/project-objects/vyos/public-images.git
+212	.repo/project-objects/vyos/vyatta-op-qos.git
+212	.repo/project-objects/vyos/vyatta-cluster.git
+208	.repo/project-objects/vyos/vyos.git
+204	.repo/project-objects/vyos/vyos-community-flavors.git
+204	.repo/project-objects/vyos/vyatta-config-mgmt.git
+204	.repo/project-objects/vyos/libpam-tacplus.git
+200	.repo/project-objects/mu-ruU1/vyos-build-container-image.git
+188	.repo/project-objects/vyos/libnss-mapuser.git
+188	.repo/project-objects/vyos/hvinfo.git
+184	.repo/project-objects/vyos/vyos-xe-guest-utilities.git
+176	.repo/project-objects/vyos/vyos-http-api-tools.git
+172	.repo/project-objects/vyos/vyos-cla-signatures.git
+152	.repo/project-objects/vyos/vyos-nhrp.git
+148	.repo/project-objects/vyos/vyatta-zone.git
+144	.repo/project-objects/vyos/phorge-elasticsearch-modern.git
+144	.repo/project-objects/vyos/openvpn-duo-plugin.git
+140	.repo/project-objects/vyos/vyos-sdk.git
+140	.repo/project-objects/vyos/libtacplus-map.git
+128	.repo/project-objects/vyos/mirror-canary.git
+124	.repo/project-objects/vyos/vyos-infrastructure.git
+124	.repo/project-objects/vyos/vyos-github-actions.git
+124	.repo/project-objects/vyos/mergify.git
+120	.repo/project-objects/vyos/vyos-utils-misc.git
+120	.repo/project-objects/vyos/vyos-community-process.git
+120	.repo/project-objects/srl-labs/network-multitool.git
+112	.repo/project-objects/vyos/mdns-repeater.git
+88	.repo/project-objects/mbj4668/yang-mode.git
+80	.repo/project-objects/yunzheng/vyos-arm64-iso.git
+76	.repo/project-objects/vyos/gh-action-test.git
+#+end_example
+
+
 *** Shell Scripts
 
 Grok the general directory structure with =tree -dL 3 .= after submodules have
@@ -400,7 +1219,6 @@ done
 #+end_src
 
 #+RESULTS:
-
 *** Python Scripts
 
 When provided the above manifest, a vanilla =buffer-env= configuration, permits
