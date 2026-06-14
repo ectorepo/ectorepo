@@ -53,14 +53,15 @@ Check rates with =ghubCheckRates()=
 
 #+begin_src xml :tangle misc.xml
 <manifest>
+  <project name="rutgerblom/SDDC.Lab" path="misc/sddc.lab" revision="refs/heads/v8" remote="github"/>
   <project name="budimanjojo/vyos-config" path="misc/budimanjojo/vyos-config" revision="refs/heads/main" remote="github"/>
   <project name="huihuimoe/vyos-arm64-build" path="misc/huihuimoe/vyos-arm64-build" revision="refs/heads/master" remote="github"/>
   <project name="yunzheng/vyos-arm64-iso" path="misc/yunzheng/vyos-arm64-iso" revision="refs/heads/main" remote="github"/>
   <project name="mu-ruU1/vyos-build-container-image" path="misc/mu-ruU1/vyos-build-container-image" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/containerlab" path="srl-labs/containerlab" revision="refs/heads/main" remote="github"/>
   <project name="srl-labs/network-multitool" path="srl-labs/network-multitool" revision="refs/heads/main" remote="github"/>
-
-  <!-- <project name="" path="" revision="refs/heads/" remote="github"/> -->
+  <project name="Community-VyProjects/VyManager" path="tools/vymanager" revision="refs/heads/beta" remote="github"/>
+  <project name="jsuzanne/stigix" path="stigix/stigix" revision="refs/heads/main" remote="github"/>
 </manifest>
 #+end_src
 
