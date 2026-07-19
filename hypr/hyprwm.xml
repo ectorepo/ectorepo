@@ -19,6 +19,7 @@
   <project name="hyprwm/hyprlang" path="hyprwm/hyprlang" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprlauncher" path="hyprwm/hyprlauncher" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprlock" path="hyprwm/hyprlock" revision="refs/heads/main" remote="github"/>
+  <project name="hyprwm/hyprnix" path="hyprwm/hyprnix" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprpaper" path="hyprwm/hyprpaper" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprpicker" path="hyprwm/hyprpicker" revision="refs/heads/main" remote="github"/>
   <project name="hyprwm/hyprpolkitagent" path="hyprwm/hyprpolkitagent" revision="refs/heads/main" remote="github"/>

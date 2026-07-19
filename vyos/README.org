@@ -33,7 +33,6 @@ To avoid confirmations
 Load blocks
 
 #+begin_src emacs-lisp
-;; untested
 (org-babel-lob-ingest "../babel.org")
 #+end_src
 
