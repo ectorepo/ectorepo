@@ -25,6 +25,7 @@
   <project name="SEIAROTg/quadlet-nix" path="cni/quadlet-nix" revision="refs/heads/main" remote="github"/>
   <!-- vm -->
   <project name="Mic92/nixos-shell" path="vm/nixos-shell" revision="refs/heads/main" remote="github"/>
+  <project name="microvm-nix/microvm.nix" path="vm/microvm.nix" revision="refs/heads/main" remote="github"/>
   <!-- platforms -->
   <project name="cleverca22/not-os" path="platforms/not-os" groups="nixos" revision="refs/heads/master"/>
   <!-- systems -->
