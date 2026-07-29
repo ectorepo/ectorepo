@@ -30,7 +30,6 @@
   <project name="NixOS/nixops" path="nixos/nixops" revision="refs/heads/master" remote="github"/>
   <project name="NixOS/nixops-aws" path="nixos/nixops-aws" revision="refs/heads/master" remote="github"/>
   <project name="NixOS/nixops-hetzner" path="nixos/nixops-hetzner" revision="refs/heads/master" remote="github"/>
-  <project name="NixOS/nixos-channel-scripts" path="nixos/nixos-channel-scripts" revision="refs/heads/master" remote="github"/>
   <project name="NixOS/nixos-channel-scripts" path="nixos/nixos-channel-scripts" revision="refs/heads/main" remote="github"/>
   <project name="NixOS/nixos-common-styles" path="nixos/nixos-common-styles" revision="refs/heads/main" remote="github"/>
   <project name="NixOS/nixos-hardware" path="nixos/nixos-hardware" revision="refs/heads/master" remote="github"/>
