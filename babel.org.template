@@ -78,3 +78,48 @@ Generate =vyos.xml=
   <<vyosReposXML()>>
 </manifest>
 #+end_src
+
+* Blender (Gitea)
+
+#+name: blenderLogin
+#+begin_src emacs-lisp
+"blender"
+#+end_src
+
+Excluded Repositories
+
+#+NAME: blenderGiteaReposExclude
+| .github    |
+
+#+name: blenderGiteaReposFetch
+#+call: ghubGiteaReposFetch(login=blenderLogin)
+
+Clone bundle sizes
+
+#+name: blenderGiteaReposBundles
+#+call: ghubGiteaReposBundles(repos=blenderGiteaReposFetch)
+
+Clone bundles total
+
+#+name: blenderGiteaReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=blenderGiteaReposBundles[,0])
+
+#+RESULTS: blenderGiteaReposBundlesTotal
+: 161186482
+
+** Blender Repos
+
+Filter the results, generate XML
+
+#+name: blenderReposXML
+#+call: ghubGiteaReposXML(repos=blenderGiteaReposFetch, reposExclude=blenderGiteaReposExclude, login=blenderLogin)
+
+** Generate XML
+
+Generate =blender.xml=
+
+#+begin_src xml :tangle blender.xml :noweb yes
+<manifest>
+  <<blenderReposXML()>>
+</manifest>
+#+end_src

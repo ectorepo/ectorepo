@@ -23,7 +23,7 @@ I haven't really used library of babel before, but i may try soon.
 #+end_src
 
 #+NAME: ghubReposExclude
-| .github    |
+| .github |
 
 *** ghubReposFetch
 
@@ -135,3 +135,151 @@ This has three parameters:
     (cl-sort 'string-lessp :key 'downcase)
     (string-join "\n")))
 #+end_src
+
+*** ghubGiteaReposFetch
+
++ =/orgs/%s/repos= is effective the same as =/users/%s/repos= afaik
+
+#+name: ghubGiteaReposFetch
+#+begin_src emacs-lisp :var login="blender" gitea-host="projects.blender.org/api/v1" gitea-user="aionfork"
+(ghub-get (format "/users/%s/repos" login) nil
+          :forge 'gitea :username gitea-user :host gitea-host)
+#+end_src
+
+**** ghubGiteaReposFetchJson
+
+#+name: ghubGiteaReposFetchJson
+#+begin_src emacs-lisp :var gitea-host="projects.blender.org/api/v1" gitea-user="aionfork"
+;; :extra (list (current-time))
+ (json-encode
+  (ghub-get "/orgs/blender/repos" nil :forge 'gitea
+          :username gitea-user :host gitea-host))
+;; (pp-to-string ...) ;; :results output code :wrap example json
+#+end_src
+
+Could follow =jq= to XML via =xq=, but it's messy and requires a root el
+
+#+begin_src jq :stdin ghubGiteaReposFetchJson :cmd-line -r :results table
+map(select(.fork == null and .archived != true)
+     | [.size,
+        .owner.login,
+        "refs/heads/\(.default_branch)",
+        .name,
+        .updated_at,
+        .fork,
+        .archived,
+        .html_url] # | @csv
+   )
+#+end_src
+
+#+RESULTS:
+|    74781 | blender | refs/heads/main | blender-asset-tracer        | 2026-07-31T11:38:43+02:00 | nil | nil | https://projects.blender.org/blender/blender-asset-tracer        |
+|    24790 | blender | refs/heads/main | cycles                      | 2026-07-30T14:48:37+02:00 | nil | nil | https://projects.blender.org/blender/cycles                      |
+|    11717 | blender | refs/heads/main | libmv                       | 2023-02-07T12:45:19+01:00 | nil | nil | https://projects.blender.org/blender/libmv                       |
+|     3562 | blender | refs/heads/main | oss-attribution-builder     | 2024-07-15T16:53:53+02:00 | nil | nil | https://projects.blender.org/blender/oss-attribution-builder     |
+|   883869 | blender | refs/heads/main | blender-manual              | 2026-08-05T02:56:46+02:00 | nil | nil | https://projects.blender.org/blender/blender-manual              |
+|  6337887 | blender | refs/heads/main | blender                     | 2026-08-05T18:54:09+02:00 | nil | nil | https://projects.blender.org/blender/blender                     |
+|  6685891 | blender | refs/heads/main | blender-manual-translations | 2026-08-05T15:01:53+02:00 | nil | nil | https://projects.blender.org/blender/blender-manual-translations |
+|  2314914 | blender | refs/heads/main | blender-ui-translations     | 2026-08-05T17:38:56+02:00 | nil | nil | https://projects.blender.org/blender/blender-ui-translations     |
+|  2048337 | blender | refs/heads/main | blender-developer-docs      | 2026-08-05T14:31:06+02:00 | nil | nil | https://projects.blender.org/blender/blender-developer-docs      |
+| 21895159 | blender | refs/heads/main | lib-linux_x64               | 2026-07-22T19:16:16+02:00 | nil | nil | https://projects.blender.org/blender/lib-linux_x64               |
+|  9911224 | blender | refs/heads/main | lib-macos_arm64             | 2026-07-24T10:57:40+02:00 | nil | nil | https://projects.blender.org/blender/lib-macos_arm64             |
+|  6618230 | blender | refs/heads/main | lib-macos_x64               | 2025-06-06T08:54:08+02:00 | nil | nil | https://projects.blender.org/blender/lib-macos_x64               |
+| 37980526 | blender | refs/heads/main | lib-windows_x64             | 2026-06-29T16:07:28+02:00 | nil | nil | https://projects.blender.org/blender/lib-windows_x64             |
+| 11353958 | blender | refs/heads/main | blender-assets              | 2026-07-31T16:58:20+02:00 | nil | nil | https://projects.blender.org/blender/blender-assets              |
+|  6787174 | blender | refs/heads/main | blender-benchmarks          | 2026-06-03T16:33:43+02:00 | nil | nil | https://projects.blender.org/blender/blender-benchmarks          |
+|  7886814 | blender | refs/heads/main | lib-source                  | 2026-07-07T15:58:50+02:00 | nil | nil | https://projects.blender.org/blender/lib-source                  |
+| 31086617 | blender | refs/heads/main | lib-windows_arm64           | 2026-07-01T19:07:02+02:00 | nil | nil | https://projects.blender.org/blender/lib-windows_arm64           |
+|  8459038 | blender | refs/heads/main | lib-linux_arm64             | 2026-05-26T18:12:15+02:00 | nil | nil | https://projects.blender.org/blender/lib-linux_arm64             |
+|   821623 | blender | refs/heads/main | lib-ios_arm64               | 2025-07-24T10:09:47+02:00 | nil | nil | https://projects.blender.org/blender/lib-ios_arm64               |
+
+*** ghubGiteaReposBundles
+
+#+name: ghubGiteaReposBundles
+#+begin_src emacs-lisp :var repos=ghubGiteaReposFetch :results value table :exports code :noweb yes :eval query
+(thread-first
+  (thread-last
+    repos
+    
+    ;; filter archived repos
+    (seq-filter (lambda (el) (not (a-get* el 'fork))))
+    (seq-filter (lambda (el) (not (a-get* el 'archived))))
+
+    (mapcar (lambda (el)
+              (list (a-get* el 'size)
+                    (a-get* el 'owner 'login)
+                    (format "refs/heads/%s" (a-get* el 'default_branch))
+                    (a-get* el 'name)
+                    (a-get* el 'updated_at)
+                    (a-get* el 'fork)
+                    (a-get* el 'archived)
+                    (a-get* el 'html_url))))))
+#+end_src
+
+#+RESULTS: ghubGiteaReposBundles
+|    74781 | blender | refs/heads/main | blender-asset-tracer        | 2026-07-31T11:38:43+02:00 | nil | nil | https://projects.blender.org/blender/blender-asset-tracer        |
+|    24790 | blender | refs/heads/main | cycles                      | 2026-07-30T14:48:37+02:00 | nil | nil | https://projects.blender.org/blender/cycles                      |
+|    11717 | blender | refs/heads/main | libmv                       | 2023-02-07T12:45:19+01:00 | nil | nil | https://projects.blender.org/blender/libmv                       |
+|     3562 | blender | refs/heads/main | oss-attribution-builder     | 2024-07-15T16:53:53+02:00 | nil | nil | https://projects.blender.org/blender/oss-attribution-builder     |
+|   883869 | blender | refs/heads/main | blender-manual              | 2026-08-05T02:56:46+02:00 | nil | nil | https://projects.blender.org/blender/blender-manual              |
+|  6344371 | blender | refs/heads/main | blender                     | 2026-08-05T17:45:46+02:00 | nil | nil | https://projects.blender.org/blender/blender                     |
+|  6685891 | blender | refs/heads/main | blender-manual-translations | 2026-08-05T15:01:53+02:00 | nil | nil | https://projects.blender.org/blender/blender-manual-translations |
+|  2314914 | blender | refs/heads/main | blender-ui-translations     | 2026-08-05T17:38:56+02:00 | nil | nil | https://projects.blender.org/blender/blender-ui-translations     |
+|  2048337 | blender | refs/heads/main | blender-developer-docs      | 2026-08-05T14:31:06+02:00 | nil | nil | https://projects.blender.org/blender/blender-developer-docs      |
+| 21895159 | blender | refs/heads/main | lib-linux_x64               | 2026-07-22T19:16:16+02:00 | nil | nil | https://projects.blender.org/blender/lib-linux_x64               |
+|  9911224 | blender | refs/heads/main | lib-macos_arm64             | 2026-07-24T10:57:40+02:00 | nil | nil | https://projects.blender.org/blender/lib-macos_arm64             |
+|  6618230 | blender | refs/heads/main | lib-macos_x64               | 2025-06-06T08:54:08+02:00 | nil | nil | https://projects.blender.org/blender/lib-macos_x64               |
+| 37980526 | blender | refs/heads/main | lib-windows_x64             | 2026-06-29T16:07:28+02:00 | nil | nil | https://projects.blender.org/blender/lib-windows_x64             |
+| 11353958 | blender | refs/heads/main | blender-assets              | 2026-07-31T16:58:20+02:00 | nil | nil | https://projects.blender.org/blender/blender-assets              |
+|  6787174 | blender | refs/heads/main | blender-benchmarks          | 2026-06-03T16:33:43+02:00 | nil | nil | https://projects.blender.org/blender/blender-benchmarks          |
+|  7886814 | blender | refs/heads/main | lib-source                  | 2026-07-07T15:58:50+02:00 | nil | nil | https://projects.blender.org/blender/lib-source                  |
+| 31086617 | blender | refs/heads/main | lib-windows_arm64           | 2026-07-01T19:07:02+02:00 | nil | nil | https://projects.blender.org/blender/lib-windows_arm64           |
+|  8459038 | blender | refs/heads/main | lib-linux_arm64             | 2026-05-26T18:12:15+02:00 | nil | nil | https://projects.blender.org/blender/lib-linux_arm64             |
+|   821623 | blender | refs/heads/main | lib-ios_arm64               | 2025-07-24T10:09:47+02:00 | nil | nil | https://projects.blender.org/blender/lib-ios_arm64               |
+
+*** ghubReposXML
+
+#+name: ghubGiteaReposXML
+#+begin_src emacs-lisp :var remote="blender" repos=ghubGiteaReposFetch reposExclude=ghubReposExclude login="dcunited001" :results value html
+(let* ((reposExclude (flatten-list reposExclude)))
+  (thread-first
+    (thread-last
+      repos
+      (seq-filter (lambda (el) (not (a-get* el 'archived))))
+      (seq-filter (lambda (el) (not (a-get* el 'fork))))
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) reposExclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+                       (path-dirs (list login raw-name))
+                       (path (string-join path-dirs "/"))
+                       (ref (format "refs/heads/%s" (a-get* el 'default_branch)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (format "<project name=\"%s\" path=\"%s\" revision=\"%s\" remote=\"%s\"/>"
+                          name path ref remote)))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+#+RESULTS: ghubGiteaReposXML
+#+begin_export html
+<project name="blender/blender" path="dcunited001/blender" revision="refs/heads/main" remote="blender"/>
+<project name="blender/blender-asset-tracer" path="dcunited001/blender-asset-tracer" revision="refs/heads/main" remote="blender"/>
+<project name="blender/blender-assets" path="dcunited001/blender-assets" revision="refs/heads/main" remote="blender"/>
+<project name="blender/blender-benchmarks" path="dcunited001/blender-benchmarks" revision="refs/heads/main" remote="blender"/>
+<project name="blender/blender-developer-docs" path="dcunited001/blender-developer-docs" revision="refs/heads/main" remote="blender"/>
+<project name="blender/blender-manual" path="dcunited001/blender-manual" revision="refs/heads/main" remote="blender"/>
+<project name="blender/blender-manual-translations" path="dcunited001/blender-manual-translations" revision="refs/heads/main" remote="blender"/>
+<project name="blender/blender-ui-translations" path="dcunited001/blender-ui-translations" revision="refs/heads/main" remote="blender"/>
+<project name="blender/cycles" path="dcunited001/cycles" revision="refs/heads/main" remote="blender"/>
+<project name="blender/lib-ios_arm64" path="dcunited001/lib-ios_arm64" revision="refs/heads/main" remote="blender"/>
+<project name="blender/lib-linux_arm64" path="dcunited001/lib-linux_arm64" revision="refs/heads/main" remote="blender"/>
+<project name="blender/lib-linux_x64" path="dcunited001/lib-linux_x64" revision="refs/heads/main" remote="blender"/>
+<project name="blender/lib-macos_arm64" path="dcunited001/lib-macos_arm64" revision="refs/heads/main" remote="blender"/>
+<project name="blender/lib-macos_x64" path="dcunited001/lib-macos_x64" revision="refs/heads/main" remote="blender"/>
+<project name="blender/lib-source" path="dcunited001/lib-source" revision="refs/heads/main" remote="blender"/>
+<project name="blender/lib-windows_arm64" path="dcunited001/lib-windows_arm64" revision="refs/heads/main" remote="blender"/>
+<project name="blender/lib-windows_x64" path="dcunited001/lib-windows_x64" revision="refs/heads/main" remote="blender"/>
+<project name="blender/libmv" path="dcunited001/libmv" revision="refs/heads/main" remote="blender"/>
+<project name="blender/oss-attribution-builder" path="dcunited001/oss-attribution-builder" revision="refs/heads/main" remote="blender"/>
+#+end_export
