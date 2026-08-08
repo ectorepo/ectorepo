@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <!-- codegen -->
+  <!-- gui -->
+  <project name="aaronbeall/arborist-ui" path="gui/arborist-ui" revision="refs/heads/main" remote="github"/>
+</manifest>

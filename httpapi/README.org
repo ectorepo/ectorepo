@@ -16,6 +16,7 @@ repository.
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="httpapi/apis-guru.xml"/>
+  <include name="httpapi/tools.xml"/>
 </manifest>
 #+end_src
 
@@ -44,6 +45,16 @@ Check rates with =ghubCheckRates()=
 #+RESULTS:
 #+begin_src emacs-lisp
 5000
+#+end_src
+
+* Tools
+
+#+begin_src xml :tangle tools.xml
+<manifest>
+  <!-- codegen -->
+  <!-- gui -->
+  <project name="aaronbeall/arborist-ui" path="gui/arborist-ui" revision="refs/heads/main" remote="github"/>
+</manifest>
 #+end_src
 
 * apis-guru
@@ -125,15 +136,15 @@ Clone bundle sizes
 #+end_src
 
 #+RESULTS: apis-guruBundles
-|  14503 | APIs-guru | refs/heads/ | master   | awesome-openapi3   | 2026-06-05T00:21:58Z | nil | nil | https://github.com/APIs-guru/awesome-openapi3            |
-|  56627 | APIs-guru | refs/heads/ | main     | graphql-voyager    | 2026-06-04T23:34:48Z | nil | nil | https://github.com/APIs-guru/graphql-voyager             |
-|   6693 | APIs-guru | refs/heads/ | main     | dotviz             | 2026-06-04T22:31:54Z | nil | nil | https://github.com/APIs-guru/dotviz                      |
-| 784141 | APIs-guru | refs/heads/ | main     | openapi-directory  | 2026-06-03T15:54:44Z | nil | nil | https://github.com/APIs-guru/openapi-directory           |
-|   2898 | APIs-guru | refs/heads/ | main     | asyncapi-directory | 2026-06-01T00:15:19Z | nil | nil | https://github.com/APIs-guru/asyncapi-directory          |
-|   3697 | APIs-guru | refs/heads/ | main     | graphql-faker      | 2026-05-29T12:52:49Z | nil | nil | https://github.com/APIs-guru/graphql-faker               |
-|    185 | APIs-guru | refs/heads/ | master   | graphql-apis       | 2026-06-01T22:28:12Z | nil | nil | https://github.com/APIs-guru/graphql-apis                |
-|    246 | APIs-guru | refs/heads/ | main     | aws2openapi        | 2026-04-02T06:07:11Z | nil | nil | https://github.com/APIs-guru/aws2openapi                 |
-|   5912 | APIs-guru | refs/heads/ | master   | graphql-coverage   | 2025-08-23T22:16:02Z | nil | nil | https://github.com/APIs-guru/graphql-coverage            |
+|  14503 | APIs-guru | refs/heads/ | master | awesome-openapi3   | 2026-06-05T00:21:58Z | nil | nil | https://github.com/APIs-guru/awesome-openapi3   |
+|  56627 | APIs-guru | refs/heads/ | main   | graphql-voyager    | 2026-06-04T23:34:48Z | nil | nil | https://github.com/APIs-guru/graphql-voyager    |
+|   6693 | APIs-guru | refs/heads/ | main   | dotviz             | 2026-06-04T22:31:54Z | nil | nil | https://github.com/APIs-guru/dotviz             |
+| 784141 | APIs-guru | refs/heads/ | main   | openapi-directory  | 2026-06-03T15:54:44Z | nil | nil | https://github.com/APIs-guru/openapi-directory  |
+|   2898 | APIs-guru | refs/heads/ | main   | asyncapi-directory | 2026-06-01T00:15:19Z | nil | nil | https://github.com/APIs-guru/asyncapi-directory |
+|   3697 | APIs-guru | refs/heads/ | main   | graphql-faker      | 2026-05-29T12:52:49Z | nil | nil | https://github.com/APIs-guru/graphql-faker      |
+|    185 | APIs-guru | refs/heads/ | master | graphql-apis       | 2026-06-01T22:28:12Z | nil | nil | https://github.com/APIs-guru/graphql-apis       |
+|    246 | APIs-guru | refs/heads/ | main   | aws2openapi        | 2026-04-02T06:07:11Z | nil | nil | https://github.com/APIs-guru/aws2openapi        |
+|   5912 | APIs-guru | refs/heads/ | master | graphql-coverage   | 2025-08-23T22:16:02Z | nil | nil | https://github.com/APIs-guru/graphql-coverage   |
 
 
 #+name: apis-guruBundlesTotal
