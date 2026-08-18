@@ -82,7 +82,7 @@ cat ./catalog.json | jq '.plugins
 . | map(select(.isArchived | not) | select(.isFork | not))
   | map(. += {repoName: (.repo | split("/")[-2:] | join("/"))})
   | map(select(.repoName | IN("basecamp/omarchy") | not))
-  | map("  <project name=\"\(.owner.login)\/\(.name)\" path=\"plugins\/\(.owner.login)\/\(.name)\" ref=\"\(.defaultBranchRef.prefix)\(.defaultBranchRef.name)\" remote=\"github\" />")
+  | map("  <project name=\"\(.owner.login)\/\(.name)\" path=\"plugins\/\(.owner.login)\/\(.name)\" revision=\"\(.defaultBranchRef.prefix)\(.defaultBranchRef.name)\" remote=\"github\" />")
   | sort | unique | join("\n")
 #+end_src
 
@@ -112,7 +112,7 @@ map(select((.repository.full_name // "")
     | IN("basecamp/omarchy") | not))
   | map(select(.archived | not) | select(.fork | not))
   | map(. += { name: (.repository.full_name | split("/") | last) })
-  | map("  <project name=\"\(.repository.full_name)\" path=\"themes\/\(.repository.full_name)\" ref=\"refs/heads/\(.repository.default_branch)\" remote=\"github\" />")
+  | map("  <project name=\"\(.repository.full_name)\" path=\"themes\/\(.repository.full_name)\" revision=\"refs/heads/\(.repository.default_branch)\" remote=\"github\" />")
   | sort | unique | join("\n")
 #+end_example
 
