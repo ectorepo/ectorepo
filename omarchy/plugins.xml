@@ -119,8 +119,6 @@
     <project name="balazsorban44/omarchy-keyboard-minimap" path="plugins/balazsorban44/omarchy-keyboard-minimap" ref="refs/heads/main" remote="github" />
     <project name="basecamp/omarchy-basecamp-plugin" path="plugins/basecamp/omarchy-basecamp-plugin" ref="refs/heads/master" remote="github" />
     <project name="bjarneo/omarchy-shell-plugins" path="plugins/bjarneo/omarchy-shell-plugins" ref="refs/heads/main" remote="github" />
-    <project name="bjarneo/omarchy-shell-plugins" path="plugins/bjarneo/omarchy-shell-plugins" ref="refs/heads/main" remote="github" />
-    <project name="bjarneo/omarchy-shell-plugins" path="plugins/bjarneo/omarchy-shell-plugins" ref="refs/heads/main" remote="github" />
     <project name="bobby-nicholas/omaland" path="plugins/bobby-nicholas/omaland" ref="refs/heads/main" remote="github" />
     <project name="bramvera/omarchy-proton-vpn" path="plugins/bramvera/omarchy-proton-vpn" ref="refs/heads/main" remote="github" />
     <project name="brianblakely/blink" path="plugins/brianblakely/blink" ref="refs/heads/master" remote="github" />
@@ -190,6 +188,7 @@
     <project name="glafeara/omarchy-wireguard" path="plugins/glafeara/omarchy-wireguard" ref="refs/heads/main" remote="github" />
     <project name="gohlihan/omarchy-cn-input-plugin" path="plugins/gohlihan/omarchy-cn-input-plugin" ref="refs/heads/main" remote="github" />
     <project name="gpatkinson/btc-price" path="plugins/gpatkinson/btc-price" ref="refs/heads/master" remote="github" />
+    <project name="guilhermeyo/omarchy-mclovin" path="plugins/guilhermeyo/omarchy-mclovin" ref="refs/heads/main" remote="github" />
     <project name="haripako/omamusic" path="plugins/haripako/omamusic" ref="refs/heads/main" remote="github" />
     <project name="harisadam/OmaOVPN" path="plugins/harisadam/OmaOVPN" ref="refs/heads/master" remote="github" />
     <project name="haydenmckay/omarchy-media-pip" path="plugins/haydenmckay/omarchy-media-pip" ref="refs/heads/master" remote="github" />
@@ -245,6 +244,7 @@
     <project name="mfellipeso/omarchy-display-watcher" path="plugins/mfellipeso/omarchy-display-watcher" ref="refs/heads/main" remote="github" />
     <project name="mikealvgar/omarchy-asus-controller" path="plugins/mikealvgar/omarchy-asus-controller" ref="refs/heads/main" remote="github" />
     <project name="mmsbrggr/omarchy-per-monitor-workspaces" path="plugins/mmsbrggr/omarchy-per-monitor-workspaces" ref="refs/heads/main" remote="github" />
+    <project name="mobilekjk-coder/omarchy-lks" path="plugins/mobilekjk-coder/omarchy-lks" ref="refs/heads/main" remote="github" />
     <project name="modoterra/omabench" path="plugins/modoterra/omabench" ref="refs/heads/main" remote="github" />
     <project name="monorkin/omarchy-voyager-disco" path="plugins/monorkin/omarchy-voyager-disco" ref="refs/heads/main" remote="github" />
     <project name="monswiklund/omarchy-workspace-presets" path="plugins/monswiklund/omarchy-workspace-presets" ref="refs/heads/main" remote="github" />
