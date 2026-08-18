@@ -1,0 +1,208 @@
+#+title: Ectorepo: Omarchy
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+#+PROPERTY: header-args+ :comments none
+
+* Manifest
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+  <include name="omarchy/themes.xml"/>
+  <include name="omarchy/plugins.xml"/>
+</manifest>
+#+end_src
+
+** Babel Setup
+
+To avoid confirmations
+
+#+begin_src emacs-lisp
+(setq-local org-confirm-babel-evaluate nil)
+#+end_src
+
+Load blocks
+
+#+begin_src emacs-lisp
+;; untested
+(org-babel-lob-ingest "../babel.org")
+#+end_src
+
+#+RESULTS:
+: 1
+
+Check rates with =ghubCheckRates()=
+
+#+call: ghubCheckRates()
+
+#+RESULTS:
+#+begin_src emacs-lisp
+5000
+#+end_src
+
+* Plugins
+
+** Plugin Repos from omarchyplugins.com
+
+#+name: omarchyPluginsFetchJson
+#+headers: :jq-args "--raw-output" :eval query :results value code :wrap example json
+#+begin_src restclient :jq ".plugins | map({ isFork: false, isArchived: false, owner: { login: (.repo | split(\"/\")[-2])}, repo: .repo, name: (.repo | split(\"/\")[-1]), defaultBranchRef: { prefix: \"refs/heads/\", name: .upstreamObservedBranch }})"
+:plugins-base = https://omarchyplugins.com
+:catalog-path = catalog.json
+
+:headers = <<
+Accept: application/json
+User-Agent: Emacs
+#
+
+GET :plugins-base/:catalog-path
+:headers
+#+end_src
+
+#+name: omarchyPluginsJson
+#+begin_src sh :results output code :wrap example json
+# TODO: omarchy plugins: handle other remote names
+cat ./catalog.json | jq '.plugins
+| map({
+  isFork: false,
+  isArchived: false,
+  owner: { login: (.repo | split("/")[-2])},
+  repo: .repo,
+  name: (.repo | split("/")[-1]),
+  defaultBranchRef: { prefix: "refs/heads/", name: .upstreamObservedBranch }
+})'
+#+end_src
+
+#+name: omarchyPluginsReposXML
+#+headers: :var pathDirs="[\"plugins\"]"
+#+begin_src jq :stdin omarchyPluginsFetchJson :cmd-line "-r" :results output code :wrap example xml
+# TODO: omarchy plugins: exclude some repos
+. | map(select(.isArchived | not) | select(.isFork | not))
+  | map(. += {repoName: (.repo | split("/")[-2:] | join("/"))})
+  | map(select(.repoName | IN("basecamp/omarchy") | not))
+  | map("  <project name=\"\(.owner.login)\/\(.name)\" path=\"plugins\/\(.owner.login)\/\(.name)\" ref=\"\(.defaultBranchRef.prefix)\(.defaultBranchRef.name)\" remote=\"github\" />")
+  | sort | join("\n")
+#+end_src
+
+** Generate XML
+
+Generate =plugins.xml=
+
+#+begin_src xml :tangle plugins.xml :noweb yes
+<manifest>
+  <<omarchyPluginsReposXML()>>
+</manifest>
+#+end_src
+
+
+* Themes
+
+** awesome.ecosyste.ms
+
++ Via [[https://awesome.ecosyste.ms/docs/index.html][awesome.ecosyste.ms/lists/{id}/projects]]
+
+#+name: awesomeThemesJq
+#+begin_example jq
+# TODO: omarchy themes: handle other remote names
+map(select((.repository.full_name // "")
+    | match("(\/omarchy-.*-theme)"; "g")))
+  | map(select(.repository.full_name
+    | IN("basecamp/omarchy") | not))
+  | map(select(.archived | not) | select(.fork | not))
+  | map(. += { name: (.repository.full_name | split("/") | last) })
+  | map("  <project name=\"\(.repository.full_name)\" path=\"themes\/\(.repository.full_name)\" ref=\"refs/heads/\(.repository.default_branch)\" remote=\"github\" />")
+  | sort | join("\n")
+#+end_example
+
+#+name: awesomeThemesXML
+#+headers: :var awesome-list="aorumbayev%2Fawesome-omarchy" :jq-args "--raw-output" :eval query :results output verbatim
+#+begin_src restclient :jq (org-sbe awesomeThemesJq)
+# sort_by(-.size) | map([.owner.login, .name, .size, .default_branch, .archived, .updated_at])[] | @csv
+:awesome-api-base = https://awesome.ecosyste.ms/api/v1
+:awesome-api-path = lists/:awesome-list/projects
+
+:headers = <<
+Accept: application/json
+User-Agent: Emacs
+#
+
+GET :awesome-api-base/:awesome-api-path
+:headers
+#+end_src
+
+** Generate XML
+
+Generate =themes.xml=
+
+#+begin_src xml :tangle themes.xml :noweb yes
+<manifest>
+  <<awesomeThemesXML()>>
+</manifest>
+#+end_src
+
+
+* Misc
+
+
+** JQ Queries
+
+*** Plugins
+
+Could use =(ghub--read-json-payload)= to figure out the weird issues with
+emacs-lisp & babel above. or use [[https://github.com/ectorepo/guix/blob/master/README.org?plain=1#L15][org-sbe like this]]
+
+#+name: pluginReposXML2
+#+begin_src emacs-lisp :var repos=pluginsFetchJson reposExclude=pluginsReposExclude :results value html
+(let* ((reposExclude (flatten-list reposExclude))
+       (repos (ghub--read-json-payload repos)))
+  (thread-first
+    (thread-last
+      repos
+      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
+      (seq-filter (lambda (el) (not (a-get* el 'isFork))))
+      (seq-filter (lambda (el) (not (member (a-get* el 'name) reposExclude))))
+      (mapcar (lambda (el)
+                (let* ((raw-name (a-get* el 'name))
+                       (login (a-get* el 'owner 'login))
+                       (path-dirs (list login raw-name))
+
+                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
+                       ;;                 (t (list "misc" raw-name))))
+
+                       (path (string-join path-dirs "/"))
+                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
+                                    (a-get* el 'defaultBranchRef 'name)))
+                       (name (string-join (list (a-get* el 'owner 'login)
+                                                (a-get* el 'name)) "/")))
+                  (concat "<project"
+                          " name=\"" name
+                          "\" path=\"" path
+                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
+    (cl-sort 'string-lessp :key 'downcase)
+    (string-join "\n")))
+#+end_src
+
+*** Themes
+
+
+
+#+begin_src jq :stdin awesomeJson
+map(select((.repository.full_name // "")
+            | match("(\/omarchy-.*-theme)"; "g")))
+   | map({
+            isFork: .repository.fork,
+            isArchived: .repository.archived,
+            owner: .repository.owner,
+            repoName: .repository.full_name,
+            repo: .url,
+            name: (.repository.full_name | split("/") | last),
+            defaultBranchRef: { prefix: "refs/heads/", name: .repository.default_branch }
+          })
+
+        | .[0:5]
+# map(.repository)
+#+end_src
+
+
