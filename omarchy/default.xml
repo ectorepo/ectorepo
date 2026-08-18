@@ -5,4 +5,6 @@
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="omarchy/themes.xml"/>
   <include name="omarchy/plugins.xml"/>
+
+  <project name="HANCORE-linux/omarchy-plugin-marketplace" path="omarchy-plugin-marketplace" revision="refs/heads/main" remote="github" />
 </manifest>
