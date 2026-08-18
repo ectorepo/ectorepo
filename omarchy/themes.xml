@@ -32,7 +32,6 @@
     <project name="hipsterusername/omarchy-waveform-dark-theme" path="themes/hipsterusername/omarchy-waveform-dark-theme" revision="refs/heads/main" remote="github" />
     <project name="hoblin/omarchy-cobalt2-theme" path="themes/hoblin/omarchy-cobalt2-theme" revision="refs/heads/main" remote="github" />
     <project name="j4v3l/omarchy-anonymous-theme" path="themes/j4v3l/omarchy-anonymous-theme" revision="refs/heads/main" remote="github" />
-    <project name="joaquinmeza/omarchy-hakker-green-theme" path="themes/joaquinmeza/omarchy-hakker-green-theme" revision="refs/heads/master" remote="github" />
     <project name="knappkevin/omarchy-crimson-gold-theme" path="themes/knappkevin/omarchy-crimson-gold-theme" revision="refs/heads/main" remote="github" />
     <project name="maxberggren/omarchy-night-owl-theme" path="themes/maxberggren/omarchy-night-owl-theme" revision="refs/heads/main" remote="github" />
     <project name="motorsss/omarchy-solarizedosaka-theme" path="themes/motorsss/omarchy-solarizedosaka-theme" revision="refs/heads/main" remote="github" />
