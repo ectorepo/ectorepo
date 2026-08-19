@@ -4,11 +4,15 @@
     <project name="25cent9/omarchy-lmstudio-plugin" path="plugins/25cent9/omarchy-lmstudio-plugin" revision="refs/heads/main" remote="github" />
     <project name="28allday/Quattrolitaire" path="plugins/28allday/Quattrolitaire" revision="refs/heads/main" remote="github" />
     <project name="28allday/omarchy-network-scan" path="plugins/28allday/omarchy-network-scan" revision="refs/heads/main" remote="github" />
+    <project name="5d0tal1gat0r/omarchy-stocks" path="plugins/5d0tal1gat0r/omarchy-stocks" revision="refs/heads/main" remote="github" />
     <project name="Aayushstha03/omarchy-meeting-notes" path="plugins/Aayushstha03/omarchy-meeting-notes" revision="refs/heads/main" remote="github" />
     <project name="Adityavijayvargiya01/coverglow" path="plugins/Adityavijayvargiya01/coverglow" revision="refs/heads/main" remote="github" />
+    <project name="Akshad135/anisync" path="plugins/Akshad135/anisync" revision="refs/heads/main" remote="github" />
+    <project name="Akshad135/wordle" path="plugins/Akshad135/wordle" revision="refs/heads/main" remote="github" />
     <project name="AksharP5/omarchy-radio-atlas" path="plugins/AksharP5/omarchy-radio-atlas" revision="refs/heads/main" remote="github" />
     <project name="AllStars101-sudo/omarchy-dyson" path="plugins/AllStars101-sudo/omarchy-dyson" revision="refs/heads/main" remote="github" />
     <project name="AndresSM415/omaprox" path="plugins/AndresSM415/omaprox" revision="refs/heads/main" remote="github" />
+    <project name="ArhamTheDeveloper/mushaf" path="plugins/ArhamTheDeveloper/mushaf" revision="refs/heads/main" remote="github" />
     <project name="Aryan-Techie/omarchy-todoist" path="plugins/Aryan-Techie/omarchy-todoist" revision="refs/heads/main" remote="github" />
     <project name="Aweiward/omaqbt" path="plugins/Aweiward/omaqbt" revision="refs/heads/master" remote="github" />
     <project name="Aweiward/omarchy-mullvad" path="plugins/Aweiward/omarchy-mullvad" revision="refs/heads/master" remote="github" />
@@ -20,11 +24,14 @@
     <project name="BibekBhusal0/omarchy-readest" path="plugins/BibekBhusal0/omarchy-readest" revision="refs/heads/main" remote="github" />
     <project name="Blizl/Omarchy-Voxtype-OSD" path="plugins/Blizl/Omarchy-Voxtype-OSD" revision="refs/heads/main" remote="github" />
     <project name="Bmontythe3rd/omarchy-display-manager" path="plugins/Bmontythe3rd/omarchy-display-manager" revision="refs/heads/main" remote="github" />
+    <project name="Bwest8/omarchy-open-apps" path="plugins/Bwest8/omarchy-open-apps" revision="refs/heads/main" remote="github" />
     <project name="CarlOscarHMJ/omarchy-menu-plus" path="plugins/CarlOscarHMJ/omarchy-menu-plus" revision="refs/heads/master" remote="github" />
     <project name="CarlOscarHMJ/omarchy-weather-extended" path="plugins/CarlOscarHMJ/omarchy-weather-extended" revision="refs/heads/master" remote="github" />
     <project name="Chernicharo/omarchy-plugin-voxtype-mode" path="plugins/Chernicharo/omarchy-plugin-voxtype-mode" revision="refs/heads/main" remote="github" />
     <project name="DanielLob-o/Omaspaces" path="plugins/DanielLob-o/Omaspaces" revision="refs/heads/main" remote="github" />
     <project name="DanielLob-o/OnTheMinute" path="plugins/DanielLob-o/OnTheMinute" revision="refs/heads/main" remote="github" />
+    <project name="Davies-Sam/omatheme" path="plugins/Davies-Sam/omatheme" revision="refs/heads/master" remote="github" />
+    <project name="Deoxizn/BarDisplay" path="plugins/Deoxizn/BarDisplay" revision="refs/heads/main" remote="github" />
     <project name="Deoxizn/devicebattstats" path="plugins/Deoxizn/devicebattstats" revision="refs/heads/main" remote="github" />
     <project name="Deoxizn/keybind-manager" path="plugins/Deoxizn/keybind-manager" revision="refs/heads/main" remote="github" />
     <project name="DillanMateusHkl/multi-monitor-workspaces" path="plugins/DillanMateusHkl/multi-monitor-workspaces" revision="refs/heads/main" remote="github" />
@@ -34,10 +41,12 @@
     <project name="EdwardPayne/omarchy-kube-status" path="plugins/EdwardPayne/omarchy-kube-status" revision="refs/heads/main" remote="github" />
     <project name="EmiiFont/omarchy-github-search" path="plugins/EmiiFont/omarchy-github-search" revision="refs/heads/main" remote="github" />
     <project name="Esegnorelli/omarchy-omacapy" path="plugins/Esegnorelli/omarchy-omacapy" revision="refs/heads/main" remote="github" />
+    <project name="FilipHarald/omacoach" path="plugins/FilipHarald/omacoach" revision="refs/heads/master" remote="github" />
     <project name="FishMacc/omahome" path="plugins/FishMacc/omahome" revision="refs/heads/main" remote="github" />
     <project name="GeertJohan/omarchy-submap-widget" path="plugins/GeertJohan/omarchy-submap-widget" revision="refs/heads/master" remote="github" />
     <project name="GengCen-Qin/omarchy-pomodoro" path="plugins/GengCen-Qin/omarchy-pomodoro" revision="refs/heads/master" remote="github" />
     <project name="GennaroRiccio/hwmon" path="plugins/GennaroRiccio/hwmon" revision="refs/heads/main" remote="github" />
+    <project name="GennaroRiccio/update-widget" path="plugins/GennaroRiccio/update-widget" revision="refs/heads/main" remote="github" />
     <project name="GrantAbell/Omarchy-Lock-Fingerprint-on-Enter" path="plugins/GrantAbell/Omarchy-Lock-Fingerprint-on-Enter" revision="refs/heads/main" remote="github" />
     <project name="Guts444/omarchy-buddy" path="plugins/Guts444/omarchy-buddy" revision="refs/heads/main" remote="github" />
     <project name="HANCORE-linux/Shibumi-Shell" path="plugins/HANCORE-linux/Shibumi-Shell" revision="refs/heads/main" remote="github" />
@@ -56,6 +65,8 @@
     <project name="JovannyEspinal/omarchy-lofi-radio" path="plugins/JovannyEspinal/omarchy-lofi-radio" revision="refs/heads/main" remote="github" />
     <project name="JustSpica/omaguard" path="plugins/JustSpica/omaguard" revision="refs/heads/master" remote="github" />
     <project name="K53N0/omarchy-browser-picker" path="plugins/K53N0/omarchy-browser-picker" revision="refs/heads/main" remote="github" />
+    <project name="Kristijan-K/omarchy-voxtype-plugin" path="plugins/Kristijan-K/omarchy-voxtype-plugin" revision="refs/heads/master" remote="github" />
+    <project name="Kristijan-K/salesforce-omarchy-plugin" path="plugins/Kristijan-K/salesforce-omarchy-plugin" revision="refs/heads/master" remote="github" />
     <project name="Kyrunner/jellyfin-nowplaying" path="plugins/Kyrunner/jellyfin-nowplaying" revision="refs/heads/main" remote="github" />
     <project name="Kyrunner/omarchy-kodi-remote" path="plugins/Kyrunner/omarchy-kodi-remote" revision="refs/heads/main" remote="github" />
     <project name="Kyrunner/omarchy-navidrome-remote" path="plugins/Kyrunner/omarchy-navidrome-remote" revision="refs/heads/main" remote="github" />
@@ -65,6 +76,8 @@
     <project name="Liran-shternberg/hypr-type-flow-C" path="plugins/Liran-shternberg/hypr-type-flow-C" revision="refs/heads/master" remote="github" />
     <project name="M4Marvin/omarchy-plugin-opencode-go" path="plugins/M4Marvin/omarchy-plugin-opencode-go" revision="refs/heads/main" remote="github" />
     <project name="MEPPERDONAS/Quattro-ExtentTheme" path="plugins/MEPPERDONAS/Quattro-ExtentTheme" revision="refs/heads/main" remote="github" />
+    <project name="MEPPERDONAS/omamedia-plus" path="plugins/MEPPERDONAS/omamedia-plus" revision="refs/heads/main" remote="github" />
+    <project name="Macs9319/OmaStockTicker" path="plugins/Macs9319/OmaStockTicker" revision="refs/heads/main" remote="github" />
     <project name="Macs9319/Pomodoro" path="plugins/Macs9319/Pomodoro" revision="refs/heads/main" remote="github" />
     <project name="MarcusPelo/omarqui" path="plugins/MarcusPelo/omarqui" revision="refs/heads/main" remote="github" />
     <project name="MarcusPelo/omatulli" path="plugins/MarcusPelo/omatulli" revision="refs/heads/main" remote="github" />
@@ -74,19 +87,29 @@
     <project name="MrDemonc/Omarchy-media-control" path="plugins/MrDemonc/Omarchy-media-control" revision="refs/heads/main" remote="github" />
     <project name="MykCib/omarchy-obsidian-quickedit" path="plugins/MykCib/omarchy-obsidian-quickedit" revision="refs/heads/main" remote="github" />
     <project name="NathanRGagnon/omawhoop" path="plugins/NathanRGagnon/omawhoop" revision="refs/heads/main" remote="github" />
+    <project name="NitzanSelwyn/omarchy-nothing-headphones" path="plugins/NitzanSelwyn/omarchy-nothing-headphones" revision="refs/heads/main" remote="github" />
     <project name="OldJobobo/lacuna-omarchy-plugins" path="plugins/OldJobobo/lacuna-omarchy-plugins" revision="refs/heads/master" remote="github" />
+    <project name="OverStyleFR/omarchy-agents" path="plugins/OverStyleFR/omarchy-agents" revision="refs/heads/main" remote="github" />
+    <project name="OverStyleFR/omarchy-battery-usage" path="plugins/OverStyleFR/omarchy-battery-usage" revision="refs/heads/main" remote="github" />
+    <project name="OverStyleFR/omarchy-lte" path="plugins/OverStyleFR/omarchy-lte" revision="refs/heads/main" remote="github" />
+    <project name="OverStyleFR/omarchy-network-rate" path="plugins/OverStyleFR/omarchy-network-rate" revision="refs/heads/main" remote="github" />
     <project name="Pablo-Merino/omarchy-altswitch" path="plugins/Pablo-Merino/omarchy-altswitch" revision="refs/heads/main" remote="github" />
     <project name="ParvvOK/equalizer" path="plugins/ParvvOK/equalizer" revision="refs/heads/main" remote="github" />
     <project name="Paulie420/omarchy-vpn" path="plugins/Paulie420/omarchy-vpn" revision="refs/heads/main" remote="github" />
     <project name="PierSilvioLucchese/omarchy-blackjack" path="plugins/PierSilvioLucchese/omarchy-blackjack" revision="refs/heads/master" remote="github" />
+    <project name="Pillumz/omarchy-syncthing" path="plugins/Pillumz/omarchy-syncthing" revision="refs/heads/main" remote="github" />
+    <project name="Pmacdon15/glass-bar-omarchy" path="plugins/Pmacdon15/glass-bar-omarchy" revision="refs/heads/master" remote="github" />
     <project name="Prathamesh913/gamedock" path="plugins/Prathamesh913/gamedock" revision="refs/heads/main" remote="github" />
+    <project name="PrimoGameStudio/primo.global-menu" path="plugins/PrimoGameStudio/primo.global-menu" revision="refs/heads/main" remote="github" />
     <project name="RamenPacket84/canon" path="plugins/RamenPacket84/canon" revision="refs/heads/master" remote="github" />
     <project name="RandaZraik/omarchy-hijri-date" path="plugins/RandaZraik/omarchy-hijri-date" revision="refs/heads/master" remote="github" />
     <project name="Razaroth/omarchy-update-app-under-cursor" path="plugins/Razaroth/omarchy-update-app-under-cursor" revision="refs/heads/main" remote="github" />
     <project name="RishabhRD/omarchy-window-opacity" path="plugins/RishabhRD/omarchy-window-opacity" revision="refs/heads/master" remote="github" />
     <project name="RishabhRD/recurring-reminders" path="plugins/RishabhRD/recurring-reminders" revision="refs/heads/master" remote="github" />
+    <project name="Rizmi/omarchy-divider-plugin" path="plugins/Rizmi/omarchy-divider-plugin" revision="refs/heads/main" remote="github" />
     <project name="Rizmi/omarchy-temperature-plugin" path="plugins/Rizmi/omarchy-temperature-plugin" revision="refs/heads/main" remote="github" />
     <project name="RolfKoenders/quickdex" path="plugins/RolfKoenders/quickdex" revision="refs/heads/main" remote="github" />
+    <project name="SLcode777/omaconv" path="plugins/SLcode777/omaconv" revision="refs/heads/master" remote="github" />
     <project name="SLcode777/tomato-timer" path="plugins/SLcode777/tomato-timer" revision="refs/heads/master" remote="github" />
     <project name="SVIGHNESH/omanews" path="plugins/SVIGHNESH/omanews" revision="refs/heads/master" remote="github" />
     <project name="SVIGHNESH/omarchy-portboard" path="plugins/SVIGHNESH/omarchy-portboard" revision="refs/heads/master" remote="github" />
@@ -95,10 +118,12 @@
     <project name="SaifOmar/WorkspaceIcons" path="plugins/SaifOmar/WorkspaceIcons" revision="refs/heads/main" remote="github" />
     <project name="SaifOmar/mus.quran" path="plugins/SaifOmar/mus.quran" revision="refs/heads/main" remote="github" />
     <project name="SeanGSR/omarchy-french-characters" path="plugins/SeanGSR/omarchy-french-characters" revision="refs/heads/main" remote="github" />
+    <project name="SeanGSR/omarchy-satellite-radar" path="plugins/SeanGSR/omarchy-satellite-radar" revision="refs/heads/main" remote="github" />
     <project name="Sebasgl23/omarchy-minesweeper" path="plugins/Sebasgl23/omarchy-minesweeper" revision="refs/heads/main" remote="github" />
     <project name="Sebasgl23/omarchy-snake" path="plugins/Sebasgl23/omarchy-snake" revision="refs/heads/main" remote="github" />
     <project name="Shavanced/omarchy-notification-center-plugin" path="plugins/Shavanced/omarchy-notification-center-plugin" revision="refs/heads/main" remote="github" />
     <project name="SirJul1337/omarchy-lock-explorer" path="plugins/SirJul1337/omarchy-lock-explorer" revision="refs/heads/main" remote="github" />
+    <project name="Skedar/omarchy-system-monitor-plugin" path="plugins/Skedar/omarchy-system-monitor-plugin" revision="refs/heads/main" remote="github" />
     <project name="SotoAugusto/omarchy-ticktick" path="plugins/SotoAugusto/omarchy-ticktick" revision="refs/heads/master" remote="github" />
     <project name="SteveHNH/omarchy-bible-verse-plugin" path="plugins/SteveHNH/omarchy-bible-verse-plugin" revision="refs/heads/master" remote="github" />
     <project name="SteveHNH/omarchy-pia-plugin" path="plugins/SteveHNH/omarchy-pia-plugin" revision="refs/heads/master" remote="github" />
@@ -107,21 +132,27 @@
     <project name="This-Is-NPC/omatruco" path="plugins/This-Is-NPC/omatruco" revision="refs/heads/master" remote="github" />
     <project name="TyRichards/omarchy-orthodox-daily" path="plugins/TyRichards/omarchy-orthodox-daily" revision="refs/heads/main" remote="github" />
     <project name="TyRichards/omarchy-workspaces-jap" path="plugins/TyRichards/omarchy-workspaces-jap" revision="refs/heads/main" remote="github" />
+    <project name="Varantha/omarchy-sunsetr" path="plugins/Varantha/omarchy-sunsetr" revision="refs/heads/main" remote="github" />
     <project name="Woogy7/omarchy-tides" path="plugins/Woogy7/omarchy-tides" revision="refs/heads/main" remote="github" />
     <project name="Woogy7/omarchy-vitals" path="plugins/Woogy7/omarchy-vitals" revision="refs/heads/main" remote="github" />
     <project name="Ycaro-Oleg/omarchy-my-tetris" path="plugins/Ycaro-Oleg/omarchy-my-tetris" revision="refs/heads/master" remote="github" />
+    <project name="Zezenta/Vimoji" path="plugins/Zezenta/Vimoji" revision="refs/heads/master" remote="github" />
     <project name="Ziryt/omarchy-plugin-smw" path="plugins/Ziryt/omarchy-plugin-smw" revision="refs/heads/master" remote="github" />
     <project name="ZnOw01/Veilleuse" path="plugins/ZnOw01/Veilleuse" revision="refs/heads/main" remote="github" />
     <project name="abhinav-singh-ts/omarchy-hotcorners" path="plugins/abhinav-singh-ts/omarchy-hotcorners" revision="refs/heads/main" remote="github" />
     <project name="achevalier-dev/omarchy-mullvad" path="plugins/achevalier-dev/omarchy-mullvad" revision="refs/heads/main" remote="github" />
     <project name="achevalier-dev/omarchy-yubikey" path="plugins/achevalier-dev/omarchy-yubikey" revision="refs/heads/main" remote="github" />
+    <project name="acobrerosf/omarchy-minesweeper" path="plugins/acobrerosf/omarchy-minesweeper" revision="refs/heads/main" remote="github" />
     <project name="acrogenesis/omarchy-theme-scheduler" path="plugins/acrogenesis/omarchy-theme-scheduler" revision="refs/heads/main" remote="github" />
+    <project name="ah410/omarchy-islamic-prayer-times" path="plugins/ah410/omarchy-islamic-prayer-times" revision="refs/heads/main" remote="github" />
     <project name="ahasdemir/hypr-ai-grammar" path="plugins/ahasdemir/hypr-ai-grammar" revision="refs/heads/master" remote="github" />
     <project name="aislandener/omarchy-clickup" path="plugins/aislandener/omarchy-clickup" revision="refs/heads/main" remote="github" />
     <project name="ajanraj/omarchy-disposable-email" path="plugins/ajanraj/omarchy-disposable-email" revision="refs/heads/master" remote="github" />
+    <project name="ak127a/thermals" path="plugins/ak127a/thermals" revision="refs/heads/master" remote="github" />
     <project name="akitaonrails/ai-usagebar" path="plugins/akitaonrails/ai-usagebar" revision="refs/heads/main" remote="github" />
     <project name="alanfortlink/camera-effects" path="plugins/alanfortlink/camera-effects" revision="refs/heads/main" remote="github" />
     <project name="alexandre-vl/omarchy-pipelines" path="plugins/alexandre-vl/omarchy-pipelines" revision="refs/heads/main" remote="github" />
+    <project name="alinuxfan/omarchy-pixelbuds" path="plugins/alinuxfan/omarchy-pixelbuds" revision="refs/heads/master" remote="github" />
     <project name="alkevintan/bw-vault" path="plugins/alkevintan/bw-vault" revision="refs/heads/master" remote="github" />
     <project name="alvarosaavedra/omarchy-agent-usage-zai-synthetic" path="plugins/alvarosaavedra/omarchy-agent-usage-zai-synthetic" revision="refs/heads/main" remote="github" />
     <project name="alvarosaavedra/omarchy-dst-clocks" path="plugins/alvarosaavedra/omarchy-dst-clocks" revision="refs/heads/master" remote="github" />
@@ -135,19 +166,23 @@
     <project name="archlatam/omarchy-theme-picker" path="plugins/archlatam/omarchy-theme-picker" revision="refs/heads/main" remote="github" />
     <project name="archlatam/omaspotify" path="plugins/archlatam/omaspotify" revision="refs/heads/main" remote="github" />
     <project name="ariadev/dev.windscribe" path="plugins/ariadev/dev.windscribe" revision="refs/heads/master" remote="github" />
+    <project name="ariadev/omarchy-dev-git" path="plugins/ariadev/omarchy-dev-git" revision="refs/heads/main" remote="github" />
     <project name="artemisa81/omarchy-ivpn-plugin" path="plugins/artemisa81/omarchy-ivpn-plugin" revision="refs/heads/main" remote="github" />
     <project name="artemisa81/omarchy-wordsmith" path="plugins/artemisa81/omarchy-wordsmith" revision="refs/heads/main" remote="github" />
     <project name="asdecided/omarchy-wayfinder" path="plugins/asdecided/omarchy-wayfinder" revision="refs/heads/main" remote="github" />
     <project name="asdfsnlr/omarazer" path="plugins/asdfsnlr/omarazer" revision="refs/heads/main" remote="github" />
     <project name="ax1g/quickshell-screentime-plugin" path="plugins/ax1g/quickshell-screentime-plugin" revision="refs/heads/main" remote="github" />
+    <project name="b7s/omarchy-googletranslate" path="plugins/b7s/omarchy-googletranslate" revision="refs/heads/main" remote="github" />
     <project name="babdbtc/omarchy-routstr" path="plugins/babdbtc/omarchy-routstr" revision="refs/heads/main" remote="github" />
     <project name="bagayasbryan-code/omarchy-renameable-workspaces" path="plugins/bagayasbryan-code/omarchy-renameable-workspaces" revision="refs/heads/main" remote="github" />
     <project name="balazsorban44/omarchy-keybinding-coach" path="plugins/balazsorban44/omarchy-keybinding-coach" revision="refs/heads/main" remote="github" />
     <project name="balazsorban44/omarchy-keyboard-minimap" path="plugins/balazsorban44/omarchy-keyboard-minimap" revision="refs/heads/main" remote="github" />
     <project name="basecamp/omarchy-basecamp-plugin" path="plugins/basecamp/omarchy-basecamp-plugin" revision="refs/heads/master" remote="github" />
+    <project name="birajdotdev/omacore" path="plugins/birajdotdev/omacore" revision="refs/heads/main" remote="github" />
     <project name="bjarneo/omarchy-now-playing" path="plugins/bjarneo/omarchy-now-playing" revision="refs/heads/main" remote="github" />
     <project name="bjarneo/omarchy-shell-plugins" path="plugins/bjarneo/omarchy-shell-plugins" revision="refs/heads/main" remote="github" />
     <project name="bobby-nicholas/omaland" path="plugins/bobby-nicholas/omaland" revision="refs/heads/main" remote="github" />
+    <project name="boyoyooo/omarr" path="plugins/boyoyooo/omarr" revision="refs/heads/master" remote="github" />
     <project name="bramvera/omarchy-proton-vpn" path="plugins/bramvera/omarchy-proton-vpn" revision="refs/heads/main" remote="github" />
     <project name="brandc87/omamox" path="plugins/brandc87/omamox" revision="refs/heads/main" remote="github" />
     <project name="brianblakely/blink" path="plugins/brianblakely/blink" revision="refs/heads/master" remote="github" />
@@ -156,6 +191,7 @@
     <project name="brianblakely/omaled" path="plugins/brianblakely/omaled" revision="refs/heads/master" remote="github" />
     <project name="brianblakely/omanote" path="plugins/brianblakely/omanote" revision="refs/heads/master" remote="github" />
     <project name="brianblakely/omarchy-codex-notifications" path="plugins/brianblakely/omarchy-codex-notifications" revision="refs/heads/master" remote="github" />
+    <project name="brianblakely/omarchy-everything" path="plugins/brianblakely/omarchy-everything" revision="refs/heads/master" remote="github" />
     <project name="brianblakely/omarchy-plugins" path="plugins/brianblakely/omarchy-plugins" revision="refs/heads/master" remote="github" />
     <project name="brianblakely/omashot" path="plugins/brianblakely/omashot" revision="refs/heads/master" remote="github" />
     <project name="brianblakely/omastonk" path="plugins/brianblakely/omastonk" revision="refs/heads/master" remote="github" />
@@ -165,12 +201,14 @@
     <project name="brm-src/omawhy" path="plugins/brm-src/omawhy" revision="refs/heads/main" remote="github" />
     <project name="bscott/cliamp-oma-plugin" path="plugins/bscott/cliamp-oma-plugin" revision="refs/heads/main" remote="github" />
     <project name="bscott/homepage-oma-plugin" path="plugins/bscott/homepage-oma-plugin" revision="refs/heads/main" remote="github" />
+    <project name="bscott/terminal-oma-plugin" path="plugins/bscott/terminal-oma-plugin" revision="refs/heads/main" remote="github" />
     <project name="burninc0de/burninc0de.lock" path="plugins/burninc0de/burninc0de.lock" revision="refs/heads/main" remote="github" />
     <project name="c4software/hyprland-alttab" path="plugins/c4software/hyprland-alttab" revision="refs/heads/main" remote="github" />
     <project name="calebhat/omarchy-read-aloud" path="plugins/calebhat/omarchy-read-aloud" revision="refs/heads/main" remote="github" />
     <project name="cdhananjay/omarchy-menu-auto-open" path="plugins/cdhananjay/omarchy-menu-auto-open" revision="refs/heads/main" remote="github" />
     <project name="cempack/ProtonPassPlugin" path="plugins/cempack/ProtonPassPlugin" revision="refs/heads/main" remote="github" />
     <project name="cempack/SongRec" path="plugins/cempack/SongRec" revision="refs/heads/main" remote="github" />
+    <project name="cempack/omarchy-arch-extra" path="plugins/cempack/omarchy-arch-extra" revision="refs/heads/main" remote="github" />
     <project name="cempack/omaspotify" path="plugins/cempack/omaspotify" revision="refs/heads/main" remote="github" />
     <project name="cgmccarron/omarchy-sportsbar" path="plugins/cgmccarron/omarchy-sportsbar" revision="refs/heads/master" remote="github" />
     <project name="chagel/omarchy-alternative-clock" path="plugins/chagel/omarchy-alternative-clock" revision="refs/heads/main" remote="github" />
@@ -184,10 +222,13 @@
     <project name="chthollyphile/lia.lines" path="plugins/chthollyphile/lia.lines" revision="refs/heads/main" remote="github" />
     <project name="codefriendly/omarchy-nightman" path="plugins/codefriendly/omarchy-nightman" revision="refs/heads/main" remote="github" />
     <project name="cossssmin/kuki" path="plugins/cossssmin/kuki" revision="refs/heads/main" remote="github" />
+    <project name="craigderington/omarchy-aws" path="plugins/craigderington/omarchy-aws" revision="refs/heads/main" remote="github" />
+    <project name="craigderington/omarchy-digital-ocean" path="plugins/craigderington/omarchy-digital-ocean" revision="refs/heads/master" remote="github" />
     <project name="crmne/omarchy-active-window" path="plugins/crmne/omarchy-active-window" revision="refs/heads/main" remote="github" />
     <project name="crmne/omarchy-hyprmoncfg" path="plugins/crmne/omarchy-hyprmoncfg" revision="refs/heads/main" remote="github" />
     <project name="crmne/omarchy-mpris" path="plugins/crmne/omarchy-mpris" revision="refs/heads/main" remote="github" />
     <project name="csawy3r/omarchy-network-speed" path="plugins/csawy3r/omarchy-network-speed" revision="refs/heads/main" remote="github" />
+    <project name="cubedtear/omarchy-seconds-clock" path="plugins/cubedtear/omarchy-seconds-clock" revision="refs/heads/master" remote="github" />
     <project name="cucu0628/omarchy-dashboard" path="plugins/cucu0628/omarchy-dashboard" revision="refs/heads/main" remote="github" />
     <project name="daanlenaerts/omakuma" path="plugins/daanlenaerts/omakuma" revision="refs/heads/main" remote="github" />
     <project name="daventhedude/omarchy-steam-friends" path="plugins/daventhedude/omarchy-steam-friends" revision="refs/heads/main" remote="github" />
@@ -201,16 +242,25 @@
     <project name="devgtv/omarchy-docker" path="plugins/devgtv/omarchy-docker" revision="refs/heads/main" remote="github" />
     <project name="devgtv/omarchy-menu-esc-back" path="plugins/devgtv/omarchy-menu-esc-back" revision="refs/heads/main" remote="github" />
     <project name="didlix/omarchy-openrgb" path="plugins/didlix/omarchy-openrgb" revision="refs/heads/main" remote="github" />
+    <project name="diegopluna/omarchy-argus" path="plugins/diegopluna/omarchy-argus" revision="refs/heads/main" remote="github" />
     <project name="djjeane/omarchy-docker-plugin" path="plugins/djjeane/omarchy-docker-plugin" revision="refs/heads/master" remote="github" />
     <project name="dkgamer02ai/nova-lock" path="plugins/dkgamer02ai/nova-lock" revision="refs/heads/main" remote="github" />
     <project name="dkgamer02ai/omarchy-wallpaper-engine" path="plugins/dkgamer02ai/omarchy-wallpaper-engine" revision="refs/heads/main" remote="github" />
+    <project name="dlpwaters/omarchy-dictionary-thesaurus" path="plugins/dlpwaters/omarchy-dictionary-thesaurus" revision="refs/heads/main" remote="github" />
     <project name="dlpwaters/omarchy-meditations" path="plugins/dlpwaters/omarchy-meditations" revision="refs/heads/main" remote="github" />
+    <project name="dlpwaters/omarchy-puzzlemaker" path="plugins/dlpwaters/omarchy-puzzlemaker" revision="refs/heads/main" remote="github" />
     <project name="dlpwaters/omarchy-qr-generator" path="plugins/dlpwaters/omarchy-qr-generator" revision="refs/heads/main" remote="github" />
     <project name="douglas/omarchy-kefctl" path="plugins/douglas/omarchy-kefctl" revision="refs/heads/main" remote="github" />
+    <project name="dr-moreira/omarchy-network-checker" path="plugins/dr-moreira/omarchy-network-checker" revision="refs/heads/master" remote="github" />
+    <project name="dylanmccavitt/omarchy-omp-stats" path="plugins/dylanmccavitt/omarchy-omp-stats" revision="refs/heads/main" remote="github" />
+    <project name="edgarsilva/omarchy-gitlab-ci" path="plugins/edgarsilva/omarchy-gitlab-ci" revision="refs/heads/main" remote="github" />
+    <project name="edgarsilva/omarchy-hw-monitor" path="plugins/edgarsilva/omarchy-hw-monitor" revision="refs/heads/main" remote="github" />
     <project name="eduardodallecort/omarchy-weather-radar" path="plugins/eduardodallecort/omarchy-weather-radar" revision="refs/heads/master" remote="github" />
+    <project name="eforbell/omarchy-workspace-names" path="plugins/eforbell/omarchy-workspace-names" revision="refs/heads/master" remote="github" />
     <project name="ejuro/omi-the-cat" path="plugins/ejuro/omi-the-cat" revision="refs/heads/main" remote="github" />
     <project name="elynch303/fan-monitor" path="plugins/elynch303/fan-monitor" revision="refs/heads/main" remote="github" />
     <project name="elynch303/security-scan" path="plugins/elynch303/security-scan" revision="refs/heads/main" remote="github" />
+    <project name="emdmed/omantra" path="plugins/emdmed/omantra" revision="refs/heads/main" remote="github" />
     <project name="ericvrp/omarchy-bar-autohide" path="plugins/ericvrp/omarchy-bar-autohide" revision="refs/heads/main" remote="github" />
     <project name="erikwb/omarchy-blueferry" path="plugins/erikwb/omarchy-blueferry" revision="refs/heads/main" remote="github" />
     <project name="fabean/omarchy-burrowtime" path="plugins/fabean/omarchy-burrowtime" revision="refs/heads/main" remote="github" />
@@ -221,9 +271,16 @@
     <project name="felixzsh/omarchy-key-visualizer" path="plugins/felixzsh/omarchy-key-visualizer" revision="refs/heads/main" remote="github" />
     <project name="fernandomenolli/omarchy-curtain" path="plugins/fernandomenolli/omarchy-curtain" revision="refs/heads/main" remote="github" />
     <project name="fernandomenolli/omarchy-daybook" path="plugins/fernandomenolli/omarchy-daybook" revision="refs/heads/main" remote="github" />
+    <project name="fernandomenolli/omarchy-encore" path="plugins/fernandomenolli/omarchy-encore" revision="refs/heads/main" remote="github" />
+    <project name="fernandomenolli/omarchy-htop" path="plugins/fernandomenolli/omarchy-htop" revision="refs/heads/main" remote="github" />
+    <project name="fernandomenolli/omarchy-sill" path="plugins/fernandomenolli/omarchy-sill" revision="refs/heads/main" remote="github" />
+    <project name="filipechagas/omarchy-huawei-freebuds" path="plugins/filipechagas/omarchy-huawei-freebuds" revision="refs/heads/main" remote="github" />
     <project name="filipechagas/omarchy-pinboard" path="plugins/filipechagas/omarchy-pinboard" revision="refs/heads/main" remote="github" />
+    <project name="fstarlike/imaginit-klm" path="plugins/fstarlike/imaginit-klm" revision="refs/heads/main" remote="github" />
+    <project name="fstarlike/omarchy-ram-manager" path="plugins/fstarlike/omarchy-ram-manager" revision="refs/heads/main" remote="github" />
     <project name="g-desoutter/omarchy-plugin-proxmox" path="plugins/g-desoutter/omarchy-plugin-proxmox" revision="refs/heads/main" remote="github" />
     <project name="gardnmi/omarchy-boomux" path="plugins/gardnmi/omarchy-boomux" revision="refs/heads/main" remote="github" />
+    <project name="gardnmi/omarchy-minimize" path="plugins/gardnmi/omarchy-minimize" revision="refs/heads/main" remote="github" />
     <project name="getsubwave/omarchy-subwave" path="plugins/getsubwave/omarchy-subwave" revision="refs/heads/main" remote="github" />
     <project name="gigasolo/omarchy-fizzy" path="plugins/gigasolo/omarchy-fizzy" revision="refs/heads/main" remote="github" />
     <project name="gigor/omarchy-simple-notifications" path="plugins/gigor/omarchy-simple-notifications" revision="refs/heads/main" remote="github" />
@@ -232,17 +289,22 @@
     <project name="gohlihan/omarchy-cn-input-plugin" path="plugins/gohlihan/omarchy-cn-input-plugin" revision="refs/heads/main" remote="github" />
     <project name="gpatkinson/btc-price" path="plugins/gpatkinson/btc-price" revision="refs/heads/master" remote="github" />
     <project name="gpdenny/omarchy-linear" path="plugins/gpdenny/omarchy-linear" revision="refs/heads/main" remote="github" />
+    <project name="guiestrela/glassbar" path="plugins/guiestrela/glassbar" revision="refs/heads/main" remote="github" />
     <project name="guilhermeyo/omarchy-mclovin" path="plugins/guilhermeyo/omarchy-mclovin" revision="refs/heads/main" remote="github" />
+    <project name="h-dong/omarchy-idle" path="plugins/h-dong/omarchy-idle" revision="refs/heads/main" remote="github" />
     <project name="haripako/omamusic" path="plugins/haripako/omamusic" revision="refs/heads/main" remote="github" />
     <project name="harisadam/OmaOVPN" path="plugins/harisadam/OmaOVPN" revision="refs/heads/master" remote="github" />
     <project name="haydenmckay/omarchy-media-pip" path="plugins/haydenmckay/omarchy-media-pip" revision="refs/heads/master" remote="github" />
     <project name="haydenmckay/omarchy-theme-roulette" path="plugins/haydenmckay/omarchy-theme-roulette" revision="refs/heads/master" remote="github" />
+    <project name="hegjon/omarchy-coingecko" path="plugins/hegjon/omarchy-coingecko" revision="refs/heads/main" remote="github" />
     <project name="hegjon/omarchy-prusa-connect" path="plugins/hegjon/omarchy-prusa-connect" revision="refs/heads/master" remote="github" />
+    <project name="hemaaanth/caniworknow-omarchy-plugin" path="plugins/hemaaanth/caniworknow-omarchy-plugin" revision="refs/heads/main" remote="github" />
     <project name="hlasensky/omarchy-peripheral-battery" path="plugins/hlasensky/omarchy-peripheral-battery" revision="refs/heads/main" remote="github" />
     <project name="hrzlgnm/omarchy-headsetcontrol" path="plugins/hrzlgnm/omarchy-headsetcontrol" revision="refs/heads/main" remote="github" />
     <project name="husamemadH/omarchy-quattro-prayer-times" path="plugins/husamemadH/omarchy-quattro-prayer-times" revision="refs/heads/master" remote="github" />
     <project name="huyhuyvu01/omarchy-clipboard" path="plugins/huyhuyvu01/omarchy-clipboard" revision="refs/heads/main" remote="github" />
     <project name="iamArham10/arh-workspaces" path="plugins/iamArham10/arh-workspaces" revision="refs/heads/main" remote="github" />
+    <project name="ifubaraboye/omarchy-dock" path="plugins/ifubaraboye/omarchy-dock" revision="refs/heads/main" remote="github" />
     <project name="ilyaZar/btop-quattro-plugin" path="plugins/ilyaZar/btop-quattro-plugin" revision="refs/heads/main" remote="github" />
     <project name="ilyaZar/omarchy-cliamp-control" path="plugins/ilyaZar/omarchy-cliamp-control" revision="refs/heads/main" remote="github" />
     <project name="ilyaZar/omarchy-keyboard-layout" path="plugins/ilyaZar/omarchy-keyboard-layout" revision="refs/heads/main" remote="github" />
@@ -250,26 +312,32 @@
     <project name="ilyaZar/plugin-control" path="plugins/ilyaZar/plugin-control" revision="refs/heads/main" remote="github" />
     <project name="jackzasian/omarchy-clash-verge" path="plugins/jackzasian/omarchy-clash-verge" revision="refs/heads/main" remote="github" />
     <project name="janhesters/omarchy-focus" path="plugins/janhesters/omarchy-focus" revision="refs/heads/master" remote="github" />
+    <project name="janhesters/omarchy-tasks" path="plugins/janhesters/omarchy-tasks" revision="refs/heads/main" remote="github" />
     <project name="jankeesvw/omarchy-workspace-name" path="plugins/jankeesvw/omarchy-workspace-name" revision="refs/heads/main" remote="github" />
+    <project name="jankeesvw/omasweeper" path="plugins/jankeesvw/omasweeper" revision="refs/heads/main" remote="github" />
     <project name="japetheape/omarchy-keepassxc" path="plugins/japetheape/omarchy-keepassxc" revision="refs/heads/main" remote="github" />
     <project name="jcnecio/cpu-net" path="plugins/jcnecio/cpu-net" revision="refs/heads/master" remote="github" />
     <project name="jesseburlamaque/herald-notification" path="plugins/jesseburlamaque/herald-notification" revision="refs/heads/master" remote="github" />
     <project name="jethrojones/tile-manager" path="plugins/jethrojones/tile-manager" revision="refs/heads/main" remote="github" />
     <project name="jfg96/omarchy-nearby" path="plugins/jfg96/omarchy-nearby" revision="refs/heads/main" remote="github" />
+    <project name="jhgundersen/omarchy-oh-no-more-agents-plugin" path="plugins/jhgundersen/omarchy-oh-no-more-agents-plugin" revision="refs/heads/main" remote="github" />
     <project name="jhgundersen/omarchy-snake-plugin" path="plugins/jhgundersen/omarchy-snake-plugin" revision="refs/heads/main" remote="github" />
     <project name="jitendradara12/omaconnect" path="plugins/jitendradara12/omaconnect" revision="refs/heads/main" remote="github" />
     <project name="jkoestinger/omarchy-vpn" path="plugins/jkoestinger/omarchy-vpn" revision="refs/heads/main" remote="github" />
     <project name="jlopezxs/omarchy-logitech-litra" path="plugins/jlopezxs/omarchy-logitech-litra" revision="refs/heads/main" remote="github" />
+    <project name="joegeary/omarchy-on-air" path="plugins/joegeary/omarchy-on-air" revision="refs/heads/main" remote="github" />
     <project name="joshuaswarren/omarchy-ytmini" path="plugins/joshuaswarren/omarchy-ytmini" revision="refs/heads/main" remote="github" />
     <project name="jpdatahive/papyrus" path="plugins/jpdatahive/papyrus" revision="refs/heads/main" remote="github" />
     <project name="jvlianodorneles/ambience" path="plugins/jvlianodorneles/ambience" revision="refs/heads/main" remote="github" />
     <project name="jvlianodorneles/lock-keys" path="plugins/jvlianodorneles/lock-keys" revision="refs/heads/main" remote="github" />
+    <project name="jvlianodorneles/omabot" path="plugins/jvlianodorneles/omabot" revision="refs/heads/main" remote="github" />
     <project name="jvlianodorneles/omarchy-1440" path="plugins/jvlianodorneles/omarchy-1440" revision="refs/heads/main" remote="github" />
     <project name="jvlianodorneles/omasaver" path="plugins/jvlianodorneles/omasaver" revision="refs/heads/main" remote="github" />
     <project name="kamal-v8/omasot" path="plugins/kamal-v8/omasot" revision="refs/heads/master" remote="github" />
     <project name="kayleg/omarchy-parcel" path="plugins/kayleg/omarchy-parcel" revision="refs/heads/main" remote="github" />
     <project name="keithnyc/omafmail" path="plugins/keithnyc/omafmail" revision="refs/heads/master" remote="github" />
     <project name="keithnyc/omanetwatch" path="plugins/keithnyc/omanetwatch" revision="refs/heads/main" remote="github" />
+    <project name="kennetpostigo/omapomodoro" path="plugins/kennetpostigo/omapomodoro" revision="refs/heads/main" remote="github" />
     <project name="kennetpostigo/omascreentime" path="plugins/kennetpostigo/omascreentime" revision="refs/heads/master" remote="github" />
     <project name="kevinchiha/omarchy-theme-colors" path="plugins/kevinchiha/omarchy-theme-colors" revision="refs/heads/main" remote="github" />
     <project name="konradk/hark-plugin" path="plugins/konradk/hark-plugin" revision="refs/heads/main" remote="github" />
@@ -291,10 +359,15 @@
     <project name="matiacone/omarchy-breathe" path="plugins/matiacone/omarchy-breathe" revision="refs/heads/main" remote="github" />
     <project name="matjam/omajam" path="plugins/matjam/omajam" revision="refs/heads/main" remote="github" />
     <project name="matjam/omawall" path="plugins/matjam/omawall" revision="refs/heads/main" remote="github" />
+    <project name="matyssxdxd/clockify" path="plugins/matyssxdxd/clockify" revision="refs/heads/main" remote="github" />
+    <project name="mehiel/mehiel.darky" path="plugins/mehiel/mehiel.darky" revision="refs/heads/main" remote="github" />
     <project name="meirdick/omarchy-cloudflare" path="plugins/meirdick/omarchy-cloudflare" revision="refs/heads/main" remote="github" />
+    <project name="meirdick/omarchy-scores" path="plugins/meirdick/omarchy-scores" revision="refs/heads/main" remote="github" />
     <project name="melonamin/omarchy-kefir" path="plugins/melonamin/omarchy-kefir" revision="refs/heads/main" remote="github" />
     <project name="mfellipeso/omarchy-display-watcher" path="plugins/mfellipeso/omarchy-display-watcher" revision="refs/heads/main" remote="github" />
     <project name="mikealvgar/omarchy-asus-controller" path="plugins/mikealvgar/omarchy-asus-controller" revision="refs/heads/main" remote="github" />
+    <project name="miseriae/gitarchy" path="plugins/miseriae/gitarchy" revision="refs/heads/master" remote="github" />
+    <project name="mkelk/dock-recall" path="plugins/mkelk/dock-recall" revision="refs/heads/master" remote="github" />
     <project name="mmsbrggr/omarchy-per-monitor-workspaces" path="plugins/mmsbrggr/omarchy-per-monitor-workspaces" revision="refs/heads/main" remote="github" />
     <project name="mobilekjk-coder/omarchy-lks" path="plugins/mobilekjk-coder/omarchy-lks" revision="refs/heads/main" remote="github" />
     <project name="modoterra/omabench" path="plugins/modoterra/omabench" revision="refs/heads/main" remote="github" />
@@ -305,6 +378,8 @@
     <project name="mspori/omarchy-tresorit" path="plugins/mspori/omarchy-tresorit" revision="refs/heads/main" remote="github" />
     <project name="murdialthaf/omarchy-named-workspaces" path="plugins/murdialthaf/omarchy-named-workspaces" revision="refs/heads/main" remote="github" />
     <project name="nameless312/protonvpn-plugin-omarchy" path="plugins/nameless312/protonvpn-plugin-omarchy" revision="refs/heads/main" remote="github" />
+    <project name="nejcm/omarchy-pomodoro" path="plugins/nejcm/omarchy-pomodoro" revision="refs/heads/master" remote="github" />
+    <project name="nenas1ya/omarchy-latin-input" path="plugins/nenas1ya/omarchy-latin-input" revision="refs/heads/main" remote="github" />
     <project name="nick-friedrich/hyprland-dock" path="plugins/nick-friedrich/hyprland-dock" revision="refs/heads/master" remote="github" />
     <project name="nightdevil00/better.displays" path="plugins/nightdevil00/better.displays" revision="refs/heads/main" remote="github" />
     <project name="nightdevil00/bt.codecs" path="plugins/nightdevil00/bt.codecs" revision="refs/heads/main" remote="github" />
@@ -317,17 +392,23 @@
     <project name="nille/omarchy-emeet-pixy" path="plugins/nille/omarchy-emeet-pixy" revision="refs/heads/main" remote="github" />
     <project name="nille/omarchy-paceman" path="plugins/nille/omarchy-paceman" revision="refs/heads/main" remote="github" />
     <project name="niraletter/vitals" path="plugins/niraletter/vitals" revision="refs/heads/main" remote="github" />
+    <project name="niusnet/omarchy-wrike" path="plugins/niusnet/omarchy-wrike" revision="refs/heads/main" remote="github" />
+    <project name="nkarl/fcitx-active-input-lang" path="plugins/nkarl/fcitx-active-input-lang" revision="refs/heads/master" remote="github" />
+    <project name="nylzen/omarchy-mouse-sensitivity" path="plugins/nylzen/omarchy-mouse-sensitivity" revision="refs/heads/main" remote="github" />
     <project name="okurmustafa/omarchy-agent-leaderboard" path="plugins/okurmustafa/omarchy-agent-leaderboard" revision="refs/heads/master" remote="github" />
     <project name="okurmustafa/omarchy-hermes" path="plugins/okurmustafa/omarchy-hermes" revision="refs/heads/main" remote="github" />
     <project name="olivoil/omarchy-world-clock" path="plugins/olivoil/omarchy-world-clock" revision="refs/heads/master" remote="github" />
     <project name="orienw/omarchy-fresh-wallpaper" path="plugins/orienw/omarchy-fresh-wallpaper" revision="refs/heads/main" remote="github" />
+    <project name="orienw/omarchy-restic" path="plugins/orienw/omarchy-restic" revision="refs/heads/main" remote="github" />
     <project name="othavi0/omarchy-agent-bar" path="plugins/othavi0/omarchy-agent-bar" revision="refs/heads/master" remote="github" />
     <project name="ourongxing/omash" path="plugins/ourongxing/omash" revision="refs/heads/main" remote="github" />
     <project name="paul-paliychuk/omarchy-portfolio-tracker" path="plugins/paul-paliychuk/omarchy-portfolio-tracker" revision="refs/heads/main" remote="github" />
     <project name="pedrodrocha/purrpaper" path="plugins/pedrodrocha/purrpaper" revision="refs/heads/main" remote="github" />
     <project name="perfektnacht/controller-launcher" path="plugins/perfektnacht/controller-launcher" revision="refs/heads/master" remote="github" />
+    <project name="perminder-klair/omarchy-controller-control" path="plugins/perminder-klair/omarchy-controller-control" revision="refs/heads/master" remote="github" />
     <project name="peteonrails/omadex" path="plugins/peteonrails/omadex" revision="refs/heads/main" remote="github" />
     <project name="pomartel/intemporel" path="plugins/pomartel/intemporel" revision="refs/heads/main" remote="github" />
+    <project name="prettyletto/prettyzap" path="plugins/prettyletto/prettyzap" revision="refs/heads/quattro" remote="github" />
     <project name="promaaa/omamoney" path="plugins/promaaa/omamoney" revision="refs/heads/main" remote="github" />
     <project name="rafaelmehdiyev/omarchy-obsidian-panel" path="plugins/rafaelmehdiyev/omarchy-obsidian-panel" revision="refs/heads/main" remote="github" />
     <project name="rafaelvzago/omarchy-linkding-plugin" path="plugins/rafaelvzago/omarchy-linkding-plugin" revision="refs/heads/main" remote="github" />
@@ -349,22 +430,28 @@
     <project name="rsoutar/omaquake" path="plugins/rsoutar/omaquake" revision="refs/heads/main" remote="github" />
     <project name="russellmorton/next-key" path="plugins/russellmorton/next-key" revision="refs/heads/main" remote="github" />
     <project name="ryanyogan/omarchy-fizzy" path="plugins/ryanyogan/omarchy-fizzy" revision="refs/heads/main" remote="github" />
+    <project name="s0up4200/omarchy-airpods" path="plugins/s0up4200/omarchy-airpods" revision="refs/heads/main" remote="github" />
     <project name="salemsayed/omaonedrive" path="plugins/salemsayed/omaonedrive" revision="refs/heads/main" remote="github" />
     <project name="salemsayed/omaprayers" path="plugins/salemsayed/omaprayers" revision="refs/heads/main" remote="github" />
+    <project name="samirpokharel/omarchy-patro-clock" path="plugins/samirpokharel/omarchy-patro-clock" revision="refs/heads/main" remote="github" />
     <project name="sanjar-xolmatov/OmniMedia" path="plugins/sanjar-xolmatov/OmniMedia" revision="refs/heads/main" remote="github" />
     <project name="sanjyay/Mirador" path="plugins/sanjyay/Mirador" revision="refs/heads/main" remote="github" />
     <project name="scottjones/omarchy-flush-bar" path="plugins/scottjones/omarchy-flush-bar" revision="refs/heads/main" remote="github" />
     <project name="scottpruett/omarchy-sticky-keys" path="plugins/scottpruett/omarchy-sticky-keys" revision="refs/heads/main" remote="github" />
     <project name="scttymn/float-snap" path="plugins/scttymn/float-snap" revision="refs/heads/main" remote="github" />
     <project name="sepehr500/omarchy-openrouter-usage" path="plugins/sepehr500/omarchy-openrouter-usage" revision="refs/heads/master" remote="github" />
+    <project name="serg3k/omarchy-plugin-wwan" path="plugins/serg3k/omarchy-plugin-wwan" revision="refs/heads/master" remote="github" />
     <project name="shmall03/omarchy-shmall.lock-plugin" path="plugins/shmall03/omarchy-shmall.lock-plugin" revision="refs/heads/main" remote="github" />
     <project name="simasrazinskas/omarchy-trading212-plugin" path="plugins/simasrazinskas/omarchy-trading212-plugin" revision="refs/heads/main" remote="github" />
+    <project name="sirmenef/omarchy-workspace-overview" path="plugins/sirmenef/omarchy-workspace-overview" revision="refs/heads/main" remote="github" />
     <project name="smillunchick/omarchy-aether-wallpapers" path="plugins/smillunchick/omarchy-aether-wallpapers" revision="refs/heads/main" remote="github" />
     <project name="spaceXrace/omarchy-airvpn" path="plugins/spaceXrace/omarchy-airvpn" revision="refs/heads/master" remote="github" />
     <project name="sradetzky/omarchy-hermes-openrouter" path="plugins/sradetzky/omarchy-hermes-openrouter" revision="refs/heads/main" remote="github" />
     <project name="srineshr1/omarchy-whatsapp" path="plugins/srineshr1/omarchy-whatsapp" revision="refs/heads/main" remote="github" />
+    <project name="srozen/omarchy-ufw" path="plugins/srozen/omarchy-ufw" revision="refs/heads/master" remote="github" />
     <project name="ssandys/colophon" path="plugins/ssandys/colophon" revision="refs/heads/master" remote="github" />
     <project name="ssandys/galley" path="plugins/ssandys/galley" revision="refs/heads/master" remote="github" />
+    <project name="sshbrian/lightctl" path="plugins/sshbrian/lightctl" revision="refs/heads/main" remote="github" />
     <project name="sshbrian/omarchy-comfyui-status-plugin" path="plugins/sshbrian/omarchy-comfyui-status-plugin" revision="refs/heads/master" remote="github" />
     <project name="ssupt/omarchy-audio-control" path="plugins/ssupt/omarchy-audio-control" revision="refs/heads/main" remote="github" />
     <project name="ssupt/omarchy-bluetooth-audio" path="plugins/ssupt/omarchy-bluetooth-audio" revision="refs/heads/main" remote="github" />
@@ -378,14 +465,17 @@
     <project name="sterre-g/omarchy-speed-reader" path="plugins/sterre-g/omarchy-speed-reader" revision="refs/heads/main" remote="github" />
     <project name="sterre-g/omarchy-timers" path="plugins/sterre-g/omarchy-timers" revision="refs/heads/main" remote="github" />
     <project name="sudhakarkarunaiprakasam/tomatask" path="plugins/sudhakarkarunaiprakasam/tomatask" revision="refs/heads/main" remote="github" />
+    <project name="sumdahl/omarchy-plugin-media" path="plugins/sumdahl/omarchy-plugin-media" revision="refs/heads/main" remote="github" />
     <project name="swheel33/omarchy-perfwatch" path="plugins/swheel33/omarchy-perfwatch" revision="refs/heads/main" remote="github" />
     <project name="syntaxboybe/omarchy-fluxcast" path="plugins/syntaxboybe/omarchy-fluxcast" revision="refs/heads/main" remote="github" />
     <project name="syntaxboybe/omarchy-git-switcher" path="plugins/syntaxboybe/omarchy-git-switcher" revision="refs/heads/main" remote="github" />
     <project name="syntaxboybe/omarchy-gitlab" path="plugins/syntaxboybe/omarchy-gitlab" revision="refs/heads/main" remote="github" />
     <project name="tallsam/omarchy-navbar-cat" path="plugins/tallsam/omarchy-navbar-cat" revision="refs/heads/master" remote="github" />
     <project name="taxin-404/oma-cursor-style" path="plugins/taxin-404/oma-cursor-style" revision="refs/heads/main" remote="github" />
+    <project name="tdeckers/omarchy-openhab" path="plugins/tdeckers/omarchy-openhab" revision="refs/heads/main" remote="github" />
     <project name="teevans/omarchy-apple-tv-remote" path="plugins/teevans/omarchy-apple-tv-remote" revision="refs/heads/main" remote="github" />
     <project name="tharinfernando/omarchy-protonvpn" path="plugins/tharinfernando/omarchy-protonvpn" revision="refs/heads/main" remote="github" />
+    <project name="thehamsti/omarchy-vitals" path="plugins/thehamsti/omarchy-vitals" revision="refs/heads/main" remote="github" />
     <project name="thisisgm/omarchy-discord" path="plugins/thisisgm/omarchy-discord" revision="refs/heads/master" remote="github" />
     <project name="thisisgm/omarchy-pods" path="plugins/thisisgm/omarchy-pods" revision="refs/heads/main" remote="github" />
     <project name="throni001/omarchy-system-monitor" path="plugins/throni001/omarchy-system-monitor" revision="refs/heads/master" remote="github" />
@@ -394,6 +484,7 @@
     <project name="tobi/omarchy-warp" path="plugins/tobi/omarchy-warp" revision="refs/heads/master" remote="github" />
     <project name="tobiasz-p/next-event" path="plugins/tobiasz-p/next-event" revision="refs/heads/main" remote="github" />
     <project name="tomdavenport/cam-stream" path="plugins/tomdavenport/cam-stream" revision="refs/heads/main" remote="github" />
+    <project name="tomdavenport/omaphone" path="plugins/tomdavenport/omaphone" revision="refs/heads/main" remote="github" />
     <project name="treramey/omarchy-raindrop-bookmarks" path="plugins/treramey/omarchy-raindrop-bookmarks" revision="refs/heads/main" remote="github" />
     <project name="tristonarmstrong/omarchy-dictionary" path="plugins/tristonarmstrong/omarchy-dictionary" revision="refs/heads/main" remote="github" />
     <project name="turner-ps/omarchy-chillhop-radio" path="plugins/turner-ps/omarchy-chillhop-radio" revision="refs/heads/main" remote="github" />
@@ -402,13 +493,19 @@
     <project name="tuxmontero/omarchy-gospel-of-the-day" path="plugins/tuxmontero/omarchy-gospel-of-the-day" revision="refs/heads/main" remote="github" />
     <project name="tuxmontero/omarchy-ipscan" path="plugins/tuxmontero/omarchy-ipscan" revision="refs/heads/main" remote="github" />
     <project name="twiking/omarchy-omatop" path="plugins/twiking/omarchy-omatop" revision="refs/heads/main" remote="github" />
+    <project name="twodogsdave/omarchy-cava-widget" path="plugins/twodogsdave/omarchy-cava-widget" revision="refs/heads/main" remote="github" />
     <project name="ubeyidah/omaclock" path="plugins/ubeyidah/omaclock" revision="refs/heads/main" remote="github" />
+    <project name="ujjawal0266/omarchy-plugin-competitive" path="plugins/ujjawal0266/omarchy-plugin-competitive" revision="refs/heads/main" remote="github" />
     <project name="unleashed-nick/omarchy-tempest" path="plugins/unleashed-nick/omarchy-tempest" revision="refs/heads/main" remote="github" />
+    <project name="unleashed-nick/omarchy-thunderbolt" path="plugins/unleashed-nick/omarchy-thunderbolt" revision="refs/heads/master" remote="github" />
+    <project name="ussego/okata" path="plugins/ussego/okata" revision="refs/heads/main" remote="github" />
+    <project name="ussego/omiru" path="plugins/ussego/omiru" revision="refs/heads/main" remote="github" />
     <project name="ussego/otoru" path="plugins/ussego/otoru" revision="refs/heads/main" remote="github" />
     <project name="ussego/owarp" path="plugins/ussego/owarp" revision="refs/heads/main" remote="github" />
     <project name="vitally/omarchy-solar-times" path="plugins/vitally/omarchy-solar-times" revision="refs/heads/main" remote="github" />
     <project name="vstoms/omarchy-netbird" path="plugins/vstoms/omarchy-netbird" revision="refs/heads/main" remote="github" />
     <project name="vulturetone/omascout" path="plugins/vulturetone/omascout" revision="refs/heads/main" remote="github" />
+    <project name="wbarakat/omarchy-session-restore" path="plugins/wbarakat/omarchy-session-restore" revision="refs/heads/main" remote="github" />
     <project name="weedwhitesandwine/omascratch" path="plugins/weedwhitesandwine/omascratch" revision="refs/heads/main" remote="github" />
     <project name="weedwhitesandwine/omazone" path="plugins/weedwhitesandwine/omazone" revision="refs/heads/main" remote="github" />
     <project name="wesleycole/omarchy-google-drive" path="plugins/wesleycole/omarchy-google-drive" revision="refs/heads/main" remote="github" />
@@ -418,10 +515,14 @@
     <project name="yoanntlm/omarchy-sail" path="plugins/yoanntlm/omarchy-sail" revision="refs/heads/main" remote="github" />
     <project name="yogeshojha/omafob" path="plugins/yogeshojha/omafob" revision="refs/heads/master" remote="github" />
     <project name="yogeshojha/patro" path="plugins/yogeshojha/patro" revision="refs/heads/master" remote="github" />
+    <project name="yooneskh/unified-remote-servers" path="plugins/yooneskh/unified-remote-servers" revision="refs/heads/master" remote="github" />
     <project name="yordanbuilds/jot" path="plugins/yordanbuilds/jot" revision="refs/heads/master" remote="github" />
     <project name="yordanbuilds/rig" path="plugins/yordanbuilds/rig" revision="refs/heads/master" remote="github" />
+    <project name="yordanbuilds/snooze" path="plugins/yordanbuilds/snooze" revision="refs/heads/master" remote="github" />
     <project name="ypMrg/omarchy-bambu-companion" path="plugins/ypMrg/omarchy-bambu-companion" revision="refs/heads/master" remote="github" />
+    <project name="ypMrg/omarchy-easy-kanban" path="plugins/ypMrg/omarchy-easy-kanban" revision="refs/heads/master" remote="github" />
     <project name="ypMrg/omarchy-fire-tv-stick-remote" path="plugins/ypMrg/omarchy-fire-tv-stick-remote" revision="refs/heads/master" remote="github" />
     <project name="yuters/omarchy-flight-radar" path="plugins/yuters/omarchy-flight-radar" revision="refs/heads/main" remote="github" />
+    <project name="znxr/QFetch" path="plugins/znxr/QFetch" revision="refs/heads/master" remote="github" />
   
 </manifest>
