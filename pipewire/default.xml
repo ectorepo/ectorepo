@@ -34,6 +34,7 @@
   <project name="mikeroyal/PipeWire-Guide" path="graph/pipewire-guide" revision="refs/heads/main" remote="github" groups="doc"/>
   <project name="houston4444/RaySession" path="graph/raysession" revision="refs/heads/master" remote="github" groups="python"/>
   <project name="dimtpap/coppwr" path="graph/coppwr" revision="refs/heads/main" remote="github" groups="rust"/>
+  <project name="pipeweaver/pipeweaver" path="graph/pipeweaver" revision="refs/heads/main" remote="github" groups="rust"/>
   <!-- daw -->
   <project name="sonosaurus/sonobus" path="daw/sonobus" revision="refs/heads/main" remote="github" groups="cpp"/>
   <!-- daw/vst -->
