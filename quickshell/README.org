@@ -1,0 +1,19 @@
+#+title: Ectorepo: Quickshell
+#+AUTHOR:    David Conner
+#+EMAIL:     aionfork@gmail.com
+#+DESCRIPTION: notes
+#+PROPERTY: header-args+ :comments none
+
+* Manifest
+
+#+begin_src xml :tangle default.xml
+<manifest>
+  <include name="_remotes.xml"/>
+  <default remote="github" sync-j="8" revision="refs/heads/master"/>
+
+  <project name="quickshell/quickshell" path="qs/quickshell" revision="refs/heads/master" remote="outfoxxed" />
+  <project name="quickshell/quickshell-web" path="qs/quickshell-web" revision="refs/heads/main" remote="outfoxxed" />
+  <project name="quickshell/quickshell-docs" path="qs/quickshell-docs" revision="refs/heads/master" remote="outfoxxed" />
+  <project name="quickshell/quickshell-examples" path="qs/quickshell-examples" revision="refs/heads/master" remote="outfoxxed" />
+</manifest>
+#+end_src
