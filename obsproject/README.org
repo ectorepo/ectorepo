@@ -14,6 +14,7 @@ repository.
   <include name="obsproject/obsproject.xml"/>
   <include name="obsproject/lua.xml"/>
   <include name="obsproject/ws.xml"/>
+  <include name="obsproject/plugins.xml"/>
 </manifest>
 #+end_src
 
@@ -78,9 +79,15 @@ To avoid confirmations
 </manifest>
 #+end_src
 
-** Plugin
+** Plugins
 
 I thought this required C++
+
+#+begin_src xml :tangle plugins.xml :noweb yes
+<manifest>
+  <project name="univrsal/input-overlay" path="plugins/input-overlay" revision="refs/heads/master" remote="github"/>
+</manifest>
+#+end_src
 
 * Obsproject
 

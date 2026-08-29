@@ -6,4 +6,5 @@
   <include name="obsproject/obsproject.xml"/>
   <include name="obsproject/lua.xml"/>
   <include name="obsproject/ws.xml"/>
+  <include name="obsproject/plugins.xml"/>
 </manifest>
