@@ -2,4 +2,5 @@
 
 <manifest>
   <project name="univrsal/input-overlay" path="plugins/input-overlay" revision="refs/heads/master" remote="github"/>
+  <project name="StreamUPTips/obs-streamup-hotkey-display" path="plugins/obs-streamup-hotkey-display" revision="refs/heads/main" remote="github"/>
 </manifest>
