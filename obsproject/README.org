@@ -59,10 +59,10 @@ To avoid confirmations
 
 #+begin_src xml :tangle ws.xml :noweb yes
 <manifest>
-  <project name="obs-websocket-community-projects/obs-websocket-js" path="plugin/obs-websocket-js" revision="refs/heads/master" remote="github"/>
-  <project name="obs-websocket-community-projects/obs-websocket-docker" path="plugin/obs-websocket-docker" revision="refs/heads/main" remote="github"/>
-  <project name="obs-websocket-community-projects/obs-websocket-java" path="plugin/obs-websocket-java" revision="refs/heads/develop" remote="github"/>
-  <project name="obs-websocket-community-projects/obs-websocket-proxy-client" path="plugin/obs-websocket-proxy-client" revision="refs/heads/master" remote="github"/>
+  <project name="obs-websocket-community-projects/obs-websocket-js" path="wslib/obs-websocket-js" revision="refs/heads/master" remote="github"/>
+  <project name="obs-websocket-community-projects/obs-websocket-docker" path="wslib/obs-websocket-docker" revision="refs/heads/main" remote="github"/>
+  <project name="obs-websocket-community-projects/obs-websocket-java" path="wslib/obs-websocket-java" revision="refs/heads/develop" remote="github"/>
+  <project name="obs-websocket-community-projects/obs-websocket-proxy-client" path="wslib/obs-websocket-proxy-client" revision="refs/heads/master" remote="github"/>
   <project name="Kounex/obs_blade" path="ws/obs_blade" revision="refs/heads/master" remote="github"/>
   <project name="grigio/obs-cmd" path="ws/obs-cmd" revision="refs/heads/master" remote="github"/>
   <project name="jshea2/osc-for-obs" path="ws/osc-for-obs" revision="refs/heads/master" remote="github"/>
