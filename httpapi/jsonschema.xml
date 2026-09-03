@@ -4,14 +4,14 @@
   <!-- conversion -->
   <project name="koumoul/schema-jtd" path="convert/schema-jtd" revision="refs/heads/main" remote="github" groups="fuzz typescript jtd" />
   <project name="galvez/jsontypedef" path="convert/jsontypedef" revision="refs/heads/main" remote="github" groups="fuzz typescript jtd" />
-  
+
   <!-- fuzzing -->
   <project name="schemathesis/schemathesis" path="fuzz/schemathesis" revision="refs/heads/master" remote="github" groups="fuzz python" />
-  <project name="python-jsonschema/hypothesis-jsonschema" path="fuzz/hypothesis-jsonschema" revision="refs/heads/main" remote="github" groups="fuzz python" />
-  
+  <project name="python-jsonschema/hypothesis-jsonschema" path="fuzz/hypothesis-jsonschema" revision="refs/heads/master" remote="github" groups="fuzz python" />
+
   <project name="ostrowr/jsoncompat" path="fuzz/jsoncompat" revision="refs/heads/main" remote="github" groups="fuzz rust" />
   <project name="jsontypedef/json-typedef-fuzz" path="fuzz/json-typedef-fuzz" revision="refs/heads/master" remote="github" groups="fuzz rust jtd" />
-  
+
   <project name="ashleydavis/fuzzmatic" path="fuzz/fuzzmatic" revision="refs/heads/main" remote="github" groups="fuzz typescript" />
   <project name="ashleydavis/fuzz-testing-a-rest-api" path="fuzzeg/fuzz-testing-a-rest-api" revision="refs/heads/main" remote="github" groups="fuzz typescript" />
   <project name="ashleydavis/fuzz-testing-from-open-api" path="fuzzeg/fuzz-testing-from-open-api" revision="refs/heads/main" remote="github" groups="fuzz typescript" />

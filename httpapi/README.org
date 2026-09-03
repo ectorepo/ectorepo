@@ -74,7 +74,7 @@ Check rates with =ghubCheckRates()=
 
   <!-- fuzzing -->
   <project name="schemathesis/schemathesis" path="fuzz/schemathesis" revision="refs/heads/master" remote="github" groups="fuzz python" />
-  <project name="python-jsonschema/hypothesis-jsonschema" path="fuzz/hypothesis-jsonschema" revision="refs/heads/main" remote="github" groups="fuzz python" />
+  <project name="python-jsonschema/hypothesis-jsonschema" path="fuzz/hypothesis-jsonschema" revision="refs/heads/master" remote="github" groups="fuzz python" />
 
   <project name="ostrowr/jsoncompat" path="fuzz/jsoncompat" revision="refs/heads/main" remote="github" groups="fuzz rust" />
   <project name="jsontypedef/json-typedef-fuzz" path="fuzz/json-typedef-fuzz" revision="refs/heads/master" remote="github" groups="fuzz rust jtd" />
