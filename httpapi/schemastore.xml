@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="schemastore/schemastore" path="schemastore/schemastore" revision="refs/heads/master" remote="github"/>
+  <project name="schemastore/SchemaStoreMcpServer" path="schemastore/schemastoremcpserver" revision="refs/heads/master" remote="github"/>
+</manifest>
