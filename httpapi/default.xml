@@ -4,6 +4,7 @@
   <include name="_remotes.xml"/>
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="httpapi/jsonschema.xml"/>
+  <include name="httpapi/schemastore.xml"/>
   <include name="httpapi/apis-guru.xml"/>
   <include name="httpapi/tools.xml"/>
 </manifest>
