@@ -2,7 +2,7 @@
 
 <manifest>
   <!-- conversion -->
-  <project name="koumoul/schema-jtd" path="convert/schema-jtd" revision="refs/heads/main" remote="github" groups="fuzz typescript jtd" />
+  <project name="koumoul-dev/schema-jtd" path="convert/schema-jtd" revision="refs/heads/main" remote="github" groups="fuzz typescript jtd" />
   <project name="galvez/jsontypedef" path="convert/jsontypedef" revision="refs/heads/main" remote="github" groups="fuzz typescript jtd" />
 
   <!-- fuzzing -->
