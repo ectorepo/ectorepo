@@ -334,6 +334,70 @@ layout python3
 
 **** TODO maybe import notes on automation from emacs/python/etc
 
+** Hooks
+
+*** Preventing dumb branches with git hooks or repo hooks
+
+LLM had some alright ideas for scripting. most of the pieces were there ... just
+completely jumbled up.
+
+#+begin_src shell
+# ...
+EXPECTED_REF=$(xmllint --xpath "string(//project[@path='$REPO_PROJECT']/@revision)" "$MANIFEST_XML" 2>/dev/null)
+# ... if empty
+EXPECTED_REF=$(xmllint --xpath "string(//default/@revision)" "$MANIFEST_XML" 2>/dev/null)
+# ...
+CURRENT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
+#+end_src
+
+There are a few problems:
+
++ Checking 100s of repos in =pre-commit= is complicated. shouldn't require too
+  much auth, but i haven't though much about it. i try to fix it while i'm
+  making changes. i don't expect anyone else to consume the repo's.
++ Doesn't fix =default.xml= manifests that were valid, but no longer are (probably
+  need to poll, then fix on a backend... which means also pulling)
++ There are more glitches as well. I think other people just have git remotes,
+  whereas i've just had excuses... so it doesn't make sense bc i've never
+  discussed it with anyone.
+
+**** Gemini :crypt:
+:PROPERTIES:
+:CRYPTKEY: David Conner <aionfork@gmail.com>
+:END:
+-----BEGIN PGP MESSAGE-----
+
+hQIMAz05LBTqCkO0AQ/+Ns0UDw/eCZtF2tO0ZydyfqtrOC3ZGmcQtkgIiJmbNFFM
+oAV2bBjSX/pV6QxL4E9EYV8OZE6Q3LnR3VfbAagu5KHLNYaeObwFZF6909w2PLm0
+aAg8ARhEBIOl6Ey48GcPjnKNN+R54EXdBZKQjMDOBKB0cShAyRPEN+b0jJ8H8SB8
+JL+sgoh3FF+PGEaK4PWlOJaN6Oljey3rLwH0N8kAFCe5yALEZinqPs6+E5hpXj26
+eTjCLTpZR3GOKYdZxEIQrJWqvjOyVpSwY3u/PbNCaWFKhZTcZZdctALgRoGBO36o
+PJ39ngx1vckfCRWWMAwiyqlYWRfjdQDtVnm4XMd1R2aCe79+sDVNCawi8GvwdGSQ
+R68hqy9NPCpjPgyvoCjSXmX+WHfQawo8bxzEwjs6jfmZVflSBQ/TNSOjzlMtdOB8
+Ol/zXFJxvvRTcPGRCal9JBba7yrp187+v3Dp7hju9LkQjMWyJapiAH4OoK52kHdj
+QIcs7Lk87GioLQeBO6BeuU/1+1TLYWAh4Ws4Oo1v7TM3p4guegoOwxTiX8NP2XCa
+h43byBedj+AjPBYIKRyrQm5yhF3WH9P0TIKCF5UlvA2T1RBhgeIXIhGGor3uks0/
+ohoFUH0uyE95hPyISZzYjbiBa018KM32d/cfFRpeUETG36kmnVy7IVrjo4vQqrTS
+6QGecyFjh5VxOgwitQGzaBaz/Nui0wz6SI+eFAPSUDwFJIRDESbuEMAmDvmcAhXC
+Tl6Raz3X5Pq/bANcuJfhIPgjoygol2Ruex1MZ+0gHCqr7PXahvf8TlyMjTGImfE7
+sH+dHsvXiCSjNZ6iaTITJRsqdtiNynbQK5MSOuJLIAMg5rjZSByVQqjVxVqBW07+
+AbMcV/eaLmh6o0CU31PDYcTtVtcWl3PSW8rkuxTZutF8v3qcoOxjU37KsRfHUKvA
+pRRdq6WyzNmVfWeLNJ2qRSScDGOpdtHf458i2++kZANeJemSNWeSETugPXk1A95x
+xyNjtnhbcYjBdSE/LcXz/Lw6IaFRsveysXJmTvbU2aBD2CwXUh62xH/CULpYFeId
+/ezk4JEQf0j38bVftNLwbSfRtQj1Ftjw5ws/0XNoDcKNAT5pwPOqfx16qDQx/OtY
+lb5zNeGKJvREwpv/JSqGiidU7mrj/4Y9GcQx0+Ynof6BKoshwm19yzixP2JgRjKG
+t2+Fy4ezJmids52IuWkhXF3bnNJXEELsfx3mt87pnX6N698V1W8DFN2h7HaismRK
+LSE37OGF02gR7HZudd4oF7AnGBzbJp6XCFtBfWVuH+hVKZDScyWxld+kPHBK4Hz5
+qy721Hk9AG0mP1qZIiadohcGhirz/xu49ZCAZCYDNkqGwGAEFzAoC3YG4u3H/eWi
+dDBxPudOutw3fIb+sQftV2Ui04cr8fb35mBAJA+H0ifNpnSzij4tr+ZN4JJ+eA0e
+IeDxiZDG5fR5nBUN3nHoh+DfXpUQEG/G+L5jyHgspdKajfofMXVSJgQwl61ZhdeZ
+kbV3EsqhTUkLRPZ4Oab4kU/vQtuk7dz8pgQnQngqQrkOyduu4e2ySTK+6gRfT8O4
+FmNAvtcaDF3ArfyHVLuDTQIJdOZppuqDhwVC3jcNVcHWfBh/QeTYq9iA5sNc1eXZ
+7kuM62PckAU6y8I52BEVrRqh8NFMHgUGNMSFVe2jQRCWKlKkraZlF6G+iIayiC12
++zbjFsePRA/tOzezARmJ+IjwWbC8QtJbx9k69VqWGb8bHiw=
+=d/p2
+-----END PGP MESSAGE-----
+
 ** Analyze XML
 
 To merge all the =groups= from XML:
@@ -348,7 +412,6 @@ xq -y '
    | sort
    | unique' ../astro-themes.xml
 #+end_src
-
 ** Forge.el
 
 #+name: forgeDB
