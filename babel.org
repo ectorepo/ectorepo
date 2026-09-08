@@ -239,6 +239,9 @@ map(select(.fork == null and .archived != true)
 
 *** ghubReposXML
 
+Clones under login (only reference). Otherwise, can change to ~subdirs='()~ with
+default =nil=
+
 #+name: ghubGiteaReposXML
 #+begin_src emacs-lisp :var remote="blender" repos=ghubGiteaReposFetch reposExclude=ghubReposExclude login="dcunited001" :results value html
 (let* ((reposExclude (flatten-list reposExclude)))

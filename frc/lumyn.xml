@@ -2,4 +2,5 @@
 
 <manifest>
   <project name="Lumyn-Labs/Examples" path="lumyn/examples" revision="refs/heads/main" />
+  <project name="Lumyn-Labs/docs" path="lumyn/examples" revision="refs/heads/main" />
 </manifest>

@@ -9,6 +9,8 @@ When using =repo init -u $url -m $manifest= instead of the git submodule to
 checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
 repository.
 
+* Manifest
+
 #+begin_src xml :tangle default.xml
 <manifest>
   <include name="_remotes.xml"/>
@@ -22,14 +24,11 @@ repository.
   <include name="frc/bbFrc.xml"/>
   <include name="frc/ctre.xml"/>
   <include name="frc/hardware.xml"/>
+  <include name="frc/lumyn.xml"/>
 </manifest>
 #+end_src
 
-Check rates:
-
-#+begin_src emacs-lisp :results value code :exports code
-(ghub-graphql-rate-limit)
-#+end_src
+** Babel Setup
 
 To avoid confirmations
 
@@ -37,15 +36,24 @@ To avoid confirmations
 (setq-local org-confirm-babel-evaluate nil)
 #+end_src
 
-* Setup
+Load blocks
 
-#+name: nrepos
 #+begin_src emacs-lisp
-100
+;; untested
+(org-babel-lob-ingest "../babel.org")
 #+end_src
 
-#+RESULTS: nrepos
-: 100
+#+RESULTS:
+: 1
+
+Check rates with =ghubCheckRates()=
+
+#+call: ghubCheckRates()
+
+#+RESULTS:
+#+begin_src emacs-lisp
+5000
+#+end_src
 
 * Core
 
@@ -136,6 +144,7 @@ https://github.com/Lumyn-Labs/Examples/tree/main/LumynLabsExampleJava
 #+begin_src xml :tangle lumyn.xml :noweb yes
 <manifest>
   <project name="Lumyn-Labs/Examples" path="lumyn/examples" revision="refs/heads/main" />
+  <project name="Lumyn-Labs/docs" path="lumyn/examples" revision="refs/heads/main" />
 </manifest>
 #+end_src
 
@@ -150,175 +159,150 @@ https://github.com/Lumyn-Labs/Examples/tree/main/LumynLabsExampleJava
 </manifest>
 #+end_src
 
-* WPI Lib
+* Wpilibsuite
 
 Get about 60 of the =wpilibsuite= repositories. These should go into
 =/data/ecto/frc/wpilibsuite=.
 
-#+name: wpi-repos
-#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
-(ghub-graphql
- (graphql-query ((organization
-                  :arguments ((login . "wpilibsuite"))
-                  (repositories
-                   :arguments ((first . <<nrepos()>>)
-                               (orderBy . ((field . UPDATED_AT)
-                                           (direction . DESC))))
-                   (edges
-                    (node (owner login)
-                          name
-                          (defaultBranchRef prefix name)
-                          url
-                          updatedAt
-                          isArchived)))))))
+#+name: wpilibsuiteLogin
+#+begin_src emacs-lisp
+"wpilibsuite"
 #+end_src
+
+Excluded Repositories
+
+#+NAME: wpilibsuiteReposExclude
+| .github |
+
+#+name: wpilibsuiteReposFetch
+#+call: ghubReposFetch(login=wpilibsuiteLogin)
+
+Clone bundle sizes
+
+#+name: wpilibsuiteReposBundles
+#+call: ghubReposBundles(repos=wpilibsuiteReposFetch)
+
+Clone bundles total
+
+#+name: wpilibsuiteReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=wpilibsuiteReposBundles[,0])
+
+** Wpilibsuite Repos
 
 Filter the results, generate XML
 
-#+name: wpilibsuite
-#+begin_src emacs-lisp :var gqldata=wpi-repos :results value html
-(thread-first
-  (thread-last
-    (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-    (mapcar (lambda (el) (a-get* el 'node)))
-    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
-    (mapcar (lambda (el)
-              (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
-                     (path (a-get* el 'name))
-                     (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                  (a-get* el 'defaultBranchRef 'name)))
-                     (name (string-join (list (a-get* el 'owner 'login)
-                                              (a-get* el 'name)) "/")))
-                (concat "<project"
-                        " name=\"" name
-                        "\" path=\"wpilibsuite/" path
-                        "\" revision=\"" ref "\" remote=\"github\"/>")))))
-  (cl-sort 'string-lessp :key 'downcase)
-  (string-join "\n"))
-#+end_src
+#+name: wpilibsuiteReposXML
+#+call: ghubReposXML(repos=wpilibsuiteReposFetch, reposExclude=wpilibsuiteReposExclude, login=wpilibsuiteLogin)
+
+** Generate XML
 
 Generate =wpilibsuite.xml=
 
 #+begin_src xml :tangle wpilibsuite.xml :noweb yes
 <manifest>
-  <<wpilibsuite()>>
+  <<wpilibsuiteReposXML()>>
 </manifest>
 #+end_src
 
 * Robotpy
 
-
 Get about 60 of the =robotpy= repositories. These should go into
 =/data/ecto/frc/robotpy=.
 
-#+name: robotpy-repos
-#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
-(ghub-graphql
- (graphql-query ((organization
-                  :arguments ((login . "robotpy"))
-                  (repositories
-                   :arguments ((first . <<nrepos()>>)
-                               (orderBy . ((field . UPDATED_AT)
-                                           (direction . DESC))))
-                   (edges
-                    (node (owner login)
-                          name
-                          (defaultBranchRef prefix name)
-                          url
-                          updatedAt
-                          isArchived)))))))
+#+name: robotpyLogin
+#+begin_src emacs-lisp
+"robotpy"
 #+end_src
+
+Excluded Repositories
+
+#+NAME: robotpyReposExclude
+| .github |
+
+#+name: robotpyReposFetch
+#+call: ghubReposFetch(login=robotpyLogin)
+
+Clone bundle sizes
+
+#+name: robotpyReposBundles
+#+call: ghubReposBundles(repos=robotpyReposFetch)
+
+Clone bundles total
+
+#+name: robotpyReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=robotpyReposBundles[,0])
+
+** Robotpy Repos
 
 Filter the results, generate XML
 
-#+name: robotpy
-#+begin_src emacs-lisp :var gqldata=robotpy-repos :results value html
-(thread-first
-  (thread-last
-    (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-    (mapcar (lambda (el) (a-get* el 'node)))
-    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
-    (mapcar (lambda (el)
-              (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
-                     (path (a-get* el 'name))
-                     (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                  (a-get* el 'defaultBranchRef 'name)))
-                     (name (string-join (list (a-get* el 'owner 'login)
-                                              (a-get* el 'name)) "/")))
-                (concat "<project"
-                        " name=\"" name
-                        "\" path=\"robotpy/" path
-                        "\" revision=\"" ref "\" remote=\"github\"/>")))))
-  (cl-sort 'string-lessp :key 'downcase)
-  (string-join "\n"))
-#+end_src
+#+name: robotpyReposXML
+#+call: ghubReposXML(repos=robotpyReposFetch, reposExclude=robotpyReposExclude, login=robotpyLogin)
+
+** Generate XML
 
 Generate =robotpy.xml=
 
 #+begin_src xml :tangle robotpy.xml :noweb yes
 <manifest>
-  <<robotpy()>>
+  <<robotpyReposXML()>>
 </manifest>
 #+end_src
 
-* bb-frc-workshops
+* Bb-Frc-Workshops
 
-#+NAME: bbFrcReposExclude
+Get about 60 of the =bb-frc-workshops= repositories. These should go into
+=/data/ecto/frc/bb-frc-workshops=.
+
+#+name: bbFrcWorkshopsLogin
+#+begin_src emacs-lisp
+"bb-frc-workshops"
+#+end_src
+
+Excluded Repositories
+
+#+NAME: bbFrcWorkshopsReposExclude
 | allwpilib |
 
-#+name: bbFrcRepos
-#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
-(ghub-graphql
- (graphql-query ((organization
-                  :arguments ((login . "bb-frc-workshops"))
-                  (repositories
-                   :arguments ((first . <<nrepos()>>)
-                               (orderBy . ((field . UPDATED_AT)
-                                           (direction . DESC))))
-                   (edges
-                    (node (owner login)
-                          name
-                          (defaultBranchRef prefix name)
-                          url
-                          updatedAt
-                          isArchived)))))))
-#+end_src
+#+name: bbFrcWorkshopsReposFetch
+#+call: ghubReposFetch(login=bbFrcWorkshopsLogin)
+
+Clone bundle sizes
+
+#+name: bbFrcWorkshopsReposBundles
+#+call: ghubReposBundles(repos=bbFrcWorkshopsReposFetch)
+
+Clone bundles total
+
+#+name: bbFrcWorkshopsReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=bbFrcWorkshopsReposBundles[,0])
+
+** BbFrcWorkshops Repos
 
 Filter the results, generate XML
 
-#+name: bbFrc
-#+begin_src emacs-lisp :var gqldata=bbFrcRepos :results value html
-(thread-first
-  (thread-last
-    (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-    (mapcar (lambda (el) (a-get* el 'node)))
-    (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
-    (mapcar (lambda (el)
-              (let* (;; (defaultBranchRef (a-get* 'defaultBranchRef))
-                     (path (a-get* el 'name))
-                     (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                  (a-get* el 'defaultBranchRef 'name)))
-                     (name (string-join (list (a-get* el 'owner 'login)
-                                              (a-get* el 'name)) "/")))
-                (concat "<project"
-                        " name=\"" name
-                        "\" path=\"bbFrc/" path
-                        "\" revision=\"" ref "\" remote=\"github\"/>")))))
-  (cl-sort 'string-lessp :key 'downcase)
-  (string-join "\n"))
-#+end_src
+#+name: bbFrcWorkshopsReposXML
+#+call: ghubReposXML(repos=bbFrcWorkshopsReposFetch, reposExclude=bbFrcWorkshopsReposExclude, login="bbFrc")
 
-Generate =bbFrc.xml=
+** Generate XML
 
-#+begin_src xml :tangle bbFrc.xml :noweb yes
+Generate =bbFrcWorkshops.xml=
+
+#+begin_src xml :tangle bbFrcWorkshops.xml :noweb yes
 <manifest>
-  <<bbFrc()>>
+  <<bbFrcWorkshopsReposXML()>>
 </manifest>
 #+end_src
 
+* Photonvision
 
+Get about 60 of the =photonvision= repositories. These should go into
+=/data/ecto/frc/photonvision=.
 
-* PhotonVision
+#+name: photonvisionLogin
+#+begin_src emacs-lisp
+"photonvision"
+#+end_src
 
 Excluded Repositories
 
@@ -332,92 +316,27 @@ Excluded Repositories
 | photonlib-examples    |
 | vue-native-websocket  |
 
-Get about 60 of the =photonvision= repositories. These should go into
-=/data/ecto/frc/photonvision=.
+#+name: photonvisionReposFetch
+#+call: ghubReposFetch(login=photonvisionLogin)
 
-#+name: photonvisionRepos
-#+begin_src emacs-lisp :var nrepos=60 :results replace vector value :exports code :noweb yes
-(ghub-graphql
- (graphql-query ((organization
-                  :arguments ((login . "photonvision"))
-                  (repositories
-                   :arguments ((first . <<nrepos()>>)
-                               (orderBy . ((field . UPDATED_AT)
-                                           (direction . DESC))))
-                   (edges
-                    (node (owner login)
-                          name
-                          (defaultBranchRef prefix name)
-                          url
-                          updatedAt
-                          isArchived)))))))
-#+end_src
+Clone bundle sizes
 
-#+RESULTS: photonvisionRepos
-| data | (organization (repositories (edges ((node (owner (login . PhotonVision)) (name . photonvision) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/photonvision) (updatedAt . 2025-04-15T06:52:28Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . ansible-playbooks) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/ansible-playbooks) (updatedAt . 2025-04-12T23:25:04Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonvision-website) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photonvision-website) (updatedAt . 2025-04-11T03:37:56Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . PhotonPro) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/PhotonPro) (updatedAt . 2025-04-10T02:48:37Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonlib-examples) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/photonlib-examples) (updatedAt . 2025-04-09T16:22:12Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . photon-libcamera-gl-driver) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photon-libcamera-gl-driver) (updatedAt . 2025-04-08T05:06:33Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photon-image-modifier) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/photon-image-modifier) (updatedAt . 2025-02-10T03:08:30Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . rknn_jni) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/rknn_jni) (updatedAt . 2025-02-08T07:13:03Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . mrcal-java) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/mrcal-java) (updatedAt . 2024-12-19T05:51:38Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . vendor-json-repo) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/vendor-json-repo) (updatedAt . 2024-11-12T20:48:22Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonvision-docs) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photonvision-docs) (updatedAt . 2024-11-05T21:36:25Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . thirdparty-opencv) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/thirdparty-opencv) (updatedAt . 2024-10-08T22:37:29Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . build-tools) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/build-tools) (updatedAt . 2024-09-30T15:30:17Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonlib) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photonlib) (updatedAt . 2024-08-17T21:09:48Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . opencv) (defaultBranchRef (prefix . refs/heads/) (name . 4.x)) (url . https://github.com/PhotonVision/opencv) (updatedAt . 2024-06-06T03:33:50Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . champs_2024) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/champs_2024) (updatedAt . 2024-05-17T17:26:18Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photon-picam-driver) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photon-picam-driver) (updatedAt . 2024-04-02T18:59:07Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . opi-image-generator) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/opi-image-generator) (updatedAt . 2024-01-03T21:31:09Z) (isArchived . t))) ((node (owner (login . PhotonVision)) (name . aruconano-jni) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/aruconano-jni) (updatedAt . 2024-01-03T21:28:55Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photon-pi-gen) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photon-pi-gen) (updatedAt . 2023-12-17T23:45:53Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . gloworm-docs) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/gloworm-docs) (updatedAt . 2023-02-01T15:14:27Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . orangepi-builder) (defaultBranchRef (prefix . refs/heads/) (name . main)) (url . https://github.com/PhotonVision/orangepi-builder) (updatedAt . 2023-01-03T18:37:25Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . apriltag) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/apriltag) (updatedAt . 2022-10-07T05:12:11Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photon-pi-os) (defaultBranchRef (prefix . refs/heads/) (name . devel)) (url . https://github.com/PhotonVision/photon-pi-os) (updatedAt . 2022-10-01T05:28:16Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . vue-native-websocket) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/vue-native-websocket) (updatedAt . 2022-09-26T20:01:09Z) (isArchived))) ((node (owner (login . PhotonVision)) (name . photonvision-branding) (defaultBranchRef (prefix . refs/heads/) (name . master)) (url . https://github.com/PhotonVision/photonvision-branding) (updatedAt . 2020-07-12T21:28:10Z) (isArchived)))))) |
+#+name: photonvisionReposBundles
+#+call: ghubReposBundles(repos=photonvisionReposFetch)
+
+Clone bundles total
+
+#+name: photonvisionReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=photonvisionReposBundles[,0])
+
+** Photonvision Repos
 
 Filter the results, generate XML
 
 #+name: photonvisionReposXML
-#+begin_src emacs-lisp :var gqldata=photonvisionRepos repos-exclude=photonvisionReposExclude :results value html
-(setq -gql-data gqldata)
+#+call: ghubReposXML(repos=photonvisionReposFetch, reposExclude=photonvisionReposExclude, login=photonvisionLogin)
 
-;; no repos-core variable
-;; (repos-core (flatten-list repos- core))
-
-(let* ((repos-exclude (flatten-list repos-exclude)))
-  (thread-first
-    (thread-last
-      (a-get* (nthcdr 0 gqldata) 'data 'organization 'repositories 'edges)
-      (mapcar (lambda (el) (a-get* el 'node)))
-
-      ;; filter archived repos
-      (seq-filter (lambda (el) (not (a-get* el 'isArchived))))
-
-      ;; filter repos in reposExclude list
-      (seq-filter (lambda (el) (not (member (a-get* el 'name) repos-exclude))))
-      (mapcar (lambda (el)
-                (let* ((raw-name (a-get* el 'name))
-
-                       ;; (repo-core? (member raw-name repos-core))
-
-                       (path-dirs (list "photonvision" raw-name))
-
-                       ;; (path-dirs (cond (repo-core? (list "core" raw-name))
-                       ;;                 (t (list "misc" raw-name))))
-
-                       (path (string-join path-dirs "/"))
-                       (ref (concat (a-get* el 'defaultBranchRef 'prefix)
-                                    (a-get* el 'defaultBranchRef 'name)))
-                       (name (string-join (list (a-get* el 'owner 'login)
-                                                (a-get* el 'name)) "/")))
-                  (concat "<project"
-                          " name=\"" name
-                          "\" path=\"" path
-                          "\" revision=\"" ref "\" remote=\"github\"/>")))))
-    (cl-sort 'string-lessp :key 'downcase)
-    (string-join "\n")))
-#+end_src
-
-#+RESULTS: photonvisionReposXML
-#+begin_export html
-<project name="PhotonVision/ansible-playbooks" path="photonvision/ansible-playbooks" revision="refs/heads/main" remote="github"/>
-<project name="PhotonVision/apriltag" path="photonvision/apriltag" revision="refs/heads/master" remote="github"/>
-<project name="PhotonVision/aruconano-jni" path="photonvision/aruconano-jni" revision="refs/heads/master" remote="github"/>
-<project name="PhotonVision/build-tools" path="photonvision/build-tools" revision="refs/heads/master" remote="github"/>
-<project name="PhotonVision/gloworm-docs" path="photonvision/gloworm-docs" revision="refs/heads/master" remote="github"/>
-<project name="PhotonVision/mrcal-java" path="photonvision/mrcal-java" revision="refs/heads/main" remote="github"/>
-<project name="PhotonVision/opencv" path="photonvision/opencv" revision="refs/heads/4.x" remote="github"/>
-<project name="PhotonVision/orangepi-builder" path="photonvision/orangepi-builder" revision="refs/heads/main" remote="github"/>
-<project name="PhotonVision/photon-image-modifier" path="photonvision/photon-image-modifier" revision="refs/heads/main" remote="github"/>
-<project name="PhotonVision/photon-libcamera-gl-driver" path="photonvision/photon-libcamera-gl-driver" revision="refs/heads/master" remote="github"/>
-<project name="PhotonVision/photon-pi-gen" path="photonvision/photon-pi-gen" revision="refs/heads/master" remote="github"/>
-<project name="PhotonVision/photon-pi-os" path="photonvision/photon-pi-os" revision="refs/heads/devel" remote="github"/>
-<project name="PhotonVision/photon-picam-driver" path="photonvision/photon-picam-driver" revision="refs/heads/master" remote="github"/>
-<project name="PhotonVision/photonvision" path="photonvision/photonvision" revision="refs/heads/main" remote="github"/>
-<project name="PhotonVision/rknn_jni" path="photonvision/rknn_jni" revision="refs/heads/main" remote="github"/>
-<project name="PhotonVision/thirdparty-opencv" path="photonvision/thirdparty-opencv" revision="refs/heads/main" remote="github"/>
-#+end_export
+** Generate XML
 
 Generate =photonvision.xml=
 

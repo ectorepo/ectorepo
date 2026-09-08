@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <manifest>
-  <project name="robotpy/.github" path="robotpy/.github" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/build-actions" path="robotpy/build-actions" revision="refs/heads/v2026" remote="github"/>
   <project name="robotpy/ccache-action" path="robotpy/ccache-action" revision="refs/heads/main" remote="github"/>
+  <project name="robotpy/2026-kitbot" path="robotpy/2026-kitbot" revision="refs/heads/main" remote="github"/>
+  <project name="robotpy/build-actions" path="robotpy/build-actions" revision="refs/heads/v2027" remote="github"/>
   <project name="robotpy/cmp-talk-2024" path="robotpy/cmp-talk-2024" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/crossenv" path="robotpy/crossenv" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/crossenv-ci-images" path="robotpy/crossenv-ci-images" revision="refs/heads/main" remote="github"/>
@@ -50,6 +51,8 @@
   <project name="robotpy/robotpy-wpilib-utilities" path="robotpy/robotpy-wpilib-utilities" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/robotpy.github.io" path="robotpy/robotpy.github.io" revision="refs/heads/master" remote="github"/>
   <project name="robotpy/semiwrap" path="robotpy/semiwrap" revision="refs/heads/main" remote="github"/>
+  <project name="robotpy/snake-case-migrator" path="robotpy/snake-case-migrator" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/test-actions" path="robotpy/test-actions" revision="refs/heads/master" remote="github"/>
+  <project name="robotpy/tmp-upload" path="robotpy/tmp-upload" revision="refs/heads/main" remote="github"/>
   <project name="robotpy/wpilib-cpp-crio" path="robotpy/wpilib-cpp-crio" revision="refs/heads/upstream" remote="github"/>
 </manifest>
