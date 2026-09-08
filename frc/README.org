@@ -76,6 +76,8 @@ Generate =wpilibsuite.xml=
   <project name="Mechanical-Advantage/AdvantageScope" path="dash/advantage/AdvantageScope" revision="refs/heads/main" />
   <project name="Mechanical-Advantage/AdvantageScout" path="dash/advantage/AdvantageScout" revision="refs/heads/main" />
   <project name="Mechanical-Advantage/XRPTrainingCode" path="dash/advantage/XRPTrainingCode" revision="refs/heads/main" />
+  <!-- ./ide -->
+  <project name="javaru/frc-intellij-plugin" path="ide/intellij-2025" revision="refs/heads/main" remote="gitlab" />
   <!-- ./utils -->
   <project name="Boomaa23/open-ds" path="utils/open-ds" revision="refs/heads/master" />
   <project name="StuyPulse/StuyLib" path="utils/stuylib" revision="refs/heads/main" />
