@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="robotpy/roborio-python" path="robotpy2/roborio-python" revision="refs/heads/main" remote="github"/>
+  <project name="robotpy/roborio-vm" path="robotpy2/roborio-vm" revision="refs/heads/master" remote="github"/>
+  <project name="robotpy/roborio-wheels" path="robotpy2/roborio-wheels" revision="refs/heads/2026" remote="github"/>
+  <project name="robotpy/robotpy-cross-docker" path="robotpy2/robotpy-cross-docker" revision="refs/heads/master" remote="github"/>
+</manifest>

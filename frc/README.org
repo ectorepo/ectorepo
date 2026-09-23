@@ -17,6 +17,7 @@ repository.
   <default remote="github" sync-j="8" revision="refs/heads/master"/>
   <include name="frc/wpilibsuite.xml"/>
   <include name="frc/robotpy.xml"/>
+  <include name="frc/robotpy_archived.xml"/>
   <include name="frc/frcmisc.xml"/>
   <include name="frc/photonvision.xml"/>
   <!-- wpilibsuite,robotpy,frcmisc: 4GB (4/15/2025) -->
@@ -246,6 +247,19 @@ Generate =robotpy.xml=
 #+begin_src xml :tangle robotpy.xml :noweb yes
 <manifest>
   <<robotpyReposXML()>>
+</manifest>
+#+end_src
+
+** Archived Repos
+
+Most of these are archived, but they're too interesting to pass up lol
+
+#+begin_src xml :tangle robotpy_archived.xml :noweb yes
+<manifest>
+  <project name="robotpy/roborio-python" path="robotpy/roborio-python" revision="refs/heads/main" remote="github"/>
+  <project name="robotpy/roborio-vm" path="robotpy/roborio-vm" revision="refs/heads/master" remote="github"/>
+  <project name="robotpy/roborio-wheels" path="robotpy/roborio-wheels" revision="refs/heads/2026" remote="github"/>
+  <project name="robotpy/robotpy-cross-docker" path="robotpy/robotpy-cross-docker" revision="refs/heads/master" remote="github"/>
 </manifest>
 #+end_src
 
