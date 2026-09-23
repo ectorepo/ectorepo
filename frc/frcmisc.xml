@@ -29,4 +29,9 @@
   <!-- ./AprilRobotics -->
   <project name="AprilRobotics/apriltag" path="AprilRobotics/apriltag" revision="refs/heads/master" />
   <project name="AprilRobotics/apriltag-imgs" path="AprilRobotics/apriltag-imgs" revision="refs/heads/master" />
+  <!-- ./nix -->
+  <project name="frc4451/frc-nix" path="nix/frc-nix" revision="refs/heads/season/2026" />
+  <!-- ./learn -->
+  <project name="frc4451/garagedocs" path="learn/garagedocs" revision="refs/heads/main" />
+  <project name="itkan-robotics/mantik" path="learn/mantik" revision="refs/heads/main" />
 </manifest>
