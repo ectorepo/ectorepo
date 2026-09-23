@@ -145,7 +145,7 @@ https://github.com/Lumyn-Labs/Examples/tree/main/LumynLabsExampleJava
 #+begin_src xml :tangle lumyn.xml :noweb yes
 <manifest>
   <project name="Lumyn-Labs/Examples" path="lumyn/examples" revision="refs/heads/main" />
-  <project name="Lumyn-Labs/docs" path="lumyn/examples" revision="refs/heads/main" />
+  <project name="Lumyn-Labs/docs" path="lumyn/docs" revision="refs/heads/main" />
 </manifest>
 #+end_src
 
@@ -256,10 +256,10 @@ Most of these are archived, but they're too interesting to pass up lol
 
 #+begin_src xml :tangle robotpy_archived.xml :noweb yes
 <manifest>
-  <project name="robotpy/roborio-python" path="robotpy/roborio-python" revision="refs/heads/main" remote="github"/>
-  <project name="robotpy/roborio-vm" path="robotpy/roborio-vm" revision="refs/heads/master" remote="github"/>
-  <project name="robotpy/roborio-wheels" path="robotpy/roborio-wheels" revision="refs/heads/2026" remote="github"/>
-  <project name="robotpy/robotpy-cross-docker" path="robotpy/robotpy-cross-docker" revision="refs/heads/master" remote="github"/>
+  <project name="robotpy/roborio-python" path="robotpy2/roborio-python" revision="refs/heads/main" remote="github"/>
+  <project name="robotpy/roborio-vm" path="robotpy2/roborio-vm" revision="refs/heads/master" remote="github"/>
+  <project name="robotpy/roborio-wheels" path="robotpy2/roborio-wheels" revision="refs/heads/2026" remote="github"/>
+  <project name="robotpy/robotpy-cross-docker" path="robotpy2/robotpy-cross-docker" revision="refs/heads/master" remote="github"/>
 </manifest>
 #+end_src
 
