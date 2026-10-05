@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest>
+  <project name="getsops/sops" path="sops/sops" revision="refs/heads/main" remote="github"/>
+  <project name="getsops/docs" path="sops/docs" revision="refs/heads/main" remote="github"/>
+</manifest>
