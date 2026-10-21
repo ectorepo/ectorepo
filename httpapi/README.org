@@ -8,6 +8,7 @@ checkout, the filepaths for =<include name=mnfst.xml/>= are relative to the root
 repository.
 
 * Resources
++ [[https://github.com/api-evangelist]] analysis on APIs and their infrastructure
 
 * Manifest
 
