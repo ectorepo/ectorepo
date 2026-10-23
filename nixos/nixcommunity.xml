@@ -26,7 +26,6 @@
   <project name="nix-community/gomod2nix" path="nix-community/gomod2nix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/gnome-session-ctl" path="nix-community/gnome-session-ctl" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/go-nix" path="nix-community/go-nix" revision="refs/heads/main" remote="github"/>
-  <project name="nix-community/gomod2nix" path="nix-community/gomod2nix" revision="refs/heads/master" remote="github"/>
   <project name="nix-community/harmonia" path="nix-community/harmonia" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/haumea" path="nix-community/haumea" revision="refs/heads/main" remote="github"/>
   <project name="nix-community/home-manager" path="nix-community/home-manager" revision="refs/heads/master" remote="github"/>
