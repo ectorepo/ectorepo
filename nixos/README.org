@@ -16,6 +16,7 @@ repository.
   <include name="nixos/nixos.xml"/>
   <include name="nixos/nixcommunity.xml"/>
   <include name="nixos/numtide.xml"/>
+  <include name="nixos/cachix.xml"/>
   <include name="nixos/flakes.xml"/>
 </manifest>
 #+end_src
@@ -147,7 +148,7 @@ A lot of interesting devops/consulting-oriented repos:
 </manifest>
 #+end_src
 
-** Nixos
+* Nixos
 
 #+name: nixosLogin
 #+begin_src emacs-lisp
@@ -259,6 +260,7 @@ Clone bundles total
 
 #+RESULTS: nixosReposBundlesTotal
 : 3471625
+
 
 ** Nixos Repos
 
@@ -578,7 +580,7 @@ Generate =nixcommunity.xml=
 </manifest>
 #+end_src
 
-** Numtide
+* Numtide
 
 #+name: numtideLogin
 #+begin_src emacs-lisp
@@ -769,5 +771,174 @@ Generate =numtide.xml=
 #+begin_src xml :tangle numtide.xml :noweb yes
 <manifest>
   <<numtideReposXML()>>
+</manifest>
+#+end_src
+* Cachix
+
+#+name: cachixLogin
+#+begin_src emacs-lisp
+"cachix"
+#+end_src
+
+Excluded Repositories
+
+#+NAME: cachixReposExclude
+| .github        |
+| devenv-nixpkgs |
+
+#+name: cachixReposFetch
+#+call: ghubReposFetch(login=cachixLogin)
+
+Clone bundle sizes
+
+#+name: cachixReposBundles
+#+call: ghubReposBundles(repos=cachixReposFetch)
+
+#+RESULTS: cachixReposBundles
+|   38153 | cachix | refs/heads/ | main   | devenv                                       | 2026-10-29T05:52:52Z | nil | nil | https://github.com/cachix/devenv                                       |
+|   45043 | cachix | refs/heads/ | main   | casita                                       | 2026-10-28T23:10:36Z | nil | nil | https://github.com/cachix/casita                                       |
+|      75 | cachix | refs/heads/ | main   | changelog-merge                              | 2026-10-28T21:45:45Z | nil | nil | https://github.com/cachix/changelog-merge                              |
+|     415 | cachix | refs/heads/ | main   | nixpkgs-python                               | 2026-10-28T19:14:46Z | nil | nil | https://github.com/cachix/nixpkgs-python                               |
+|   17315 | cachix | refs/heads/ | main   | cloud.devenv.sh                              | 2026-10-28T18:16:45Z | nil | nil | https://github.com/cachix/cloud.devenv.sh                              |
+|    7798 | cachix | refs/heads/ | main   | secretspec                                   | 2026-10-28T17:54:05Z | nil | nil | https://github.com/cachix/secretspec                                   |
+|    3986 | cachix | refs/heads/ | main   | agentaps                                     | 2026-10-28T16:03:34Z | nil | nil | https://github.com/cachix/agentaps                                     |
+|    1486 | cachix | refs/heads/ | master | git-hooks.nix                                | 2026-10-28T11:55:17Z | nil | nil | https://github.com/cachix/git-hooks.nix                                |
+|    6928 | cachix | refs/heads/ | main   | factorseal                                   | 2026-10-28T09:15:47Z | nil | nil | https://github.com/cachix/factorseal                                   |
+| 2353491 | cachix | refs/heads/ | main   | devenv-nixpkgs                               | 2026-10-26T19:29:30Z | nil | nil | https://github.com/cachix/devenv-nixpkgs                               |
+|   16618 | cachix | refs/heads/ | master | install-nix-action                           | 2026-10-26T15:11:18Z | nil | nil | https://github.com/cachix/install-nix-action                           |
+|    4053 | cachix | refs/heads/ | master | cachix                                       | 2026-10-26T10:27:03Z | nil | nil | https://github.com/cachix/cachix                                       |
+|     362 | cachix | refs/heads/ | main   | nix-derivation                               | 2026-10-23T12:35:16Z | nil | nil | https://github.com/cachix/nix-derivation                               |
+|      16 | cachix | refs/heads/ | main   | jev-action                                   | 2026-10-23T10:59:30Z | nil | nil | https://github.com/cachix/jev-action                                   |
+|     544 | cachix | refs/heads/ | main   | cachix-ci-agents                             | 2026-10-22T14:38:29Z | nil | nil | https://github.com/cachix/cachix-ci-agents                             |
+|     446 | cachix | refs/heads/ | master | docs.cachix.org                              | 2026-10-14T18:53:30Z | nil | nil | https://github.com/cachix/docs.cachix.org                              |
+|      10 | cachix | refs/heads/ | main   | haskell-release-action                       | 2026-10-13T06:29:22Z | nil | nil | https://github.com/cachix/haskell-release-action                       |
+|  184483 | cachix | refs/heads/ | canon  | snix                                         | 2026-10-10T17:25:14Z | nil | nil | https://github.com/cachix/snix                                         |
+|      69 | cachix | refs/heads/ | main   | native-theme-qt                              | 2026-10-07T20:58:51Z | nil | nil | https://github.com/cachix/native-theme-qt                              |
+|      61 | cachix | refs/heads/ | main   | dotenv-ng                                    | 2026-10-06T20:51:00Z | nil | nil | https://github.com/cachix/dotenv-ng                                    |
+|   18672 | cachix | refs/heads/ | master | cachix-action                                | 2026-10-06T13:17:22Z | nil | nil | https://github.com/cachix/cachix-action                                |
+|      13 | cachix | refs/heads/ | main   | devenv-ai-agents                             | 2026-10-05T20:34:19Z | nil | nil | https://github.com/cachix/devenv-ai-agents                             |
+|     276 | cachix | refs/heads/ | main   | nix-archive                                  | 2026-10-03T20:28:18Z | nil | nil | https://github.com/cachix/nix-archive                                  |
+|     190 | cachix | refs/heads/ | main   | site-kit                                     | 2026-09-17T21:37:51Z | nil | nil | https://github.com/cachix/site-kit                                     |
+|      43 | cachix | refs/heads/ | main   | nix-flake-lock                               | 2026-09-06T19:14:04Z | nil | nil | https://github.com/cachix/nix-flake-lock                               |
+|      44 | cachix | refs/heads/ | main   | nix-narinfo                                  | 2026-09-04T20:08:07Z | nil | nil | https://github.com/cachix/nix-narinfo                                  |
+|      80 | cachix | refs/heads/ | main   | native-theme-gtk                             | 2026-09-03T12:30:42Z | nil | nil | https://github.com/cachix/native-theme-gtk                             |
+|      32 | cachix | refs/heads/ | main   | terminal-card                                | 2026-09-01T17:37:43Z | nil | nil | https://github.com/cachix/terminal-card                                |
+|      19 | cachix | refs/heads/ | main   | cachix-deploy-hetzner-dedicated              | 2026-08-26T17:51:58Z | nil | nil | https://github.com/cachix/cachix-deploy-hetzner-dedicated              |
+|      52 | cachix | refs/heads/ | main   | hs-opentelemetry-instrumentation-http-client | 2026-08-25T00:17:07Z | nil | nil | https://github.com/cachix/hs-opentelemetry-instrumentation-http-client |
+|     123 | cachix | refs/heads/ | main   | oauth-kit                                    | 2026-08-21T15:05:35Z | nil | nil | https://github.com/cachix/oauth-kit                                    |
+|    1319 | cachix | refs/heads/ | main   | git-blame-auto-reviewer                      | 2026-08-19T17:02:44Z | nil | nil | https://github.com/cachix/git-blame-auto-reviewer                      |
+|      37 | cachix | refs/heads/ | main   | hs-opentelemetry-instrumentation-servant     | 2026-08-17T19:58:57Z | nil | nil | https://github.com/cachix/hs-opentelemetry-instrumentation-servant     |
+|      25 | cachix | refs/heads/ | main   | nixpkgs-unfree-redistributable               | 2026-08-11T16:55:01Z | nil | nil | https://github.com/cachix/nixpkgs-unfree-redistributable               |
+|     111 | cachix | refs/heads/ | master | elm2nix                                      | 2026-08-10T15:41:36Z | nil | nil | https://github.com/cachix/elm2nix                                      |
+|     398 | cachix | refs/heads/ | main   | nixcon-2024-workshop                         | 2026-08-07T19:17:35Z | nil | nil | https://github.com/cachix/nixcon-2024-workshop                         |
+|      26 | cachix | refs/heads/ | main   | clickhouse-haskell                           | 2026-07-29T13:51:05Z | nil | nil | https://github.com/cachix/clickhouse-haskell                           |
+|       2 | cachix | refs/heads/ | main   | secretspec-action                            | 2026-07-27T01:20:37Z | nil | nil | https://github.com/cachix/secretspec-action                            |
+|       6 | cachix | refs/heads/ | main   | elm-hashcash                                 | 2026-06-10T09:48:57Z | nil | nil | https://github.com/cachix/elm-hashcash                                 |
+|     373 | cachix | refs/heads/ | main   | nix-bindings-haskell                         | 2026-04-21T19:36:20Z | nil | nil | https://github.com/cachix/nix-bindings-haskell                         |
+|      38 | cachix | refs/heads/ | main   | stamina.hs                                   | 2026-03-17T09:03:07Z | nil | nil | https://github.com/cachix/stamina.hs                                   |
+|       8 | cachix | refs/heads/ | main   | gptcomment                                   | 2025-10-06T09:25:04Z | nil | nil | https://github.com/cachix/gptcomment                                   |
+|       0 | cachix | nil         | nil    | arewetvixyet.com                             | 2025-08-16T23:08:13Z | nil | nil | https://github.com/cachix/arewetvixyet.com                             |
+|      46 | cachix | refs/heads/ | main   | cachix-deploy-flake                          | 2025-08-16T23:08:13Z | nil | nil | https://github.com/cachix/cachix-deploy-flake                          |
+|      62 | cachix | refs/heads/ | main   | nar-toolbox                                  | 2025-07-08T13:52:57Z | nil | nil | https://github.com/cachix/nar-toolbox                                  |
+|      64 | cachix | refs/heads/ | master | paddle                                       | 2025-07-02T15:57:24Z | nil | nil | https://github.com/cachix/paddle                                       |
+|       9 | cachix | refs/heads/ | main   | oss                                          | 2025-06-19T19:36:49Z | nil | nil | https://github.com/cachix/oss                                          |
+|      13 | cachix | refs/heads/ | main   | fnmatch                                      | 2024-10-03T13:53:24Z | nil | nil | https://github.com/cachix/fnmatch                                      |
+|       3 | cachix | refs/heads/ | main   | ekg-ghc                                      | 2024-07-10T15:43:35Z | nil | nil | https://github.com/cachix/ekg-ghc                                      |
+|      45 | cachix | refs/heads/ | main   | cachix-deploy-amis                           | 2024-06-14T05:08:34Z | nil | nil | https://github.com/cachix/cachix-deploy-amis                           |
+|      36 | cachix | refs/heads/ | main   | typed-websockets                             | 2024-06-13T15:35:13Z | nil | nil | https://github.com/cachix/typed-websockets                             |
+|       2 | cachix | refs/heads/ | main   | cachix-deploy-aws                            | 2024-04-10T18:46:31Z | nil | nil | https://github.com/cachix/cachix-deploy-aws                            |
+|      39 | cachix | refs/heads/ | main   | cachix-deploy-terraform                      | 2024-04-10T18:45:32Z | nil | nil | https://github.com/cachix/cachix-deploy-terraform                      |
+|       2 | cachix | refs/heads/ | main   | haskell-wishlist                             | 2024-04-02T00:23:35Z | nil | nil | https://github.com/cachix/haskell-wishlist                             |
+|     178 | cachix | refs/heads/ | main   | fastcdc-rs2hs                                | 2024-01-30T14:19:21Z | nil | nil | https://github.com/cachix/fastcdc-rs2hs                                |
+|       1 | cachix | refs/heads/ | master | feedback                                     | 2023-06-25T01:22:23Z | nil | nil | https://github.com/cachix/feedback                                     |
+|      81 | cachix | refs/heads/ | master | mixpanel-client                              | 2023-06-21T11:19:18Z | nil | nil | https://github.com/cachix/mixpanel-client                              |
+|      73 | cachix | refs/heads/ | main   | parse-range-header.js                        | 2023-04-13T02:21:45Z | nil | nil | https://github.com/cachix/parse-range-header.js                        |
+|      28 | cachix | refs/heads/ | master | katip-raven                                  | 2022-06-27T19:59:08Z | nil | nil | https://github.com/cachix/katip-raven                                  |
+
+Clone bundles total
+
+#+name: cachixReposBundlesTotal
+#+call: ghubReposBundlesTotal(tbl=cachixReposBundles[,0])
+
+#+RESULTS: cachixReposBundlesTotal
+: 2703921
+
+** Cachix Repos
+
+Filter the results, generate XML
+
+#+name: cachixReposXML
+#+call: ghubReposXML(repos=cachixReposFetch, reposExclude=cachixReposExclude, login=cachixLogin)
+
+#+RESULTS: cachixReposXML
+#+begin_export html
+<project name="cachix/agentaps" path="cachix/agentaps" revision="refs/heads/main" remote="github"/>
+<project name="cachix/arewetvixyet.com" path="cachix/arewetvixyet.com" revision="" remote="github"/>
+<project name="cachix/cachix" path="cachix/cachix" revision="refs/heads/master" remote="github"/>
+<project name="cachix/cachix-action" path="cachix/cachix-action" revision="refs/heads/master" remote="github"/>
+<project name="cachix/cachix-ci-agents" path="cachix/cachix-ci-agents" revision="refs/heads/main" remote="github"/>
+<project name="cachix/cachix-deploy-amis" path="cachix/cachix-deploy-amis" revision="refs/heads/main" remote="github"/>
+<project name="cachix/cachix-deploy-aws" path="cachix/cachix-deploy-aws" revision="refs/heads/main" remote="github"/>
+<project name="cachix/cachix-deploy-flake" path="cachix/cachix-deploy-flake" revision="refs/heads/main" remote="github"/>
+<project name="cachix/cachix-deploy-hetzner-dedicated" path="cachix/cachix-deploy-hetzner-dedicated" revision="refs/heads/main" remote="github"/>
+<project name="cachix/cachix-deploy-terraform" path="cachix/cachix-deploy-terraform" revision="refs/heads/main" remote="github"/>
+<project name="cachix/casita" path="cachix/casita" revision="refs/heads/main" remote="github"/>
+<project name="cachix/changelog-merge" path="cachix/changelog-merge" revision="refs/heads/main" remote="github"/>
+<project name="cachix/clickhouse-haskell" path="cachix/clickhouse-haskell" revision="refs/heads/main" remote="github"/>
+<project name="cachix/cloud.devenv.sh" path="cachix/cloud.devenv.sh" revision="refs/heads/main" remote="github"/>
+<project name="cachix/devenv" path="cachix/devenv" revision="refs/heads/main" remote="github"/>
+<project name="cachix/devenv-ai-agents" path="cachix/devenv-ai-agents" revision="refs/heads/main" remote="github"/>
+<project name="cachix/docs.cachix.org" path="cachix/docs.cachix.org" revision="refs/heads/master" remote="github"/>
+<project name="cachix/dotenv-ng" path="cachix/dotenv-ng" revision="refs/heads/main" remote="github"/>
+<project name="cachix/ekg-ghc" path="cachix/ekg-ghc" revision="refs/heads/main" remote="github"/>
+<project name="cachix/elm-hashcash" path="cachix/elm-hashcash" revision="refs/heads/main" remote="github"/>
+<project name="cachix/elm2nix" path="cachix/elm2nix" revision="refs/heads/master" remote="github"/>
+<project name="cachix/factorseal" path="cachix/factorseal" revision="refs/heads/main" remote="github"/>
+<project name="cachix/fastcdc-rs2hs" path="cachix/fastcdc-rs2hs" revision="refs/heads/main" remote="github"/>
+<project name="cachix/feedback" path="cachix/feedback" revision="refs/heads/master" remote="github"/>
+<project name="cachix/fnmatch" path="cachix/fnmatch" revision="refs/heads/main" remote="github"/>
+<project name="cachix/git-blame-auto-reviewer" path="cachix/git-blame-auto-reviewer" revision="refs/heads/main" remote="github"/>
+<project name="cachix/git-hooks.nix" path="cachix/git-hooks.nix" revision="refs/heads/master" remote="github"/>
+<project name="cachix/gptcomment" path="cachix/gptcomment" revision="refs/heads/main" remote="github"/>
+<project name="cachix/haskell-release-action" path="cachix/haskell-release-action" revision="refs/heads/main" remote="github"/>
+<project name="cachix/haskell-wishlist" path="cachix/haskell-wishlist" revision="refs/heads/main" remote="github"/>
+<project name="cachix/hs-opentelemetry-instrumentation-http-client" path="cachix/hs-opentelemetry-instrumentation-http-client" revision="refs/heads/main" remote="github"/>
+<project name="cachix/hs-opentelemetry-instrumentation-servant" path="cachix/hs-opentelemetry-instrumentation-servant" revision="refs/heads/main" remote="github"/>
+<project name="cachix/install-nix-action" path="cachix/install-nix-action" revision="refs/heads/master" remote="github"/>
+<project name="cachix/jev-action" path="cachix/jev-action" revision="refs/heads/main" remote="github"/>
+<project name="cachix/katip-raven" path="cachix/katip-raven" revision="refs/heads/master" remote="github"/>
+<project name="cachix/mixpanel-client" path="cachix/mixpanel-client" revision="refs/heads/master" remote="github"/>
+<project name="cachix/nar-toolbox" path="cachix/nar-toolbox" revision="refs/heads/main" remote="github"/>
+<project name="cachix/native-theme-gtk" path="cachix/native-theme-gtk" revision="refs/heads/main" remote="github"/>
+<project name="cachix/native-theme-qt" path="cachix/native-theme-qt" revision="refs/heads/main" remote="github"/>
+<project name="cachix/nix-archive" path="cachix/nix-archive" revision="refs/heads/main" remote="github"/>
+<project name="cachix/nix-bindings-haskell" path="cachix/nix-bindings-haskell" revision="refs/heads/main" remote="github"/>
+<project name="cachix/nix-derivation" path="cachix/nix-derivation" revision="refs/heads/main" remote="github"/>
+<project name="cachix/nix-flake-lock" path="cachix/nix-flake-lock" revision="refs/heads/main" remote="github"/>
+<project name="cachix/nix-narinfo" path="cachix/nix-narinfo" revision="refs/heads/main" remote="github"/>
+<project name="cachix/nixcon-2024-workshop" path="cachix/nixcon-2024-workshop" revision="refs/heads/main" remote="github"/>
+<project name="cachix/nixpkgs-python" path="cachix/nixpkgs-python" revision="refs/heads/main" remote="github"/>
+<project name="cachix/nixpkgs-unfree-redistributable" path="cachix/nixpkgs-unfree-redistributable" revision="refs/heads/main" remote="github"/>
+<project name="cachix/oauth-kit" path="cachix/oauth-kit" revision="refs/heads/main" remote="github"/>
+<project name="cachix/oss" path="cachix/oss" revision="refs/heads/main" remote="github"/>
+<project name="cachix/paddle" path="cachix/paddle" revision="refs/heads/master" remote="github"/>
+<project name="cachix/parse-range-header.js" path="cachix/parse-range-header.js" revision="refs/heads/main" remote="github"/>
+<project name="cachix/secretspec" path="cachix/secretspec" revision="refs/heads/main" remote="github"/>
+<project name="cachix/secretspec-action" path="cachix/secretspec-action" revision="refs/heads/main" remote="github"/>
+<project name="cachix/site-kit" path="cachix/site-kit" revision="refs/heads/main" remote="github"/>
+<project name="cachix/snix" path="cachix/snix" revision="refs/heads/canon" remote="github"/>
+<project name="cachix/stamina.hs" path="cachix/stamina.hs" revision="refs/heads/main" remote="github"/>
+<project name="cachix/terminal-card" path="cachix/terminal-card" revision="refs/heads/main" remote="github"/>
+<project name="cachix/typed-websockets" path="cachix/typed-websockets" revision="refs/heads/main" remote="github"/>
+#+end_export
+
+
+*** Generate XML
+
+Generate =cachix.xml=
+
+#+begin_src xml :tangle cachix.xml :noweb yes
+<manifest>
+  <<cachixReposXML()>>
 </manifest>
 #+end_src
