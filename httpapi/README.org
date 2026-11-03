@@ -64,19 +64,22 @@ Check rates with =ghubCheckRates()=
 
 ** Tools
 
++ TODO [[https://github.com/airbytehq/airbyte][airbytehq/airbyte]] everything-to-everything ETL tool (focused on HTTP
+  API-based ingestion)
+
 + [[https://github.com/python-jsonschema/hypothesis-jsonschema][python-jsonschema/hypothesis-jsonschema]] for jsonschema
 + [[https://github.com/python-jsonschema/hypothesis-jsonschema][python-jsonschema/hypothesis-pb]] for protobuf
 
 #+begin_src xml :tangle jsonschema.xml
 <manifest>
   <!-- codegen -->
-  <project name="glideapps/quicktype" path="codegen/quicktype" revision="refs/heads/main" remote="github" groups="gen schema" />
+  <project name="glideapps/quicktype" path="codegen/quicktype" revision="refs/heads/master" remote="github" groups="gen schema" />
   <project name="glideapps/zod-from-json-schema" path="codegen/zod-from-json-schema" revision="refs/heads/main" remote="github" groups="gen schema" />
   <project name="StefanTerdell/json-schema-to-zod" path="codegen/json-schema-to-zod" revision="refs/heads/master" remote="github" groups="gen schema" />
   <project name="schlothauer-wauer/jsoncodegen" path="codegen/jsoncodegen" revision="refs/heads/master" remote="github" groups="gen schema" />
 
   <!-- conversion -->
-  <project name="koumoul/schema-jtd" path="convert/schema-jtd" revision="refs/heads/main" remote="github" groups="fuzz typescript jtd schema" />
+  <project name="koumoul-dev/schema-jtd" path="convert/schema-jtd" revision="refs/heads/main" remote="github" groups="fuzz typescript jtd schema" />
   <project name="galvez/jsontypedef" path="convert/jsontypedef" revision="refs/heads/main" remote="github" groups="fuzz typescript jtd schema" />
   <project name="hectorm/openapi2jsonschema" path="convert/openapi2jsonschema" revision="refs/heads/master" remote="github" groups="gen schema" />
 
