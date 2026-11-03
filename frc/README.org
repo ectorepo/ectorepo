@@ -74,8 +74,8 @@ Generate =wpilibsuite.xml=
   <project name="sleipnirgroup/choreo" path="choreo/choreo" revision="refs/heads/main" remote="github"/>
   <project name="sleipnirgroup/sleipnir" path="choreo/sleipnir" revision="refs/heads/main" remote="github"/>
   <!-- ./texts -->
-  <project name="krishauser/RoboticSystemsBook" path="text/RoboticSystemsBook" revision="refs/heads/master" remote="github"/>
   <project name="calcmogul/controls-engineering-in-frc" path="text/controls-engineering-in-frc" revision="refs/heads/main" remote="github"/>
+  <project name="krishauser/RoboticSystemsBook" path="text/RoboticSystemsBook" revision="refs/heads/master" remote="github"/>
   <project name="krishauser/Klampt" path="text/Klampt" revision="refs/heads/master" remote="github"/>
   <project name="krishauser/Klampt-jupyter-extension" path="text/Klampt-jupyter-extension" revision="refs/heads/master" remote="github"/>
   <!-- ./dash -->
@@ -91,6 +91,7 @@ Generate =wpilibsuite.xml=
   <project name="Mechanical-Advantage/XRPTrainingCode" path="dash/advantage/XRPTrainingCode" revision="refs/heads/main" />
   <!-- ./ide -->
   <project name="javaru/frc-intellij-plugin" path="ide/intellij-2025" revision="refs/heads/main" remote="gitlab" />
+  <project name="DylanB5402/Stage1A-Template-9452" path="ide/Stage1A-Template-9452" revision="refs/heads/main" remote="github" />
   <!-- ./utils -->
   <project name="Boomaa23/open-ds" path="utils/open-ds" revision="refs/heads/master" />
   <project name="StuyPulse/StuyLib" path="utils/stuylib" revision="refs/heads/main" />
