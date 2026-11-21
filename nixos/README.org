@@ -122,6 +122,7 @@ A lot of interesting devops/consulting-oriented repos:
   <project name="cleverca22/rpi-nixos-example" path="iot/rpi-nixos-example" groups="nixos" revision="refs/heads/master"/>
   <project name="ElvishJerricco/rpi5-uefi-nix" path="iot/rpi5-uefi-nix" groups="nixos" revision="refs/heads/main"/>
   <project name="gnull/nixos-rk3588" path="iot/rockchip/nixos-rk3588" groups="nixos" revision="refs/heads/main"/>
+  <project name="0x0013/nixos-rk3588" path="iot/rockchip/nixos-rk3588-2" groups="nixos" revision="refs/heads/main"/>
   <project name="ryan4yin/nixos-config-sbc" path="iot/rockchip/nixos-config-sbc" groups="nixos" revision="refs/heads/main"/>
   <project name="phaitonican/orangepi5b-flake" path="iot/rockchip/orangepi5b-flake" groups="nixos" revision="refs/heads/main"/>
   <project name="mirrexagon/nixpkgs-esp-dev" path="iot/embedded/nixpkgs-esp-dev" groups="nixos" revision="refs/heads/master"/>
